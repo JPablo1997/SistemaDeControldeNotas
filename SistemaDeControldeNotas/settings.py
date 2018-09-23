@@ -81,13 +81,14 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'SistemaDeControldeNotas',
-	'USER':'pablopostgres',
-	'PASSWORD':'administrador',
-	'HOST':'localhost',
-	'PORT':5432,
-	
+    'USER':'pablopostgres',
+    'PASSWORD':'administrador',
+    'HOST':'localhost',
+    'PORT':5432,
+    
     }
 }
+
 
 
 # Password validation
