@@ -55,7 +55,7 @@ ROOT_URLCONF = 'SistemaDeControldeNotas.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR,'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -76,10 +76,10 @@ WSGI_APPLICATION = 'SistemaDeControldeNotas.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'SistemaDeControldeNotas',
+    'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    'NAME': 'SistemaDeControldeNotas',
 	'USER':'postgres',
-	'PASSWORD':'administrador',
+	'PASSWORD':'Ingeniero',
 	'HOST':'localhost',
 	'PORT':5432,
     }
@@ -123,3 +123,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = 'staticfiles'
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
