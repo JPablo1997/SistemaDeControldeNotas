@@ -1,7 +1,13 @@
 from django.db import models
 from django.conf import settings
+from django.contrib.auth.models import AbstractUser,User
 
 # Create your models here.
+
+class TipoUsuario(models.Model):
+    codigo_tipo_usuario = models.CharField(max_length=10,primary_key=True)
+    tipo_usuario = models.CharField(max_length=25)
+    descripcion_tipo_usuario = models.CharField(max_length=150)
 
 class Docente(models.Model):
     dui_docente = models.CharField(max_length=15, primary_key=True)
@@ -13,6 +19,7 @@ class Docente(models.Model):
     fecha_contratacion_docente = models.DateField(null=True)
     direccion_docente = models.CharField(max_length=50,null=True)
     usuario_docente = models.OneToOneField(settings.AUTH_USER_MODEL,on_delete=models.SET_NULL,null=True)
+    tipo_usuario = models.OneToOneField(TipoUsuario,on_delete=models.SET_NULL,null=True)
 
 class Especialidad(models.Model):
     codigo_especialidad = models.CharField(max_length=10,primary_key=True)
@@ -30,7 +37,9 @@ class Alumno(models.Model):
     sexo_alumno = models.CharField(max_length=5)
     año_ingreso = models.DateField()
     usuario_alumno = models.OneToOneField(settings.AUTH_USER_MODEL,on_delete=models.SET_NULL,null=True)
+    tipo_usuario = models.OneToOneField(TipoUsuario,on_delete=models.SET_NULL,null=True)
     especialidad_alumno = models.OneToOneField(Especialidad,on_delete=models.SET_NULL,null=True)
+    
 
 class Materia(models.Model):
     codigo_materia = models.CharField(max_length=15,primary_key=True)
