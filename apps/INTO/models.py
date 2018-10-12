@@ -9,6 +9,12 @@ class TipoUsuario(models.Model):
     tipo_usuario = models.CharField(max_length=25)
     descripcion_tipo_usuario = models.CharField(max_length=150)
 
+class asignacionTipoUsuario(models.Model):
+	class Meta:
+		unique_together = (('usuario', 'tipo_usuario'),)
+	usuario = models.OneToOneField(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
+	tipo_usuario = models.OneToOneField(TipoUsuario,on_delete=models.CASCADE)
+
 class Docente(models.Model):
     dui_docente = models.CharField(max_length=15, primary_key=True)
     nombre_docente = models.CharField(max_length=50)
@@ -19,7 +25,7 @@ class Docente(models.Model):
     fecha_contratacion_docente = models.DateField(null=True)
     direccion_docente = models.CharField(max_length=50,null=True)
     usuario_docente = models.OneToOneField(settings.AUTH_USER_MODEL,on_delete=models.SET_NULL,null=True)
-    tipo_usuario = models.OneToOneField(TipoUsuario,on_delete=models.SET_NULL,null=True)
+    
 
 class Especialidad(models.Model):
     codigo_especialidad = models.CharField(max_length=10,primary_key=True)
@@ -37,7 +43,6 @@ class Alumno(models.Model):
     sexo_alumno = models.CharField(max_length=5)
     año_ingreso = models.DateField()
     usuario_alumno = models.OneToOneField(settings.AUTH_USER_MODEL,on_delete=models.SET_NULL,null=True)
-    tipo_usuario = models.OneToOneField(TipoUsuario,on_delete=models.SET_NULL,null=True)
     especialidad_alumno = models.OneToOneField(Especialidad,on_delete=models.SET_NULL,null=True)
     
 
