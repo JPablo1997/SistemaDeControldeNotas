@@ -16,8 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import url, include
-
+from apps.INTO.views import Vista
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^prueba/', include('apps.INTO.urls', namespace="basehtml")),
+    url(r'',Vista.as_view(),name="index")
 ]
