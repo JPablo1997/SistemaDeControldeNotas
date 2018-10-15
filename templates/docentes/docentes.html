@@ -1,0 +1,42 @@
+{% extends 'base/base.html'%}
+{% block title %} Docentes {% endblock %}
+{% block content %}
+<br>
+<br>    
+     
+        <div class="row"> 
+            <section class="col-md-9"> 
+                
+                <h4 class="text-center" >Administracion de Docentes</h4>
+                <a href="#" class="btn btn-success">
+                    <span class="fas fa-plus"></span> Nuevo
+                </a>
+                <br><br>
+                <div class="table-responsive">
+                    <table class="table table-hover border">
+                        <tr class="table-success text-center">
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Materias Que Imparte</th>
+                            <th>Grados a Cargo</th>                            
+                            <th>Correo Electronico</th>
+                        </tr>
+
+                    </table> 
+
+                </div> 
+                
+            </section>
+            
+            <aside class="col-md-3 hidden-xs hidden-sm">               
+            <br> <br> <br> <br> 
+                <div class="list-group"> 
+                    <span href="" class="list-group-item active">Acciones</span> 
+                    <a href="" class="list-group-item">Grados</a> 
+                    <a href="" class="list-group-item">Materias</a>
+                    <a href="" class="list-group-item">Estudiantes</a>                     
+                </div>             
+            </aside>
+        </div>
+    
+{% endblock %}

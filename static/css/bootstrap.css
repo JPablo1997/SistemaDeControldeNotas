@@ -6133,7 +6133,9 @@ button.bg-danger:focus {
 }
 
 .bg-light {
-  background-color: #f8f9fa !important;
+  /*Modificacion-Ochoa
+  background-color: #f8f9fa;*/
+  background-color: lavender;
 }
 
 a.bg-light:hover, a.bg-light:focus,

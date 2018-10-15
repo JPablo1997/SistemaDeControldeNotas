@@ -3,3 +3,6 @@ from django.views.generic import TemplateView
 # Create your views here.
 class Vista(TemplateView):
 	template_name='base/base.html'
+
+class DocentesAdmin(TemplateView):
+	template_name='docentes/docentes.html'
