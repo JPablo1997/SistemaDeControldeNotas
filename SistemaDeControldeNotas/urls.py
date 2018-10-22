@@ -16,9 +16,10 @@ Including another URLconf
 from django.contrib import admin
 #from django.urls import path
 from django.conf.urls import url, include
-from apps.INTO.views import Vista,DocentesAdmin
+from apps.INTO.views import Vista,ListDocentesAdmin,CrearDocentesAdmin
 urlpatterns = [
     url(r'^admin/', admin.site.urls),    
     url(r'^$',Vista.as_view(),name="index"),
-    url(r'^docentes/$',DocentesAdmin.as_view(),name="docentes-view"),
+    url(r'^docentes/$',ListDocentesAdmin.as_view(),name="docentes-list"),
+    url(r'^nuevoDocente/$',CrearDocentesAdmin.as_view(),name="docente-new"),
 ]

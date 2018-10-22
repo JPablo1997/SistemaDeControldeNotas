@@ -1,0 +1,42 @@
+{% extends 'base/base.html' %}
+{% block content %}
+{% if docente.dui_docente %} 
+    <h3>
+        Editar Docente
+    </h3> 
+    {% else %} 
+    <h3>
+        Nuevo Docente 
+    </h3> 
+{% endif %}
+<div></div>
+<form action="{{action}}" class="form-horizontal" method="post">
+    {% csrf_token %}
+    <div class="form-group has-success">
+        <label for="nombre" class="control-label col-md-2">DUI:</label>
+        <div class="col-md-2">
+            <input type="text" name="dui_docente" class="form-control" id="dui" placeholder="Escriba el DUI">
+        </div>
+    </div>
+    {%for element in form %} 
+    <div class="form-group"> 
+        <label class="col-md-2 control-label">
+            {{element.label}}            
+        </label> 
+        <div class="col-md-7"> 
+            {{element}} 
+            <div class="error">
+                {{element.errors}}
+            </div>
+        </div> 
+    </div> 
+    {% endfor %} 
+    <div class="col-md-offset-2 col-md-7"> 
+        <button id="save_docente" type="submit" class="btn btn-success">
+            Guardar
+        </button> 
+        <a href="{% url 'docentes-list' %}" 
+        class="btn btn-default">Volver a la lista</a> 
+    </div> 
+</form> 
+{% endblock %}

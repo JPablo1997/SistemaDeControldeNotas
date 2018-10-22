@@ -5,23 +5,34 @@
 <br>    
      
         <div class="row"> 
-            <section class="col-md-9"> 
-                
+            <section class="col-md-9">                
                 <h4 class="text-center" >Administracion de Docentes</h4>
-                <a href="#" class="btn btn-success">
+                <a href="{% url 'docente-new' %}" class="btn btn-success">
                     <span class="fas fa-plus"></span> Nuevo
                 </a>
                 <br><br>
                 <div class="table-responsive">
                     <table class="table table-hover border">
                         <tr class="table-success text-center">
-                            <th>ID</th>
+                            <th>DUI</th>
                             <th>Nombre</th>
-                            <th>Materias Que Imparte</th>
-                            <th>Grados a Cargo</th>                            
-                            <th>Correo Electronico</th>
+                            <th>Fecha Nacimiento</th>
+                            <th>Telefono</th>                            
+                            <th>Email</th>
+                            <th>Fecha Contratacion</th>
+                            <th>Direccion del docente</th>
                         </tr>
-
+                        {% for docente in object_list %}
+                        <tr class="text-justify">
+                            <td>{{ docente.dui_docente }}</td>
+                            <td>{{ docente.nombre_docente }} {{ docente.apellidos_docente }}</td>
+                            <td>{{ docente.fecha_nacimiento_docente }}</td>
+                            <td>{{ docente.telefono_docente }}</td>
+                            <td>{{ docente.email_docente }}</td>
+                            <td>{{ docente.fecha_contratacion_docente }}</td>                            
+                            <td>{{ docente.direccion_docente }}</td>                           
+                        </tr>
+                        {% endfor %}
                     </table> 
 
                 </div> 
