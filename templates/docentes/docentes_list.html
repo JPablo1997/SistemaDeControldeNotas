@@ -25,7 +25,7 @@
                         {% for docente in object_list %}
                         <tr class="text-justify">
                             <td>{{ docente.dui_docente }}</td>
-                            <td>{{ docente.nombre_docente }} </td>
+                            <td>{{ docente.nombre_docente }} {{ docente.apellidos_docente }}</td>
                             <td>{{ docente.fecha_nacimiento_docente }}</td>
                             <td>{{ docente.telefono_docente }}</td>
                             <td>{{ docente.email_docente }}</td>
