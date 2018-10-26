@@ -12,11 +12,14 @@ class ListDocentesAdmin(ListView):
 	template_name='docentes/docentes_list.html'
 
 class CrearDocentesAdmin(CreateView):
-	model=Docente 
+	 
 	template_name='docentes/edit_docente.html'
+	model=Docente
+	
 	form_class =  DocenteForm
 	def get_context_data(self, **kwargs):
 		context=super(CrearDocentesAdmin,self).get_context_data(**kwargs)
 		context['action']=reverse('docente-new')
 		return context
+		
 	success_url=reverse_lazy('docentes-list')
