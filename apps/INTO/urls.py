@@ -17,11 +17,12 @@ from django.contrib import admin
 #from django.urls import path
 from django.conf.urls import url, include
 from apps.INTO.views import Vista,ListDocentesAdmin,CrearDocentesAdmin, IngresarNotas
-from django.contrib.auth.views import login, logout_then_login
+from django.contrib.auth.views import login
+from django.contrib.auth.decorators import login_required
 
-urlpatterns = [
-    url(r'^admin/', admin.site.urls),    
-    url(r'^into/',include('apps.INTO.urls')),
-    url(r'^accounts/login/',login, {'template_name':'Autentificacion/login.html'}, name="login"),
-    url(r'^logout/',logout_then_login, name='logout'),
+urlpatterns = [  
+    url(r'^index/$',login_required(Vista.as_view()),name="index"),
+    url(r'^docentes/$',login_required(ListDocentesAdmin.as_view()),name="docentes-list"),
+    url(r'^nuevoDocente/$',login_required(CrearDocentesAdmin.as_view()),name="docente-new"),
+    url(r'^ingresarNotas/$',login_required(IngresarNotas.as_view()),name="ingresarNotas"),
 ]

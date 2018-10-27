@@ -23,3 +23,6 @@ class CrearDocentesAdmin(CreateView):
 		return context
 		
 	success_url=reverse_lazy('docentes-list')
+
+class IngresarNotas(TemplateView):
+	template_name='IngresarNotas/ingresarNotas.html'

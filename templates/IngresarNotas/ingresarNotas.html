@@ -1,0 +1,25 @@
+{% extends 'base/base.html'%}
+{% block title %} Ingresar Notas {% endblock %}
+{% block content %}
+
+<form id="formEvaluacion" method="POST">
+    {% csrf_token %}
+  Seleccionar Materia:<br>
+  <select name="materiaListado">
+      <option>
+          ----
+      </option>
+  </select>
+  <br>
+  Seleccionar Evaluacion:<br>
+  <select name="evaluacionListado">
+      <option>
+          ----
+      </option>
+  </select>
+  <br><br>
+  <input type="submit" value="Obtener">    
+
+</form>
+    
+{% endblock %}
