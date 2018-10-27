@@ -1,25 +1,60 @@
 {% extends 'base/base.html'%}
 {% block title %} Ingresar Notas {% endblock %}
 {% block content %}
-
+<br>
 <form id="formEvaluacion" method="POST">
     {% csrf_token %}
-  Seleccionar Materia:<br>
-  <select name="materiaListado">
-      <option>
-          ----
-      </option>
-  </select>
-  <br>
-  Seleccionar Evaluacion:<br>
-  <select name="evaluacionListado">
-      <option>
-          ----
-      </option>
-  </select>
+  Seleccionar Materia con su respectiva evaluacion para ingresar las notas:<br>
+  <table>
+    <tr>
+      <td><select name="materiaListado" id="materiaListado">
+          <option value="Z">Seleccione una materia</option>
+          {% if materias %}
+            {% for materia in materias %}
+              <option value="{{ materia }}">{{ materia }}</option>
+            {% endfor %}
+          {% else %}
+            <option>No hay materias</option>
+          {% endif %}
+        </select>
+      </td>
+      <td>  <input class="btn btn-primary" id="btnObtener" name="btnObtener" type="submit" value="Obtener Alumnos"> </td>
+    </tr>
+  </table>
+  
   <br><br>
-  <input type="submit" class="btn btn-success" value="Obtener">    
-
+   
 </form>
-    
+
+{% if alumnos %}
+   <form id="formNotas" method="POST">
+    {% csrf_token %}
+    {% if evaluacion %}
+    <table>
+      <tr>
+        <tr><label id="lblEva" style="display: none;">codigo_evaluacion:</label><input style="display: none;" type="text" id="codigoEva" name="codigoEva" value="{{ evaluacion.codigo_evaluacion }}"></tr>
+        <tr><label>Evaluacion [nombre: <b>{{ evaluacion.nombre_evaluacion }}</b>,&nbsp;</label></tr>
+        <tr><label>descripcion: <b> {{ evaluacion.descripcion_evaluacion }}]</b></label></tr>
+      </tr>
+    </table>
+    {% else %}
+    {% endif %}
+    <br>
+    <table class="tableNotas">
+      <td class="tdNotas tdPrimario"> <b>NIE</b></td><td class="tdNotas tdPrimario" > <b>Aumno</b> </td> <td class="tdNotas tdPrimario"> <b>Nota</b> </td>
+     {% for alumno in alumnos %}
+        <tr class="trNotas">
+          <td class="tdNotas"><label>{{ alumno.nie }}</label></td>
+          <td class="tdNotas"><label>{{ alumno.apellidos_alumno }}, {{ alumno.nombre_alumno }}</label></td>
+          <td class="tdNotas"><input type="text" id="{{ alumno.nie }}" name="{{ alumno.nie }}" pattern="[0-1]*[0-9]\.[0-9][0-9]"></td>
+        </tr>
+      {% endfor %}
+{% else %}
+      <option>No hay Alumnos</option>
+{% endif %}
+    </table>
+    <input class="btn btn-secondary" id="btnGuardar" name="btnGuardar" type="submit" value="Guardar"> 
+   </form>
+<br><br>
 {% endblock %}
+
