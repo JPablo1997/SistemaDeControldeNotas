@@ -19,7 +19,7 @@ from django.conf.urls import url, include
 from apps.INTO.views import Vista,ListDocentesAdmin,CrearDocentesAdmin, IngresarNotas
 from django.contrib.auth.views import login
 from django.contrib.auth.decorators import login_required
-
+ 
 urlpatterns = [  
     url(r'^index/$',login_required(Vista.as_view()),name="index"),
     url(r'^docentes/$',login_required(ListDocentesAdmin.as_view()),name="docentes-list"),
