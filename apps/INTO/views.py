@@ -26,3 +26,6 @@ class CrearDocentesAdmin(CreateView):
 
 class IngresarNotas(TemplateView):
 	template_name='IngresarNotas/ingresarNotas.html'
+
+class DatosEstadisticos(TemplateView):
+	template_name='estadisticas/estadisticas.html'
