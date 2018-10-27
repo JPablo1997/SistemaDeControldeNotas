@@ -1,0 +1,51 @@
+{% extends 'base/base.html'%}
+{% block title %} Administrar Notas {% endblock %}
+{% block content %}
+<hr/>
+	<div class="hero-text text-center">
+		<p>Administracion y correccion de notas</p>
+	</div>
+<hr/>
+<div class= "container">
+	<div class= "row">
+		<section class="col-md-2">
+			<div class= "container">
+				<form>
+					{% csrf_token %}
+					{{ form.as_p }}
+					<button type= "submit">Consultar</button>
+				</form>
+			</div>		
+		</section>
+		<aside class="col-md-10 hidden-xs hidden-sm">
+			<div class="table-responsive">
+                <table class="table table-hover border">
+                    <tr class="table-success text-center">
+                        <th>Nie</th>
+                        <th>Nombre</th>
+                        <th>Apellidos</th>
+                        <th>Grado</th>                            
+                        <th>Materia</th>
+                        <th>Nota 1</th>
+                        <th>Nota 2</th>
+                        <th>Nota 3</th>
+                    </tr>                        
+                    <tr class="text-justify">
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>                            
+                        <td></td>                           
+                        <td></td> 
+                    </tr>                        
+        	    </table> 
+            </div> 
+		<aside/>
+	</div>	
+<hr/>
+</div>
+	
+	
+{% endblock %}

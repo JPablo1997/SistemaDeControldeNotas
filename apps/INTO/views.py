@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView,ListView,CreateView
 from apps.INTO.models import Docente
-from apps.INTO.forms import DocenteForm
+from apps.INTO.forms import DocenteForm,AdministrarNotasForm
 from django.urls import reverse_lazy,reverse
 # Create your views here.
 class Vista(TemplateView):
@@ -29,3 +29,9 @@ class IngresarNotas(TemplateView):
 
 class DatosEstadisticos(TemplateView):
 	template_name='estadisticas/estadisticas.html'
+
+class administrarNotas(TemplateView):
+	template_name='administrarNotas/administrarNotas.html'
+	def administrar(request):
+		form = AdministrarNotasForm()
+		return render(request, 'administrarNotas/administrarNotas.html',{'form':form})
