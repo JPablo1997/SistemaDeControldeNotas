@@ -5,3 +5,27 @@
   {
       border-color: blue;
   }
+
+.tableNotas {
+
+font: 75%/1.5em arial, geneva, sans-serif;
+border-collapse: collapse;
+
+}
+
+.tdNotas {
+border-bottom: 8px solid #fff;
+border-left: 1px dotted #fff;
+border-right: 1px dotted #fff;
+vertical-align: top;
+padding: 20px;
+border-style:groove;
+}
+
+.trNotas {
+background: #fff; 
+}
+.tdPrimario{
+	text-align: center;
+}
+

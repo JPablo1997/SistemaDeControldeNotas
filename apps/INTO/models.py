@@ -9,8 +9,8 @@ class TipoUsuario(models.Model):
     descripcion_tipo_usuario = models.CharField(max_length=150)
 
 class asignacionTipoUsuario(models.Model):
-	usuario = models.OneToOneField(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
-	tipo_usuario = models.OneToOneField(TipoUsuario,on_delete=models.CASCADE)
+    usuario = models.OneToOneField(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
+    tipo_usuario = models.OneToOneField(TipoUsuario,on_delete=models.CASCADE)
 
 class Docente(models.Model):
     dui_docente = models.CharField(max_length=15, primary_key=True)
@@ -30,14 +30,14 @@ class Especialidad(models.Model):
     anios_especialidad = models.IntegerField()
 
 class Encargado(models.Model):
- 	dui_encargado = models.CharField(max_length=12, primary_key=True)
- 	nombre_encargado = models.CharField(max_length=35)
- 	apellidos_encargado = models.CharField(max_length=35)
- 	email = models.CharField(max_length=35)
- 	telefono = models.CharField(max_length=10, null=True)
- 	celular = models.CharField(max_length=10)
- 	oficio_profesion = models.CharField(max_length=50)
- 	parentesco = models.CharField(max_length=20)
+    dui_encargado = models.CharField(max_length=12, primary_key=True)
+    nombre_encargado = models.CharField(max_length=35)
+    apellidos_encargado = models.CharField(max_length=35)
+    email = models.CharField(max_length=35)
+    telefono = models.CharField(max_length=10, null=True)
+    celular = models.CharField(max_length=10)
+    oficio_profesion = models.CharField(max_length=50)
+    parentesco = models.CharField(max_length=20)
 
 class Alumno(models.Model):
     nie = models.CharField(max_length=12, primary_key=True)
@@ -72,7 +72,7 @@ class Grupo(models.Model):
 
 class Alumno_Grupo(models.Model):
     nie = models.OneToOneField(Alumno,on_delete=models.CASCADE)
-    codigo_grupo =  models.OneToOneField(Grupo,on_delete=models.CASCADE)
+    codigo_grupo =  models.ForeignKey(Grupo,on_delete=models.CASCADE)
     anio_cursado = models.IntegerField(help_text="Año en el cual el alumno esta/estuvo en ese grupo")
     
 class AnioLectivo(models.Model):
@@ -85,9 +85,9 @@ class Periodo(models.Model):
     finalizado = models.BooleanField(help_text="Indica si el periodo ya ha finalizado")
         
 class Tipo_actividad(models.Model):
-	codigo_tipo_actividad = models.CharField(max_length=10, primary_key=True)
-	nombre_tipo_actividad = models.CharField(max_length=50)
-	descripcion = models.CharField(max_length=150)
+    codigo_tipo_actividad = models.CharField(max_length=10, primary_key=True)
+    nombre_tipo_actividad = models.CharField(max_length=50)
+    descripcion = models.CharField(max_length=150)
     
 class Actividad(models.Model):
     codigo_actividad = models.CharField(max_length=15,primary_key=True)
@@ -103,8 +103,8 @@ class Sub_Actividad(models.Model):
     descripcion_sub_actividad = models.CharField(max_length=150,null=True)
     
 class Docente_Materia(models.Model):
-	codigo_docente = models.ForeignKey(Docente,on_delete=models.CASCADE)
-	codigo_materia = models.ForeignKey(Materia,on_delete=models.CASCADE)
+    codigo_docente = models.ForeignKey(Docente,on_delete=models.CASCADE)
+    codigo_materia = models.ForeignKey(Materia,on_delete=models.CASCADE)
     
 class Evaluacion(models.Model):
     codigo_evaluacion = models.CharField(max_length=15,primary_key=True)
@@ -114,9 +114,9 @@ class Evaluacion(models.Model):
     codigo_sub_actividad = models.OneToOneField(Sub_Actividad,on_delete=models.CASCADE)
     
 class Calificacion(models.Model):
-    nie = models.OneToOneField(Alumno,on_delete=models.CASCADE)
-    codigo_evaluacion = models.OneToOneField(Evaluacion,on_delete=models.CASCADE)
-    nota = models.DecimalField(max_digits=5,decimal_places=4)
+    nie = models.ForeignKey(Alumno,on_delete=models.CASCADE)
+    codigo_evaluacion = models.ForeignKey(Evaluacion,on_delete=models.CASCADE)
+    nota = models.DecimalField(max_digits=10, decimal_places=2)
     
     
-	
+    

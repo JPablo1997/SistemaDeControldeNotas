@@ -1,5 +1,5 @@
 from django import forms 
-from apps.INTO.models import Docente
+from apps.INTO.models import Docente,Alumno,Grupo
 from django.core.exceptions import ValidationError 
 import re,datetime
 
@@ -20,4 +20,18 @@ class DocenteForm(forms.ModelForm):
         model=Docente
         fields=['dui_docente','nombre_docente','apellidos_docente','fecha_nacimiento_docente','telefono_docente','email_docente','fecha_contratacion_docente','direccion_docente',]
 
+class AdministrarNotasForm(forms.ModelForm):
+    class Meta:
+        model = Alumno
+
+        fields = [
+            'nie',
+
+        ]
+        labels = {
+            'nie' : 'Nie',
+        }
+        widgets = {
+        'nie' : forms.TextInput(attrs={'class':'form-control'}),
+        }
     
