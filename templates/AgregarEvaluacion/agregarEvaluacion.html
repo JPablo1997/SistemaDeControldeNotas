@@ -1,0 +1,147 @@
+{% extends 'base/base.html'%}
+{% block title %} Agregar Evaluacion {% endblock %}
+{% block content %}
+<br>
+       
+<div class="row">
+    <div id="msmSeleccionar" class="alert alert-dismissible alert-warning">
+        <button type="button" class="close" data-dismiss="alert" id="closeMsg">&times;</button>
+        <b class="alertMsg">Atencion!</b> Seleccione el periodo y la actividad para cargar el formulario.
+    </div>
+</div>     
+<form name="formClasificacion" method="POST">
+    {% csrf_token %}
+    <table id="frmAgregarEva">
+        <tr class="trAgregarEva">
+            <td class="tdAgregarEva">Seleccione el periodo:&nbsp;</td> 
+            <td class="tdAgregarEva"><input type="radio" name="periodo" value="Periodo1"><b>Periodo 1&nbsp;</b></td> 
+            <td class="tdAgregarEva"><input type="radio" name="periodo" value="Periodo2"> <b>Periodo 2&nbsp;</b></td> 
+            <td class="tdAgregarEva"><input type="radio" name="periodo" value="Periodo3"> <b>Periodo 3</b></td> 
+            <td class="tdAgregarEva"><input type="radio" name="periodo" value="Periodo4"> <b>Periodo 4</b></td>
+        </tr>
+        <tr class="trAgregarEva">
+            <td class="tdAgregarEva">Seleccione la actividad:&nbsp;</td>
+            <td class="tdAgregarEva"><input type="radio" name="actividad" value="Actividad1"><b>Actividad 1&nbsp;</b></td>
+            <td class="tdAgregarEva"><input type="radio" name="actividad" value="Actividad2"><b>Actividad 2&nbsp;</b></td> 
+            <td class="tdAgregarEva"><input type="radio" name="actividad" value="Examen1"><b>Examen 1&nbsp;</b></td>
+            <td class="tdAgregarEva"><input type="radio" name="actividad" value="Examen2"><b>Examen 2&nbsp;</b></td>
+        </tr>
+    </table>  
+    <input type="button" id="btnCargarFormValidar" onclick="validar()" name="btnCargarFormValidar" class="btn btn-secondary" value="Cargar formulario">
+    <input type="submit" id="btnCargarForm" name="btnCargarForm" class="btn btn-secondary" style="display: none;">
+</form>
+<br>
+{% if formSubActividad %} 
+
+<div class="centrar-form">
+<form name="formSubActividad" method="POST" class="formAgregarEva">
+    {% csrf_token %}
+    <table>
+        <tr>
+            <td><label>{{ periodo }} </label></td>
+            <td><label>{{ actividad }}</label></td>
+        </tr>
+        <tr>
+            <td><label>Año lectivo:</label></td>
+            <td><input type="text" name="anioLectivo"></td>
+        </tr>
+        <tr>
+            <td><label>Materia</label></td>
+            <td>
+                <select>
+                    <option>--Seleccione la materia--</option>
+                    {% if materias %}
+                        {% for materia in materias %}
+                          <option value="{{ materia }}">{{ materia }}</option>
+                        {% endfor %}
+                    {% else %}
+                        <option>No hay materias</option>
+                    {% endif %}
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td><label>Codigo de la Sub Actividad:</label></td>
+            <td><input type="text" name="codigoSubActividad"></td>
+        </tr>
+        <tr>
+            <td><label>Porcentaje:</label></td>
+            <td><input type="text" name="porcentajeSubActividad"></td>
+        </tr>
+        <tr>
+            <td><label>Descripcion:</label></td>
+            <td><input type="text" name="descripcionSubActividad"></td>
+        </tr>
+        <tr>
+            <td><label><i>Datos de la evaluacion correspondiente</i></label></td>
+            <td><label>-------------------------------------------</label></td>
+        </tr>
+        <tr>
+            <td><label>Codigo de la Evaluacion:</label></td>
+            <td><input type="text" name="codigoEvalucion"></td>
+        </tr>
+        <tr>
+            <td><label>Nombre:</label></td>
+            <td><input type="text" name="nombreEvaluacion"></td>
+        </tr>
+        <tr>
+            <td><label>Descripcion:</label></td>
+            <td><input type="text" name="descripcionEvaluacion"></td>
+        </tr>
+    </table>
+    <input class="btn btn-primary" type="submit" name="btnGuardarSubActividad" value="Guardar"> <input class="btn btn-secondary" type="button" name="clear" value="Cancelar">
+</form>
+  
+</div>
+{% endif %}  
+
+
+
+{% if formExamen %} 
+<div class="centrar-form">
+    <form name="formExamen" method="POST" class="formAgregarEva">
+    {% csrf_token %}
+    <table>
+        <tr>
+            <td><label>{{ periodo }} </label></td>
+            <td><label>{{ actividad }}</label></td>
+        </tr>
+         <tr>
+            <td><label>Año lectivo:</label></td>
+            <td><input type="text" name="anioLectivo"></td>
+        </tr>
+        <tr>
+            <td><label>Materia</label></td>
+            <td>
+                <select>
+                    <option>--Seleccione la materia--</option>
+                    {% if materias %}
+                        {% for materia in materias %}
+                          <option value="{{ materia }}">{{ materia }}</option>
+                        {% endfor %}
+                    {% else %}
+                        <option>No hay materias</option>
+                    {% endif %}
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td><label>Codigo del Examen:</label></td>
+            <td><input type="text" name="codigoExamen"></td>
+        </tr>
+        <tr>
+            <td><label>Porcentaje:</label></td>
+            <td><input type="text" name="porcentajeExamen"></td>
+        </tr>
+        <tr>
+            <td><label>Descripcion:</label></td>
+            <td><input type="text" name="descripcionExamen"></td>
+        </tr>
+    </table>
+    <input type="submit" class="btn btn-primary" name="btnGuardarExamen" value="Guardar"> <input class="btn btn-secondary" type="button" name="clear" value="Cancelar">
+</form>
+</div>
+{% endif %}
+
+<br><br>
+{% endblock %}

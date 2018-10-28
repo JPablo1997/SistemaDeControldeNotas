@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}"> 
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
   <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+  <script src="{% static 'js/main.js' %}"></script>
 
   <title>{% block title %} Inicio {% endblock %}</title>
 
@@ -49,7 +50,7 @@
                 <a class="nav-link" href="{% url 'ingresarNotas'%}"><i class="fas fa-pen"></i> Ingresar Notas</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#"><i class="fas fa-plus-square"></i> Agregar Evaluacion</a>
+                <a class="nav-link" href="{% url 'agregarEvaluacion' %}"><i class="fas fa-plus-square"></i> Agregar Evaluacion</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'administrar' %}"><i class="fas fa-edit"></i> Administrar Notas</a>
