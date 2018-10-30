@@ -1,12 +1,53 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.views.generic import TemplateView,ListView,CreateView
 from apps.INTO.models import Docente
-from apps.INTO.forms import DocenteForm,AdministrarNotasForm
+from django.contrib.auth.models import User,BaseUserManager
+from apps.INTO.forms import DocenteForm,AdministrarNotasForm,RegistroForm,AsignacionTipeUser
 from django.urls import reverse_lazy,reverse
 from django.http import HttpResponse
 from apps.INTO.models import *
 from decimal import Decimal
 # Create your views here.
+
+#vista basada en funcion para los formularios
+def creardocente(request):
+	if request.method=='POST':
+		form1=DocenteForm(request.POST)
+		if form1.is_valid():
+			usuario=User()
+			docente=Docente()
+			tipodeusuario=asignacionTipoUsuario()
+
+			#Logicadeguardado
+			docente.dui_docente=request.POST['dui_docente']
+			docente.nombre_docente=request.POST['nombre_docente']
+			docente.apellidos_docente=request.POST['apellidos_docente']
+			docente.fecha_nacimiento_docente=request.POST['fecha_nacimiento_docente']
+			docente.telefono_docente=request.POST['telefono_docente']
+			docente.email_docente=request.POST['email_docente']
+			docente.fecha_contratacion_docente=request.POST['fecha_contratacion_docente']
+			docente.direccion_docente=request.POST['direccion_docente']
+
+			usuario.username=docente.nombre_docente
+			usuario.first_name=docente.nombre_docente
+			usuario.last_name=docente.apellidos_docente
+			usuario.email=docente.email_docente
+			usuario.password='administrador10'
+			usuario.save()
+			
+			#usuarioid=User.objects.get(username=docente.nombre_docente).pk
+			usuarioid=BaseUserManager.get_by_natural_key(docente.nombre_docente)
+			usuario2=int(usuarioid)
+			docente.usuario_docente=usuario2
+			docente.save()
+			#docente=Docente()
+			#docente.dui_docente
+			#form1.save()
+		return redirect('docentes-list')
+	else:
+		form1=DocenteForm()		
+	return render(request,'docentes/edit_docente.html',{'form1':form1})
+
 class Vista(TemplateView):
 	template_name='base/base.html'
 
@@ -18,7 +59,7 @@ class CrearDocentesAdmin(CreateView):
 	 
 	template_name='docentes/edit_docente.html'
 	model=Docente
-	
+		
 	form_class =  DocenteForm
 	def get_context_data(self, **kwargs):
 		context=super(CrearDocentesAdmin,self).get_context_data(**kwargs)

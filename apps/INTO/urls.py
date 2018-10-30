@@ -16,14 +16,15 @@ Including another URLconf
 from django.contrib import admin
 #from django.urls import path
 from django.conf.urls import url, include
-from apps.INTO.views import Vista,ListDocentesAdmin,CrearDocentesAdmin, IngresarNotas,DatosEstadisticos,administrarNotas
+from apps.INTO.views import Vista,ListDocentesAdmin,CrearDocentesAdmin, IngresarNotas,\
+DatosEstadisticos,administrarNotas,creardocente
 from django.contrib.auth.views import login
 from django.contrib.auth.decorators import login_required
  
 urlpatterns = [  
     url(r'^index/$',login_required(Vista.as_view()),name="index"),
     url(r'^docentes/$',login_required(ListDocentesAdmin.as_view()),name="docentes-list"),
-    url(r'^nuevoDocente/$',login_required(CrearDocentesAdmin.as_view()),name="docente-new"),
+    url(r'^nuevoDocente/$',login_required(creardocente),name="docente-new"),
     url(r'^ingresarNotas/$',login_required(IngresarNotas),name="ingresarNotas"),
     url(r'^estadisticas/$',login_required(DatosEstadisticos.as_view()),name="estadisticas"),
     url(r'^administrar/$',login_required(administrarNotas.administrar),name="administrar"),

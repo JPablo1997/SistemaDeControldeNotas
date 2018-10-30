@@ -1,4 +1,5 @@
 {% extends 'base/base.html' %}
+{% block title %} Administrar Docente {% endblock %}
 {% block content %}
 {% if docente.dui_docente %} 
     <h3>
@@ -13,77 +14,40 @@
 <form class="form-horizontal" method="post">
     {% csrf_token %}
     
-    <div class="container">
-
-    
-    <div class="row">
-    <div class="col-md-3">
-
-    </div>
-    <div class="col-md-6">
-            <div class="form-group has-success">
-                    <label for="id_dui_docente" class="control-label col-md-2">DUI:</label>
-                    <div class="col-md-6">
-                        <input type="text" class="form-control" name="dui_docente" maxlength="10" required id="id_dui_docente" />
-                    </div>
-                </div>
-                <div class="form-group has-success">
-                    <label for="id_nombre_docente" class="control-label col-md-2">Nombre:</label>
-                    <div class="col-md-6">
-                        <input type="text" class="form-control" name="nombre_docente" maxlength="30" required id="id_nombre_docente"/>
-                    </div>
-                </div>
-                <div class="form-group has-success">
-                    <label for="id_apellidos_docente" class="control-label col-md-2">Apellidos:</label>
-                    <div class="col-md-6">
-                        <input type="text" class="form-control" name="apellidos_docente" maxlength="30" required id="id_apellidos_docente"/>
-                    </div>
-                </div>
-                <div class="form-group has-success">
-                    <label for="id_fecha_nacimiento_docente" class="control-label col-md-6">Fecha de Nacimiento:</label>
-                    <div class="col-md-6">
-                        <input type="date" class="form-control" name="fecha_nacimiento_docente" required id="id_fecha_nacimiento_docente" />
-                    </div>
-                </div>
-                <div class="form-group has-success">
-                    <label for="id_telefono_docente" class="control-label col-md-2">Telefono:</label>
-                    <div class="col-md-6">
-                        <input type="text" class="form-control" name="telefono_docente" maxlength="9" required id="id_telefono_docente" />
-                    </div>
-                </div>
-                <div class="form-group has-success">
-                    <label for="id_email_docente" class="control-label col-md-2">Correo Electronico:</label>
-                    <div class="col-md-8">
-                        <input type="email" class="form-control" name="email_docente" required id="id_email_docente" />
-                    </div>
-                </div>
-                <div class="form-group has-success">
-                    <label for="id_fecha_contratacion_docente" class="control-label col-md-6">Fecha de Contratacion:</label>
-                    <div class="col-md-6">
-                        <input type="date" class="form-control" name="fecha_contratacion_docente" required id="id_fecha_contratacion_docente"/>
-                    </div>
-                </div>
-                <div class="form-group has-success">
-                    <label for="id_direccion_docente" class="control-label col-md-2">Direccion:</label>
-                    <div class="col-md-6">
-                        <input type="text" class="form-control" name="direccion_docente" maxlength="100" id="id_direccion_docente" />
-                    </div>
-                </div>
+    <div class="container">    
+        <div class="row">
+            <div class="col-md-3">
+                   
+            </div>
+            <div class="col-md-6">
+                {%for element in form1 %} 
+                <div class="form-group"> 
+                    <label class="col-md-6 control-label">
+                        {{element.label}}            
+                    </label> 
+                    <div class="col-md-7"> 
+                        {{element}} 
+                        <div class="error">
+                            {{element.errors}}
+                        </div>
+                    </div> 
+                </div> 
+                {% endfor %}
                 <div class="col-md-offset-2 col-md-7">
-                    <button id="save_docente" type="submit" class="btn btn-success">
-                        Guardar
-                    </button>                        
+                        <button id="save_articulo" type="submit" class="btn btn-success">
+                                Guardar
+                        </button>                      
                             
                         <a href="{% url 'docentes-list' %}" 
                         class="btn btn-danger">Volver a la lista</a> 
-                    </div> 
-    </div>
-    <div class="col-md-3">
+                </div>
+            </div>
+            <div class="col-md-3">
+              
+            </div>
         
+        </div>
     </div>
-    
-    </div>
-</div>
 
     <!--
     {%for element in form %} 
@@ -106,7 +70,7 @@
                 
             <a href="{% url 'docentes-list' %}" 
             class="btn btn-danger">Volver a la lista</a> 
-    </div> -->
+    </div>-->
     
 </form> 
 {% endblock %}
