@@ -16,8 +16,12 @@ Including another URLconf
 from django.contrib import admin
 #from django.urls import path
 from django.conf.urls import url, include
+<<<<<<< HEAD
 from apps.INTO.views import Vista,ListDocentesAdmin,CrearDocentesAdmin, IngresarNotas,\
 DatosEstadisticos,administrarNotas,creardocente
+=======
+from apps.INTO.views import Vista,ListDocentesAdmin,CrearDocentesAdmin, IngresarNotas,DatosEstadisticos,administrarNotas, agregarEvaluacion
+>>>>>>> 2da27060cd725831ff56402c3e459f05eb1197a4
 from django.contrib.auth.views import login
 from django.contrib.auth.decorators import login_required
  
@@ -28,5 +32,6 @@ urlpatterns = [
     url(r'^ingresarNotas/$',login_required(IngresarNotas),name="ingresarNotas"),
     url(r'^estadisticas/$',login_required(DatosEstadisticos.as_view()),name="estadisticas"),
     url(r'^administrar/$',login_required(administrarNotas.administrar),name="administrar"),
+    url(r'^agregarEvaluacion/$',login_required(agregarEvaluacion),name="agregarEvaluacion"),
 
 ]

@@ -131,3 +131,33 @@ def IngresarNotas(request):
 		pass
 	contexto = {'materias':materias,"alumnos":alumnos,"evaluacion":evaluacion}
 	return render(request,'IngresarNotas/ingresarNotas.html',contexto)
+
+
+def agregarEvaluacion(request):
+
+	formSubActividad = False
+	formExamen = False
+	periodo= ""
+	actividad = ""
+	contexto = {}
+	materias = []
+
+	docente = Docente.objects.get(usuario_docente=str(request.user.id)).dui_docente
+	materiasImpartidas =  Docente_Materia.objects.filter(codigo_docente=docente)
+	for x in materiasImpartidas:
+		materias.append(Materia.objects.get(codigo_materia = x.codigo_materia.codigo_materia).nombre_materia)
+		pass
+	
+
+	if 'btnCargarForm' in request.POST:
+		periodo = request.POST['periodo']
+		actividad = request.POST['actividad']
+		if request.POST['actividad'] == 'Actividad1' or request.POST['actividad'] == 'Actividad2':
+			formSubActividad = True
+			contexto = {'formSubActividad':formSubActividad,'periodo':periodo,'actividad':actividad, 'materias':materias}
+			pass
+		elif request.POST['actividad'] == 'Examen1' or request.POST['actividad'] == 'Examen2':
+			formExamen = True
+			contexto = {'formExamen':formExamen,'periodo':periodo,'actividad':actividad, 'materias':materias}
+
+	return render(request,'AgregarEvaluacion/agregarEvaluacion.html',contexto)
