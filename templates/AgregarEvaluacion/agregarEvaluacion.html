@@ -14,17 +14,17 @@
     <table id="frmAgregarEva">
         <tr class="trAgregarEva">
             <td class="tdAgregarEva">Seleccione el periodo:&nbsp;</td> 
-            <td class="tdAgregarEva"><input type="radio" name="periodo" value="Periodo1"><b>Periodo 1&nbsp;</b></td> 
-            <td class="tdAgregarEva"><input type="radio" name="periodo" value="Periodo2"> <b>Periodo 2&nbsp;</b></td> 
-            <td class="tdAgregarEva"><input type="radio" name="periodo" value="Periodo3"> <b>Periodo 3</b></td> 
-            <td class="tdAgregarEva"><input type="radio" name="periodo" value="Periodo4"> <b>Periodo 4</b></td>
+            <td class="tdAgregarEva"><input type="radio" name="periodo" value="periodo1"><b>Periodo 1&nbsp;</b></td> 
+            <td class="tdAgregarEva"><input type="radio" name="periodo" value="periodo2"> <b>Periodo 2&nbsp;</b></td> 
+            <td class="tdAgregarEva"><input type="radio" name="periodo" value="periodo3"> <b>Periodo 3</b></td> 
+            <td class="tdAgregarEva"><input type="radio" name="periodo" value="periodo4"> <b>Periodo 4</b></td>
         </tr>
         <tr class="trAgregarEva">
             <td class="tdAgregarEva">Seleccione la actividad:&nbsp;</td>
-            <td class="tdAgregarEva"><input type="radio" name="actividad" value="Actividad1"><b>Actividad 1&nbsp;</b></td>
-            <td class="tdAgregarEva"><input type="radio" name="actividad" value="Actividad2"><b>Actividad 2&nbsp;</b></td> 
-            <td class="tdAgregarEva"><input type="radio" name="actividad" value="Examen1"><b>Examen 1&nbsp;</b></td>
-            <td class="tdAgregarEva"><input type="radio" name="actividad" value="Examen2"><b>Examen 2&nbsp;</b></td>
+            <td class="tdAgregarEva"><input type="radio" name="actividad" value="actividad1"><b>Actividad 1&nbsp;</b></td>
+            <td class="tdAgregarEva"><input type="radio" name="actividad" value="actividad2"><b>Actividad 2&nbsp;</b></td> 
+            <td class="tdAgregarEva"><input type="radio" name="actividad" value="examen1"><b>Examen 1&nbsp;</b></td>
+            <td class="tdAgregarEva"><input type="radio" name="actividad" value="examen2"><b>Examen 2&nbsp;</b></td>
         </tr>
     </table>  
     <input type="button" id="btnCargarFormValidar" onclick="validar()" name="btnCargarFormValidar" class="btn btn-secondary" value="Cargar formulario">
@@ -38,17 +38,30 @@
     {% csrf_token %}
     <table>
         <tr>
-            <td><label>{{ periodo }} </label></td>
-            <td><label>{{ actividad }}</label></td>
+            <td><label>Codigo periodo: <b>{{ periodo }}</b> </label></td>
+            <input type="text" name="periodoPerteneciente" value ="{{ periodo }}" style="display: none;">
+            <td><label>Codigo actividad: <b>{{ actividad }}</b></label></td>
+            <input type="text" name="actividadPerteneciente" value = "{{ actividad }}" style="display: none;">
         </tr>
         <tr>
             <td><label>Año lectivo:</label></td>
-            <td><input type="text" name="anioLectivo"></td>
+            <td>
+                <select name="anioLectivo">
+                    <option>--Seleccione el año--</option>
+                    {% if anioLectivos %}
+                        {% for anioLectivo in anioLectivos %}
+                            <option>{{ anioLectivo.anio_lectivo }}</option>
+                        {% endfor %}
+                    {% else %}
+                    <option>¡No hay años lectivos registrados!</option>
+                    {% endif %}
+                </select>
+            </td>
         </tr>
         <tr>
             <td><label>Materia</label></td>
             <td>
-                <select>
+                <select name="materia">
                     <option>--Seleccione la materia--</option>
                     {% if materias %}
                         {% for materia in materias %}
@@ -78,7 +91,7 @@
         </tr>
         <tr>
             <td><label>Codigo de la Evaluacion:</label></td>
-            <td><input type="text" name="codigoEvalucion"></td>
+            <td><input type="text" name="codigoEvaluacion"></td>
         </tr>
         <tr>
             <td><label>Nombre:</label></td>
@@ -89,7 +102,8 @@
             <td><input type="text" name="descripcionEvaluacion"></td>
         </tr>
     </table>
-    <input class="btn btn-primary" type="submit" name="btnGuardarSubActividad" value="Guardar"> <input class="btn btn-secondary" type="button" name="clear" value="Cancelar">
+    <input class="btn btn-primary" type="submit" name="btnGuardarSubActividad" value="Guardar"> 
+    <input class="btn btn-secondary" type="button" name="clear" value="Cancelar">
 </form>
   
 </div>
@@ -138,7 +152,8 @@
             <td><input type="text" name="descripcionExamen"></td>
         </tr>
     </table>
-    <input type="submit" class="btn btn-primary" name="btnGuardarExamen" value="Guardar"> <input class="btn btn-secondary" type="button" name="clear" value="Cancelar">
+    <input type="submit" class="btn btn-primary" name="btnGuardarExamen" value="Guardar"> 
+    <input class="btn btn-secondary" type="button" name="clear" value="Cancelar">
 </form>
 </div>
 {% endif %}

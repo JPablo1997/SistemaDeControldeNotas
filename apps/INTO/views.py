@@ -204,19 +204,34 @@ def agregarEvaluacion(request):
 	docente = Docente.objects.get(usuario_docente=str(request.user.id)).dui_docente
 	materiasImpartidas =  Docente_Materia.objects.filter(codigo_docente=docente)
 	for x in materiasImpartidas:
-		materias.append(Materia.objects.get(codigo_materia = x.codigo_materia.codigo_materia).nombre_materia)
+		materias.append(Materia.objects.get(codigo_materia = x.codigo_materia.codigo_materia).codigo_materia)
 		pass
 	
 
 	if 'btnCargarForm' in request.POST:
 		periodo = request.POST['periodo']
 		actividad = request.POST['actividad']
-		if request.POST['actividad'] == 'Actividad1' or request.POST['actividad'] == 'Actividad2':
+		anioLectivos = AnioLectivo.objects.all()
+		if request.POST['actividad'] == 'actividad1' or request.POST['actividad'] == 'actividad2':
 			formSubActividad = True
-			contexto = {'formSubActividad':formSubActividad,'periodo':periodo,'actividad':actividad, 'materias':materias}
+			contexto = {'formSubActividad':formSubActividad,'periodo':periodo,'actividad':actividad, 'materias':materias, 'anioLectivos':anioLectivos}
 			pass
-		elif request.POST['actividad'] == 'Examen1' or request.POST['actividad'] == 'Examen2':
+		elif request.POST['actividad'] == 'examen1' or request.POST['actividad'] == 'examen2':
 			formExamen = True
-			contexto = {'formExamen':formExamen,'periodo':periodo,'actividad':actividad, 'materias':materias}
+			contexto = {'formExamen':formExamen,'periodo':periodo,'actividad':actividad, 'materias':materias, 'anioLectivos':anioLectivos}
+
+	if 'btnGuardarSubActividad' in request.POST:
+		periodo = Periodo.objects.get(codigo_periodo = request.POST['periodoPerteneciente'], anio_lectivo = int(request.POST['anioLectivo']))
+		actividad = Actividad.objects.get(codigo_periodo = periodo.codigo_periodo, codigo_actividad = request.POST['actividadPerteneciente'])
+		subAct = Sub_Actividad(codigo_sub_actividad = request.POST['codigoSubActividad'], codigo_actividad = actividad, porcentaje_sub_actividad = Decimal(request.POST['porcentajeSubActividad']), descripcion_sub_actividad = request.POST['descripcionSubActividad'])
+		subAct.save()
+		docente = Docente.objects.get(usuario_docente=str(request.user.id))
+		docente_materia = Docente_Materia.objects.get(codigo_docente = docente.dui_docente, codigo_materia = request.POST['materia'])
+		print(request.POST['codigoEvaluacion'])
+		eva = Evaluacion(codigo_evaluacion = request.POST['codigoEvaluacion'], nombre_evaluacion = request.POST['nombreEvaluacion'], descripcion_evaluacion = request.POST['descripcionEvaluacion'], codigo_docente_materia = docente_materia ,codigo_sub_actividad = subAct)
+		eva.save()
+		pass 
+
+
 
 	return render(request,'AgregarEvaluacion/agregarEvaluacion.html',contexto)
