@@ -38,11 +38,11 @@ def creardocente(request):
 			usuario.email=docente.email_docente
 			usuario.password='administrador10'
 			usuario.save()
-			
+			voto_id = User.objects.latest('id')
 			#usuarioid=User.objects.get(username=docente.nombre_docente).pk
-			usuarioid=BaseUserManager.get_by_natural_key(docente.nombre_docente)
-			usuario2=int(usuarioid)
-			docente.usuario_docente=usuario2
+			#usuarioid=BaseUserManager.get_by_natural_key(docente.nombre_docente)
+			#usuario2=int(usuarioid)
+			docente.usuario_docente=voto_id
 			docente.save()
 			#docente=Docente()
 			#docente.dui_docente
