@@ -1,4 +1,5 @@
 {% extends 'base/base.html' %}
+{% block title %} Administrar Docente {% endblock %}
 {% block content %}
 {% if docente.dui_docente %} 
     <h3>
@@ -12,84 +13,43 @@
 <div></div>
 <form class="form-horizontal" method="post">
     {% csrf_token %}
-    <!--
-    <div class="container">
-
     
-    <div class="row">
-    <div class="col-md-3">
-
-    </div>
-    <div class="col-md-6">
-            <div class="form-group has-success">
-                    <label for="dui" class="control-label col-md-2">DUI:</label>
-                    <div class="col-md-6">
-                        <input type="text" name="dui_docente" class="form-control" id="dui" 
-                        placeholder="Escriba el DUI" maxlength="10">
-                    </div>
-                </div>
-                <div class="form-group has-success">
-                    <label for="nombre" class="control-label col-md-2">Nombre:</label>
-                    <div class="col-md-6">
-                        <input type="text" name="nombre_docente" class="form-control" id="nombre" 
-                        placeholder="Escriba el nombre" maxlength="50">
-                    </div>
-                </div>
-                <div class="form-group has-success">
-                    <label for="apellidos" class="control-label col-md-2">Apellidos:</label>
-                    <div class="col-md-6">
-                        <input type="text" name="apellidos_docente" class="form-control" id="apellidos" 
-                        placeholder="Escriba el apellido" maxlength="50">
-                    </div>
-                </div>
-                <div class="form-group has-success">
-                    <label for="fechanac" class="control-label col-md-6">Fecha de Nacimiento:</label>
-                    <div class="col-md-6">
-                        <input type="text" name="fecha_nacimiento" class="form-control" id="fechanac">
-                    </div>
-                </div>
-                <div class="form-group has-success">
-                    <label for="telefono" class="control-label col-md-2">Telefono:</label>
-                    <div class="col-md-6">
-                        <input type="text" name="telefono_docente" class="form-control" id="telefono" 
-                        placeholder="Escriba el telefono" maxlength="8">
-                    </div>
-                </div>
-                <div class="form-group has-success">
-                    <label for="correo" class="control-label col-md-2">Correo Electronico:</label>
-                    <div class="col-md-8">
-                        <input type="email" name="email_docente" class="form-control" id="correo" 
-                        placeholder="ejemplo@gmail.com" maxlength="50">
-                    </div>
-                </div>
-                <div class="form-group has-success">
-                    <label for="fechacon" class="control-label col-md-6">Fecha de Contratacion:</label>
-                    <div class="col-md-6">
-                        <input type="text" name="fecha_contratacion_docente" class="form-control" id="fechacon">
-                    </div>
-                </div>
-                <div class="form-group has-success">
-                    <label for="direccion" class="control-label col-md-2">Direccion:</label>
-                    <div class="col-md-6">
-                        <input type="text" name="direccion_docente" class="form-control" id="direccion" 
-                        placeholder="Escriba la direccion" maxlength="100">
-                    </div>
-                </div>
+    <div class="container">    
+        <div class="row">
+            <div class="col-md-3">
+                   
+            </div>
+            <div class="col-md-6">
+                {%for element in form1 %} 
+                <div class="form-group"> 
+                    <label class="col-md-6 control-label">
+                        {{element.label}}            
+                    </label> 
+                    <div class="col-md-7"> 
+                        {{element}} 
+                        <div class="error">
+                            {{element.errors}}
+                        </div>
+                    </div> 
+                </div> 
+                {% endfor %}
                 <div class="col-md-offset-2 col-md-7">
-                        <input type="submit" class="btn btn-success" value="Guardar">                       
+                        <button id="save_articulo" type="submit" class="btn btn-success">
+                                Guardar
+                        </button>                      
                             
                         <a href="{% url 'docentes-list' %}" 
                         class="btn btn-danger">Volver a la lista</a> 
-                    </div> 
-    </div>
-    <div class="col-md-3">
+                </div>
+            </div>
+            <div class="col-md-3">
+              
+            </div>
         
+        </div>
     </div>
-    
-    </div>
-</div>-->
 
-    
+    <!--
     {%for element in form %} 
     <div class="form-group"> 
         <label class="col-md-6 control-label">
@@ -108,9 +68,15 @@
                     Guardar
             </button>                      
                 
+<<<<<<< HEAD
             <a href="{% url 'administrarMaterias' %}" 
             class="btn btn-primary">Volver a la lista</a> 
     </div> 
+=======
+            <a href="{% url 'docentes-list' %}" 
+            class="btn btn-danger">Volver a la lista</a> 
+    </div>-->
+>>>>>>> 4811cd17c63e9ab19ba98756ac3cab9723cca482
     
 </form> 
 {% endblock %}

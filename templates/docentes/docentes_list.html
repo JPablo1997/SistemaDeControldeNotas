@@ -5,7 +5,7 @@
 <br>    
      
         <div class="row"> 
-            <section class="col-md-9">                
+            <section class="col-md-12">                
                 <h4 class="text-center" >Administracion de Docentes</h4>
                 <a href="{% url 'docente-new' %}" class="btn btn-success">
                     <span class="fas fa-plus"></span> Nuevo
@@ -21,6 +21,7 @@
                             <th>Email</th>
                             <th>Fecha Contratacion</th>
                             <th>Direccion del docente</th>
+                            <!--<th>Acciones</th>-->
                         </tr>
                         {% for docente in object_list %}
                         <tr class="text-justify">
@@ -30,7 +31,20 @@
                             <td>{{ docente.telefono_docente }}</td>
                             <td>{{ docente.email_docente }}</td>
                             <td>{{ docente.fecha_contratacion_docente }}</td>                            
-                            <td>{{ docente.direccion_docente }}</td>                           
+                            <td>{{ docente.direccion_docente }}</td>
+                            <!--
+                            <td>               
+                                <a href="#" class="btn btn-default btn-xs">
+                                    <span class="fas fa-pencil-alt"></span>
+                                </a>
+                            
+                            <a href="#" class="btn btn-default btn-xs">
+                                <span class="fas fa-th-large"></span>
+                            </a>
+                            <a href="#" class="btn btn-default btn-xs">
+                                <span class="fas fa-trash"></span>
+                            </a>
+                            </td> -->                          
                         </tr>
                         {% endfor %}
                     </table> 
@@ -38,7 +52,7 @@
                 </div> 
                 
             </section>
-            
+            <!--
             <aside class="col-md-3 hidden-xs hidden-sm">               
             <br> <br> <br> <br> 
                 <div class="list-group"> 
@@ -47,7 +61,7 @@
                     <a href="" class="list-group-item">Materias</a>
                     <a href="" class="list-group-item">Estudiantes</a>                     
                 </div>             
-            </aside>
+            </aside>-->
         </div>
     
 {% endblock %}

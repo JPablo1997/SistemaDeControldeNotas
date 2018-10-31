@@ -1,12 +1,60 @@
+<<<<<<< HEAD
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView,ListView,CreateView, UpdateView
 from apps.INTO.models import Docente
 from apps.INTO.forms import DocenteForm,AdministrarNotasForm, MateriaForm
+=======
+from django.shortcuts import render,redirect
+from django.views.generic import TemplateView,ListView,CreateView
+from apps.INTO.models import Docente
+from django.contrib.auth.models import User,BaseUserManager
+from apps.INTO.forms import DocenteForm,AdministrarNotasForm,RegistroForm,AsignacionTipeUser
+>>>>>>> 4811cd17c63e9ab19ba98756ac3cab9723cca482
 from django.urls import reverse_lazy,reverse
 from django.http import HttpResponse
 from apps.INTO.models import *
 from decimal import Decimal
 # Create your views here.
+
+#vista basada en funcion para los formularios
+def creardocente(request):
+	if request.method=='POST':
+		form1=DocenteForm(request.POST)
+		if form1.is_valid():
+			usuario=User()
+			docente=Docente()
+			tipodeusuario=asignacionTipoUsuario()
+
+			#Logicadeguardado
+			docente.dui_docente=request.POST['dui_docente']
+			docente.nombre_docente=request.POST['nombre_docente']
+			docente.apellidos_docente=request.POST['apellidos_docente']
+			docente.fecha_nacimiento_docente=request.POST['fecha_nacimiento_docente']
+			docente.telefono_docente=request.POST['telefono_docente']
+			docente.email_docente=request.POST['email_docente']
+			docente.fecha_contratacion_docente=request.POST['fecha_contratacion_docente']
+			docente.direccion_docente=request.POST['direccion_docente']
+
+			usuario.username=docente.nombre_docente
+			usuario.first_name=docente.nombre_docente
+			usuario.last_name=docente.apellidos_docente
+			usuario.email=docente.email_docente
+			usuario.password='administrador10'
+			usuario.save()
+			
+			#usuarioid=User.objects.get(username=docente.nombre_docente).pk
+			usuarioid=BaseUserManager.get_by_natural_key(docente.nombre_docente)
+			usuario2=int(usuarioid)
+			docente.usuario_docente=usuario2
+			docente.save()
+			#docente=Docente()
+			#docente.dui_docente
+			#form1.save()
+		return redirect('docentes-list')
+	else:
+		form1=DocenteForm()		
+	return render(request,'docentes/edit_docente.html',{'form1':form1})
+
 class Vista(TemplateView):
 	template_name='base/base.html'
 
@@ -18,7 +66,7 @@ class CrearDocentesAdmin(CreateView):
 	 
 	template_name='docentes/edit_docente.html'
 	model=Docente
-	
+		
 	form_class =  DocenteForm
 	def get_context_data(self, **kwargs):
 		context=super(CrearDocentesAdmin,self).get_context_data(**kwargs)
@@ -130,3 +178,33 @@ def IngresarNotas(request):
 		pass
 	contexto = {'materias':materias,"alumnos":alumnos,"evaluacion":evaluacion}
 	return render(request,'IngresarNotas/ingresarNotas.html',contexto)
+
+
+def agregarEvaluacion(request):
+
+	formSubActividad = False
+	formExamen = False
+	periodo= ""
+	actividad = ""
+	contexto = {}
+	materias = []
+
+	docente = Docente.objects.get(usuario_docente=str(request.user.id)).dui_docente
+	materiasImpartidas =  Docente_Materia.objects.filter(codigo_docente=docente)
+	for x in materiasImpartidas:
+		materias.append(Materia.objects.get(codigo_materia = x.codigo_materia.codigo_materia).nombre_materia)
+		pass
+	
+
+	if 'btnCargarForm' in request.POST:
+		periodo = request.POST['periodo']
+		actividad = request.POST['actividad']
+		if request.POST['actividad'] == 'Actividad1' or request.POST['actividad'] == 'Actividad2':
+			formSubActividad = True
+			contexto = {'formSubActividad':formSubActividad,'periodo':periodo,'actividad':actividad, 'materias':materias}
+			pass
+		elif request.POST['actividad'] == 'Examen1' or request.POST['actividad'] == 'Examen2':
+			formExamen = True
+			contexto = {'formExamen':formExamen,'periodo':periodo,'actividad':actividad, 'materias':materias}
+
+	return render(request,'AgregarEvaluacion/agregarEvaluacion.html',contexto)
