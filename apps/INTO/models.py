@@ -99,7 +99,7 @@ class Actividad(models.Model):
 class Sub_Actividad(models.Model):
     codigo_sub_actividad = models.CharField(max_length=15,primary_key=True)
     codigo_actividad = models.ForeignKey(Actividad,on_delete=models.CASCADE)
-    porcentaje_sub_actividad = models.DecimalField(max_digits=5,decimal_places=4)
+    porcentaje_sub_actividad = models.DecimalField(max_digits=10,decimal_places=2)
     descripcion_sub_actividad = models.CharField(max_length=150,null=True)
     
 class Docente_Materia(models.Model):
