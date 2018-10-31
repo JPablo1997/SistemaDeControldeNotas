@@ -1,11 +1,8 @@
 from django import forms 
-<<<<<<< HEAD
 from apps.INTO.models import Docente,Alumno,Grupo,Materia
-=======
 from apps.INTO.models import Docente,Alumno,Grupo,asignacionTipoUsuario
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
->>>>>>> 4811cd17c63e9ab19ba98756ac3cab9723cca482
 from django.core.exceptions import ValidationError 
 import re,datetime
 

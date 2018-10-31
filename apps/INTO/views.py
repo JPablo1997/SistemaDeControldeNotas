@@ -1,15 +1,12 @@
-<<<<<<< HEAD
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView,ListView,CreateView, UpdateView
 from apps.INTO.models import Docente
 from apps.INTO.forms import DocenteForm,AdministrarNotasForm, MateriaForm
-=======
 from django.shortcuts import render,redirect
 from django.views.generic import TemplateView,ListView,CreateView
 from apps.INTO.models import Docente
 from django.contrib.auth.models import User,BaseUserManager
 from apps.INTO.forms import DocenteForm,AdministrarNotasForm,RegistroForm,AsignacionTipeUser
->>>>>>> 4811cd17c63e9ab19ba98756ac3cab9723cca482
 from django.urls import reverse_lazy,reverse
 from django.http import HttpResponse
 from apps.INTO.models import *
