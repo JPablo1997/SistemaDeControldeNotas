@@ -128,32 +128,47 @@ def IngresarNotas(request):
 	contexto = {}
 	alumnos = False
 	evaluacion = False
+	gruposLista = []
 	if 'btnObtener' in request.POST:
 		datos = request.POST['materiaListado'].split(" ")
 		especialidad = Especialidad_Materia.objects.filter(codigo_materia = datos[0])
 		evaluacion = Evaluacion.objects.get(codigo_evaluacion = datos[1])
-		grupos = []
 		alumnos_grupo = []
 		alumnos = []
+		grupos = []
 		i = 0
 		for x in especialidad:
 			grupos.append(Grupo.objects.filter(codigo_especialidad = x.codigo_especialidad.codigo_especialidad, nivel_especialidad=x.nivel_materia_especialidad))
 			for y in grupos[i]:
-				alumnos_grupo.append(Alumno_Grupo.objects.filter(codigo_grupo=y.codigo_grupo))
+				gruposLista.append(y)
 				pass
 			i = i + 1
 			pass	
-		for z in alumnos_grupo:
-			for a in z:
-				alumnos.append(Alumno.objects.get(nie = a.nie.nie))
-				pass
+
+	elif 'btnCargaAlums' in request.POST:
+		grupos = Grupo.objects.all()
+		alumnos_grupo = []
+		alumnos = []
+		i = 0
+		for x in grupos:
+			if x.codigo_grupo in request.POST:
+				if request.POST[x.codigo_grupo] == 'on':
+					alumnos_grupo.append(Alumno_Grupo.objects.filter(codigo_grupo=x.codigo_grupo))
+					for y in alumnos_grupo[i]:
+						alumnos.append(Alumno.objects.get(nie = y.nie.nie))
+						pass
+					i = i + 1
+					pass
+				pass				
 			pass
+		evaluacion = Evaluacion.objects.get(codigo_evaluacion = request.POST['codigoEva'])
+
 
 	elif 'btnGuardar' in request.POST:
 		alumnosAll = Alumno.objects.all()
 		for x in alumnosAll:
 			if str(x.nie) in request.POST:
-				eva = Evaluacion.objects.get(codigo_evaluacion=request.POST['codigoEva'])
+				eva = Evaluacion.objects.get(codigo_evaluacion=request.POST['codigoEva2'])
 				nota = Decimal(request.POST[x.nie])
 				c = Calificacion(nie = x, codigo_evaluacion= eva, nota= nota)
 				c.save()
@@ -173,7 +188,7 @@ def IngresarNotas(request):
 			materias.append(Materia.objects.get(codigo_materia=str(x.codigo_materia.codigo_materia)).codigo_materia +" "+ y.codigo_evaluacion +" "+ y.codigo_sub_actividad.codigo_sub_actividad +" "+ cod_actividad)
 			pass
 		pass
-	contexto = {'materias':materias,"alumnos":alumnos,"evaluacion":evaluacion}
+	contexto = {'materias':materias,"alumnos":alumnos,"evaluacion":evaluacion,'gruposLista':gruposLista}
 	return render(request,'IngresarNotas/ingresarNotas.html',contexto)
 
 

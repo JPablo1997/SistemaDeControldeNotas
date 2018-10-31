@@ -18,7 +18,7 @@
           {% endif %}
         </select>
       </td>
-      <td>  <input class="btn btn-primary" id="btnObtener" name="btnObtener" type="submit" value="Obtener Alumnos"> </td>
+      <td>  <input class="btn btn-secondary" id="btnObtener" name="btnObtener" type="submit" value="Obtener Grupos"> </td>
     </tr>
   </table>
   
@@ -27,18 +27,19 @@
 </form>
 
 {% if alumnos %}
-   <form id="formNotas" method="POST">
+  {% if evaluacion %}
+        <table>
+          <tr>
+            <tr><label id="lblEva" style="display: none;">codigo_evaluacion:</label><input style="display: none;" type="text" id="codigoEva2" name="codigoEva2" value="{{ evaluacion.codigo_evaluacion }}"></tr>
+            <tr><label>Evaluacion [nombre: <b>{{ evaluacion.nombre_evaluacion }}</b>,&nbsp;</label></tr>
+            <tr><label>descripcion: <b> {{ evaluacion.descripcion_evaluacion }}]</b></label></tr>
+          </tr>
+        </table>
+  {% else %}
+        <p></p>
+  {% endif %}
+  <form id="formNotas" method="POST">
     {% csrf_token %}
-    {% if evaluacion %}
-    <table>
-      <tr>
-        <tr><label id="lblEva" style="display: none;">codigo_evaluacion:</label><input style="display: none;" type="text" id="codigoEva" name="codigoEva" value="{{ evaluacion.codigo_evaluacion }}"></tr>
-        <tr><label>Evaluacion [nombre: <b>{{ evaluacion.nombre_evaluacion }}</b>,&nbsp;</label></tr>
-        <tr><label>descripcion: <b> {{ evaluacion.descripcion_evaluacion }}]</b></label></tr>
-      </tr>
-    </table>
-    {% else %}
-    {% endif %}
     <br>
     <table class="tableNotas">
       <td class="tdNotas tdPrimario"> <b>NIE</b></td><td class="tdNotas tdPrimario" > <b>Aumno</b> </td> <td class="tdNotas tdPrimario"> <b>Nota</b> </td>
@@ -49,12 +50,54 @@
           <td class="tdNotas"><input type="text" id="{{ alumno.nie }}" name="{{ alumno.nie }}" pattern="[0-1]*[0-9]\.[0-9][0-9]"></td>
         </tr>
       {% endfor %}
-{% else %}
-      <option>No hay Alumnos</option>
-{% endif %}
-    </table>
+      </table>
+      <input style="display: none;" type="text" id="codigoEva2" name="codigoEva2" value="{{ evaluacion.codigo_evaluacion }}">
     <input class="btn btn-secondary" id="btnGuardar" name="btnGuardar" type="submit" value="Guardar"> 
-   </form>
+  </form>
+{% else %}
+    <p></p>
+{% endif %}
+
+{% if gruposLista %}
+  {% if evaluacion %}
+      <table>
+        <tr>
+          <tr><label id="lblEva" style="display: none;">codigo_evaluacion:</label><input style="display: none;" type="text" id="codigoEva" name="codigoEva" value="{{ evaluacion.codigo_evaluacion }}"></tr>
+          <tr><label>Evaluacion [nombre: <b>{{ evaluacion.nombre_evaluacion }}</b>,&nbsp;</label></tr>
+          <tr><label>descripcion: <b> {{ evaluacion.descripcion_evaluacion }}]</b></label></tr>
+        </tr>
+      </table>
+  {% else %}
+      <p></p>
+  {% endif %}
+<form method="POST">
+  {% csrf_token %}
+  <table class="tableNotas">
+    <tr class="trGrupos">
+      <td class="tdNotas">Codigo especialidad</td>
+      <td class="tdNotas">Nivel especialidad</td>
+      <td class="tdNotas">Codigo grupo</td>
+      <td class="tdNotas">Seccion</td>
+      <td class="tdNotas">Seleccione</td>
+    </tr>
+    {% for grupo in gruposLista %}
+        <tr class="trNotas">
+          <td class="tdNotas"><label>{{ grupo.codigo_especialidad.codigo_especialidad }}</label></td>
+          <td class="tdNotas"><label>{{ grupo.nivel_especialidad }}</label></td>
+          <td class="tdNotas"><label>{{ grupo.codigo_grupo }}</label></td>
+          <td class="tdNotas"><label>{{ grupo.seccion }}</label></td>
+          <td class="tdNotas"><input type="checkbox" id="{{ grupo.codigo_grupo }}" name="{{ grupo.codigo_grupo }}"></td>
+        </tr>
+      {% endfor %}
+  </table>
+
+  <input style="display: none;" type="text" id="codigoEva" name="codigoEva" value="{{ evaluacion.codigo_evaluacion }}">
+  
+  <input type="submit" class="btn btn-secondary" name="btnCargaAlums" value="Cargar Alumnos">
+</form>
+{% else %}
+  <p></p>
+{% endif %}   
 <br><br>
 {% endblock %}
 
