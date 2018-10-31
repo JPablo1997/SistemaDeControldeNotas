@@ -15,14 +15,19 @@ from decimal import Decimal
 
 #vista basada en funcion para los formularios
 def creardocente(request):
+	#si el metodo es POST Hacer esto
 	if request.method=='POST':
+		#Resivimos todos los parametros del formulario
 		form1=DocenteForm(request.POST)
+		#si el formulario es Valido hacer lo siguiente 
 		if form1.is_valid():
+			#Hacemos la creacion de los objetos 
 			usuario=User()
 			docente=Docente()
 			tipodeusuario=asignacionTipoUsuario()
 
 			#Logicadeguardado
+			#Asignammos a cada objeto de tipo docente lo que resivimos de cada campo del formulario
 			docente.dui_docente=request.POST['dui_docente']
 			docente.nombre_docente=request.POST['nombre_docente']
 			docente.apellidos_docente=request.POST['apellidos_docente']
@@ -31,22 +36,26 @@ def creardocente(request):
 			docente.email_docente=request.POST['email_docente']
 			docente.fecha_contratacion_docente=request.POST['fecha_contratacion_docente']
 			docente.direccion_docente=request.POST['direccion_docente']
-
+			#asignamos a los objetos de tipo usuario los datos necesarios para la creacion
 			usuario.username=docente.nombre_docente
 			usuario.first_name=docente.nombre_docente
 			usuario.last_name=docente.apellidos_docente
-			usuario.email=docente.email_docente
-			usuario.password='administrador10'
-			usuario.save()
-			voto_id = User.objects.latest('id')
-			#usuarioid=User.objects.get(username=docente.nombre_docente).pk
-			#usuarioid=BaseUserManager.get_by_natural_key(docente.nombre_docente)
-			#usuario2=int(usuarioid)
-			docente.usuario_docente=voto_id
-			docente.save()
-			#docente=Docente()
-			#docente.dui_docente
-			#form1.save()
+			usuario.email=docente.email_docente			
+			usuario.set_password('administrador10')
+			#Guardamos el usuario para luego traer su id
+			usuario.save()	
+			#Hacemos una consulta a la tabla user del username(nombre del docente)		
+			id_docente = User.objects.get(username=str(docente.nombre_docente))	
+			#Hacemos una consulta a la tabla de tipos de usuario para traer el de tipo docente
+			id_tipo_usuario = TipoUsuario.objects.get(codigo_tipo_usuario="2")
+			#Asignamos el id del cocente de la tabla user para ponero en la tabla de tipo decente
+			docente.usuario_docente=id_docente
+			#Guardamos el docente 
+			docente.save()	
+			#Asignamos el tipo de usuario para la tabla tipo de usuario		
+			tipodeusuario.tipo_usuario=id_tipo_usuario
+			tipodeusuario.usuario=id_docente
+			tipodeusuario.save()			
 		return redirect('docentes-list')
 	else:
 		form1=DocenteForm()		
