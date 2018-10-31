@@ -14,9 +14,9 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-#from django.urls import path
+from django.urls import path
 from django.conf.urls import url, include
-from apps.INTO.views import Vista,ListDocentesAdmin,CrearDocentesAdmin, IngresarNotas,DatosEstadisticos,administrarNotas
+from apps.INTO.views import Vista,ListDocentesAdmin,CrearDocentesAdmin, IngresarNotas,DatosEstadisticos,administrarNotas, MateriaList, MateriaCreate, materia_edit, materia_delete
 from django.contrib.auth.views import login
 from django.contrib.auth.decorators import login_required
  
@@ -27,5 +27,9 @@ urlpatterns = [
     url(r'^ingresarNotas/$',login_required(IngresarNotas),name="ingresarNotas"),
     url(r'^estadisticas/$',login_required(DatosEstadisticos.as_view()),name="estadisticas"),
     url(r'^administrar/$',login_required(administrarNotas.administrar),name="administrar"),
+    url(r'^administrarMaterias/$',login_required(MateriaList.as_view()),name="administrarMaterias"),
+    url(r'^agregarMateria/$',login_required(MateriaCreate.as_view()),name="agregarMateria"),
+    path('editarMateria/<str:codigo_materia>/',login_required(materia_edit),name="editarMateria"),
+    path('eliminarMateria/<str:codigo_materia>/',login_required(materia_delete),name="eliminarMateria"),
 
 ]

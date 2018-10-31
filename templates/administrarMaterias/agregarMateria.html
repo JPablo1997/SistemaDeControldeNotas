@@ -1,0 +1,10 @@
+{% extends 'base/base.html'%}
+{% block title %} Agregar Materia {% endblock %}
+{% block content %}
+<form method="post">
+	{% csrf_token %}
+	{{ form.as_p }}
+	<button type="submit" class="btn btn-primary">Guardar</button>
+	<a href="{% url 'administrarMaterias' %}" class="btn btn-warning">Volver a la lista</a> 
+</form>
+{% endblock %}

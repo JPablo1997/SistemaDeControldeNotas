@@ -1,0 +1,41 @@
+{% extends 'base/base.html'%}
+{% block title %} Materias {% endblock %}
+{% block content %}
+<table class="">
+	<br>
+	<h2 class="text-center">Administrar Materias</h2>
+	<br>
+	<a href="{% url 'agregarMateria' %}" class="btn btn-success">
+        <span class="fas fa-plus"></span> Agregar
+    </a>
+    <br>
+    <br>
+	<thead class="table table-hover border">
+		<tr class="table-success text-center">
+			<td>Código</td>
+			<td>Nombre</td>
+			<td>Descripción</td>
+			<td>Objetivos</td>
+			<td>Acciones</td>
+		</tr>
+	</thead>
+	<tbody>
+		{% if object_list %}
+		{% for Materia in object_list %}
+		<tr class="text-justify">
+			<td>{{ Materia.codigo_materia }}</td>
+			<td>{{ Materia.nombre_materia }}</td>
+			<td>{{ Materia.descripcion_materia }}</td>
+			<td>{{ Materia.objetivos }}</td>
+			<td>
+				<a class="btn" href="{% url 'editarMateria' Materia.pk %}">Editar</a>
+				<a class="btn" href="{% url 'eliminarMateria' Materia.pk %}">Eliminar</a>
+			</td>
+		</tr>
+		{% endfor %}
+		{% else %}
+		<h2>No hay registros de Materias</h2>
+		{% endif %}
+	</tbody>
+</table>
+{% endblock %}

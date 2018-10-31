@@ -1,5 +1,5 @@
 from django import forms 
-from apps.INTO.models import Docente,Alumno,Grupo
+from apps.INTO.models import Docente,Alumno,Grupo,Materia
 from django.core.exceptions import ValidationError 
 import re,datetime
 
@@ -34,4 +34,28 @@ class AdministrarNotasForm(forms.ModelForm):
         widgets = {
         'nie' : forms.TextInput(attrs={'class':'form-control'}),
         }
-    
+
+class MateriaForm(forms.ModelForm):
+
+    class Meta:
+        model = Materia
+
+        fields = [
+            'codigo_materia',
+            'nombre_materia',
+            'descripcion_materia',
+            'objetivos',
+        ]
+        labels = {
+            'codigo_materia' : 'Código',
+            'nombre_materia' : 'Nombre',
+            'descripcion_materia' : 'Descripción',
+            'objetivos' : 'Objetivos',
+        }
+
+        widgets = {
+            'codigo_materia' : forms.TextInput(attrs={'class':'form-control'}),
+            'nombre_materia' : forms.TextInput(attrs={'class':'form-control'}),
+            'descripcion_materia' : forms.TextInput(attrs={'class':'form-control'}),
+            'objetivos' : forms.TextInput(attrs={'class':'form-control'}),
+        }

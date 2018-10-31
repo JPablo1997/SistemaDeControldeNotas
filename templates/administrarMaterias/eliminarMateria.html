@@ -1,0 +1,10 @@
+{% extends 'base/base.html'%}
+{% block title %} Eliminar Materia {% endblock %}
+{% block content %}
+<form method="post">
+	{% csrf_token %}
+	<h2>¿Desea eliminar el registro de {{ materia.nombre_materia }}?</h2>
+	<button type="submit" class="btn btn-danger">Sí, eliminar</button>
+	<a href="{% url 'administrarMaterias' %}" class="btn btn-warning">Cancelar</a> 
+</form>
+{% endblock %}

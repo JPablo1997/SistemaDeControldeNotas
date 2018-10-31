@@ -1,7 +1,7 @@
-from django.shortcuts import render
-from django.views.generic import TemplateView,ListView,CreateView
+from django.shortcuts import render, redirect
+from django.views.generic import TemplateView,ListView,CreateView, UpdateView
 from apps.INTO.models import Docente
-from apps.INTO.forms import DocenteForm,AdministrarNotasForm
+from apps.INTO.forms import DocenteForm,AdministrarNotasForm, MateriaForm
 from django.urls import reverse_lazy,reverse
 from django.http import HttpResponse
 from apps.INTO.models import *
@@ -38,6 +38,46 @@ class administrarNotas(TemplateView):
 	def administrar(request):
 		form = AdministrarNotasForm()
 		return render(request, 'administrarNotas/administrarNotas.html',{'form':form})
+
+class MateriaList(ListView):
+	model = Materia
+	template_name = 'administrarMaterias/administrarMaterias.html'
+	ordering = ['codigo_materia']
+
+class MateriaCreate(CreateView):
+	model = Materia
+	form_class = MateriaForm
+	template_name = 'administrarMaterias/agregarMateria.html'
+	success_url = reverse_lazy('administrarMaterias')
+
+
+def materia_view(request):
+	if request.method == 'POST':
+		form = MateriaForm(request.POST)
+		if form.is_valid():
+			form.save()
+		return redirect('/into/administrarMaterias')
+	else:
+		form = MateriaForm()
+	return render(request, 'administrarMaterias/agregarMateria.html', {'form' : form})
+
+def materia_edit(request, codigo_materia):
+	materia = Materia.objects.get(pk=codigo_materia)
+	if request.method == 'GET':
+		form = MateriaForm(instance=materia)
+	else:
+		form = MateriaForm(request.POST, instance=materia)
+		if form.is_valid():
+			form.save() 
+		return redirect('/into/administrarMaterias')
+	return render(request, 'administrarMaterias/agregarMateria.html', {'form' : form})
+
+def materia_delete(request, codigo_materia):
+	materia = Materia.objects.get(pk=codigo_materia)
+	if request.method == 'POST':
+		materia.delete()
+		return redirect('/into/administrarMaterias')
+	return render(request, 'administrarMaterias/eliminarMateria.html', {'materia' : materia})
 
 def IngresarNotas(request):
 	contexto = {}
