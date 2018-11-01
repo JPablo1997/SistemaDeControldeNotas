@@ -78,11 +78,46 @@ class IngresarNotas(TemplateView):
 class DatosEstadisticos(TemplateView):
 	template_name='estadisticas/estadisticas.html'
 
-class administrarNotas(TemplateView):
-	template_name='administrarNotas/administrarNotas.html'
-	def administrar(request):
+def administrarNotas(request):
+	AlumnoNie = ""
+	codigoEvaluacion = 0
+	nota = 0
+	codigoMateria = 0
+	form = AdministrarNotasForm()
+
+	if 'btnConsultar' in request.POST:
+	
+		
+		datoCalificacion = Calificacion.objects.all()
+
+		
+		AlumnoNie = request.POST.get('nie')
+		codigoMateria = request.POST.get('inputCodMateria')
+		
+			
+		for i in datoCalificacion:
+			if i.nie_id == AlumnoNie:
+				codigoEvaluacion = i.codigo_evaluacion_id
+				nota = i.nota 
+
+	else: 	
 		form = AdministrarNotasForm()
-		return render(request, 'administrarNotas/administrarNotas.html',{'form':form})
+
+			
+
+
+			
+	return render(request, 'administrarNotas/administrarNotas.html',
+		{'form':form,
+		 'nota': nota,
+		 'codigoEvaluacion': codigoEvaluacion,
+		 'AlumnoNie':AlumnoNie,
+		 'codigoMateria' : codigoMateria	
+		}
+
+		)
+
+
 
 class MateriaList(ListView):
 	model = Materia
