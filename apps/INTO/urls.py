@@ -23,7 +23,7 @@ from apps.INTO.views import Vista,ListDocentesAdmin,IngresarNotas,DatosEstadisti
 from django.contrib.auth.views import login
 from django.contrib.auth.decorators import login_required
 
-app_name="into"
+
  
 urlpatterns = [  
     url(r'^index/$',login_required(Vista.as_view()),name="index"),

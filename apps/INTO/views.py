@@ -55,11 +55,10 @@ def creardocente(request):
 			#Asignamos el tipo de usuario para la tabla tipo de usuario		
 			tipodeusuario.tipo_usuario=id_tipo_usuario
 			tipodeusuario.usuario=id_docente
-<<<<<<< HEAD:apps/INTO/views.py
+
 			tipodeusuario.save()
-=======
+
 			tipodeusuario.save()			
->>>>>>> 2524c51a7ae0145b7da159fc1542bcc8fe881400:apps/into/views.py
 		return redirect('docentes-list')
 	else:
 		#muestra el formulario
