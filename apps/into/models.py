@@ -10,7 +10,7 @@ class TipoUsuario(models.Model):
 
 class asignacionTipoUsuario(models.Model):
     usuario = models.OneToOneField(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
-    tipo_usuario = models.OneToOneField(TipoUsuario,on_delete=models.CASCADE)
+    tipo_usuario = models.ForeignKey(TipoUsuario,on_delete=models.CASCADE)
 
 class Docente(models.Model):
     dui_docente = models.CharField(max_length=15, primary_key=True)
@@ -21,7 +21,7 @@ class Docente(models.Model):
     email_docente = models.EmailField()
     fecha_contratacion_docente = models.DateField(null=True)
     direccion_docente = models.CharField(max_length=50,null=True)
-    usuario_docente = models.OneToOneField(settings.AUTH_USER_MODEL,on_delete=models.SET_NULL,null=True)
+    usuario_docente = models.OneToOneField(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,null=True)
     
 class Especialidad(models.Model):
     codigo_especialidad = models.CharField(max_length=10,primary_key=True)

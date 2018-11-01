@@ -1,0 +1,11 @@
+{% extends 'base/base.html' %}
+{% block title %} Borrar Docente {% endblock %}
+{% block content %}
+<form action="{% url 'docente-delete' pk=docente.dui_docente %}" method="POST">
+	{% csrf_token %}
+	<h3>Desea eliminar Docente {{ docente }}?</h3>
+	<button class="btn btn-danger" type="submit">Si Eliminar</button>
+	<a class="btn btn-default" href="{% url 'docentes-list' %}">Cancelar</a>
+	
+</form>
+{% endblock %}

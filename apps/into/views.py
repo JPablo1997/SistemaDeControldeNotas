@@ -3,7 +3,7 @@ from django.views.generic import TemplateView,ListView,CreateView, UpdateView
 from apps.INTO.models import Docente
 from apps.INTO.forms import DocenteForm,AdministrarNotasForm, MateriaForm
 from django.shortcuts import render,redirect
-from django.views.generic import TemplateView,ListView,CreateView
+from django.views.generic import TemplateView,ListView,CreateView,DeleteView
 from apps.INTO.models import Docente
 from django.contrib.auth.models import User,BaseUserManager
 from apps.INTO.forms import DocenteForm,AdministrarNotasForm,RegistroForm,AsignacionTipeUser
@@ -15,9 +15,13 @@ from decimal import Decimal
 
 #vista basada en funcion para los formularios
 def creardocente(request):
+	#si el metodo es POST Hacer esto
 	if request.method=='POST':
+		#Resivimos todos los parametros del formulario
 		form1=DocenteForm(request.POST)
+		#si el formulario es Valido hacer lo siguiente 
 		if form1.is_valid():
+			#Hacemos la creacion de los objetos 
 			usuario=User()
 			docente=Docente()
 			tipodeusuario=asignacionTipoUsuario()
@@ -51,11 +55,18 @@ def creardocente(request):
 			#Asignamos el tipo de usuario para la tabla tipo de usuario		
 			tipodeusuario.tipo_usuario=id_tipo_usuario
 			tipodeusuario.usuario=id_docente
+<<<<<<< HEAD:apps/INTO/views.py
 			tipodeusuario.save()
+=======
+			tipodeusuario.save()			
+>>>>>>> 2524c51a7ae0145b7da159fc1542bcc8fe881400:apps/into/views.py
 		return redirect('docentes-list')
 	else:
-		form1=DocenteForm()		
-	return render(request,'docentes/edit_docente.html',{'form1':form1})
+		#muestra el formulario
+		form1=DocenteForm()
+		contexto={'form1':form1}		
+	return render(request,'docentes/edit_docente.html',contexto)
+
 
 class Vista(TemplateView):
 	template_name='base/base.html'
@@ -63,19 +74,11 @@ class Vista(TemplateView):
 class ListDocentesAdmin(ListView):
 	model=Docente
 	template_name='docentes/docentes_list.html'
-
-class CrearDocentesAdmin(CreateView):
-	 
-	template_name='docentes/edit_docente.html'
+class DeleteDocenteAdmin(DeleteView):
 	model=Docente
-		
-	form_class =  DocenteForm
-	def get_context_data(self, **kwargs):
-		context=super(CrearDocentesAdmin,self).get_context_data(**kwargs)
-		context['action']=reverse('docente-new')
-		return context
-		
+	template_name = 'docentes/docente_delete.html'
 	success_url=reverse_lazy('docentes-list')
+
 
 class IngresarNotas(TemplateView):
 	template_name='IngresarNotas/ingresarNotas.html'
@@ -83,11 +86,71 @@ class IngresarNotas(TemplateView):
 class DatosEstadisticos(TemplateView):
 	template_name='estadisticas/estadisticas.html'
 
-class administrarNotas(TemplateView):
-	template_name='administrarNotas/administrarNotas.html'
-	def administrar(request):
+def administrarNotas(request):
+	AlumnoNie = ""
+	codigoEvaluacion = 0
+	nota = 0
+	codigoMateria = 0
+	codigoDocente = 0
+	id_docente_materia=0
+	nombre= ""
+	apellidos = ""
+	codigoEspecialidad = ""
+
+	form = AdministrarNotasForm()
+
+	if 'btnConsultar' in request.POST:
+	
+		
+		
+		datoDocenteMateria = Docente_Materia.objects.all()
+		datoCalificacion = Calificacion.objects.all()
+		datoAlumno = Alumno.objects.all()
+
+		
+		AlumnoNie = request.POST.get('inputCodAlumno')
+		codigoMateria = request.POST.get('inputCodMateria')
+		codigoDocente = request.POST.get('inputCodDocente')
+		
+
+		for i in datoDocenteMateria	:
+			if i.codigo_docente_id == codigoDocente and i.codigo_materia_id == codigoMateria:				
+				id_docente_materia= i.id					
+		for i in datoCalificacion	:
+			if i.nie == AlumnoNie:
+				codigoEvaluacion = i.codigo_evaluacion					
+		for i in datoAlumno	:
+			if i.nie == AlumnoNie:
+				nombre= i.nombre_alumno
+				apellidos= i.apellidos_alumno				
+				codigoEspecialidad	= i.especialidad_alumno_id
+		
+		
+
+
+	else: 	
 		form = AdministrarNotasForm()
-		return render(request, 'administrarNotas/administrarNotas.html',{'form':form})
+
+			
+
+
+			
+	return render(request, 'administrarNotas/administrarNotas.html',
+		{'form':form,
+		 'nota': nota,
+		 'codigoEvaluacion': codigoEvaluacion,
+		 'AlumnoNie':AlumnoNie,
+		 'codigoMateria' : codigoMateria,	
+		 'codigoDocente' : codigoDocente,
+		 'nombre': nombre,
+		 'apellidos':apellidos,
+		 'codigoEspecialidad': codigoEspecialidad,
+		 'codigoMateria':codigoMateria
+		}
+
+		)
+
+
 
 class MateriaList(ListView):
 	model = Materia
@@ -128,6 +191,7 @@ def materia_delete(request, codigo_materia):
 		materia.delete()
 		return redirect('/into/administrarMaterias')
 	return render(request, 'administrarMaterias/eliminarMateria.html', {'materia' : materia})
+
 
 def IngresarNotas(request):
 	contexto = {}

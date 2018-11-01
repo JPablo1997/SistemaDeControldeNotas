@@ -16,12 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import url, include
-from apps.INTO.views import Vista,ListDocentesAdmin,CrearDocentesAdmin, IngresarNotas,DatosEstadisticos,administrarNotas, MateriaList, MateriaCreate, materia_edit, materia_delete
-from apps.INTO.views import Vista,ListDocentesAdmin,CrearDocentesAdmin, IngresarNotas,\
-DatosEstadisticos,administrarNotas,creardocente
-from apps.INTO.views import Vista,ListDocentesAdmin,CrearDocentesAdmin, IngresarNotas,DatosEstadisticos,administrarNotas, agregarEvaluacion
+from apps.INTO.views import Vista,ListDocentesAdmin,IngresarNotas,DatosEstadisticos,administrarNotas, MateriaList, MateriaCreate, materia_edit, materia_delete
+from apps.INTO.views import Vista,ListDocentesAdmin,IngresarNotas,\
+DatosEstadisticos,administrarNotas,creardocente,DeleteDocenteAdmin
+from apps.INTO.views import Vista,ListDocentesAdmin,IngresarNotas,DatosEstadisticos,administrarNotas, agregarEvaluacion
 from django.contrib.auth.views import login
 from django.contrib.auth.decorators import login_required
+
+app_name="into"
  
 urlpatterns = [  
     url(r'^index/$',login_required(Vista.as_view()),name="index"),
@@ -29,11 +31,12 @@ urlpatterns = [
     url(r'^nuevoDocente/$',login_required(creardocente),name="docente-new"),
     url(r'^ingresarNotas/$',login_required(IngresarNotas),name="ingresarNotas"),
     url(r'^estadisticas/$',login_required(DatosEstadisticos.as_view()),name="estadisticas"),
-    url(r'^administrar/$',login_required(administrarNotas.administrar),name="administrar"),
+    url(r'^administrar/$',login_required(administrarNotas),name="administrar"),
     url(r'^administrarMaterias/$',login_required(MateriaList.as_view()),name="administrarMaterias"),
     url(r'^agregarMateria/$',login_required(MateriaCreate.as_view()),name="agregarMateria"),
     path('editarMateria/<str:codigo_materia>/',login_required(materia_edit),name="editarMateria"),
     path('eliminarMateria/<str:codigo_materia>/',login_required(materia_delete),name="eliminarMateria"),
     url(r'^agregarEvaluacion/$',login_required(agregarEvaluacion),name="agregarEvaluacion"),
+    url(r'^delete/(?P<pk>\w+)/$',DeleteDocenteAdmin.as_view(),name='docente-delete'),
 
 ]

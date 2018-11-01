@@ -28,7 +28,8 @@ class DocenteForm(forms.ModelForm):
             'telefono_docente',
             'email_docente',
             'fecha_contratacion_docente',
-            'direccion_docente',            
+            'direccion_docente', 
+                      
         ]
         labels = {
             'dui_docente' : 'Dui:',
@@ -39,6 +40,7 @@ class DocenteForm(forms.ModelForm):
             'email_docente': 'Email:',
             'fecha_contratacion_docente':'Fecha de Contratacion:',
             'direccion_docente':'Direccion:',
+            
         }
         widgets = {
             'dui_docente' : forms.TextInput(attrs={'class':'form-control'}),
@@ -102,7 +104,7 @@ class AdministrarNotasForm(forms.ModelForm):
             'nie' : 'Nie',
         }
         widgets = {
-        'nie' : forms.TextInput(attrs={'class':'form-control'}),
+            'nie' : forms.TextInput(attrs={'class':'form-control'}),
         }
 
 class MateriaForm(forms.ModelForm):
