@@ -104,7 +104,7 @@ class AdministrarNotasForm(forms.ModelForm):
             'nie' : 'Nie',
         }
         widgets = {
-        'nie' : forms.TextInput(attrs={'class':'form-control'}),
+            'nie' : forms.TextInput(attrs={'class':'form-control'}),
         }
 
 class MateriaForm(forms.ModelForm):
