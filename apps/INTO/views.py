@@ -70,6 +70,10 @@ class Vista(TemplateView):
 class ListDocentesAdmin(ListView):
 	model=Docente
 	template_name='docentes/docentes_list.html'
+class DeleteDocenteAdmin(DeleteView):
+	model=Docente
+	template_name = 'docentes/docente_delete.html'
+	success_url=reverse_lazy('docentes-list')
 
 
 class IngresarNotas(TemplateView):
@@ -158,13 +162,6 @@ def materia_delete(request, codigo_materia):
 		materia.delete()
 		return redirect('/into/administrarMaterias')
 	return render(request, 'administrarMaterias/eliminarMateria.html', {'materia' : materia})
-
-def docente_delete(request, dui_docente):
-	docente = Docente.objects.get(pk=dui_docente)
-	if request.method == 'POST':
-		docente.delete()
-		return redirect('docentes-list')
-	return render(request, 'docentes/docente_delete.html', {'docente' : docente})
 
 
 def IngresarNotas(request):
