@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 #from django.urls import path
 from django.conf.urls import url, include
-from apps.INTO.views import Vista,ListDocentesAdmin,CrearDocentesAdmin, IngresarNotas
+from apps.INTO.views import Vista,ListDocentesAdmin, IngresarNotas
 from django.contrib.auth.views import login, logout_then_login
 
 urlpatterns = [

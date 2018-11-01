@@ -3,7 +3,7 @@ from django.views.generic import TemplateView,ListView,CreateView, UpdateView
 from apps.INTO.models import Docente
 from apps.INTO.forms import DocenteForm,AdministrarNotasForm, MateriaForm
 from django.shortcuts import render,redirect
-from django.views.generic import TemplateView,ListView,CreateView
+from django.views.generic import TemplateView,ListView,CreateView,DeleteView
 from apps.INTO.models import Docente
 from django.contrib.auth.models import User,BaseUserManager
 from apps.INTO.forms import DocenteForm,AdministrarNotasForm,RegistroForm,AsignacionTipeUser
@@ -58,8 +58,11 @@ def creardocente(request):
 			tipodeusuario.save()			
 		return redirect('docentes-list')
 	else:
-		form1=DocenteForm()		
-	return render(request,'docentes/edit_docente.html',{'form1':form1})
+		#muestra el formulario
+		form1=DocenteForm()
+		contexto={'form1':form1}		
+	return render(request,'docentes/edit_docente.html',contexto)
+
 
 class Vista(TemplateView):
 	template_name='base/base.html'
@@ -68,18 +71,6 @@ class ListDocentesAdmin(ListView):
 	model=Docente
 	template_name='docentes/docentes_list.html'
 
-class CrearDocentesAdmin(CreateView):
-	 
-	template_name='docentes/edit_docente.html'
-	model=Docente
-		
-	form_class =  DocenteForm
-	def get_context_data(self, **kwargs):
-		context=super(CrearDocentesAdmin,self).get_context_data(**kwargs)
-		context['action']=reverse('docente-new')
-		return context
-		
-	success_url=reverse_lazy('docentes-list')
 
 class IngresarNotas(TemplateView):
 	template_name='IngresarNotas/ingresarNotas.html'
@@ -132,6 +123,14 @@ def materia_delete(request, codigo_materia):
 		materia.delete()
 		return redirect('/into/administrarMaterias')
 	return render(request, 'administrarMaterias/eliminarMateria.html', {'materia' : materia})
+
+def docente_delete(request, dui_docente):
+	docente = Docente.objects.get(pk=dui_docente)
+	if request.method == 'POST':
+		docente.delete()
+		return redirect('docentes-list')
+	return render(request, 'docentes/docente_delete.html', {'docente' : docente})
+
 
 def IngresarNotas(request):
 	contexto = {}
