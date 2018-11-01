@@ -18,12 +18,12 @@ from django.urls import path
 from django.conf.urls import url, include
 from apps.INTO.views import Vista,ListDocentesAdmin,IngresarNotas,DatosEstadisticos,administrarNotas, MateriaList, MateriaCreate, materia_edit, materia_delete
 from apps.INTO.views import Vista,ListDocentesAdmin,IngresarNotas,\
-DatosEstadisticos,administrarNotas,creardocente,docente_delete
+DatosEstadisticos,administrarNotas,creardocente,DeleteDocenteAdmin
 from apps.INTO.views import Vista,ListDocentesAdmin,IngresarNotas,DatosEstadisticos,administrarNotas, agregarEvaluacion
 from django.contrib.auth.views import login
 from django.contrib.auth.decorators import login_required
 
-
+app_name="into"
  
 urlpatterns = [  
     url(r'^index/$',login_required(Vista.as_view()),name="index"),
@@ -37,6 +37,6 @@ urlpatterns = [
     path('editarMateria/<str:codigo_materia>/',login_required(materia_edit),name="editarMateria"),
     path('eliminarMateria/<str:codigo_materia>/',login_required(materia_delete),name="eliminarMateria"),
     url(r'^agregarEvaluacion/$',login_required(agregarEvaluacion),name="agregarEvaluacion"),
-    path('eliminarDocente/<str:dui_docente>/',login_required(docente_delete),name="docente-delete"),
+    url(r'^delete/(?P<pk>\w+)/$',DeleteDocenteAdmin.as_view(),name='docente-delete'),
 
 ]
