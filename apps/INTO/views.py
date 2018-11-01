@@ -92,22 +92,42 @@ def administrarNotas(request):
 	codigoEvaluacion = 0
 	nota = 0
 	codigoMateria = 0
+	codigoDocente = 0
+	id_docente_materia=0
+	nombre= ""
+	apellidos = ""
+	codigoEspecialidad = ""
+
 	form = AdministrarNotasForm()
 
 	if 'btnConsultar' in request.POST:
 	
 		
+		
+		datoDocenteMateria = Docente_Materia.objects.all()
 		datoCalificacion = Calificacion.objects.all()
+		datoAlumno = Alumno.objects.all()
 
 		
-		AlumnoNie = request.POST.get('nie')
+		AlumnoNie = request.POST.get('inputCodAlumno')
 		codigoMateria = request.POST.get('inputCodMateria')
+		codigoDocente = request.POST.get('inputCodDocente')
 		
-			
-		for i in datoCalificacion:
-			if i.nie_id == AlumnoNie:
-				codigoEvaluacion = i.codigo_evaluacion_id
-				nota = i.nota 
+
+		for i in datoDocenteMateria	:
+			if i.codigo_docente_id == codigoDocente and i.codigo_materia_id == codigoMateria:				
+				id_docente_materia= i.id					
+		for i in datoCalificacion	:
+			if i.nie == AlumnoNie:
+				codigoEvaluacion = i.codigo_evaluacion					
+		for i in datoAlumno	:
+			if i.nie == AlumnoNie:
+				nombre= i.nombre_alumno
+				apellidos= i.apellidos_alumno				
+				codigoEspecialidad	= i.especialidad_alumno_id
+		
+		
+
 
 	else: 	
 		form = AdministrarNotasForm()
@@ -121,7 +141,12 @@ def administrarNotas(request):
 		 'nota': nota,
 		 'codigoEvaluacion': codigoEvaluacion,
 		 'AlumnoNie':AlumnoNie,
-		 'codigoMateria' : codigoMateria	
+		 'codigoMateria' : codigoMateria,	
+		 'codigoDocente' : codigoDocente,
+		 'nombre': nombre,
+		 'apellidos':apellidos,
+		 'codigoEspecialidad': codigoEspecialidad,
+		 'codigoMateria':codigoMateria
 		}
 
 		)

@@ -82,9 +82,9 @@ WSGI_APPLICATION = 'SistemaDeControldeNotas.wsgi.application'
 DATABASES = {
     'default': {
     'ENGINE': 'django.db.backends.postgresql_psycopg2',
-    'NAME': 'controlDeNotas',
+    'NAME': 'SistemadeControldeNotas',
     'USER':'postgres',
-    'PASSWORD':'dna',    
+    'PASSWORD':'administrador',    
 	'HOST':'localhost',
 	'PORT':5432,
     }
