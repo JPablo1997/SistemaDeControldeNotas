@@ -13,11 +13,11 @@ class asignacionTipoUsuario(models.Model):
     tipo_usuario = models.ForeignKey(TipoUsuario,on_delete=models.CASCADE)
 
 class Docente(models.Model):
-    dui_docente = models.CharField(max_length=15, primary_key=True)
+    dui_docente = models.CharField(max_length=10, primary_key=True)
     nombre_docente = models.CharField(max_length=50)
     apellidos_docente = models.CharField(max_length=50)
     fecha_nacimiento_docente = models.DateField()
-    telefono_docente = models.CharField(max_length=9,null=True)
+    telefono_docente = models.CharField(max_length=9,blank=True,null=True)
     email_docente = models.EmailField()
     fecha_contratacion_docente = models.DateField(null=True)
     direccion_docente = models.CharField(max_length=50,null=True)

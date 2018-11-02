@@ -18,6 +18,7 @@ class DocenteForm(forms.ModelForm):
     fecha_contratacion_docente = forms.DateField()
     direccion_docente = forms.CharField(max_length="100",required=False,label="Direccion")
     '''
+    
     class Meta:
         model=Docente
         fields=[
@@ -43,20 +44,15 @@ class DocenteForm(forms.ModelForm):
             
         }
         widgets = {
-            'dui_docente' : forms.TextInput(attrs={'class':'form-control'}),
-            'nombre_docente' : forms.TextInput(attrs={'class':'form-control'}),
-            'apellidos_docente' : forms.TextInput(attrs={'class':'form-control'}),
-            'fecha_nacimiento_docente' : forms.TextInput(attrs={'class':'form-control'}),
-            'telefono_docente' : forms.TextInput(attrs={'class':'form-control'}),
-            'email_docente' : forms.TextInput(attrs={'class':'form-control'}),
-            'fecha_contratacion_docente' : forms.TextInput(attrs={'class':'form-control'}),
-            'direccion_docente' : forms.TextInput(attrs={'class':'form-control'}),
+            'dui_docente' : forms.TextInput(attrs={'class':'form-control','placeholder':'Escriba el DUI'}),
+            'nombre_docente' : forms.TextInput(attrs={'class':'form-control','placeholder':'Escriba los Nombres'}),
+            'apellidos_docente' : forms.TextInput(attrs={'class':'form-control','placeholder':'Escriba los Apellidos'}),
+            'fecha_nacimiento_docente' : forms.TextInput(attrs={'class':'form-control','type':'date'}),
+            'telefono_docente' : forms.TextInput(attrs={'class':'form-control','placeholder':'Escriba el Telefono'}),
+            'email_docente' : forms.TextInput(attrs={'class':'form-control','type':'email','placeholder':'example@example.com'}),
+            'fecha_contratacion_docente' : forms.TextInput(attrs={'class':'form-control','type':'date'}),
+            'direccion_docente' : forms.TextInput(attrs={'class':'form-control','placeholder':'Escriba la Direccion'}),
         }
-
-class AlumnoForm(forms.ModelForm):
-    class Meta:
-        model=Alumno
-        
 
 class RegistroForm(UserCreationForm):
 	class Meta:

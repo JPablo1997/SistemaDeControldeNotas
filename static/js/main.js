@@ -3,7 +3,8 @@ $(document).ready(function(){
 	
 });
 
-function validar(){
+function validar()
+{
 		var periodos = document.getElementsByName('periodo');
 		var validoP = false;
 		var actividades = document.getElementsByName('actividad');
@@ -27,3 +28,9 @@ function validar(){
 			document.getElementById("msmSeleccionar").style.display = "inline";
 		}
 }
+
+jQuery(function($){
+	// Definimos las mascaras para cada input	
+	$("#id_dui_docente").mask("99999999-9");
+	$("#id_telefono_docente").mask("9999-9999");	
+});

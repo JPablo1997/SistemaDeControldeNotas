@@ -28,7 +28,11 @@
                             <td>{{ docente.dui_docente }}</td>
                             <td>{{ docente.nombre_docente }} {{ docente.apellidos_docente }}</td>
                             <td>{{ docente.fecha_nacimiento_docente }}</td>
+                            {% if docente.telefono_docente|length > 0 %}
                             <td>{{ docente.telefono_docente }}</td>
+                            {% else %}
+                            <td>Sin Registro</td>
+                            {% endif %}
                             <td>{{ docente.email_docente }}</td>
                             <td>{{ docente.fecha_contratacion_docente }}</td>                            
                             <!--<td>{{ docente.direccion_docente }}</td>>>-->
