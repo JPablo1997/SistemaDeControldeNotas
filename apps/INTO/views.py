@@ -1,12 +1,7 @@
 from django.shortcuts import render, redirect
-from django.views.generic import TemplateView,ListView,CreateView, UpdateView
-from apps.INTO.models import Docente
-from apps.INTO.forms import DocenteForm,AdministrarNotasForm, MateriaForm
-from django.shortcuts import render,redirect
-from django.views.generic import TemplateView,ListView,CreateView,DeleteView
-from apps.INTO.models import Docente
+from django.views.generic import TemplateView,ListView,CreateView,DeleteView,UpdateView,DetailView
 from django.contrib.auth.models import User,BaseUserManager
-from apps.INTO.forms import DocenteForm,AdministrarNotasForm,RegistroForm,AsignacionTipeUser
+from apps.INTO.forms import DocenteForm,AdministrarNotasForm,RegistroForm,AsignacionTipeUser,MateriaForm
 from django.urls import reverse_lazy,reverse
 from django.http import HttpResponse
 from apps.INTO.models import *
@@ -36,16 +31,32 @@ def creardocente(request):
 			docente.email_docente=request.POST['email_docente']
 			docente.fecha_contratacion_docente=request.POST['fecha_contratacion_docente']
 			docente.direccion_docente=request.POST['direccion_docente']
+
+			#Crear el Usuario
+			concac1=str(docente.nombre_docente).upper()
+			concac1=concac1[0]			
+			concac2=str(docente.apellidos_docente).upper()
+			concac2=concac2[0]
+			concac3=str(docente.dui_docente)
+			concac3=concac3[0:4]
+			nombredeusuario=concac1+concac2+concac3
 			#asignamos a los objetos de tipo usuario los datos necesarios para la creacion
-			usuario.username=docente.nombre_docente
+			usuario.username=nombredeusuario
 			usuario.first_name=docente.nombre_docente
 			usuario.last_name=docente.apellidos_docente
-			usuario.email=docente.email_docente			
-			usuario.set_password('administrador10')
+			usuario.email=docente.email_docente
+
+			#Creamos la contraseña
+			algorit1=str(docente.apellidos_docente)
+			algorit1=algorit1.split(maxsplit = 1)
+			algorit1=algorit1[0]
+			algorit1=algorit1.lower()
+			clave=algorit1+nombredeusuario			
+			usuario.set_password(clave)
 			#Guardamos el usuario para luego traer su id
 			usuario.save()	
 			#Hacemos una consulta a la tabla user del username(nombre del docente)		
-			id_docente = User.objects.get(username=str(docente.nombre_docente))	
+			id_docente = User.objects.get(username=str(nombredeusuario))	
 			#Hacemos una consulta a la tabla de tipos de usuario para traer el de tipo docente
 			id_tipo_usuario = TipoUsuario.objects.get(codigo_tipo_usuario="2")
 			#Asignamos el id del cocente de la tabla user para ponero en la tabla de tipo decente
@@ -55,10 +66,7 @@ def creardocente(request):
 			#Asignamos el tipo de usuario para la tabla tipo de usuario		
 			tipodeusuario.tipo_usuario=id_tipo_usuario
 			tipodeusuario.usuario=id_docente
-
-			tipodeusuario.save()
-
-			tipodeusuario.save()			
+			tipodeusuario.save()						
 		return redirect('docentes-list')
 	else:
 		#muestra el formulario
@@ -66,18 +74,71 @@ def creardocente(request):
 		contexto={'form1':form1}		
 	return render(request,'docentes/edit_docente.html',contexto)
 
+def docente_delete(request,id_del_docente):
+	docente = Docente.objects.get(dui_docente=id_del_docente)
+	usuario= User.objects.get(id=str(docente.usuario_docente_id))
+	tipoUsuario=asignacionTipoUsuario.objects.get(usuario_id=usuario.pk)
+	if request.method=='POST':
+		docente.delete()
+		usuario.delete()
+		tipoUsuario.delete()
+		return redirect('docentes-list')
+	return render(request, 'docentes/docente_delete.html', {'docente':docente})
+
+def docente_detalle(request,id_del_docente):
+	docente = Docente.objects.get(dui_docente=id_del_docente)
+	return render(request, 'docentes/detalle_docente.html', {'docente':docente})
+
+def docente_edit(request,id_del_docente):
+	docente = Docente.objects.get(dui_docente=id_del_docente)
+	usuario= User.objects.get(id=str(docente.usuario_docente_id))
+	if request.method == 'GET':
+		form = DocenteForm(instance=docente)
+	else:
+		form = DocenteForm(request.POST, instance=docente)
+		if form.is_valid():
+			docente.dui_docente=request.POST['dui_docente']
+			docente.nombre_docente=request.POST['nombre_docente']
+			docente.apellidos_docente=request.POST['apellidos_docente']
+			docente.fecha_nacimiento_docente=request.POST['fecha_nacimiento_docente']
+			docente.telefono_docente=request.POST['telefono_docente']
+			docente.email_docente=request.POST['email_docente']
+			docente.fecha_contratacion_docente=request.POST['fecha_contratacion_docente']
+			docente.direccion_docente=request.POST['direccion_docente']
+			#Modificamos el usuario
+			concac1=str(docente.nombre_docente).upper()
+			concac1=concac1[0]			
+			concac2=str(docente.apellidos_docente).upper()
+			concac2=concac2[0]
+			concac3=str(docente.dui_docente)
+			concac3=concac3[0:4]
+			nombredeusuario=concac1+concac2+concac3
+
+			usuario.username=nombredeusuario
+			usuario.first_name=docente.nombre_docente
+			usuario.last_name=docente.apellidos_docente
+			usuario.email=docente.email_docente
+			#Reseteamos la contraseña porDefecto
+			algorit1=str(docente.apellidos_docente)
+			algorit1=algorit1.split(maxsplit = 1)
+			algorit1=algorit1[0]
+			algorit1=algorit1.lower()
+			clave=algorit1+nombredeusuario			
+			usuario.set_password(clave)		
+			docente.save()
+			usuario.save()			
+		return redirect('docentes-list')
+	return render(request,'docentes/docente_form.html',{'form':form})
+
+
 
 class Vista(TemplateView):
 	template_name='base/base.html'
 
 class ListDocentesAdmin(ListView):
 	model=Docente
+	second_model=User
 	template_name='docentes/docentes_list.html'
-class DeleteDocenteAdmin(DeleteView):
-	model=Docente
-	template_name = 'docentes/docente_delete.html'
-	success_url=reverse_lazy('docentes-list')
-
 
 class IngresarNotas(TemplateView):
 	template_name='IngresarNotas/ingresarNotas.html'

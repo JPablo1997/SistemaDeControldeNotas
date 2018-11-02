@@ -1,0 +1,45 @@
+{% extends 'base/base.html' %}
+{% block title %}
+Detalles Docente
+{% endblock %} 
+{% block content %} 
+
+<hr/> 
+<div class="row">
+    <div class="col-md-4">
+
+    </div>
+    <div class="col-md-4 text-center">
+        <hr>	
+        <h3>Detalle 
+            {{ docente.nombre_docente }}
+        </h3>
+        <br>
+        
+        <dl class="dl-horizontal">
+            <dt>Dui:</dt>
+            <dd>{{docente.dui_docente}}</dd>
+            <dt>Nombre Completo:</dt>
+            <dd>{{docente.nombre_docente}} {{docente.apellidos_docente}}</dd>
+            <dt>Fecha de Nacimiento:</dt>
+            <dd>{{docente.fecha_nacimiento_docente}}</dd>
+            <dt>Telefono:</dt>
+            <dd>{{docente.telefono_docente}}</dd>
+            <dt>Email:</dt>
+            <dd>{{docente.email_docente}}</dd>
+            <dt>Fecha de Contratacion:</dt>
+            <dd>{{docente.fecha_contratacion_docente}}</dd>
+            <dt>Direccion:</dt>
+            <dd>{{docente.direccion_docente}}</dd>
+        </dl>
+        <hr>
+        <a href="{% url 'docentes-list' %}" class="btn btn-success">
+            Vover a la lista
+        </a>
+    </div>
+    <div class="col-md-4">
+
+    </div>
+</div>
+    
+{% endblock %}

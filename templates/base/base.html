@@ -25,7 +25,7 @@
       {% block header %}
       
           <div class="hero-text text-center">
-              <a href=""><img style="float:right;" src="{% static 'img/logo.png' %}" alt="Logo INTO" width="80px"></a>           
+              <a href="{% url 'index' %}"><img style="float:right;" src="{% static 'img/logo.png' %}" alt="Logo INTO" width="80px"></a>           
               <h1>Instituto Nacional de Tonacatepeque</h1>              
               <p>{% block mensaje%}Bienvenido al Sistema de Notas del Instituto Nacional de Tonacatepeque{% endblock %}</p>
           </div>
@@ -69,11 +69,11 @@
               </li>              
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fas fa-user"></i>
-                  Usuario
+                  {{ user.username }}                
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="#">Accion 1</a>
-                  <a class="dropdown-item" href="#">Accion 2</a>
+                  <a class="dropdown-item" href="#">Perfil</a>
+                  <a class="dropdown-item" href="#">Cambiar Contraseña</a>
                   <a class="dropdown-item" href="{% url 'logout'%}"><i class="fas fa-sign-out-alt"></i> Salir</a>
                 </div>
               </li>
@@ -88,11 +88,11 @@
       {% endblock %}
     </div>
 	
-    <footer>
+    <footer class="footer">
       
        
             {% block footer %}            
-              <p>Copyright © 2018 - Instituto Nacional de Tonacatepeque</p>             
+              <p>Copyright © 2018 - Instituto Nacional de Tonacatepeque APROES</p>             
             {% endblock %}
                   
            

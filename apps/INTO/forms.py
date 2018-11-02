@@ -53,6 +53,11 @@ class DocenteForm(forms.ModelForm):
             'direccion_docente' : forms.TextInput(attrs={'class':'form-control'}),
         }
 
+class AlumnoForm(forms.ModelForm):
+    class Meta:
+        model=Alumno
+        
+
 class RegistroForm(UserCreationForm):
 	class Meta:
 		model=User

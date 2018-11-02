@@ -16,12 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import url, include
-from apps.INTO.views import Vista,ListDocentesAdmin,IngresarNotas,DatosEstadisticos,administrarNotas, MateriaList, MateriaCreate, materia_edit, materia_delete
-from apps.INTO.views import Vista,ListDocentesAdmin,IngresarNotas,\
-DatosEstadisticos,administrarNotas,creardocente,DeleteDocenteAdmin
-from apps.INTO.views import Vista,ListDocentesAdmin,IngresarNotas,DatosEstadisticos,administrarNotas, agregarEvaluacion
 from django.contrib.auth.views import login
 from django.contrib.auth.decorators import login_required
+from apps.INTO.views import *
 
 
  
@@ -37,6 +34,8 @@ urlpatterns = [
     path('editarMateria/<str:codigo_materia>/',login_required(materia_edit),name="editarMateria"),
     path('eliminarMateria/<str:codigo_materia>/',login_required(materia_delete),name="eliminarMateria"),
     url(r'^agregarEvaluacion/$',login_required(agregarEvaluacion),name="agregarEvaluacion"),
-    url(r'^delete/(?P<pk>\w+)/$',DeleteDocenteAdmin.as_view(),name='docente-delete'),
+    path('eliminarDocente/<str:id_del_docente>/',login_required(docente_delete),name='docente-delete'),
+    path('detalleDocente/<str:id_del_docente>/',login_required(docente_detalle),name='docente_detalle'),
+    path('actualizarDocente/<str:id_del_docente>/',login_required(docente_edit),name='docente_actualizar'),
 
 ]
