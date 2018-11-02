@@ -5,17 +5,178 @@ Generador de Datos Estadísticos
 {% endblock %}
 
 {% block content %}
-                <!-- /. ROW  -->
 
 <br>
-<section id="s1">
-    	
 
+<section id="s3">
+    <h4 id="h41">Entrada de Datos</h4>     
+ <form class="formentrada">   
+    <div id="añ1">
+        <fieldset >
+             <input  type="radio" name="año" id="añoact">
+             <label for="añoact" >Año Actual</label>
+             <input style="margin-left: 100px" type="radio" name="año" id="añosant">
+             <label for="añosant">Años Anteriores</label>         
+        </fieldset>
+    </div>
+    <p></p>
+
+<!--empieza c-->
+<div id="ubicacionizquierda" >
+<div class="accordion" id="accordionExample">
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h5 class="mb-0">
+        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          Elija Periodo
+        </button>
+      </h5>
+    </div>
+
+    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+      <div class="card-body">
+         <fieldset class="f">
+        <legend>
+            Trimestre
+        </legend>
+        <div class="pp">
+             <input type="radio" name="periodo" id="todost">
+             <label for="todost">Trimestres</label>
+            <br/>
+             <input type="radio" name="periodo" id="especifico">
+             <label for="especifico">1 Trimestre </label>
+        </div>
+        <div class="caja">
+          <select>
+            <option>Elija opción</option>            
+            <option>La primera opción</option>
+            <option>La segunda opción</option>
+            <option>La tercera opción</option>
+          </select>
+        </div>
+
+
+
+         </fieldset>
+         <fieldset class="f">
+        <legend>
+            Anual
+        </legend>
+        <div>
+             <input type="radio" name="periodo" id="año">
+             <label for="año">Año</label>
+        </div>
+            <div class="caja">
+          <select>
+            <option>Elija opción</option>            
+            <option>La primera opción</option>
+            <option>La segunda opción</option>
+            <option>La tercera opción</option>
+          </select>
+        </div>
+         </fieldset>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingTwo">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          Elija Poblacion
+        </button>
+      </h5>
+    </div>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+      <div class="card-body">
+         <fieldset class="f">
+        <legend>Seccion</legend>
+        <div>
+             <input type="radio" name="poblacion" id="secciones">
+             <label for="secciones">secciones</label>
+            <br/>
+             <input type="radio" name="poblacion" id="seccion">
+             <label for="seccion">1 Seccion</label>  
+        </div>
+        <div class="caja">
+          <select>
+            <option>Elija opción</option>            
+            <option>La primera opción</option>
+            <option>La segunda opción</option>
+            <option>La tercera opción</option>
+          </select>
+        </div>
+         </fieldset>
+         <fieldset class="f">
+             <legend>Bachillerato</legend>
+             <div>
+             <input type="radio" name="poblacion" id="bachilleratos">
+             <label for="bachilleratos">Bachilleratos</label>
+            <br/>
+             <input type="radio" name="poblacion" id="bachillerato">
+             <label for="bachillerato">1 bachillerato</label> 
+            </div>
+                     <div class="caja">
+          <select>
+            <option>Elija opción</option>            
+            <option>La primera opción</option>
+            <option>La segunda opción</option>
+            <option>La tercera opción</option>
+          </select>
+        </div>
+         </fieldset>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingThree">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          Elija tipo de Notas a procesar
+        </button>
+      </h5>
+    </div>
+    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+      <div class="card-body">
+         <fieldset class="f">
+             <input type="radio" name="nota" id="promedio">
+             <label for="promedio">Promedio Global</label>
+            <br/>
+             <input type="radio" name="nota" id="materia">
+             <label for="materia">Promedio de Materias</label>  
+         </fieldset>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<!--termina c-->
+<div id="ubicacionderecha">
+    <div class="alert alert-primary" role="alert">
+ <b>Datos seleccionados</b><br><br>
+   <li>Periodo <input style="margin-left:26px;" class="datoselejidos" type="" name="periodo" disabled></li><br>
+   <li>Población <input style="margin-left:   10px;"  class="datoselejidos"  type="" name="periodo" disabled></li><br>
+   <li>Notas <input style="margin-left: 38px;"  class="datoselejidos"  type="" name="periodo" disabled></li><br>
+</div>
+</div>
+     <div class="btnform">
+     <input class="btnsubmit" type="submit" name="" value="Calcular">
+     <input class="btnreset" type="reset" name="" value="Limpiar">
+     </div>
+      </form>       
 </section>
-    <h2>RESULTADOS!</h2>
+
+<p></p>
+
+
+
+
+
+<br>
+    <h2 style="text-align: center;">RESULTADOS!</h2>
     <br>
 
-<section id="s2">
+<section id ="s2">
+        <h4 id="h42">Posiciones</h4>
 <div class="row">
                 <div class="col-md-6">
                   <!--   Kitchen Sink -->
@@ -51,7 +212,7 @@ Generador de Datos Estadísticos
                     </div>
                      <!-- End  Kitchen Sink -->
                 </div>
- 				<div class="col-md-6">
+                <div class="col-md-6">
                   <!--   Kitchen Sink -->
                     <div class="panel panel-default">
                         <div class="panel-heading">
@@ -88,14 +249,61 @@ Generador de Datos Estadísticos
             </div>
                 <!-- /. ROW  -->
 
+<!--tabla de datos-->
+<br>
+<div style="width: 35%">
+<table class="table table-hover table-dark">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Dato Estadístico</th>
+      <th scope="col">Handle</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+
+      <td>@mdo</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Jacob</td>
+      <td>fat</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<!--fin tabla-->
+
+<!-- Graficas-->
+<div>
+    
+</div>
+<!--fin graficas-->
+<!--paginacion-->
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-end">
+    <li class="page-item disabled">
+      <a class="page-link" href="#" tabindex="-1">Previous</a>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item"><a class="page-link" href="#">4</a></li>
+    <li class="page-item">
+      <a class="page-link" href="#">Next</a>
+    </li>
+  </ul>
+</nav>
+<!--fin paginacion-->
 </section>
 
 
 
-<section id="s3">
-    	
 
-</section>
 
             
 <br>

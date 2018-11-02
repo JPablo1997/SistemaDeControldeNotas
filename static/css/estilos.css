@@ -26,7 +26,7 @@ border-style:groove;
 background: #fff; 
 }
 .tdPrimario{
-	text-align: center;
+  text-align: center;
 }
 
 #frmAgregarEva {
@@ -43,7 +43,7 @@ background: #fff;
 }
 
 #btnCargarFormValidar{
-	margin-top: 10px;
+  margin-top: 10px;
 }
 
 #msmSeleccionar{
@@ -56,3 +56,186 @@ background: #fff;
      padding: 0;
      height: 100%;
 }
+
+
+/*Estadisticas Inicio*/
+#s1{
+  background-color:#d4e6f1;
+}
+#s1,#s2{
+    width: 100%;
+  max-width: 100%;
+  margin: auto;
+  border: 1px solid #000;
+}
+#s2{
+  padding: 15px;
+}
+#s3{
+      width: 80%;
+  max-width: 100%;
+  margin: auto;
+  border: 1px solid #000;
+}
+
+#ubicacionizquierda,#ubicacionderecha{
+  width: 45%;
+  height: 10%;
+  padding: 1px;
+  display: inline-block;
+margin-left: 35px;
+}
+
+.mar{
+  padding: 5%;
+}
+#añ1{
+  width: 100%;
+  max-width: 40%;
+  margin: auto;
+  text-align: center;
+}
+.h5a{
+  text-align: center;
+}
+
+legend{
+  font-size: 20px;
+}
+
+#h41,#h42{
+  text-align: center;
+}
+#h42{
+    border-bottom: 2px solid #b03a2e;
+    color:  #1f618d;
+}
+.e1{
+  height: 336px;
+  width: 32.5%;
+  display: inline-grid;
+  background-color: #a9cce3 ;
+  margin: auto;
+  padding: auto;
+  border: 2px solid #000;
+  position: auto;
+}
+.e11{
+    height: 116px;
+  width: 32.5%;
+  display: inline-grid;
+  background-color: #a9cce3 ;
+  margin: auto;
+  padding: 1px;
+  border: 2px solid #000;
+}
+.h5a{
+  border-bottom: 3px solid crimson;
+}
+.f{
+  display:inline-block;
+    padding: 7px;
+}
+.caja {
+display: inline-grid;
+   height:30px;
+   overflow: hidden;
+   width: 150px;
+   position:relative;
+   background-color:  #2471a3;
+}
+select {
+   background: transparent;
+   border: none;
+   font-size: 14px;
+   height: 30px;
+   padding: 5px;
+   width: 150px;
+}
+select:focus{ outline: none;}
+
+.caja::after{
+  content:"\025be";
+  display:table-cell;
+  padding-top:7px;
+  text-align:center;
+  width:30px;
+  height:30px;
+  background-color:#d9d9d9;
+  position:absolute;
+  top:0;
+  right:0px;  
+  pointer-events: none;
+}
+
+
+.btnform{
+  display: flex;
+  justify-content: space-around;
+  width: 400px;
+  margin: auto;
+}
+
+.btnsubmit,.btnreset{
+  background-color: #EFEFEF;
+  padding: .5rem;
+  margin: .5rem 0;
+  border: none;
+  border-bottom: solid #C8C8C8 .2rem;
+  transition: all .5s;
+
+}
+.btnsubmit,.btnreset{
+  width: 40%;
+  border-bottom: none;
+  background-color:  #1f618d ;
+  color: white;
+}
+.btnreset{
+  background-color: #b03a2e;
+
+}
+.btnsubmit:hover{
+  background-color: #5499c7;
+}
+.btnreset:hover{
+  background-color:  #ec7063 ;
+}
+
+/*css para radios iniciales*/
+  .formentrada .formulario .radio label,
+  .formulario  {
+    display: inline-block;
+    cursor: pointer;
+    color: #FF4136;
+    position: relative;
+    padding: 5px 15px 5px 51px;
+    font-size: 1em;
+    border-radius: 5px;
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease; }
+    .formulario .radio label:hover,
+    .formulario .checkbox label:hover {
+      background: rgba(255, 65, 54, 0.1); }
+    .formulario .radio label:before,
+    .formulario .checkbox label:before {
+      content: "";
+      display: inline-block;
+      width: 17px;
+      height: 17px;
+      position: absolute;
+      left: 15px;
+      border-radius: 50%;
+      background: none;
+      border: 3px solid #FF4136; }
+  .formulario input[type="radio"] {
+    display: none; }
+    .formulario input[type="radio"]:checked + label:before {
+      display: none; }
+    .formulario input[type="radio"]:checked + label {
+      padding: 5px 15px;
+      background: #FF4136;
+      border-radius: 2px;
+      color: #fff; }
+/*Estadisticas Fin*/
