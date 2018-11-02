@@ -20,7 +20,20 @@ Generador de Datos Estadísticos
         </fieldset>
     </div>
     <p></p>
-
+<!--select para años anteriores-->
+<div style="margin-left: 35px">
+  <div class="form-group" style="width: 46%" >
+    <label for="exampleFormControlSelect1">Seleccione el año</label>
+    <select class="form-control" id="exampleFormControlSelect1">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+    </select>
+  </div>
+</div>
+<!--fin select de años anteriores-->
 <!--empieza c-->
 <div id="ubicacionizquierda" >
 <div class="accordion" id="accordionExample">
@@ -66,14 +79,7 @@ Generador de Datos Estadísticos
              <input type="radio" name="periodo" id="año">
              <label for="año">Año</label>
         </div>
-            <div class="caja">
-          <select>
-            <option>Elija opción</option>            
-            <option>La primera opción</option>
-            <option>La segunda opción</option>
-            <option>La tercera opción</option>
-          </select>
-        </div>
+
          </fieldset>
       </div>
     </div>
@@ -92,7 +98,7 @@ Generador de Datos Estadísticos
         <legend>Seccion</legend>
         <div>
              <input type="radio" name="poblacion" id="secciones">
-             <label for="secciones">secciones</label>
+             <label for="secciones">Todas</label>
             <br/>
              <input type="radio" name="poblacion" id="seccion">
              <label for="seccion">1 Seccion</label>  
@@ -107,10 +113,10 @@ Generador de Datos Estadísticos
         </div>
          </fieldset>
          <fieldset class="f">
-             <legend>Bachillerato</legend>
+             <legend>Bachillerato por año</legend>
              <div>
              <input type="radio" name="poblacion" id="bachilleratos">
-             <label for="bachilleratos">Bachilleratos</label>
+             <label for="bachilleratos">Todos</label>
             <br/>
              <input type="radio" name="poblacion" id="bachillerato">
              <label for="bachillerato">1 bachillerato</label> 
@@ -162,7 +168,8 @@ Generador de Datos Estadísticos
      <input class="btnsubmit" type="submit" name="" value="Calcular">
      <input class="btnreset" type="reset" name="" value="Limpiar">
      </div>
-      </form>       
+      </form>     
+      <br>  
 </section>
 
 <p></p>
@@ -251,13 +258,16 @@ Generador de Datos Estadísticos
 
 <!--tabla de datos-->
 <br>
-<div style="width: 35%">
+
+<div style="width: 35%" align="center">
+<h4 id="h43"> Variables Estadísticas</h4>
+<br>
 <table class="table table-hover table-dark">
   <thead>
     <tr>
       <th scope="col">#</th>
       <th scope="col">Dato Estadístico</th>
-      <th scope="col">Handle</th>
+      <th scope="col">Resultados</th>
     </tr>
   </thead>
   <tbody>
@@ -279,7 +289,8 @@ Generador de Datos Estadísticos
 <!--fin tabla-->
 
 <!-- Graficas-->
-<div>
+<div style="white:40%" align="center" >
+    <h4 id="h44"> Gráficas</h4>
     
 </div>
 <!--fin graficas-->
@@ -301,10 +312,6 @@ Generador de Datos Estadísticos
 <!--fin paginacion-->
 </section>
 
-
-
-
-
-            
+      
 <br>
 {% endblock %}
