@@ -53,6 +53,7 @@ class DocenteForm(forms.ModelForm):
             'fecha_contratacion_docente' : forms.TextInput(attrs={'class':'form-control','type':'date'}),
             'direccion_docente' : forms.TextInput(attrs={'class':'form-control','placeholder':'Escriba la Direccion'}),
         }
+    
 
 class RegistroForm(UserCreationForm):
 	class Meta:
