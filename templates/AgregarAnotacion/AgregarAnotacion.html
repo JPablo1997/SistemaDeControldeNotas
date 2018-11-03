@@ -1,0 +1,65 @@
+{% extends 'base/base.html'%}
+{% block title %} Administrar Notas {% endblock %}
+{% block content %}
+<hr/>
+	<div class="hero-text text-center">
+		<p>Anotaciones y observaciones a alumnos</p>
+	</div>
+<hr/>
+
+<div class= "container">
+	<div class= "row">
+		<section class="col-md-12">
+			<div class= "container">
+				<form method="POST">
+					{% csrf_token %}
+                 	<table class="table table-hover border">
+                    <tr class="table-success text-center">
+                        <th>Nie</th>
+                        <th>Nombres</th>
+                        <th>Especialidad y seccion</th>
+                        <th>Descripcion</th>
+                        
+                    </tr>                        
+                    <tr class="text-center">                                            
+                        <td></td>                        
+                        <td></td>
+                        <td></td>
+                        <td></td>                        
+                    </tr>                        
+                	</table>   					                    
+				</form>
+			</div>		
+		</section>
+		
+	</div>
+	<hr/>	
+	<br/>
+	<div class= "row">
+		<aside class="col-md-4 hidden-xs hidden-sm">
+			<div class="table-responsive">
+         		<tr>
+         			<td>
+         				<label>Nie de alumno :</label>	
+         			</td>
+         			<td>
+         				<input type="text" id="nie" name="inputNie" required minlength="1" maxlength="8" placeholder="Digitar nie" />		
+         			</td>
+         		</tr>                
+         		<button type= "submit" id= "btnConsultar" name= "btnConsultar">Buscar</button>
+                <br/><br/>                        
+                
+                
+            </div> 
+		<aside/>
+		<section class="col-md-8">
+			<div class= "container">
+				
+			</div>		
+		</section>
+	</div>
+<hr/>
+</div>
+
+
+{% endblock %}

@@ -151,6 +151,10 @@ def DatosEstadisticos(request):
 	contexto={'años':años,'periodos':periodos,'secciones':secciones,'bachilleratos':bachilleratos}
 	return render(request,'estadisticas/estadisticas.html',contexto)
 
+def anotacion(request):
+	return render(request, 'AgregarAnotacion/AgregarAnotacion.html')
+		
+
 def administrarNotas(request):
 	AlumnoNie = ""
 	codigoEvaluacion = 0
@@ -161,6 +165,9 @@ def administrarNotas(request):
 	nombre= ""
 	apellidos = ""
 	codigoEspecialidad = ""
+	codigoSubActividad = ""
+	codigoActividad = ""
+	cantidadSubActividades = ""
 
 	form = AdministrarNotasForm()
 
@@ -171,12 +178,18 @@ def administrarNotas(request):
 		datoDocenteMateria = Docente_Materia.objects.all()
 		datoCalificacion = Calificacion.objects.all()
 		datoAlumno = Alumno.objects.all()
+		datoEvaluacion = Evaluacion.objects.all()
+		datoSubActividad = Sub_Actividad.objects.all()
+		datoActividad = Actividad.objects.all()
+
 
 		
 		AlumnoNie = request.POST.get('inputCodAlumno')
 		codigoMateria = request.POST.get('inputCodMateria')
 		codigoDocente = request.POST.get('inputCodDocente')
 		
+		
+
 
 		for i in datoDocenteMateria	:
 			if i.codigo_docente_id == codigoDocente and i.codigo_materia_id == codigoMateria:				
@@ -189,7 +202,19 @@ def administrarNotas(request):
 				nombre= i.nombre_alumno
 				apellidos= i.apellidos_alumno				
 				codigoEspecialidad	= i.especialidad_alumno_id
-		
+		for i in datoEvaluacion	:
+			if i.codigo_docente_materia_id == id_docente_materia:
+				codigoSubActividad = i.codigo_sub_actividad_id	
+
+		for i in datoSubActividad	:
+			if i.codigo_sub_actividad == codigoSubActividad:
+				codigoActividad = i.codigo_actividad_id
+
+		for i in datoActividad	:
+			if i.codigo_actividad == codigoActividad:
+				cantidadSubActividades = i.cantidad_max_sub_act			
+
+				
 		
 
 
@@ -210,8 +235,12 @@ def administrarNotas(request):
 		 'nombre': nombre,
 		 'apellidos':apellidos,
 		 'codigoEspecialidad': codigoEspecialidad,
-		 'codigoMateria':codigoMateria
+		 'codigoMateria':codigoMateria,
+		 'codigoSubActividad':codigoSubActividad,
+		 'codigoActividad' : codigoActividad,
+		 'cantidadSubActividades':cantidadSubActividades
 		}
+
 
 		)
 

@@ -29,6 +29,7 @@ urlpatterns = [
     url(r'^ingresarNotas/$',login_required(IngresarNotas),name="ingresarNotas"),
     url(r'^estadisticas/$',login_required(DatosEstadisticos),name="estadisticas"),
     url(r'^administrar/$',login_required(administrarNotas),name="administrar"),
+    url(r'^Anotacion/$',login_required(anotacion),name="Anotacion"),
     url(r'^administrarMaterias/$',login_required(MateriaList.as_view()),name="administrarMaterias"),
     url(r'^agregarMateria/$',login_required(MateriaCreate.as_view()),name="agregarMateria"),
     path('editarMateria/<str:codigo_materia>/',login_required(materia_edit),name="editarMateria"),

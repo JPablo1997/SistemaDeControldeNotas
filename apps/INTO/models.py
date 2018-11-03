@@ -117,6 +117,13 @@ class Calificacion(models.Model):
     nie = models.ForeignKey(Alumno,on_delete=models.CASCADE)
     codigo_evaluacion = models.ForeignKey(Evaluacion,on_delete=models.CASCADE)
     nota = models.DecimalField(max_digits=10, decimal_places=2)
-    
+
+class Anotacion(models.Model):
+    nie = models.ForeignKey(Alumno,on_delete=models.CASCADE)
+    dui_docente = models.ForeignKey(Docente,on_delete=models.CASCADE)
+    codigo_anotacion = models.CharField(max_length=10, primary_key=True)
+    descripcion = models.CharField(max_length=150, null= False)
+    fecha_anotacion = models.DateField()
+
     
     
