@@ -203,3 +203,9 @@ select:focus{ outline: none;}
 }
 
 /*Estadisticas Fin*/
+
+/*Docentes Inicio*/
+.error
+{ 
+	color: red; 
+}
