@@ -143,8 +143,13 @@ class ListDocentesAdmin(ListView):
 class IngresarNotas(TemplateView):
 	template_name='IngresarNotas/ingresarNotas.html'
 
-class DatosEstadisticos(TemplateView):
-	template_name='estadisticas/estadisticas.html'
+def DatosEstadisticos(request):
+	años=[2015,2016,2017]
+	periodos=["trimestre1","trimestre2","trimestre3","trimestre4"]
+	secciones=["1°A","1°B","1°C","1°D","2°A","2°B"]
+	bachilleratos=["General","Contador","Electronica"]
+	contexto={'años':años,'periodos':periodos,'secciones':secciones,'bachilleratos':bachilleratos}
+	return render(request,'estadisticas/estadisticas.html',contexto)
 
 def administrarNotas(request):
 	AlumnoNie = ""

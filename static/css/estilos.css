@@ -76,6 +76,7 @@ background: #fff;
   max-width: 100%;
   margin: auto;
   border: 1px solid #000;
+    padding: 15px;
 }
 
 #ubicacionizquierda,#ubicacionderecha{
@@ -85,7 +86,9 @@ background: #fff;
   display: inline-block;
 margin-left: 35px;
 }
-
+.datoselejidos{
+  width: 250px;
+}
 .mar{
   padding: 5%;
 }
@@ -103,12 +106,10 @@ legend{
   font-size: 20px;
 }
 
-#h41,#h42{
-  text-align: center;
-}
-#h42,#h43,#h44{
+#h41,#h42,#h43,#h44{
     border-bottom: 2px solid #b03a2e;
     color:  #1f618d;
+    text-align: center;
 }
 .e1{
   height: 336px;
@@ -135,7 +136,7 @@ legend{
 .f{
   display:inline-block;
     padding: 7px;
-}
+}s
 .caja {
 display: inline-grid;
    height:30px;
@@ -143,7 +144,7 @@ display: inline-grid;
    width: 150px;
    position:relative;
    background-color:  #2471a3;
-}
+}/*
 select {
    background: transparent;
    border: none;
@@ -168,7 +169,7 @@ select:focus{ outline: none;}
   pointer-events: none;
 }
 
-
+*/
 .btnform{
   display: flex;
   justify-content: space-around;

@@ -1,4 +1,6 @@
 {% extends 'base/base.html' %}
+{% block tagbody %} 
+<body  onUnLoad="resetearpagina()" > {% endblock %}
 
 {% block mensaje %}
 Generador de Datos Estadísticos
@@ -10,32 +12,31 @@ Generador de Datos Estadísticos
 
 <section id="s3">
     <h4 id="h41">Entrada de Datos</h4>     
- <form class="formentrada">   
+ <form class="formentrada" name="form1">   
     <div id="añ1">
         <fieldset >
-             <input  type="radio" name="año" id="añoact">
+             <input  type="radio" name="año" id="añoact" onclick="Activar1(this.form)">
              <label for="añoact" >Año Actual</label>
-             <input style="margin-left: 100px" type="radio" name="año" id="añosant">
+             <input style="margin-left: 100px" type="radio" name="año" id="añosant" onclick="Activar2(this.form)">
              <label for="añosant">Años Anteriores</label>         
         </fieldset>
     </div>
     <p></p>
 <!--select para años anteriores-->
-<div style="margin-left: 35px">
+<div style="margin-left: 35px" id="selectaño">
   <div class="form-group" style="width: 46%" >
-    <label for="exampleFormControlSelect1">Seleccione el año</label>
-    <select class="form-control" id="exampleFormControlSelect1">
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
-      <option>5</option>
+    <label for="exampleFormControlSelect1"  style="display: none;" id="labelselect">Seleccione el año</label>
+    <select class="form-control" id="selecdea" name="selecdea"  style="display: none;" onchange="habilitaradiosperiodo()">
+        <option>Elija el año</option>
+        {% for año in años %}
+      <option>{{año}}</option>
+        {% endfor %}
     </select>
   </div>
 </div>
 <!--fin select de años anteriores-->
 <!--empieza c-->
-<div id="ubicacionizquierda" >
+<div id="ubicacionizquierda">
 <div class="accordion" id="accordionExample">
   <div class="card">
     <div class="card-header" id="headingOne">
@@ -53,30 +54,28 @@ Generador de Datos Estadísticos
             Trimestre
         </legend>
         <div class="pp">
-             <input type="radio" name="periodo" id="todost">
+             <input type="radio" name="periodo" id="todost" disabled="true" onclick="acciontrims()">
              <label for="todost">Trimestres</label>
-            <br/>
-             <input type="radio" name="periodo" id="especifico">
+          <br/>
+             <input type="radio" name="periodo" id="especifico" disabled="true" onclick="habilitarselperiodo()">
              <label for="especifico">1 Trimestre </label>
         </div>
-        <div class="caja">
-          <select>
-            <option>Elija opción</option>            
-            <option>La primera opción</option>
-            <option>La segunda opción</option>
-            <option>La tercera opción</option>
+        <div class="caja" >
+
+              <select style="display: none" name="selectperiodo" id="selectperiodo" style="background-color: #d9d9d9" onchange="cambioselectrim()">
+            <option>Elija trimestre</option>  
+            {% for p in periodos %}
+            <option>{{p}}</option>
+            {% endfor %}
           </select>
         </div>
-
-
-
          </fieldset>
          <fieldset class="f">
         <legend>
             Anual
         </legend>
         <div>
-             <input type="radio" name="periodo" id="año">
+             <input type="radio" name="periodo" id="año" disabled="true" onclick="accionanual()">
              <label for="año">Año</label>
         </div>
 
@@ -97,36 +96,37 @@ Generador de Datos Estadísticos
          <fieldset class="f">
         <legend>Seccion</legend>
         <div>
-             <input type="radio" name="poblacion" id="secciones">
+             <input type="radio" name="poblacion" id="secciones" disabled="true" onclick="accionestodas()">
              <label for="secciones">Todas</label>
             <br/>
-             <input type="radio" name="poblacion" id="seccion">
+             <input type="radio" name="poblacion" id="seccion" disabled="true" onclick="accionesec()">
              <label for="seccion">1 Seccion</label>  
         </div>
-        <div class="caja">
-          <select>
-            <option>Elija opción</option>            
-            <option>La primera opción</option>
-            <option>La segunda opción</option>
-            <option>La tercera opción</option>
+        <div class="caja" >
+          <select style="display: none" id="selectpoblacion1" name="selectpoblacion1" style="background-color: #d9d9d9" onchange="cambioselectpobl1()">
+            <option>Elija seccion</option> 
+
+            {% for s in secciones %}
+            <option>{{s}}</option>
+            {% endfor %}
           </select>
         </div>
          </fieldset>
          <fieldset class="f">
              <legend>Bachillerato por año</legend>
              <div>
-             <input type="radio" name="poblacion" id="bachilleratos">
+             <input type="radio" name="poblacion" id="bachilleratos" disabled="true" onclick="accionestodosb()">
              <label for="bachilleratos">Todos</label>
             <br/>
-             <input type="radio" name="poblacion" id="bachillerato">
+             <input type="radio" name="poblacion" id="bachillerato" disabled="true" onclick="accionesbach()">
              <label for="bachillerato">1 bachillerato</label> 
             </div>
-                     <div class="caja">
-          <select>
-            <option>Elija opción</option>            
-            <option>La primera opción</option>
-            <option>La segunda opción</option>
-            <option>La tercera opción</option>
+        <div class="caja">
+          <select style="display: none" id="selectpoblacion2" name="selectpoblacion2" style="background-color: #d9d9d9" onchange="cambioselectpobl2()">
+            <option>Elija bachillerato</option>            
+            {% for b in bachilleratos %}
+            <option>{{b}}</option>
+            {% endfor %}
           </select>
         </div>
          </fieldset>
@@ -144,10 +144,10 @@ Generador de Datos Estadísticos
     <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
       <div class="card-body">
          <fieldset class="f">
-             <input type="radio" name="nota" id="promedio">
+             <input type="radio" name="nota" id="promedio" disabled="true" onclick="accionespromedio()">
              <label for="promedio">Promedio Global</label>
             <br/>
-             <input type="radio" name="nota" id="materia">
+             <input type="radio" name="nota" id="materia" disabled="true" onclick="accionesmateria()">
              <label for="materia">Promedio de Materias</label>  
          </fieldset>
       </div>
@@ -159,14 +159,14 @@ Generador de Datos Estadísticos
 <div id="ubicacionderecha">
     <div class="alert alert-primary" role="alert">
  <b>Datos seleccionados</b><br><br>
-   <li>Periodo <input style="margin-left:26px;" class="datoselejidos" type="" name="periodo" disabled></li><br>
-   <li>Población <input style="margin-left:   10px;"  class="datoselejidos"  type="" name="periodo" disabled></li><br>
-   <li>Notas <input style="margin-left: 38px;"  class="datoselejidos"  type="" name="periodo" disabled></li><br>
+   <li>Periodo <input style="margin-left:26px;" class="datoselejidos" type="" name="cajas" disabled></li><br>
+   <li>Población <input style="margin-left:   10px;"  class="datoselejidos"  type="" name="cajas" disabled></li><br>
+   <li>Notas <input style="margin-left: 38px;"  class="datoselejidos"  type="" name="cajas" disabled></li><br>
 </div>
 </div>
      <div class="btnform">
      <input class="btnsubmit" type="submit" name="" value="Calcular">
-     <input class="btnreset" type="reset" name="" value="Limpiar">
+     <input class="btnreset" type="reset" name="" value="Limpiar" onclick="deshabilitar(this.form)">
      </div>
       </form>     
       <br>  
