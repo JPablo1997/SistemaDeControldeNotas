@@ -295,6 +295,8 @@ def IngresarNotas(request):
 	materias = []
 	alumnos = []
 	evaluacion = []
+	noAlumnos = ""
+	exitoGuardar = ""
 	for x in materiasImpartidas:
 		codigo_materia = x.codigo_materia.codigo_materia
 		materia = Materia.objects.get(codigo_materia = codigo_materia)
@@ -303,20 +305,27 @@ def IngresarNotas(request):
 	if 'btnCargarAlumnos' in request.GET:
 		grupos = Grupo.objects.all()
 		alumnos_grupo = []
+		evaluacion = Evaluacion.objects.get(codigo_evaluacion = request.GET['txtCodigoEvaluado'])
 		i = 0
 		for x in grupos:
 			if x.codigo_grupo in request.GET:
 				if request.GET[x.codigo_grupo] == 'on':
 					alumnos_grupo.append(Alumno_Grupo.objects.filter(codigo_grupo=x.codigo_grupo))
 					for y in alumnos_grupo[i]:
-						alumnos.append(Alumno.objects.get(nie = y.nie.nie))
+
+						if not Calificacion.objects.filter(nie =y.nie, codigo_evaluacion=evaluacion).exists():
+							alumnos.append(Alumno.objects.get(nie = y.nie.nie))
+							pass
+
 						pass
 					i = i + 1
 					pass
 				pass				
-			pass
-		evaluacion = Evaluacion.objects.get(codigo_evaluacion = request.GET['txtCodigoEvaluado'])
+			pass		
 		pass
+		if alumnos == []:
+			noAlumnos = "No hay alumnos pendiente de nota en esta evaluación."
+			pass
 
 	if 'btnGuardar' in request.POST:
 		alumnosAll = Alumno.objects.all()
@@ -329,8 +338,9 @@ def IngresarNotas(request):
 				alumnos = []
 				evaluacion = []
 				pass
+		exitoGuardar = "Las calificaciones se han guardado de manera exitosa!"
 		
-	contexto = {'materias': materias, 'alumnos':alumnos, 'evaluacion':evaluacion}
+	contexto = {'materias': materias, 'alumnos':alumnos, 'evaluacion':evaluacion, 'noAlumnos':noAlumnos, 'exitoGuardar':exitoGuardar}
 	return render(request,'IngresarNotas/ingresarNotas.html',contexto)
 
 def servidorIngresarNotas(request):

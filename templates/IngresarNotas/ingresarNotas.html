@@ -29,7 +29,7 @@
           <tr class="trNotas">
             <td class="tdNotas"><label>{{ alumno.nie }}</label></td>
             <td class="tdNotas"><label>{{ alumno.apellidos_alumno }}, {{ alumno.nombre_alumno }}</label></td>
-            <td class="tdNotas"><input class="form-group" type="text" id="{{ alumno.nie }}" name="{{ alumno.nie }}" pattern="[0-1]*[0-9]\.[0-9][0-9]"></td>
+            <td class="tdNotas"><input class="form-group" type="text" id="{{ alumno.nie }}" name="{{ alumno.nie }}" pattern="(([1][0]\.[0][0])|([0]*[0-9]\.[0-9][0-9]))"></td>
           </tr>
         {% endfor %}
       </tbody>
@@ -39,104 +39,122 @@
   </form><br><br>
 
 {% else %}
-<div id="materiasLista"><br>
-  <select id="materiaSelect" class="form-group col-12 col-md-6">
-    <option class="opt" value="default">--Seleccione una materia--</option>
-    {% if materias %}
-    {% for materia in materias%}
-    <option class="opt" value="{{ materia.codigo_materia }}">{{ materia.nombre_materia }}</option>
-    {% endfor %}
-    {% endif %}
-  </select>
-</div><br><br>
-<div id="evaluacionesLista" style="display: none;">
-  <select id="evaluacionSelect" class="form-group col-12 col-md-6">
-    <option class="opt" value="default">--Seleccione una evaluacion--</option>
-  </select>
-</div>
-<div id="grupos" style="display: none;">
-  <form id="frmGrupos">
-    {% csrf_token %}
-    <input type="text" style="display: none;" name="txtCodigoEvaluado" id="txtCodigoEvaluado">
-    <table id="info" class="table">
-      <thead class="thead-dark">
-        <tr>
-          <th scope="col">Nivel especialidad</td>
-            <th scope="col">Seccion</td>
-              <th scope="col">Codigo especialidad</td>
-                <th scope="col">Cargar alumnos</td>
-                </tr>
-              </thead>
-              <tbody id="tbody"></tbody>
-            </table>
-            <input type="submit" name="btnCargarAlumnos" value="Cargar alumnos">
-          </form>
-        </div>
-<script type="text/javascript">
-  $(document).ready(function () {
-    $('#materiaSelect').on('change', function(){
-      //Value posee el valor del codigo de la materia seleccionada o value default en caso de no haber elegido aun
-      var value = $('#materiaSelect').val();
-      var accion = "obtenerEvaluaciones";
-      if (value != 'default') {
-        //Realizar peticion Ajax para obtener evaluaciones asociadas a la materia seleccionada
-        $.ajax({
-          url:'/into/servidorIngresarNotas/',
-          type:'GET',
-          dataType:'json',
-          data : {'codigo_materia': value, 'accion': accion},
-          success: function(data){
-            var optionsText;
+  {% if noAlumnos %}
+  <div class="row justify-content-center">
+    <div class="alert alert-warning col-6 col-md-8" style="text-align: center; margin-top: 100px;margin-bottom: 30px; font-size: 1.5em;">
+      <strong>Atención!</strong> {{ noAlumnos }}
+    </div>
+  </div>
+    <h4 style="text-align: center; padding-bottom: 350px;"><a href="{% url 'ingresarNotas' %}">Regresar</a></h4>
+  {% else %}
+    {% if exitoGuardar %}
+    <div class="row justify-content-center">
+      <div class="alert alert-success col-6 col-md-8" style="text-align: center; margin-top: 100px;margin-bottom: 30px; font-size: 1.5em;">
+        <strong>Petición finalizada, </strong> {{ exitoGuardar }}
+      </div>
+    </div>
+      <h4 style="text-align: center; padding-bottom: 350px;"><a href="{% url 'ingresarNotas' %}">Seguir</a></h4>
+    {% else %}
+      <div id="materiasLista"><br>
+        <select id="materiaSelect" class="form-group col-12 col-md-6">
+          <option class="opt" value="default">--Seleccione una materia--</option>
+          {% if materias %}
+          {% for materia in materias%}
+          <option class="opt" value="{{ materia.codigo_materia }}">{{ materia.nombre_materia }}</option>
+          {% endfor %}
+          {% endif %}
+        </select>
+      </div><br><br>
+      <div id="evaluacionesLista" style="display: none;">
+        <select id="evaluacionSelect" class="form-group col-12 col-md-6" style="margin-bottom: 50px;">
+          <option class="opt" value="default">--Seleccione una evaluacion--</option>
+        </select>
+      </div>
+      <div id="grupos" style="display: none; margin-bottom: 150px;">
+        <form id="frmGrupos">
+          {% csrf_token %}
+          <input type="text" style="display: none;" name="txtCodigoEvaluado" id="txtCodigoEvaluado">
+          <table id="info" class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Nivel especialidad</td>
+                  <th scope="col">Seccion</td>
+                    <th scope="col">Codigo especialidad</td>
+                      <th scope="col">Cargar alumnos</td>
+                      </tr>
+                    </thead>
+                    <tbody id="tbody"></tbody>
+                  </table>
+                  <input type="submit" class="btn btn-primary" name="btnCargarAlumnos" value="Cargar alumnos">
+                </form>
+              </div>
+      <script type="text/javascript">
+        $(document).ready(function () {
+          $('#materiaSelect').on('change', function(){
+            //Value posee el valor del codigo de la materia seleccionada o value default en caso de no haber elegido aun
+            var value = $('#materiaSelect').val();
+            var accion = "obtenerEvaluaciones";
+            if (value != 'default') {
+              //Realizar peticion Ajax para obtener evaluaciones asociadas a la materia seleccionada
+              $.ajax({
+                url:'/into/servidorIngresarNotas/',
+                type:'GET',
+                dataType:'json',
+                data : {'codigo_materia': value, 'accion': accion},
+                success: function(data){
+                  var optionsText;
 
-            for( var i in data){
-              optionsText += '<option class="opt" value="'+data[i].pk+'">'+data[i].fields.nombre_evaluacion+'</option>';
-            }
+                  for( var i in data){
+                    optionsText += '<option class="opt" value="'+data[i].pk+'">'+data[i].fields.nombre_evaluacion+'</option>';
+                  }
 
-            $('#evaluacionSelect').append(optionsText);
-            $('#evaluacionesLista').css('display','block');
-            $('#evaluacionesLista').css('padding-top','5px');
-          },
-          error: function(xhr, status, error){
-            console.log(xhr);
-            console.log(status);
-            console.log(error);
-          }
-        });
-      }
-    });
-
-    $('#evaluacionSelect').on('change', function(){
-      var value = $('#materiaSelect').val();
-      var accion = "obtenerGrupos";
-      var valueEvaluacionSelect = $('#evaluacionSelect').val();
-      if (valueEvaluacionSelect != 'default') {
-          //Peticion ajax al seleccionar evaluacion para cargar en pantalla los grupos
-         $.ajax({
-            url:'/into/servidorIngresarNotas/',
-            type:'GET',
-            dataType:'json',
-            data : {'codigo_materia': value, 'accion': accion},
-            success: function(data){
-              console.log(data);
-
-              var htmlText;
-              for (var i in data) {
-                htmlText += '<tr><td><label>'+ data[i].fields.nivel_especialidad+'</label></td><td><label>'+data[i].fields.seccion+'</label></td><td><label>'+data[i].fields.codigo_especialidad+'</label></td><td><input type="checkbox" name="'+data[i].pk+'"></td>tr>';   
-              }
-              $('#tbody').html(htmlText);
-              $('#grupos').css('display','block');
-              $('#txtCodigoEvaluado').val($('#evaluacionSelect').val());
-            },
-            error: function(xhr, status, error){
-              console.log(xhr);
-              console.log(status);
-              console.log(error);
+                  $('#evaluacionSelect').append(optionsText);
+                  $('#evaluacionesLista').css('display','block');
+                  $('#evaluacionesLista').css('padding-top','5px');
+                },
+                error: function(xhr, status, error){
+                  console.log(xhr);
+                  console.log(status);
+                  console.log(error);
+                }
+              });
             }
           });
-      }
-    });
-  });
-</script>
+
+          $('#evaluacionSelect').on('change', function(){
+            var value = $('#materiaSelect').val();
+            var accion = "obtenerGrupos";
+            var valueEvaluacionSelect = $('#evaluacionSelect').val();
+            if (valueEvaluacionSelect != 'default') {
+                //Peticion ajax al seleccionar evaluacion para cargar en pantalla los grupos
+               $.ajax({
+                  url:'/into/servidorIngresarNotas/',
+                  type:'GET',
+                  dataType:'json',
+                  data : {'codigo_materia': value, 'accion': accion},
+                  success: function(data){
+                    console.log(data);
+
+                    var htmlText;
+                    for (var i in data) {
+                      htmlText += '<tr><td><label>'+ data[i].fields.nivel_especialidad+'</label></td><td><label>'+data[i].fields.seccion+'</label></td><td><label>'+data[i].fields.codigo_especialidad+'</label></td><td><input type="checkbox" name="'+data[i].pk+'"></td>tr>';   
+                    }
+                    $('#tbody').html(htmlText);
+                    $('#grupos').css('display','block');
+                    $('#txtCodigoEvaluado').val($('#evaluacionSelect').val());
+                  },
+                  error: function(xhr, status, error){
+                    console.log(xhr);
+                    console.log(status);
+                    console.log(error);
+                  }
+                });
+            }
+          });
+        });
+      </script>
+    {% endif %}
+  {% endif %}
 {% endif%}
 {% endblock %}
 
