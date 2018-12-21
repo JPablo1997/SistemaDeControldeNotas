@@ -6,6 +6,7 @@ from django.urls import reverse_lazy,reverse
 from django.http import HttpResponse
 from apps.INTO.models import *
 from decimal import Decimal
+from django.core import serializers
 # Create your views here.
 
 #vista basada en funcion para los formularios
@@ -288,34 +289,24 @@ def materia_delete(request, codigo_materia):
 
 
 def IngresarNotas(request):
-	contexto = {}
-	alumnos = False
-	evaluacion = False
-	gruposLista = []
-	if 'btnObtener' in request.POST:
-		datos = request.POST['materiaListado'].split(" ")
-		especialidad = Especialidad_Materia.objects.filter(codigo_materia = datos[0])
-		evaluacion = Evaluacion.objects.get(codigo_evaluacion = datos[1])
-		alumnos_grupo = []
-		alumnos = []
-		grupos = []
-		i = 0
-		for x in especialidad:
-			grupos.append(Grupo.objects.filter(codigo_especialidad = x.codigo_especialidad.codigo_especialidad, nivel_especialidad=x.nivel_materia_especialidad))
-			for y in grupos[i]:
-				gruposLista.append(y)
-				pass
-			i = i + 1
-			pass	
 
-	elif 'btnCargaAlums' in request.POST:
+	id_docente = Docente.objects.get(usuario_docente=str(request.user.id)).dui_docente
+	materiasImpartidas =  Docente_Materia.objects.filter(codigo_docente=id_docente)
+	materias = []
+	alumnos = []
+	evaluacion = []
+	for x in materiasImpartidas:
+		codigo_materia = x.codigo_materia.codigo_materia
+		materia = Materia.objects.get(codigo_materia = codigo_materia)
+		materias.append(materia)
+		pass
+	if 'btnCargarAlumnos' in request.GET:
 		grupos = Grupo.objects.all()
 		alumnos_grupo = []
-		alumnos = []
 		i = 0
 		for x in grupos:
-			if x.codigo_grupo in request.POST:
-				if request.POST[x.codigo_grupo] == 'on':
+			if x.codigo_grupo in request.GET:
+				if request.GET[x.codigo_grupo] == 'on':
 					alumnos_grupo.append(Alumno_Grupo.objects.filter(codigo_grupo=x.codigo_grupo))
 					for y in alumnos_grupo[i]:
 						alumnos.append(Alumno.objects.get(nie = y.nie.nie))
@@ -324,35 +315,51 @@ def IngresarNotas(request):
 					pass
 				pass				
 			pass
-		evaluacion = Evaluacion.objects.get(codigo_evaluacion = request.POST['codigoEva'])
+		evaluacion = Evaluacion.objects.get(codigo_evaluacion = request.GET['txtCodigoEvaluado'])
+		pass
 
-
-	elif 'btnGuardar' in request.POST:
+	if 'btnGuardar' in request.POST:
 		alumnosAll = Alumno.objects.all()
 		for x in alumnosAll:
 			if str(x.nie) in request.POST:
-				eva = Evaluacion.objects.get(codigo_evaluacion=request.POST['codigoEva2'])
+				eva = Evaluacion.objects.get(codigo_evaluacion=request.POST['codigoEva'])
 				nota = Decimal(request.POST[x.nie])
 				c = Calificacion(nie = x, codigo_evaluacion= eva, nota= nota)
 				c.save()
+				alumnos = []
+				evaluacion = []
 				pass
-			else:
-				print("")
+		
+	contexto = {'materias': materias, 'alumnos':alumnos, 'evaluacion':evaluacion}
+	return render(request,'IngresarNotas/ingresarNotas.html',contexto)
+
+def servidorIngresarNotas(request):
+	if request.GET['accion'] == 'obtenerEvaluaciones':
+		codigo_materia = request.GET['codigo_materia']
+		materia = Materia.objects.get(codigo_materia = codigo_materia)
+		docente = Docente.objects.get(usuario_docente=str(request.user.id))
+		docente_materia = Docente_Materia.objects.get(codigo_docente = docente, codigo_materia = materia)
+		evaluaciones = Evaluacion.objects.filter(codigo_docente_materia = docente_materia)
+		data = serializers.serialize('json', evaluaciones)
+		return HttpResponse(data, content_type = 'application/json')
+		pass
+
+	elif request.GET['accion'] == 'obtenerGrupos':
+		codigo_materia = request.GET['codigo_materia']
+		materia = Materia.objects.get(codigo_materia = codigo_materia)
+		especialidades_materia = Especialidad_Materia.objects.filter(codigo_materia = materia)
+
+		grupos = []
+		for especialidad_materia in especialidades_materia:
+			grupos_especialidad_materia = Grupo.objects.filter(codigo_especialidad = especialidad_materia.codigo_especialidad,nivel_especialidad = especialidad_materia.nivel_materia_especialidad)
+			for grupo in grupos_especialidad_materia:
+				grupos.append(grupo)
+				pass
 			pass
 
-	docente = Docente.objects.get(usuario_docente=str(request.user.id)).dui_docente
-	materiasImpartidas =  Docente_Materia.objects.filter(codigo_docente=docente)
-	materias = []
-	for x in materiasImpartidas:
-		id_doc_mat = Docente_Materia.objects.get(codigo_materia=Materia.objects.get(codigo_materia=str(x.codigo_materia.codigo_materia)).codigo_materia, codigo_docente=Docente.objects.get(usuario_docente=str(request.user.id)).dui_docente).id
-		evaluaciones = Evaluacion.objects.filter(codigo_docente_materia = id_doc_mat)
-		for y in evaluaciones:
-			cod_actividad = Sub_Actividad.objects.get(codigo_sub_actividad=y.codigo_sub_actividad.codigo_sub_actividad).codigo_actividad.codigo_actividad
-			materias.append(Materia.objects.get(codigo_materia=str(x.codigo_materia.codigo_materia)).codigo_materia +" "+ y.codigo_evaluacion +" "+ y.codigo_sub_actividad.codigo_sub_actividad +" "+ cod_actividad)
-			pass
+		data = serializers.serialize('json', grupos)
+		return HttpResponse(data, content_type = 'application/json')
 		pass
-	contexto = {'materias':materias,"alumnos":alumnos,"evaluacion":evaluacion,'gruposLista':gruposLista}
-	return render(request,'IngresarNotas/ingresarNotas.html',contexto)
 
 
 def agregarEvaluacion(request):

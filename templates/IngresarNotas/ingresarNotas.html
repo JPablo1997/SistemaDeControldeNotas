@@ -1,103 +1,142 @@
 {% extends 'base/base.html'%}
 {% block title %} Ingresar Notas {% endblock %}
 {% block content %}
+{% if alumnos and evaluacion %}
 <br>
-<form id="formEvaluacion" method="POST">
-    {% csrf_token %}
-  Seleccionar Materia con su respectiva evaluacion para ingresar las notas:<br>
-  <table>
-    <tr>
-      <td><select name="materiaListado" id="materiaListado">
-          <option value="Z">Seleccione una materia</option>
-          {% if materias %}
-            {% for materia in materias %}
-              <option value="{{ materia }}">{{ materia }}</option>
-            {% endfor %}
-          {% else %}
-            <option>No hay materias</option>
-          {% endif %}
-        </select>
-      </td>
-      <td>  <input class="btn btn-secondary" id="btnObtener" name="btnObtener" type="submit" value="Obtener Grupos"> </td>
-    </tr>
-  </table>
-  
-  <br><br>
-   
-</form>
+<table>
+  <thead></thead>
+  <tbody>
+   <tr>
+    <td><label>Evaluacion [codigo: <b>{{ evaluacion.codigo_evaluacion }}</b>,&nbsp;</label></td>
+    <td><label>nombre: <b>{{ evaluacion.nombre_evaluacion }}</b>,&nbsp;</label></td>
+    <td><label>descripcion: <b> {{ evaluacion.descripcion_evaluacion }}]</b></label></td>
+  </tr>
+  </tbody>
+</table><br>
 
-{% if alumnos %}
-  {% if evaluacion %}
-        <table>
-          <tr>
-            <tr><label id="lblEva" style="display: none;">codigo_evaluacion:</label><input style="display: none;" type="text" id="codigoEva2" name="codigoEva2" value="{{ evaluacion.codigo_evaluacion }}"></tr>
-            <tr><label>Evaluacion [nombre: <b>{{ evaluacion.nombre_evaluacion }}</b>,&nbsp;</label></tr>
-            <tr><label>descripcion: <b> {{ evaluacion.descripcion_evaluacion }}]</b></label></tr>
+<form id="formNotas" method="POST">
+    {% csrf_token %}
+    <table class="table">
+      <thead  class="thead-dark">
+       <tr>
+          <th scope="col">NIE</td>
+          <th scope="col">Aumno</td>
+          <th scope="col">Nota</td>
+        </tr>
+      </thead>
+      <tbody>
+         {% for alumno in alumnos %}
+          <tr class="trNotas">
+            <td class="tdNotas"><label>{{ alumno.nie }}</label></td>
+            <td class="tdNotas"><label>{{ alumno.apellidos_alumno }}, {{ alumno.nombre_alumno }}</label></td>
+            <td class="tdNotas"><input class="form-group" type="text" id="{{ alumno.nie }}" name="{{ alumno.nie }}" pattern="[0-1]*[0-9]\.[0-9][0-9]"></td>
           </tr>
-        </table>
-  {% else %}
-        <p></p>
-  {% endif %}
-  <form id="formNotas" method="POST">
+        {% endfor %}
+      </tbody>
+      </table>
+      <input style="display: none;" type="text" id="codigoEva" name="codigoEva" value="{{ evaluacion.codigo_evaluacion }}">
+    <input class="btn btn-primary" id="btnGuardar" name="btnGuardar" type="submit" value="Guardar"> 
+  </form><br><br>
+
+{% else %}
+<div id="materiasLista"><br>
+  <select id="materiaSelect" class="form-group col-12 col-md-6">
+    <option class="opt" value="default">--Seleccione una materia--</option>
+    {% if materias %}
+    {% for materia in materias%}
+    <option class="opt" value="{{ materia.codigo_materia }}">{{ materia.nombre_materia }}</option>
+    {% endfor %}
+    {% endif %}
+  </select>
+</div><br><br>
+<div id="evaluacionesLista" style="display: none;">
+  <select id="evaluacionSelect" class="form-group col-12 col-md-6">
+    <option class="opt" value="default">--Seleccione una evaluacion--</option>
+  </select>
+</div>
+<div id="grupos" style="display: none;">
+  <form id="frmGrupos">
     {% csrf_token %}
-    <br>
-    <table class="tableNotas">
-      <td class="tdNotas tdPrimario"> <b>NIE</b></td><td class="tdNotas tdPrimario" > <b>Aumno</b> </td> <td class="tdNotas tdPrimario"> <b>Nota</b> </td>
-     {% for alumno in alumnos %}
-        <tr class="trNotas">
-          <td class="tdNotas"><label>{{ alumno.nie }}</label></td>
-          <td class="tdNotas"><label>{{ alumno.apellidos_alumno }}, {{ alumno.nombre_alumno }}</label></td>
-          <td class="tdNotas"><input type="text" id="{{ alumno.nie }}" name="{{ alumno.nie }}" pattern="[0-1]*[0-9]\.[0-9][0-9]"></td>
-        </tr>
-      {% endfor %}
-      </table>
-      <input style="display: none;" type="text" id="codigoEva2" name="codigoEva2" value="{{ evaluacion.codigo_evaluacion }}">
-    <input class="btn btn-secondary" id="btnGuardar" name="btnGuardar" type="submit" value="Guardar"> 
-  </form>
-{% else %}
-    <p></p>
-{% endif %}
-
-{% if gruposLista %}
-  {% if evaluacion %}
-      <table>
+    <input type="text" style="display: none;" name="txtCodigoEvaluado" id="txtCodigoEvaluado">
+    <table id="info" class="table">
+      <thead class="thead-dark">
         <tr>
-          <tr><label id="lblEva" style="display: none;">codigo_evaluacion:</label><input style="display: none;" type="text" id="codigoEva" name="codigoEva" value="{{ evaluacion.codigo_evaluacion }}"></tr>
-          <tr><label>Evaluacion [nombre: <b>{{ evaluacion.nombre_evaluacion }}</b>,&nbsp;</label></tr>
-          <tr><label>descripcion: <b> {{ evaluacion.descripcion_evaluacion }}]</b></label></tr>
-        </tr>
-      </table>
-  {% else %}
-      <p></p>
-  {% endif %}
-<form method="POST">
-  {% csrf_token %}
-  <table class="tableNotas">
-    <tr class="trGrupos">
-      <td class="tdNotas">Codigo especialidad</td>
-      <td class="tdNotas">Nivel especialidad</td>
-      <td class="tdNotas">Codigo grupo</td>
-      <td class="tdNotas">Seccion</td>
-      <td class="tdNotas">Seleccione</td>
-    </tr>
-    {% for grupo in gruposLista %}
-        <tr class="trNotas">
-          <td class="tdNotas"><label>{{ grupo.codigo_especialidad.codigo_especialidad }}</label></td>
-          <td class="tdNotas"><label>{{ grupo.nivel_especialidad }}</label></td>
-          <td class="tdNotas"><label>{{ grupo.codigo_grupo }}</label></td>
-          <td class="tdNotas"><label>{{ grupo.seccion }}</label></td>
-          <td class="tdNotas"><input type="checkbox" id="{{ grupo.codigo_grupo }}" name="{{ grupo.codigo_grupo }}"></td>
-        </tr>
-      {% endfor %}
-  </table>
+          <th scope="col">Nivel especialidad</td>
+            <th scope="col">Seccion</td>
+              <th scope="col">Codigo especialidad</td>
+                <th scope="col">Cargar alumnos</td>
+                </tr>
+              </thead>
+              <tbody id="tbody"></tbody>
+            </table>
+            <input type="submit" name="btnCargarAlumnos" value="Cargar alumnos">
+          </form>
+        </div>
+<script type="text/javascript">
+  $(document).ready(function () {
+    $('#materiaSelect').on('change', function(){
+      //Value posee el valor del codigo de la materia seleccionada o value default en caso de no haber elegido aun
+      var value = $('#materiaSelect').val();
+      var accion = "obtenerEvaluaciones";
+      if (value != 'default') {
+        //Realizar peticion Ajax para obtener evaluaciones asociadas a la materia seleccionada
+        $.ajax({
+          url:'/into/servidorIngresarNotas/',
+          type:'GET',
+          dataType:'json',
+          data : {'codigo_materia': value, 'accion': accion},
+          success: function(data){
+            var optionsText;
 
-  <input style="display: none;" type="text" id="codigoEva" name="codigoEva" value="{{ evaluacion.codigo_evaluacion }}">
-  
-  <input type="submit" class="btn btn-secondary" name="btnCargaAlums" value="Cargar Alumnos">
-</form>
-{% else %}
-  <p></p>
-{% endif %}   
-<br><br>
+            for( var i in data){
+              optionsText += '<option class="opt" value="'+data[i].pk+'">'+data[i].fields.nombre_evaluacion+'</option>';
+            }
+
+            $('#evaluacionSelect').append(optionsText);
+            $('#evaluacionesLista').css('display','block');
+            $('#evaluacionesLista').css('padding-top','5px');
+          },
+          error: function(xhr, status, error){
+            console.log(xhr);
+            console.log(status);
+            console.log(error);
+          }
+        });
+      }
+    });
+
+    $('#evaluacionSelect').on('change', function(){
+      var value = $('#materiaSelect').val();
+      var accion = "obtenerGrupos";
+      var valueEvaluacionSelect = $('#evaluacionSelect').val();
+      if (valueEvaluacionSelect != 'default') {
+          //Peticion ajax al seleccionar evaluacion para cargar en pantalla los grupos
+         $.ajax({
+            url:'/into/servidorIngresarNotas/',
+            type:'GET',
+            dataType:'json',
+            data : {'codigo_materia': value, 'accion': accion},
+            success: function(data){
+              console.log(data);
+
+              var htmlText;
+              for (var i in data) {
+                htmlText += '<tr><td><label>'+ data[i].fields.nivel_especialidad+'</label></td><td><label>'+data[i].fields.seccion+'</label></td><td><label>'+data[i].fields.codigo_especialidad+'</label></td><td><input type="checkbox" name="'+data[i].pk+'"></td>tr>';   
+              }
+              $('#tbody').html(htmlText);
+              $('#grupos').css('display','block');
+              $('#txtCodigoEvaluado').val($('#evaluacionSelect').val());
+            },
+            error: function(xhr, status, error){
+              console.log(xhr);
+              console.log(status);
+              console.log(error);
+            }
+          });
+      }
+    });
+  });
+</script>
+{% endif%}
 {% endblock %}
 

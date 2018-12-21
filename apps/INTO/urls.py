@@ -27,6 +27,7 @@ urlpatterns = [
     url(r'^docentes/$',login_required(ListDocentesAdmin.as_view()),name="docentes-list"),
     url(r'^nuevoDocente/$',login_required(creardocente),name="docente-new"),
     url(r'^ingresarNotas/$',login_required(IngresarNotas),name="ingresarNotas"),
+    url(r'^servidorIngresarNotas/$',login_required(servidorIngresarNotas),name="servidorIngresarNotas"),
     url(r'^estadisticas/$',login_required(DatosEstadisticos),name="estadisticas"),
     url(r'^administrar/$',login_required(administrarNotas),name="administrar"),
     url(r'^Anotacion/$',login_required(anotacion),name="Anotacion"),

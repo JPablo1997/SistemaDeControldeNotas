@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}"> 
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
   <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
-  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
   <title>{% block title %} Inicio {% endblock %}</title>
 
@@ -44,35 +44,49 @@
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
               <li class="nav-item active">
-                <a class="nav-link" href="{% url 'index'%}"><i class="fas fa-home"></i> Inicio <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="{% url 'index'%}"><i class="fas fa-home"></i> Inicio </a>
               </li>
+              {% if user.is_superuser == False and user.is_staff == True %}
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'ingresarNotas'%}"><i class="fas fa-pen"></i> Ingresar Notas</a>
               </li>
+              {% endif %}
+              {% if user.is_superuser == False and user.is_staff == True %}
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'agregarEvaluacion' %}"><i class="fas fa-plus-square"></i> Agregar Evaluacion</a>
               </li>
+              {% endif %}
+              {% if user.is_superuser == True and user.is_staff == True %}
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'administrar' %}"><i class="fas fa-edit"></i> Administrar Notas</a>
               </li>
+              {% endif %}
+              {% if user.is_superuser == False and  user.is_staff == True %}
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'Anotacion' %}"><i class="fas fa-edit"></i> Anotaciones</a>
               </li>
+              {% endif %}
+              {% if user.is_superuser == True and  user.is_staff == True %}
               <li class="nav-item">
                 <a class="nav-link" href="#"><i class="fas fa-book-open"></i> Alumnos</a>
               </li>
+              {% endif %}
+              {% if user.is_superuser == True and  user.is_staff == True %}
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'docentes-list' %}"><i class="fas fa-chalkboard-teacher"></i> Docentes</a>
               </li>
+              {% endif %}
+              {% if user.is_superuser == False and user.is_staff == False %}
               <li class="nav-item">
                 <a class="nav-link" href="#"><i class="fas fa-award"></i> Expediente</a>
               </li>
+              {% endif %}
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'estadisticas' %}"><i class="fas fa-chart-bar"></i> Datos Estadísticos</a>
               </li>              
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fas fa-user"></i>
-                  {{ user.username }}                
+                  <b>{{ user.username }} </b>               
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                   <a class="dropdown-item" href="#">Perfil</a>

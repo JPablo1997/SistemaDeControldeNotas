@@ -210,3 +210,20 @@ select:focus{ outline: none;}
 { 
 	color: red; 
 }
+
+#materiasLista, #evaluacionesLista{
+  margin: auto;
+  padding-left: 30em;
+  padding-top: 1em;
+}
+
+#materiaSelect, #evaluacionSelect{
+  text-align: center;
+  border: solid;
+  border-color: #3498db;
+}
+
+.opt{
+  font-size: 2em;
+}
+
