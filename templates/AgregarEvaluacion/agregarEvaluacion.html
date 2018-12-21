@@ -34,19 +34,28 @@
 {% if formSubActividad %} 
 
 <div class="centrar-form">
-<form name="formSubActividad" method="POST" class="formAgregarEva">
+<form name="formSubActividad" method="POST" class="formAgregarEva" style="margin-left:500px; font-size: 1.2em;">
     {% csrf_token %}
-    <table>
-        <tr>
-            <td><label>Codigo periodo: <b>{{ periodo }}</b> </label></td>
-            <input type="text" name="periodoPerteneciente" value ="{{ periodo }}" style="display: none;">
-            <td><label>Codigo actividad: <b>{{ actividad }}</b></label></td>
-            <input type="text" name="actividadPerteneciente" value = "{{ actividad }}" style="display: none;">
-        </tr>
-        <tr>
-            <td><label>Año lectivo:</label></td>
-            <td>
-                <select name="anioLectivo">
+            <br><small  class="form-text text-muted">
+              <b style="color:  #2980b9;">Datos generales pertinentes.</b>
+            </small>
+            <div class="row">
+                <div class="form-group col-md-3">
+                    <label>Codigo periodo: <b style="font-size: 1.1em;">{{ periodo }}</b> </label>
+                    <input class="form-control" type="text" name="periodoPerteneciente" value ="{{ periodo }}" style="display: none;">
+                </div>
+                
+                <div class="form-group col-md-3">
+                    <label>Codigo actividad: <b style="font-size: 1.1em;">{{ actividad }}</b></label>
+                    <input class="form-control" type="text" name="actividadPerteneciente" value = "{{ actividad }}" style="display: none;">
+                </div>
+                    
+                </div>
+    
+            <div class="form-group col-md-6">
+                <label>Año lectivo:</label>
+            
+                <select class="form-control" name="anioLectivo" style="text-align: center;">
                     <option>--Seleccione el año--</option>
                     {% if anioLectivos %}
                         {% for anioLectivo in anioLectivos %}
@@ -56,12 +65,14 @@
                     <option>¡No hay años lectivos registrados!</option>
                     {% endif %}
                 </select>
-            </td>
-        </tr>
-        <tr>
-            <td><label>Materia</label></td>
-            <td>
-                <select name="materia">
+            </div>
+            
+            
+        
+            <div class="form-group col-md-6">
+                <label>Materia</label>
+            
+                <select class="form-control" name="materia" style="text-align: center;">
                     <option>--Seleccione la materia--</option>
                     {% if materias %}
                         {% for materia in materias %}
@@ -71,37 +82,51 @@
                         <option>No hay materias</option>
                     {% endif %}
                 </select>
-            </td>
-        </tr>
-        <tr>
-            <td><label>Codigo de la Sub Actividad:</label></td>
-            <td><input type="text" name="codigoSubActividad"></td>
-        </tr>
-        <tr>
-            <td><label>Porcentaje:</label></td>
-            <td><input type="text" name="porcentajeSubActividad"></td>
-        </tr>
-        <tr>
-            <td><label>Descripcion:</label></td>
-            <td><input type="text" name="descripcionSubActividad"></td>
-        </tr>
-        <tr>
-            <td><label><i>Datos de la evaluacion correspondiente</i></label></td>
-            <td><label>-------------------------------------------</label></td>
-        </tr>
-        <tr>
-            <td><label>Codigo de la Evaluacion:</label></td>
-            <td><input type="text" name="codigoEvaluacion"></td>
-        </tr>
-        <tr>
-            <td><label>Nombre:</label></td>
-            <td><input type="text" name="nombreEvaluacion"></td>
-        </tr>
-        <tr>
-            <td><label>Descripcion:</label></td>
-            <td><input type="text" name="descripcionEvaluacion"></td>
-        </tr>
-    </table>
+            </div>
+            
+            <br><small  class="form-text text-muted">
+              <b style="color:  #2980b9;">Datos de la sub-actividad.</b>
+            </small>
+        
+            <div class="form-group col-md-6">
+                <label>Codigo de la Sub Actividad:</label>
+                <input class="form-control" type="text" name="codigoSubActividad" placeholder="Ingrese el codigo de la subactividad">
+            </div>
+            
+        
+            <div class="form-group col-md-6">
+                <label>Porcentaje:</label>
+                <input class="form-control" type="text" name="porcentajeSubActividad" placeholder="Ingrese el porcentaje de la subactividad">
+            </div>
+            
+        
+            <div class="form-group col-md-6">
+                <label>Descripcion:</label>
+                <input class="form-control" type="text" name="descripcionSubActividad" placeholder="Ingrese una descripcion de la subactividad">
+            </div>
+            
+            <br><small  class="form-text text-muted">
+              <b style="color:  #2980b9;">Datos de la evaluación.</b>
+            </small>
+        
+            
+            <div class="form-group col-md-6">
+                <label>Codigo de la Evaluacion:</label>
+                <input class="form-control" type="text" name="codigoEvaluacion" placeholder="Ingrese el codigo de la evaluación">
+            </div>
+            
+        
+            <div class="form-group col-md-6">
+                <label>Nombre:</label>
+                <input class="form-control" type="text" name="nombreEvaluacion" placeholder="Ingrese el nombre de la evaluación">
+            </div>
+            
+        
+            <div class="form-group col-md-6">
+                <label>Descripcion:</label>
+                <input class="form-control" type="text" name="descripcionEvaluacion" placeholder="Ingrese una descripcion para la evaluación">
+            </div>
+            
     <input class="btn btn-primary" type="submit" name="btnGuardarSubActividad" value="Guardar"> 
     <input class="btn btn-secondary" type="button" name="clear" value="Cancelar">
 </form>
@@ -113,45 +138,56 @@
 
 {% if formExamen %} 
 <div class="centrar-form">
-    <form name="formExamen" method="POST" class="formAgregarEva">
+    <form name="formExamen" method="POST" class="formAgregarEva" style="margin-left:500px; font-size: 1.2em;">
     {% csrf_token %}
-    <table>
-        <tr>
-            <td><label>{{ periodo }} </label></td>
-            <td><label>{{ actividad }}</label></td>
-        </tr>
-         <tr>
-            <td><label>Año lectivo:</label></td>
-            <td><input type="text" name="anioLectivo"></td>
-        </tr>
-        <tr>
-            <td><label>Materia</label></td>
-            <td>
-                <select>
-                    <option>--Seleccione la materia--</option>
-                    {% if materias %}
-                        {% for materia in materias %}
-                          <option value="{{ materia }}">{{ materia }}</option>
-                        {% endfor %}
-                    {% else %}
-                        <option>No hay materias</option>
-                    {% endif %}
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td><label>Codigo del Examen:</label></td>
-            <td><input type="text" name="codigoExamen"></td>
-        </tr>
-        <tr>
-            <td><label>Porcentaje:</label></td>
-            <td><input type="text" name="porcentajeExamen"></td>
-        </tr>
-        <tr>
-            <td><label>Descripcion:</label></td>
-            <td><input type="text" name="descripcionExamen"></td>
-        </tr>
-    </table>
+    
+            <div class="form-group col-md-6">
+                <label>Codigo periodo: <b style="font-size: 1.1em;">{{ periodo }}</b></label>
+                <label>Codigo actividad: <b style="font-size: 1.1em;">{{ actividad }}</b></label>
+            </div>
+            
+        
+            <div class="form-group col-md-6">
+                <label>Año lectivo:</label>
+                <input class="form-control" type="text" name="anioLectivo" placeholder="Ingrese el año lectivo">
+            </div>
+            
+        
+            <div class="form-group col-md-6">
+                  <label>Materia</label>
+            
+                    <select class="form-control" style="text-align: center;">
+                        <option>--Seleccione la materia--</option>
+                        {% if materias %}
+                            {% for materia in materias %}
+                              <option value="{{ materia }}">{{ materia }}</option>
+                            {% endfor %}
+                        {% else %}
+                            <option>No hay materias</option>
+                        {% endif %}
+                    </select>
+            </div>
+          
+            
+        
+            <div class="form-group col-md-6">
+                <label>Codigo del Examen:</label>
+                <input class="form-control" type="text" name="codigoExamen" placeholder="Ingrese el codigo del examen">
+            </div>
+            
+        
+            <div class="form-group col-md-6">
+                <label>Porcentaje:</label>
+                <input class="form-control" type="text" name="porcentajeExamen" placeholder="Ingrese el porcentaje que tendra el examen">
+            </div>
+            
+        
+            <div class="form-group col-md-6">
+                <label>Descripción:</label>
+                <input class="form-control" type="text" name="descripcionExamen" placeholder="Ingrese una descripción para el examen">
+            </div>
+            
+    
     <input type="submit" class="btn btn-primary" name="btnGuardarExamen" value="Guardar"> 
     <input class="btn btn-secondary" type="button" name="clear" value="Cancelar">
 </form>
