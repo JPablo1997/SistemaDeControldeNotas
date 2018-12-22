@@ -371,6 +371,43 @@ def servidorIngresarNotas(request):
 		return HttpResponse(data, content_type = 'application/json')
 		pass
 
+def listaEvaluacion(request):
+	materias = []
+	contexto = {}
+	evaluaciones = []
+
+	docente = Docente.objects.get(usuario_docente=str(request.user.id)).dui_docente
+	materiasImpartidas =  Docente_Materia.objects.filter(codigo_docente=docente)
+	for x in materiasImpartidas:
+		materias.append(Materia.objects.get(codigo_materia = x.codigo_materia.codigo_materia))
+		pass
+
+	contexto = {'materias':materias}
+
+	if 'btnCargarEvaluaciones' in request.GET:
+		materia = request.GET['materiaSelect']
+		periodo = request.GET['periodo']
+		actividad = request.GET['actividad']
+		anioLectivos = AnioLectivo.objects.all().order_by('anio_lectivo')
+		for x in anioLectivos:
+			if not x.terminado:
+				anioLectivo = x
+				pass
+				break
+			pass
+		pass
+		periodoSolicitado = Periodo.objects.get(codigo_periodo = periodo, anio_lectivo = anioLectivo)
+		actividadSolicitada = Actividad.objects.get(codigo_actividad = actividad, codigo_periodo = periodoSolicitado)
+		SubActs = Sub_Actividad.objects.filter(codigo_actividad = actividadSolicitada)
+
+		for x in SubActs:
+			evaluacion = Evaluacion.objects.get(codigo_sub_actividad = x)
+			evaluaciones.append(evaluacion)
+			pass
+		contexto = {'evaluaciones':evaluaciones, 'materia':materia, 'periodo':periodo, 'actividad':actividad}
+
+	return render(request,'AgregarEvaluacion/listaEvaluacion.html',contexto)
+
 
 def agregarEvaluacion(request):
 

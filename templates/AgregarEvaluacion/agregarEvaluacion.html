@@ -4,8 +4,8 @@
 <br>
        
 <div class="row justify-content-center">
-    <div id="msmSeleccionar" class="alert alert-dismissible alert-warning">
-        <button type="button" class="close" data-dismiss="alert" id="closeMsg">&times;</button>
+    <div id="msmSeleccionar" class="alert alert-warning alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" id="closeMsg" aria-label="close">&times;</button>
         <b class="alertMsg">Atencion!</b> Seleccione el periodo y la actividad para cargar el formulario.
     </div>
 </div>
@@ -35,6 +35,10 @@
         {% endif %}
     {% else %}
         {% if not formSubActividad%}
+        <div id="indicacion" class="alert alert-info alert-dismissible">
+          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+          <strong>Indicación:</strong> Seleccione el periodo y la actividad a la cual desea agregar una evaluación.
+        </div>
             <form name="formClasificacion" method="POST">
                 {% csrf_token %}
                 <table id="frmAgregarEva">
