@@ -34,27 +34,29 @@
                 <h4 style="text-align: center; padding-bottom: 350px;"><a href="{% url 'agregarEvaluacion' %}">Regresar</a></h4>
         {% endif %}
     {% else %}
-        <form name="formClasificacion" method="POST">
-            {% csrf_token %}
-            <table id="frmAgregarEva">
-                <tr class="trAgregarEva">
-                    <td class="tdAgregarEva">Seleccione el periodo:&nbsp;</td> 
-                    <td class="tdAgregarEva"><input type="radio" name="periodo" value="periodo1"><b>Periodo 1&nbsp;</b></td> 
-                    <td class="tdAgregarEva"><input type="radio" name="periodo" value="periodo2"> <b>Periodo 2&nbsp;</b></td> 
-                    <td class="tdAgregarEva"><input type="radio" name="periodo" value="periodo3"> <b>Periodo 3</b></td> 
-                    <td class="tdAgregarEva"><input type="radio" name="periodo" value="periodo4"> <b>Periodo 4</b></td>
-                </tr>
-                <tr class="trAgregarEva">
-                    <td class="tdAgregarEva">Seleccione la actividad:&nbsp;</td>
-                    <td class="tdAgregarEva"><input type="radio" name="actividad" value="actividad1"><b>Actividad 1&nbsp;</b></td>
-                    <td class="tdAgregarEva"><input type="radio" name="actividad" value="actividad2"><b>Actividad 2&nbsp;</b></td> 
-                    <td class="tdAgregarEva"><input type="radio" name="actividad" value="examen1"><b>Examen 1&nbsp;</b></td>
-                    <td class="tdAgregarEva"><input type="radio" name="actividad" value="examen2"><b>Examen 2&nbsp;</b></td>
-                </tr>
-            </table>  
-            <input type="button" id="btnCargarFormValidar" onclick="validar()" name="btnCargarFormValidar" class="btn btn-secondary" value="Cargar formulario">
-            <input type="submit" id="btnCargarForm" name="btnCargarForm" class="btn btn-secondary" style="display: none;">
-        </form>
+        {% if not formSubActividad%}
+            <form name="formClasificacion" method="POST">
+                {% csrf_token %}
+                <table id="frmAgregarEva">
+                    <tr class="trAgregarEva">
+                        <td class="tdAgregarEva">Seleccione el periodo:&nbsp;</td> 
+                        <td class="tdAgregarEva"><input type="radio" name="periodo" value="periodo1"><b>Periodo 1&nbsp;</b></td> 
+                        <td class="tdAgregarEva"><input type="radio" name="periodo" value="periodo2"> <b>Periodo 2&nbsp;</b></td> 
+                        <td class="tdAgregarEva"><input type="radio" name="periodo" value="periodo3"> <b>Periodo 3</b></td> 
+                        <td class="tdAgregarEva"><input type="radio" name="periodo" value="periodo4"> <b>Periodo 4</b></td>
+                    </tr>
+                    <tr class="trAgregarEva">
+                        <td class="tdAgregarEva">Seleccione la actividad:&nbsp;</td>
+                        <td class="tdAgregarEva"><input type="radio" name="actividad" value="actividad1"><b>Actividad 1&nbsp;</b></td>
+                        <td class="tdAgregarEva"><input type="radio" name="actividad" value="actividad2"><b>Actividad 2&nbsp;</b></td> 
+                        <td class="tdAgregarEva"><input type="radio" name="actividad" value="examen1"><b>Examen 1&nbsp;</b></td>
+                        <td class="tdAgregarEva"><input type="radio" name="actividad" value="examen2"><b>Examen 2&nbsp;</b></td>
+                    </tr>
+                </table>  
+                <input type="button" id="btnCargarFormValidar" onclick="validar()" name="btnCargarFormValidar" class="btn btn-secondary" value="Cargar formulario">
+                <input type="submit" id="btnCargarForm" name="btnCargarForm" class="btn btn-secondary" style="display: none;">
+            </form>
+        {% endif %}
     {% endif %}
 {% endif %}  
 <br>
