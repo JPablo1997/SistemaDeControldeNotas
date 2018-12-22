@@ -3,38 +3,65 @@
 {% block content %}
 <br>
        
-<div class="row">
+<div class="row justify-content-center">
     <div id="msmSeleccionar" class="alert alert-dismissible alert-warning">
         <button type="button" class="close" data-dismiss="alert" id="closeMsg">&times;</button>
         <b class="alertMsg">Atencion!</b> Seleccione el periodo y la actividad para cargar el formulario.
     </div>
-</div>     
-<form name="formClasificacion" method="POST">
-    {% csrf_token %}
-    <table id="frmAgregarEva">
-        <tr class="trAgregarEva">
-            <td class="tdAgregarEva">Seleccione el periodo:&nbsp;</td> 
-            <td class="tdAgregarEva"><input type="radio" name="periodo" value="periodo1"><b>Periodo 1&nbsp;</b></td> 
-            <td class="tdAgregarEva"><input type="radio" name="periodo" value="periodo2"> <b>Periodo 2&nbsp;</b></td> 
-            <td class="tdAgregarEva"><input type="radio" name="periodo" value="periodo3"> <b>Periodo 3</b></td> 
-            <td class="tdAgregarEva"><input type="radio" name="periodo" value="periodo4"> <b>Periodo 4</b></td>
-        </tr>
-        <tr class="trAgregarEva">
-            <td class="tdAgregarEva">Seleccione la actividad:&nbsp;</td>
-            <td class="tdAgregarEva"><input type="radio" name="actividad" value="actividad1"><b>Actividad 1&nbsp;</b></td>
-            <td class="tdAgregarEva"><input type="radio" name="actividad" value="actividad2"><b>Actividad 2&nbsp;</b></td> 
-            <td class="tdAgregarEva"><input type="radio" name="actividad" value="examen1"><b>Examen 1&nbsp;</b></td>
-            <td class="tdAgregarEva"><input type="radio" name="actividad" value="examen2"><b>Examen 2&nbsp;</b></td>
-        </tr>
-    </table>  
-    <input type="button" id="btnCargarFormValidar" onclick="validar()" name="btnCargarFormValidar" class="btn btn-secondary" value="Cargar formulario">
-    <input type="submit" id="btnCargarForm" name="btnCargarForm" class="btn btn-secondary" style="display: none;">
-</form>
+</div>
+{% if exitoGuardarSubAct %}
+     <div class="row justify-content-center">
+      <div class="alert alert-success col-6 col-md-8" style="text-align: center; margin-top: 100px;margin-bottom: 30px; font-size: 1.5em;">
+        <strong>Petición finalizada: </strong> {{ exitoGuardarSubAct }}
+      </div>
+    </div>
+      <h4 style="text-align: center; padding-bottom: 350px;"><a href="{% url 'agregarEvaluacion' %}">Seguir</a></h4>
+{% else %}
+    {% if maximoSubActs or periodoFinalizado %}
+        {% if maximoSubActs %}
+          <div class="row justify-content-center">
+            <div class="alert alert-warning col-6 col-md-8" style="text-align: center; margin-top: 100px;margin-bottom: 30px; font-size: 1.5em;">
+              <strong>Atención!</strong> Ya se alcanzo el maximo de sub-actividades para esta actividad.
+            </div>
+          </div>
+            <h4 style="text-align: center; padding-bottom: 350px;"><a href="{% url 'agregarEvaluacion' %}">Regresar</a></h4>
+        {% else %}
+            <div class="row justify-content-center">
+                <div class="alert alert-warning col-6 col-md-8" style="text-align: center; margin-top: 100px;margin-bottom: 30px; font-size: 1.5em;">
+                  <strong>Atención!</strong> El periodo ha finalizado, no se pueden agregar mas evaluaciones.
+                </div>
+            </div>
+                <h4 style="text-align: center; padding-bottom: 350px;"><a href="{% url 'agregarEvaluacion' %}">Regresar</a></h4>
+        {% endif %}
+    {% else %}
+        <form name="formClasificacion" method="POST">
+            {% csrf_token %}
+            <table id="frmAgregarEva">
+                <tr class="trAgregarEva">
+                    <td class="tdAgregarEva">Seleccione el periodo:&nbsp;</td> 
+                    <td class="tdAgregarEva"><input type="radio" name="periodo" value="periodo1"><b>Periodo 1&nbsp;</b></td> 
+                    <td class="tdAgregarEva"><input type="radio" name="periodo" value="periodo2"> <b>Periodo 2&nbsp;</b></td> 
+                    <td class="tdAgregarEva"><input type="radio" name="periodo" value="periodo3"> <b>Periodo 3</b></td> 
+                    <td class="tdAgregarEva"><input type="radio" name="periodo" value="periodo4"> <b>Periodo 4</b></td>
+                </tr>
+                <tr class="trAgregarEva">
+                    <td class="tdAgregarEva">Seleccione la actividad:&nbsp;</td>
+                    <td class="tdAgregarEva"><input type="radio" name="actividad" value="actividad1"><b>Actividad 1&nbsp;</b></td>
+                    <td class="tdAgregarEva"><input type="radio" name="actividad" value="actividad2"><b>Actividad 2&nbsp;</b></td> 
+                    <td class="tdAgregarEva"><input type="radio" name="actividad" value="examen1"><b>Examen 1&nbsp;</b></td>
+                    <td class="tdAgregarEva"><input type="radio" name="actividad" value="examen2"><b>Examen 2&nbsp;</b></td>
+                </tr>
+            </table>  
+            <input type="button" id="btnCargarFormValidar" onclick="validar()" name="btnCargarFormValidar" class="btn btn-secondary" value="Cargar formulario">
+            <input type="submit" id="btnCargarForm" name="btnCargarForm" class="btn btn-secondary" style="display: none;">
+        </form>
+    {% endif %}
+{% endif %}  
 <br>
 {% if formSubActividad %} 
 
-<div class="centrar-form">
-<form name="formSubActividad" method="POST" class="formAgregarEva" style="margin-left:500px; font-size: 1.2em;">
+<div class="offset-3 col-10">
+<form name="formSubActividad" method="POST" class="formAgregarEva" style="font-size: 1.2em;">
     {% csrf_token %}
             <br><small  class="form-text text-muted">
               <b style="color:  #2980b9;">Datos generales pertinentes.</b>
@@ -52,20 +79,16 @@
                     
                 </div>
     
+            
+            
             <div class="form-group col-md-6">
                 <label>Año lectivo:</label>
-            
-                <select class="form-control" name="anioLectivo" style="text-align: center;">
-                    <option>--Seleccione el año--</option>
-                    {% if anioLectivos %}
-                        {% for anioLectivo in anioLectivos %}
-                            <option>{{ anioLectivo.anio_lectivo }}</option>
-                        {% endfor %}
-                    {% else %}
-                    <option>¡No hay años lectivos registrados!</option>
-                    {% endif %}
-                </select>
+
+                {% if anioLectivo %}
+                    <input class="form-control" type="text" name="anioLectivo" value = "{{ anioLectivo.anio_lectivo }}" readonly>
+                {% endif %}
             </div>
+            
             
             
         
@@ -128,7 +151,7 @@
             </div>
             
     <input class="btn btn-primary" type="submit" name="btnGuardarSubActividad" value="Guardar"> 
-    <input class="btn btn-secondary" type="button" name="clear" value="Cancelar">
+    <input class="btn btn-secondary" type="button" name="clear" value="Cancelar" onclick="recargar();">
 </form>
   
 </div>
@@ -137,19 +160,32 @@
 
 
 {% if formExamen %} 
-<div class="centrar-form">
-    <form name="formExamen" method="POST" class="formAgregarEva" style="margin-left:500px; font-size: 1.2em;">
+<div class="offset-3 col-10">
+    <form name="formExamen" method="POST" class="formAgregarEva" style="font-size: 1.2em;">
     {% csrf_token %}
-    
-            <div class="form-group col-md-6">
-                <label>Codigo periodo: <b style="font-size: 1.1em;">{{ periodo }}</b></label>
-                <label>Codigo actividad: <b style="font-size: 1.1em;">{{ actividad }}</b></label>
+
+            <small  class="form-text text-muted">
+              <b style="color:  #2980b9;">Datos generales pertinentes.</b>
+            </small>
+            <div class="row">
+                <div class="form-group col-md-3">
+                    <label>Codigo periodo: <b style="font-size: 1.1em;">{{ periodo }}</b> </label>
+                    <input class="form-control" type="text" name="periodoPerteneciente" value ="{{ periodo }}" style="display: none;">
+                </div>
+                
+                <div class="form-group col-md-3">
+                    <label>Codigo actividad: <b style="font-size: 1.1em;">{{ actividad }}</b></label>
+                    <input class="form-control" type="text" name="actividadPerteneciente" value = "{{ actividad }}" style="display: none;">
+                </div>
+                    
             </div>
             
         
             <div class="form-group col-md-6">
                 <label>Año lectivo:</label>
-                <input class="form-control" type="text" name="anioLectivo" placeholder="Ingrese el año lectivo">
+                {% if anioLectivo %}
+                    <input class="form-control" type="text" name="anioLectivo2" value = "{{ anioLectivo.anio_lectivo }}" disabled>
+                {% endif %}
             </div>
             
         
@@ -189,10 +225,20 @@
             
     
     <input type="submit" class="btn btn-primary" name="btnGuardarExamen" value="Guardar"> 
-    <input class="btn btn-secondary" type="button" name="clear" value="Cancelar">
+    <input class="btn btn-secondary" type="button" name="clear" value="Cancelar" onclick="recargar();">
 </form>
 </div>
 {% endif %}
 
 <br><br>
+<script type="text/javascript">
+    function recargar() {
+        var r = confirm("¿Esta seguro de cancelar el proceso para agregar nueva evaluación?");
+        if (r) {
+          location.href = "{% url 'agregarEvaluacion' %}"; 
+        } else {
+          
+        }
+    }
+</script>
 {% endblock %}

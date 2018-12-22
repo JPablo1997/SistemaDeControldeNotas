@@ -378,8 +378,11 @@ def agregarEvaluacion(request):
 	formExamen = False
 	periodo= ""
 	actividad = ""
+	exitoGuardarSubAct = ""
+	maximoSubActs = False
 	contexto = {}
 	materias = []
+	periodoFinalizado = False
 
 	docente = Docente.objects.get(usuario_docente=str(request.user.id)).dui_docente
 	materiasImpartidas =  Docente_Materia.objects.filter(codigo_docente=docente)
@@ -389,16 +392,37 @@ def agregarEvaluacion(request):
 	
 
 	if 'btnCargarForm' in request.POST:
+		anioLectivo = None
 		periodo = request.POST['periodo']
 		actividad = request.POST['actividad']
-		anioLectivos = AnioLectivo.objects.all()
+		anioLectivos = AnioLectivo.objects.all().order_by('anio_lectivo')
+		for x in anioLectivos:
+			if not x.terminado:
+				anioLectivo = x
+				pass
+				break
+			pass
 		if request.POST['actividad'] == 'actividad1' or request.POST['actividad'] == 'actividad2':
-			formSubActividad = True
-			contexto = {'formSubActividad':formSubActividad,'periodo':periodo,'actividad':actividad, 'materias':materias, 'anioLectivos':anioLectivos}
+			periodoSolicitado = Periodo.objects.get(codigo_periodo = periodo, anio_lectivo = anioLectivo)
+
+			if periodoSolicitado.finalizado:
+				periodoFinalizado = True
+				pass
+			else:
+				actividadSolicitada = Actividad.objects.get(codigo_actividad = actividad, codigo_periodo = periodoSolicitado)
+				cantSubActs = Sub_Actividad.objects.filter(codigo_actividad = actividadSolicitada).count()
+				if cantSubActs < actividadSolicitada.cantidad_max_sub_act:
+					formSubActividad = True
+					pass
+				else:
+					maximoSubActs = True
+					pass
+				pass
+			contexto = {'formSubActividad':formSubActividad,'periodo':periodo,'actividad':actividad, 'materias':materias, 'anioLectivo':anioLectivo, 'maximoSubActs':maximoSubActs, 'periodoFinalizado':periodoFinalizado}
 			pass
 		elif request.POST['actividad'] == 'examen1' or request.POST['actividad'] == 'examen2':
 			formExamen = True
-			contexto = {'formExamen':formExamen,'periodo':periodo,'actividad':actividad, 'materias':materias, 'anioLectivos':anioLectivos}
+			contexto = {'formExamen':formExamen,'periodo':periodo,'actividad':actividad, 'materias':materias, 'anioLectivo':anioLectivo}
 
 	if 'btnGuardarSubActividad' in request.POST:
 		periodo = Periodo.objects.get(codigo_periodo = request.POST['periodoPerteneciente'], anio_lectivo = int(request.POST['anioLectivo']))
@@ -407,9 +431,10 @@ def agregarEvaluacion(request):
 		subAct.save()
 		docente = Docente.objects.get(usuario_docente=str(request.user.id))
 		docente_materia = Docente_Materia.objects.get(codigo_docente = docente.dui_docente, codigo_materia = request.POST['materia'])
-		print(request.POST['codigoEvaluacion'])
 		eva = Evaluacion(codigo_evaluacion = request.POST['codigoEvaluacion'], nombre_evaluacion = request.POST['nombreEvaluacion'], descripcion_evaluacion = request.POST['descripcionEvaluacion'], codigo_docente_materia = docente_materia ,codigo_sub_actividad = subAct)
 		eva.save()
+		exitoGuardarSubAct = "La sub-actividad y evaluación se han guardado de manera exitosa!"
+		contexto = {'exitoGuardarSubAct':exitoGuardarSubAct}
 		pass 
 
 
