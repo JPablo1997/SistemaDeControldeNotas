@@ -513,7 +513,7 @@ def agregarEvaluacion(request):
 
 		if porcentajeTotal > 35.00:
 			porcentajePasado = True
-			contexto = {'porcentajePasado':porcentajePasado, 'porcentajeRestante':float(porcentajeRestante)}
+			contexto = {'porcentajePasado':porcentajePasado, 'porcentajeRestante':round(float(porcentajeRestante),2)}
 			pass
 		else:
 			subAct = Sub_Actividad(codigo_sub_actividad = request.POST['codigoSubActividad'], codigo_actividad = actividad, porcentaje_sub_actividad = Decimal(request.POST['porcentajeSubActividad']), descripcion_sub_actividad = request.POST['descripcionSubActividad'])
