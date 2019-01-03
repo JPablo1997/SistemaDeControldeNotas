@@ -385,29 +385,48 @@ def listaEvaluacion(request):
 	contexto = {'materias':materias}
 
 	if 'btnCargarEvaluaciones' in request.GET:
-		materia = request.GET['materiaSelect']
-		periodo = request.GET['periodo']
-		actividad = request.GET['actividad']
-		anioLectivos = AnioLectivo.objects.all().order_by('anio_lectivo')
-		for x in anioLectivos:
-			if not x.terminado:
-				anioLectivo = x
-				pass
-				break
+
+		evaluaciones = cargarEvaluaciones(request.GET['materiaSelect'], request.GET['periodo'], request.GET['actividad'])
+		contexto = {'evaluaciones':evaluaciones, 'materia':request.GET['materiaSelect'], 'periodo':request.GET['periodo'], 'actividad':request.GET['actividad']}
+
+	if 'accion' in request.POST:
+		accion = request.POST['accion']
+
+		if accion == 'Eliminar':
+
+			codigo_evaluacion = request.POST['evaluacion']
+			evaluacion = Evaluacion.objects.get(codigo_evaluacion = codigo_evaluacion)
+			evaluacion.codigo_sub_actividad.delete()
+			evaluaciones = cargarEvaluaciones(request.GET['materiaSelect'], request.GET['periodo'], request.GET['actividad'])
+			contexto = {'evaluaciones':evaluaciones, 'materia':request.GET['materiaSelect'], 'periodo':request.GET['periodo'], 'actividad':request.GET['actividad']}
+			pass
+		else:
+
 			pass
 		pass
-		periodoSolicitado = Periodo.objects.get(codigo_periodo = periodo, anio_lectivo = anioLectivo)
-		actividadSolicitada = Actividad.objects.get(codigo_actividad = actividad, codigo_periodo = periodoSolicitado)
-		SubActs = Sub_Actividad.objects.filter(codigo_actividad = actividadSolicitada)
-
-		for x in SubActs:
-			evaluacion = Evaluacion.objects.get(codigo_sub_actividad = x)
-			evaluaciones.append(evaluacion)
-			pass
-		contexto = {'evaluaciones':evaluaciones, 'materia':materia, 'periodo':periodo, 'actividad':actividad}
 
 	return render(request,'AgregarEvaluacion/listaEvaluacion.html',contexto)
 
+def cargarEvaluaciones(materia, periodo, actividad):
+	evaluaciones = []
+	anioLectivos = AnioLectivo.objects.all().order_by('anio_lectivo')
+	for x in anioLectivos:
+		if not x.terminado:
+			anioLectivo = x
+			pass
+			break
+		pass
+	pass
+	periodoSolicitado = Periodo.objects.get(codigo_periodo = periodo, anio_lectivo = anioLectivo)
+	actividadSolicitada = Actividad.objects.get(codigo_actividad = actividad, codigo_periodo = periodoSolicitado)
+	SubActs = Sub_Actividad.objects.filter(codigo_actividad = actividadSolicitada)
+
+	for x in SubActs:
+		evaluacion = Evaluacion.objects.get(codigo_sub_actividad = x)
+		evaluaciones.append(evaluacion)
+		pass
+
+	return evaluaciones
 
 def agregarEvaluacion(request):
 
@@ -420,6 +439,7 @@ def agregarEvaluacion(request):
 	contexto = {}
 	materias = []
 	periodoFinalizado = False
+	porcentajePasado = False
 
 	docente = Docente.objects.get(usuario_docente=str(request.user.id)).dui_docente
 	materiasImpartidas =  Docente_Materia.objects.filter(codigo_docente=docente)
@@ -446,10 +466,24 @@ def agregarEvaluacion(request):
 				periodoFinalizado = True
 				pass
 			else:
+
 				actividadSolicitada = Actividad.objects.get(codigo_actividad = actividad, codigo_periodo = periodoSolicitado)
 				cantSubActs = Sub_Actividad.objects.filter(codigo_actividad = actividadSolicitada).count()
+				subActs = Sub_Actividad.objects.filter(codigo_actividad = actividadSolicitada)
 				if cantSubActs < actividadSolicitada.cantidad_max_sub_act:
-					formSubActividad = True
+
+					porcentajeTotal = 0
+					for subAct in subActs:
+						porcentajeTotal += subAct.porcentaje_sub_actividad
+						pass
+
+					if porcentajeTotal == 35.00:
+						maximoSubActs = True
+						pass
+					else:
+						formSubActividad = True
+						pass
+
 					pass
 				else:
 					maximoSubActs = True
@@ -463,15 +497,34 @@ def agregarEvaluacion(request):
 
 	if 'btnGuardarSubActividad' in request.POST:
 		periodo = Periodo.objects.get(codigo_periodo = request.POST['periodoPerteneciente'], anio_lectivo = int(request.POST['anioLectivo']))
-		actividad = Actividad.objects.get(codigo_periodo = periodo.codigo_periodo, codigo_actividad = request.POST['actividadPerteneciente'])
-		subAct = Sub_Actividad(codigo_sub_actividad = request.POST['codigoSubActividad'], codigo_actividad = actividad, porcentaje_sub_actividad = Decimal(request.POST['porcentajeSubActividad']), descripcion_sub_actividad = request.POST['descripcionSubActividad'])
-		subAct.save()
-		docente = Docente.objects.get(usuario_docente=str(request.user.id))
-		docente_materia = Docente_Materia.objects.get(codigo_docente = docente.dui_docente, codigo_materia = request.POST['materia'])
-		eva = Evaluacion(codigo_evaluacion = request.POST['codigoEvaluacion'], nombre_evaluacion = request.POST['nombreEvaluacion'], descripcion_evaluacion = request.POST['descripcionEvaluacion'], codigo_docente_materia = docente_materia ,codigo_sub_actividad = subAct)
-		eva.save()
-		exitoGuardarSubAct = "La sub-actividad y evaluación se han guardado de manera exitosa!"
-		contexto = {'exitoGuardarSubAct':exitoGuardarSubAct}
+		actividad = Actividad.objects.get(codigo_periodo = periodo, codigo_actividad = request.POST['actividadPerteneciente'])
+		
+		"""Validar que no sobrepase el 35% la suma de los porcentajes de las subactividades"""
+		subActs = Sub_Actividad.objects.filter(codigo_actividad = actividad)
+
+		porcentajeTotal = Decimal(request.POST['porcentajeSubActividad'])
+		porcentajeActual = 0
+		for subAct in subActs:
+			porcentajeTotal += subAct.porcentaje_sub_actividad
+			porcentajeActual += subAct.porcentaje_sub_actividad
+			pass
+
+		porcentajeRestante = 35.00 - float(porcentajeActual)
+
+		if porcentajeTotal > 35.00:
+			porcentajePasado = True
+			contexto = {'porcentajePasado':porcentajePasado, 'porcentajeRestante':float(porcentajeRestante)}
+			pass
+		else:
+			subAct = Sub_Actividad(codigo_sub_actividad = request.POST['codigoSubActividad'], codigo_actividad = actividad, porcentaje_sub_actividad = Decimal(request.POST['porcentajeSubActividad']), descripcion_sub_actividad = request.POST['descripcionSubActividad'])
+			subAct.save()
+			docente = Docente.objects.get(usuario_docente=str(request.user.id))
+			docente_materia = Docente_Materia.objects.get(codigo_docente = docente.dui_docente, codigo_materia = request.POST['materia'])
+			eva = Evaluacion(codigo_evaluacion = request.POST['codigoEvaluacion'], nombre_evaluacion = request.POST['nombreEvaluacion'], descripcion_evaluacion = request.POST['descripcionEvaluacion'], codigo_docente_materia = docente_materia ,codigo_sub_actividad = subAct)
+			eva.save()
+			exitoGuardarSubAct = "La sub-actividad y evaluación se han guardado de manera exitosa!"
+			contexto = {'exitoGuardarSubAct':exitoGuardarSubAct}
+			pass
 		pass 
 
 
