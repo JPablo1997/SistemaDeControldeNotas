@@ -11,7 +11,9 @@
 				<th scope="col">Nombre evaluacion</th>
 				<th scope="col">Descripción</th>
 				<th scope="col">Porcentaje(%)</th>
-				<th scope="col">Acciones</th>
+				{% if not periodoFinalizado %}
+					<th scope="col">Acciones</th>
+				{% endif %}
 			</tr>
 		</thead>
 		<tbody>
@@ -21,90 +23,102 @@
 				<td>{{ evaluacion.nombre_evaluacion }}</td>
 				<td>{{ evaluacion.descripcion_evaluacion }}</td>
 				<td>{{ evaluacion.codigo_sub_actividad.porcentaje_sub_actividad }}</td>
-				<td>
-					<form method="POST">
-						{% csrf_token %}
-						<input type="hidden" name="evaluacion" value="{{ evaluacion.codigo_evaluacion }}">
-						<input class="btn btn-secondary" type="submit" name="accion" value="Editar">
-						<input class="btn btn-danger" id="eliminar{{ evaluacion.codigo_evaluacion }}" type="submit" name="accion" value="Eliminar" style="display: none;">
-						<input class="btn btn-danger" type="button" name="emergente" value="Eliminar"  data-toggle="modal" data-target="#{{ evaluacion.codigo_evaluacion }}">
-					</form>
-					<div class="modal" id="{{ evaluacion.codigo_evaluacion }}">
-					  <div class="modal-dialog">
-					    <div class="modal-content">
+				{% if not periodoFinalizado %}
+					<td>
+						<form method="POST">
+							{% csrf_token %}
+							<input type="hidden" name="evaluacion" value="{{ evaluacion.codigo_evaluacion }}">
+							<input class="btn btn-secondary" type="submit" name="accion" value="Editar">
+							<input class="btn btn-danger" id="eliminar{{ evaluacion.codigo_evaluacion }}" type="submit" name="accion" value="Eliminar" style="display: none;">
+							<input class="btn btn-danger" type="button" name="emergente" value="Eliminar"  data-toggle="modal" data-target="#{{ evaluacion.codigo_evaluacion }}">
+						</form>
+						<div class="modal" id="{{ evaluacion.codigo_evaluacion }}">
+						  <div class="modal-dialog">
+						    <div class="modal-content">
 
-					      <!-- Modal Header -->
-					      <div class="modal-header">
-					        <h4 class="modal-title">Advertencia - Ventana de confimación</h4>
-					        <button type="button" class="close" data-dismiss="modal">&times;</button>
-					      </div>
+						      <!-- Modal Header -->
+						      <div class="modal-header">
+						        <h4 class="modal-title">Advertencia - Ventana de confimación</h4>
+						        <button type="button" class="close" data-dismiss="modal">&times;</button>
+						      </div>
 
-					      <!-- Modal body -->
-					      <div class="modal-body">
-					        ¿Esta seguro de eliminar la evaluacion: <b>{{ evaluacion.codigo_evaluacion }}</b>?
-					      </div>
+						      <!-- Modal body -->
+						      <div class="modal-body">
+						        ¿Esta seguro de eliminar la evaluacion: <b>{{ evaluacion.codigo_evaluacion }}</b>?
+						      </div>
 
-					      <!-- Modal footer -->
-					      <div class="modal-footer">
-					      	<button type="button" class="btn btn-danger" onclick="activarEliminacion('{{ evaluacion.codigo_evaluacion }}');">Eliminar</button>
-					        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-					      </div>
+						      <!-- Modal footer -->
+						      <div class="modal-footer">
+						      	<button type="button" class="btn btn-danger" onclick="activarEliminacion('{{ evaluacion.codigo_evaluacion }}');">Eliminar</button>
+						        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+						      </div>
 
-					    </div>
-					  </div>
-					</div>
-				</td>
+						    </div>
+						  </div>
+						</div>
+					</td>
+				{% endif %}
 			</tr>
 			{% endfor %}
 		</tbody>
 	</table>
 {% else %}
-	<div id="indicacion" class="alert alert-info alert-dismissible">
-	  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-	  <strong>Indicación:</strong> Seleccione la materia, el periodo y la actividad del cual desea ver sus respectivas evaluaciones.
-	</div>
-	<div class="row justify-content-center">
-	    <div id="msmSeleccionar" class="alert alert-dismissible alert-warning">
-	        <button type="button" class="close" data-dismiss="alert" id="closeMsg">&times;</button>
-	        <b class="alertMsg">Atencion!</b> Seleccione la materia, el periodo y la actividad para cargar las evaluaciones.
-	    </div>
-	</div>
-		<a href="{% url 'agregarEvaluacion' %}"><i class="fas fa-plus-square fa-2x"> Agregar evaluación</i></a>
-	    <br><form id="formClasificacion" name="formClasificacion" method="GET" style="border-top: 20px; font-size: 1.2em;">
-	    	<br><div class="row">
-	    		<div class="col-md-12 form-group">
-		    		<select id="materiaSelect" class="form-control" name="materiaSelect" style="text-align: center; font-size: 1.2em;">
-		    			<option value="default"><b>----------------- Seleccione una materia -----------------</b></option>
-		    			{% if materias %}
-		    				{% for materia in materias %}
-		    					<option value="{{ materia.codigo_materia }}">{{ materia.nombre_materia }}</option>
-		    				{% endfor %}
-		    			{% else %}
-		    				<option value="default"><b>No hay materias, favor esperar indicaciones del administrador.</b></option>
-		    			{% endif %}
-		    		</select>
+	{% if not mensaje %}
+		<div id="indicacion" class="alert alert-info alert-dismissible">
+		  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+		  <strong>Indicación:</strong> Seleccione la materia, el periodo y la actividad del cual desea ver sus respectivas evaluaciones.
+		</div>
+		<div class="row justify-content-center">
+		    <div id="msmSeleccionar" class="alert alert-dismissible alert-warning">
+		        <button type="button" class="close" data-dismiss="alert" id="closeMsg">&times;</button>
+		        <b class="alertMsg">Atencion!</b> Seleccione la materia, el periodo y la actividad para cargar las evaluaciones.
+		    </div>
+		</div>
+			<a href="{% url 'agregarEvaluacion' %}"><i class="fas fa-plus-square fa-2x"> Agregar evaluación</i></a>
+		    <br><form id="formClasificacion" name="formClasificacion" method="GET" style="border-top: 20px; font-size: 1.2em;">
+		    	<br><div class="row">
+		    		<div class="col-md-12 form-group">
+			    		<select id="materiaSelect" class="form-control" name="materiaSelect" style="text-align: center; font-size: 1.2em;">
+			    			<option value="default"><b>----------------- Seleccione una materia -----------------</b></option>
+			    			{% if materias %}
+			    				{% for materia in materias %}
+			    					<option value="{{ materia.codigo_materia }}">{{ materia.nombre_materia }}</option>
+			    				{% endfor %}
+			    			{% else %}
+			    				<option value="default"><b>No hay materias, favor esperar indicaciones del administrador.</b></option>
+			    			{% endif %}
+			    		</select>
+			    	</div>
 		    	</div>
-	    	</div>
-	        {% csrf_token %}
-	        <table id="frmAgregarEva">
-	            <tr class="trAgregarEva">
-	                <td class="tdAgregarEva">Seleccione el periodo:&nbsp;</td> 
-	                <td class="tdAgregarEva"><input type="radio" name="periodo" value="periodo1"><b>Periodo 1&nbsp;</b></td> 
-	                <td class="tdAgregarEva"><input type="radio" name="periodo" value="periodo2"> <b>Periodo 2&nbsp;</b></td> 
-	                <td class="tdAgregarEva"><input type="radio" name="periodo" value="periodo3"> <b>Periodo 3</b></td> 
-	                <td class="tdAgregarEva"><input type="radio" name="periodo" value="periodo4"> <b>Periodo 4</b></td>
-	            </tr>
-	            <tr class="trAgregarEva">
-	                <td class="tdAgregarEva">Seleccione la actividad:&nbsp;</td>
-	                <td class="tdAgregarEva"><input type="radio" name="actividad" value="actividad1"><b>Actividad 1&nbsp;</b></td>
-	                <td class="tdAgregarEva"><input type="radio" name="actividad" value="actividad2"><b>Actividad 2&nbsp;</b></td> 
-	                <td class="tdAgregarEva"><input type="radio" name="actividad" value="examen1"><b>Examen 1&nbsp;</b></td>
-	                <td class="tdAgregarEva"><input type="radio" name="actividad" value="examen2"><b>Examen 2&nbsp;</b></td>
-	            </tr>
-	        </table>  
-	        	<input type="button" id="btnCargarFormValidar" onclick="validar2()" name="btnCargarFormValidar" class="btn btn-secondary" value="Cargar evaluaciones">
-	        	<input type="submit" id="btnCargarForm" name="btnCargarEvaluaciones" class="btn btn-secondary" style="display: none;">
-	    </form><br>
+		        {% csrf_token %}
+		        <table id="frmAgregarEva">
+		            <tr class="trAgregarEva">
+		                <td class="tdAgregarEva">Seleccione el periodo:&nbsp;</td> 
+		                <td class="tdAgregarEva"><input type="radio" name="periodo" value="periodo1"><b>Periodo 1&nbsp;</b></td> 
+		                <td class="tdAgregarEva"><input type="radio" name="periodo" value="periodo2"> <b>Periodo 2&nbsp;</b></td> 
+		                <td class="tdAgregarEva"><input type="radio" name="periodo" value="periodo3"> <b>Periodo 3</b></td> 
+		                <td class="tdAgregarEva"><input type="radio" name="periodo" value="periodo4"> <b>Periodo 4</b></td>
+		            </tr>
+		            <tr class="trAgregarEva">
+		                <td class="tdAgregarEva">Seleccione la actividad:&nbsp;</td>
+		                <td class="tdAgregarEva"><input type="radio" name="actividad" value="actividad1"><b>Actividad 1&nbsp;</b></td>
+		                <td class="tdAgregarEva"><input type="radio" name="actividad" value="actividad2"><b>Actividad 2&nbsp;</b></td> 
+		                <td class="tdAgregarEva"><input type="radio" name="actividad" value="examen1"><b>Examen 1&nbsp;</b></td>
+		                <td class="tdAgregarEva"><input type="radio" name="actividad" value="examen2"><b>Examen 2&nbsp;</b></td>
+		            </tr>
+		        </table>  
+		        	<input type="button" id="btnCargarFormValidar" onclick="validar2()" name="btnCargarFormValidar" class="btn btn-secondary" value="Cargar evaluaciones">
+		        	<input type="submit" id="btnCargarForm" name="btnCargarEvaluaciones" class="btn btn-secondary" style="display: none;">
+		    </form><br>
+	{% else %}
+		<div class="row justify-content-center">
+		    <div class="alert alert-warning alert-dismissible">
+		        <button type="button" class="close" data-dismiss="alert" id="closeMsg" aria-label="close">&times;</button>
+		        <b class="alertMsg">Atencion!</b> No hay evaluaciones para esta opción, favor ponerse en contacto con administrador.
+		    </div>
+		</div>
+		<h3 style="text-align: center;"><a href=".">Regresar</a></h3><br>
+	{% endif %}
 {% endif %}
  <script type="text/javascript">
 

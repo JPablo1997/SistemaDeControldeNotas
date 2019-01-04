@@ -37,6 +37,7 @@ urlpatterns = [
     path('eliminarMateria/<str:codigo_materia>/',login_required(materia_delete),name="eliminarMateria"),
     url(r'^agregarEvaluacion/$',login_required(agregarEvaluacion),name="agregarEvaluacion"),
     url(r'^listaEvaluacion/$',login_required(listaEvaluacion),name="listaEvaluacion"),
+    path('editarEvaluacion/<str:id_evaluacion>/',login_required(editarEvaluacion),name="editarEvaluacion"),
     path('eliminarDocente/<str:id_del_docente>/',login_required(docente_delete),name='docente-delete'),
     path('detalleDocente/<str:id_del_docente>/',login_required(docente_detalle),name='docente_detalle'),
     path('actualizarDocente/<str:id_del_docente>/',login_required(docente_edit),name='docente_actualizar'),

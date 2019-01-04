@@ -386,8 +386,27 @@ def listaEvaluacion(request):
 
 	if 'btnCargarEvaluaciones' in request.GET:
 
+		periodoFinalizado = False
 		evaluaciones = cargarEvaluaciones(request.GET['materiaSelect'], request.GET['periodo'], request.GET['actividad'])
-		contexto = {'evaluaciones':evaluaciones, 'materia':request.GET['materiaSelect'], 'periodo':request.GET['periodo'], 'actividad':request.GET['actividad']}
+		if evaluaciones != []:
+			anioLectivo = None
+			anioLectivos = AnioLectivo.objects.all().order_by('anio_lectivo')
+			for x in anioLectivos:
+				if not x.terminado:
+					anioLectivo = x
+					pass
+					break
+				pass
+
+			periodoSolicitado = Periodo.objects.get(codigo_periodo = request.GET['periodo'], anio_lectivo = anioLectivo)
+			
+			if periodoSolicitado.finalizado:
+				periodoFinalizado = True
+				pass
+			contexto = {'evaluaciones':evaluaciones, 'materia':request.GET['materiaSelect'], 'periodo':request.GET['periodo'], 'actividad':request.GET['actividad'], 'periodoFinalizado':periodoFinalizado}
+			pass
+		else:
+			contexto = {'evaluaciones':evaluaciones, 'materia':request.GET['materiaSelect'], 'periodo':request.GET['periodo'], 'actividad':request.GET['actividad'], 'periodoFinalizado':periodoFinalizado, 'mensaje':True}
 
 	if 'accion' in request.POST:
 		accion = request.POST['accion']
@@ -401,7 +420,8 @@ def listaEvaluacion(request):
 			contexto = {'evaluaciones':evaluaciones, 'materia':request.GET['materiaSelect'], 'periodo':request.GET['periodo'], 'actividad':request.GET['actividad']}
 			pass
 		else:
-
+			codigo_evaluacion = request.POST['evaluacion']
+			return redirect('/into/editarEvaluacion/'+codigo_evaluacion)
 			pass
 		pass
 
@@ -418,15 +438,20 @@ def cargarEvaluaciones(materia, periodo, actividad):
 		pass
 	pass
 	periodoSolicitado = Periodo.objects.get(codigo_periodo = periodo, anio_lectivo = anioLectivo)
-	actividadSolicitada = Actividad.objects.get(codigo_actividad = actividad, codigo_periodo = periodoSolicitado)
-	SubActs = Sub_Actividad.objects.filter(codigo_actividad = actividadSolicitada)
 
-	for x in SubActs:
-		evaluacion = Evaluacion.objects.get(codigo_sub_actividad = x)
-		evaluaciones.append(evaluacion)
+	if Actividad.objects.filter(codigo_actividad = actividad, codigo_periodo = periodoSolicitado).exists():
+		actividadSolicitada = Actividad.objects.get(codigo_actividad = actividad, codigo_periodo = periodoSolicitado)
+		SubActs = Sub_Actividad.objects.filter(codigo_actividad = actividadSolicitada)
+		for x in SubActs:
+			evaluacion = Evaluacion.objects.get(codigo_sub_actividad = x)
+			evaluaciones.append(evaluacion)
+			pass
+		return evaluaciones
+		pass
+	else:
+		return []
 		pass
 
-	return evaluaciones
 
 def agregarEvaluacion(request):
 
@@ -530,3 +555,17 @@ def agregarEvaluacion(request):
 
 
 	return render(request,'AgregarEvaluacion/agregarEvaluacion.html',contexto)
+
+def editarEvaluacion(request, id_evaluacion):
+	evaluacion = None
+
+	if Evaluacion.objects.filter(codigo_evaluacion = id_evaluacion).exists():
+		evaluacion = Evaluacion.objects.get(codigo_evaluacion = id_evaluacion)
+		pass
+
+	if 'btnActualizar' in request.POST:
+		codigo_evaluacion = request.POST['codigoEvaluacion']
+		Evaluacion.objects.filter(codigo_evaluacion = codigo_evaluacion).update(nombre_evaluacion = request.POST['nombreEvaluacion'], descripcion_evaluacion = request.POST['descripcionEvaluacion'])
+		Sub_Actividad.objects.filter(codigo_sub_actividad = evaluacion.codigo_sub_actividad.codigo_sub_actividad).update(porcentaje_sub_actividad = request.POST['porcentajeSubActividad'], descripcion_sub_actividad = request.POST['descripcionSubActividad'])
+		return redirect('/into/listaEvaluacion/')
+	return render(request, 'AgregarEvaluacion/editarEvaluacion.html',{'evaluacion':evaluacion})
