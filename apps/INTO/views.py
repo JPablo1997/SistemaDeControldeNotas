@@ -260,14 +260,36 @@ class MateriaCreate(CreateView):
 
 
 def materia_view(request):
-	if request.method == 'POST':
-		form = MateriaForm(request.POST)
+#	if request.method == 'POST':
+#		form = MateriaForm(request.POST)
+#		if form.is_valid():
+#			form.save()
+#		return redirect('/into/administrarMaterias')
+#	else:
+#		form = MateriaForm()
+#	return render(request, 'administrarMaterias/agregarMateria.html', {'form' : form})
+#   si el metodo es POST Hacer esto
+	if request.method=='POST':
+		#Resivimos todos los parametros del formulario
+		form=MateriaForm(request.POST)
+		#si el formulario es Valido hacer lo siguiente 
 		if form.is_valid():
-			form.save()
+			#Hacemos la creacion de los objetos 
+			materia=Materia()		
+			#Asignammos a cada objeto lo que resivimos de cada campo del formulario
+			materia.codigo_materia=request.POST['codigo_materia']
+			materia.nombre_materia=request.POST['nombre_materia']
+			materia.descripcion_materia=request.POST['descripcion_materia']
+			materia.objetivos=request.POST['objetivos']	
+			#Guardamos  
+			materia.save()	
+							
 		return redirect('/into/administrarMaterias')
 	else:
-		form = MateriaForm()
-	return render(request, 'administrarMaterias/agregarMateria.html', {'form' : form})
+		#muestra el formulario
+		form=MateriaForm()
+		contexto={'form':form}		
+	return render(request,'administrarMaterias/agregarMateria.html',contexto)
 
 def materia_edit(request, codigo_materia):
 	materia = Materia.objects.get(pk=codigo_materia)
