@@ -1,1 +1,152 @@
 {% extends 'base/base.html' %}
+{% block content %}
+<br>
+<div class="row">
+	<div class="col-md-2">
+		<dt class="text-center">BUSQUEDA</dt>
+		<hr>
+		<dt>Selecione el Nivel</dt>
+		<select name="" id="" class="form-control">
+			<option  value="0">Seleccione Opcion</option>
+			<option  value="1">Primer Año</option>
+			<option  value="2">Segundo Año</option>
+			<option  value="3">Tercer Año</option>
+		</select>
+		<hr>
+		<hr>
+		<dt>Seleccione El Tipo</dt>
+		<select name="" id="" class="form-control">
+			<option  value="0">Seleccione Opcion</option>
+			<option  value="1">General</option>
+			<option  value="2">Tecnico</option>
+			
+		</select>
+		<hr>
+		<hr>
+		<dt>Seleccione la Especialidad</dt>
+		<select name="" id="" class="form-control">
+			<option  value="0">Seleccione Opcion</option>
+			<option  value="1">Idiomas</option>
+			<option  value="2">Software</option>
+			<option  value="3">contador</option>
+		</select>
+		<hr>
+		<hr>
+		<dt>Seleccione la Seccion</dt>
+		<select name="" id="" class="form-control">
+			<option  value="0">Seleccione Opcion</option>
+			<option  value="1">A</option>
+			<option  value="2">B</option>
+			<option  value="3">C</option>
+		</select>
+		<hr>
+		<hr>
+		<dt>Docente Encargado</dt>
+		<dd>Diego Ochoa</dd>
+		<hr>
+		<dt class="text-center"><a class="btn btn-primary" href="{% url 'crear_grado'%}">Crear Grado</a></dt>
+	</div>
+	<div class="col-md-10">
+		
+		<hr>
+		<dt>Campos Obligatorios:</dt>
+		<form action="" class="form-inline">
+			<div class="form-group">
+				<label class="sr-only" for="nie">Nombre: </label>
+				<input class="form-control" id="nie" type="text" placeholder="NIE:">
+			</div>
+			<div class="form-group">
+				<label class="sr-only" for="nie">Nombre: </label>
+				<input class="form-control" id="nie" type="text" placeholder="Nombres:">
+			</div>
+			<div class="form-group">
+				<label class="sr-only" for="nie">Nombre: </label>
+				<input class="form-control" id="nie" type="text" placeholder="Apellidos:">
+			</div>
+			<div class="form-group">
+				<select name="" id="" class="form-control">
+					<option value="">Masculino</option>
+					<option value="">Femenino</option>
+				</select>
+			</div>
+		</form>
+		<hr>
+		<dt>Campos Opcionales:</dt>
+		<form action="" class="form-inline">
+			<div class="form-group">
+				<label class="sr-only" for="nie">Nombre: </label>
+				<input class="form-control" id="nie" type="text" placeholder="Direccion">
+			</div>
+			<div class="form-group">
+				<label class="sr-only" for="nie">Nombre: </label>
+				<input class="form-control" id="nie" type="text" placeholder="Telefono:">
+			</div>
+			<button class="btn btn-danger ml-auto">Agregar Alumno</button>
+		</form>
+		<hr>
+		<div class="table-responsive">
+			<table class="table table-bordered table-hover">
+				<thead class="table-success text-center">
+					<th>#</th>
+					<th>NIE</th>
+					<th>Nombre</th>
+					<th>Sexo</th>
+					<th>Año de Ingreso</th>
+					<th>Direccion</th>
+					<th>Telefono</th>
+					<th>Acciones</th>
+				</thead>
+				<tbody class="text-center">
+					<tr>
+						<td>1</td>
+						<td>4545662</td>
+						<td>Diego Ochoa</td>
+						<td>Masculino</td>
+						<td>2016</td>
+						<td>San Salvador</td>
+						<td>Sin Registros</td>
+						<td>
+							<a href="#" class="btn btn-default btn-xs">
+	                        <span class="fas fa-pencil-alt"></span>
+	                        </a>
+	                            
+	                        <a href="#" class="btn btn-default btn-xs">
+	                        <span class="fas fa-th-large"></span>
+	                        </a>
+	                        <a href="#" 
+	                        class="btn btn-default btn-xs">
+	                        <span class="fas fa-trash"></span>
+	                        </a>
+						</td>
+					</tr>
+					<tr>
+						<td>2</td>
+						<td>5456565</td>
+						<td>Victor Garcia</td>
+						<td>Masculino</td>
+						<td>2017</td>
+						<td>Chalatenango</td>
+						<td>Sin Registros</td>
+						<td>
+							<a href="#" class="btn btn-default btn-xs">
+	                        <span class="fas fa-pencil-alt"></span>
+	                        </a>
+	                            
+	                        <a href="#" class="btn btn-default btn-xs">
+	                        <span class="fas fa-th-large"></span>
+	                        </a>
+	                        <a href="#" 
+	                        class="btn btn-default btn-xs">
+	                        <span class="fas fa-trash"></span>
+	                        </a>
+						</td>
+					</tr>
+					
+				</tbody>
+			</table>
+		</div>
+	</div>	
+</div>
+<br>
+<br>
+{% endblock %}

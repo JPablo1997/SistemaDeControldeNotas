@@ -132,7 +132,13 @@ def docente_edit(request,id_del_docente):
 	return render(request,'docentes/docente_form.html',{'form':form})
 
 
+#Parte de Alumnos(Diego)
+class ListadoAlumnos(TemplateView):
+	template_name="Alumnos/list_alumnos.html"
 
+class CrearGrado(TemplateView):
+	template_name="Alumnos/crear_grado.html"
+#Finalizacion de la parte de alumnos
 class Vista(TemplateView):
 	template_name='base/base.html'
 

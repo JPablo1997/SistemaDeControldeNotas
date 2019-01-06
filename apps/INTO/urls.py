@@ -41,5 +41,9 @@ urlpatterns = [
     path('eliminarDocente/<str:id_del_docente>/',login_required(docente_delete),name='docente-delete'),
     path('detalleDocente/<str:id_del_docente>/',login_required(docente_detalle),name='docente_detalle'),
     path('actualizarDocente/<str:id_del_docente>/',login_required(docente_edit),name='docente_actualizar'),
+    #Parte de Alumnos
+    url(r'^ListadoAlumnos/$',ListadoAlumnos.as_view(),name="alumno_list"),
+    url(r'^ListadoAlumnos/creargrado$',CrearGrado.as_view(),name="crear_grado")
+    #Finalizacion de la parte de alumnos
 
 ]
