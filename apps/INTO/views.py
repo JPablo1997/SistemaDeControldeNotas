@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView,ListView,CreateView,DeleteView,UpdateView,DetailView
 from django.contrib.auth.models import User,BaseUserManager
-from apps.INTO.forms import DocenteForm,AdministrarNotasForm,RegistroForm,AsignacionTipeUser,MateriaForm
+from apps.INTO.forms import *
 from django.urls import reverse_lazy,reverse
-from django.http import HttpResponse
+from django.http import HttpResponse,HttpResponseRedirect
 from apps.INTO.models import *
 from decimal import Decimal
 from django.core import serializers
@@ -136,8 +136,56 @@ def docente_edit(request,id_del_docente):
 class ListadoAlumnos(TemplateView):
 	template_name="Alumnos/list_alumnos.html"
 
-class CrearGrado(TemplateView):
+class CrearGrado(CreateView):
 	template_name="Alumnos/crear_grado.html"
+	model = Grupo
+	form_class=GradoForm
+	success_url = reverse_lazy('alumno_list')
+
+
+class CrearGrado2(TemplateView):
+	
+	def post(self, request, *args, **kwargs):
+		grado=Grupo()
+
+		seciones={"A","B","C","D","E"}
+		grado.nivel_especialidad=request.POST['nivel_especialidad']
+		cod_especialidad=request.POST['codigo_especialidad']
+		grado.codigo_especialidad=Especialidad.objects.get(codigo_especialidad=cod_especialidad)
+		docente_encargado=request.POST['codigo_docente_encargado']
+		#id_docente = User.objects.get(username=str(docente_encargado))
+		#docente=Docente.objects.get(usuario_docente=str(id_docente))
+		
+		print(grado.nivel_especialidad)
+		print(cod_especialidad)
+		print(docente_encargado)
+		id_docente=User.objects.get(username=docente_encargado)
+		docente =Docente.objects.get(usuario_docente=id_docente)
+		print(docente.dui_docente)
+		grado.codigo_docente_encargado=docente
+		seccion="A"
+		grado.seccion=seccion
+		algorit1=str(grado.nivel_especialidad)
+		algorit2=seccion
+		algorit3=str(grado.codigo_especialidad)
+		algoritTotal=algorit1+algorit2+algorit3
+		grado.codigo_grupo=algoritTotal
+		grado.save()
+		return redirect('alumno_list')
+	def get(self,request,*args,**kwargs):
+		especialidad=Especialidad.objects.all();		
+		docente=Docente.objects.all()
+		contexto={'especialidad':especialidad,'docente':docente}
+		return render(request,"Alumnos/crear_grado.html",contexto)
+
+from django.core import serializers
+from django.http import HttpResponse
+class BusquedaAjaxView(TemplateView):
+    def get(self,request,*args,**kwargs):
+        nivel_especialidad = request.GET['id']        
+        especialidad=Especialidad.objects.filter(anios_especialidad__lte=nivel_especialidad)              
+        data = serializers.serialize('json',especialidad)
+        return HttpResponse(data, content_type='application/json')
 #Finalizacion de la parte de alumnos
 class Vista(TemplateView):
 	template_name='base/base.html'

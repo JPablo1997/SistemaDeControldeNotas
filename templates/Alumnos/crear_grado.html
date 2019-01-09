@@ -1,1 +1,86 @@
 {% extends 'base/base.html' %}
+{% block title %} Crear Grado {% endblock %}
+{% block content %}
+<form method="post">
+	{% csrf_token %}
+	<div class="container">
+                
+        <div class="row">
+            <div class="col-md-3">
+                   
+            </div>
+            <div class="col-md-6">
+                <h3>Nuevo Grado</h3>
+               <div class="form-group">
+               	<dt>Selecione el Nivel</dt>
+				<select name="nivel_especialidad" id="nivel" class="form-control">
+					<option  value="0">Seleccione Opcion</option>
+					<option  value="1">Primer Año</option>
+					<option  value="2">Segundo Año</option>
+					<option  value="3">Tercer Año</option>
+				</select>
+               </div>
+            
+               <div class="form-group">
+               	<dt>Seleccione la Especialidad</dt>
+				<select name="codigo_especialidad" id="especialidad" class="form-control">
+						<option>Seleccione Especialidad</option>				
+				</select>
+               </div>
+               <div class="form-group">
+               	<dt>Seleccione El docente a Cargo</dt>
+				<select name="codigo_docente_encargado" id="docente" class="form-control">
+					<option>Seleccione Opcion</option>
+					{% for doc in docente %}
+					<option value="{{doc.usuario_docente}}">{{doc.nombre_docente}}</option>
+					{% endfor %}
+				</select>
+               </div>
+                <div class="col-md-offset-2 col-md-7">
+                        <button id="" type="submit" class="btn btn-success">
+                                Guardar
+                        </button>                      
+                            
+                        <a href="{% url 'alumno_list' %}" 
+                        class="btn btn-danger">Volver a la lista</a> 
+                </div>
+            </div>
+            <div class="col-md-3">
+              
+            </div>
+        
+        </div>
+    </div>
+	
+</form>
+{% endblock %}
+{% block extrajs %}
+<script type="text/javascript">
+	$('#nivel').on('change',inicio);
+	function inicio () {
+		 var id = $('#nivel').val();
+		 $.ajax({
+		 	data:{'id':id},
+		 	url:'/into/busqueda_ajax/',
+		 	type:'get',
+		 	success:function(data) {
+		 		var html="";
+		 		
+		 		html+='<option>Seleccione Especialidad</option>';
+		 		for(var i = 0; i<data.length; i++){
+
+
+		 			html += '<option value="'+data[i].pk+'">'+data[i].fields.nombre_especialidad+'</option>';		
+
+		 		}
+		 		
+		 		if (id==0) {
+		 			html;
+		 		}
+		 		$('#especialidad').html(html); 
+		 	}
+		 	
+		 });
+	}
+</script>
+{% endblock %}
