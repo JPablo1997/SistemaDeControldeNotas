@@ -12,7 +12,7 @@
                 </a>
                 <br><br>
                 <div class="table-responsive">
-                    <table class="table table-hover border">
+                    <table class="table table-hover table-bordered">
                         <tr class="table-success ">
                             <th>DUI</th>
                             <th>Nombre</th>
@@ -42,13 +42,13 @@
                                     <span class="fas fa-pencil-alt"></span>
                                 </a>
                             
-                            <a href="{% url 'docente_detalle' docente.dui_docente %}" class="btn btn-default btn-xs">
+                                <a href="{% url 'docente_detalle' docente.dui_docente %}" class="btn btn-default btn-xs">
                                 <span class="fas fa-th-large"></span>
-                            </a>
-                            <a href="{% url 'docente-delete' docente.dui_docente %}" 
-                            class="btn btn-default btn-xs">
+                                </a>
+                                <a href="{% url 'docente-delete' docente.dui_docente %}" 
+                                class="btn btn-default btn-xs">
                                 <span class="fas fa-trash"></span>
-                            </a>
+                                </a>
                             </td>                          
                         </tr>
                         {% endfor %}

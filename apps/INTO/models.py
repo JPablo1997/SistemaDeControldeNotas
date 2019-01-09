@@ -80,7 +80,7 @@ class Especialidad_Materia(models.Model):
 class Grupo(models.Model):
     codigo_grupo = models.CharField(max_length=15,primary_key=True)
     nivel_especialidad = models.IntegerField(help_text="Ingrese el nivel de la especialidad de este grupo")
-    seccion = models.CharField(max_length=8)
+    seccion = models.CharField(max_length=8)    
     codigo_especialidad = models.ForeignKey(Especialidad,on_delete=models.CASCADE)
     codigo_docente_encargado = models.ForeignKey(Docente,on_delete=models.SET_NULL,null=True)
     def __str__(self): 
@@ -90,7 +90,8 @@ class Alumno_Grupo(models.Model):
     nie = models.OneToOneField(Alumno,on_delete=models.CASCADE)
     codigo_grupo =  models.ForeignKey(Grupo,on_delete=models.CASCADE)
     anio_cursado = models.IntegerField(help_text="Año en el cual el alumno esta/estuvo en ese grupo")
-
+    def __str__(self):
+        return '{} ({})'.format(self.nie,self.codigo_grupo)
 class AnioLectivo(models.Model):
     anio_lectivo = models.IntegerField(primary_key=True)
     terminado = models.BooleanField(help_text="Indica si el año escolar ya ha finalizado")

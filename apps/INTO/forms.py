@@ -1,5 +1,5 @@
 from django import forms 
-from apps.INTO.models import Docente,Alumno,Grupo,Materia
+from apps.INTO.models import Docente,Alumno,Grupo,Materia,Grupo
 from apps.INTO.models import Docente,Alumno,Grupo,asignacionTipoUsuario
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
@@ -7,17 +7,7 @@ from django.core.exceptions import ValidationError
 import re,datetime
 
 class DocenteForm(forms.ModelForm):
-    #Personalizamos los campos
-    '''
-    dui_docente = forms.CharField(max_length="10",required=True,label="DUI",help_text="DUI del Docente")
-    nombre_docente = forms.CharField(max_length="30",required=True,label="Nombre")
-    apellidos_docente = forms.CharField(max_length="30",required=True,label="Apellidos")
-    fecha_nacimiento_docente = forms.DateInput(format=('%d-%m-%Y'))
-    telefono_docente = forms.CharField(max_length="9",required=False,label="Telefono")
-    email_docente = forms.EmailField()
-    fecha_contratacion_docente = forms.DateField()
-    direccion_docente = forms.CharField(max_length="100",required=False,label="Direccion")
-    '''
+  
     
     class Meta:
         model=Docente
@@ -54,6 +44,28 @@ class DocenteForm(forms.ModelForm):
             'direccion_docente' : forms.TextInput(attrs={'class':'form-control','placeholder':'Escriba la Direccion'}),
         }
     
+#Parte de Creacion de Grupos
+class GradoForm(forms.ModelForm):
+    class Meta:
+        model=Grupo
+        fields=[
+            'nivel_especialidad',
+            'seccion',
+            'codigo_especialidad',
+            'codigo_docente_encargado',
+        ]
+        labels = {
+            'nivel_especialidad':'Nivel de Especialidad',
+            'seccion':'Seccion',
+            'codigo_especialidad':'Codigo Especialidad',
+            'codigo_docente_encargado':'Docente Encargado',
+        }
+        widgets = {
+            
+        }
+
+
+#Finalizacion de la Creacion de Grupos
 
 class RegistroForm(UserCreationForm):
 	class Meta:
