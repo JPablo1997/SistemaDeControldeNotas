@@ -302,3 +302,26 @@ jQuery(function($){
 	$("#id_dui_docente").mask("99999999-9");
 	$("#id_telefono_docente").mask("9999-9999");	
 });
+
+function AnotacionDesactivar(){
+var c1=document.getElementById("1");
+c1.disabled = false;
+var c2=document.getElementById("2");
+c2.disabled = false;
+var c3=document.getElementById("3");
+c3.disabled = false;
+var c4=document.getElementById("4");
+c4.disabled = false;
+var c5=document.getElementById("btnConsultar");
+c5.disabled = true;
+var c6=document.getElementById("nie");
+c6.disabled = true;
+var c7=document.getElementById("btnAgregar");
+c7.disabled = true;
+var c8=document.getElementById("btnGuardar");
+c8.disabled = false;
+
+
+
+
+}
