@@ -59,7 +59,7 @@ class Alumno(models.Model):
     sexo_alumno = models.CharField(max_length=5)
     anio_ingreso = models.DateField()
     usuario_alumno = models.OneToOneField(settings.AUTH_USER_MODEL,on_delete=models.SET_NULL,null=True)
-    especialidad_alumno = models.OneToOneField(Especialidad,on_delete=models.SET_NULL,null=True)
+    especialidad_alumno = models.ForeignKey(Especialidad,on_delete=models.SET_NULL,null=True)
     encargado = models.ForeignKey(Encargado,on_delete=models.SET_NULL,null=True)
     def __str__(self): 
     	return self.nombre_alumno 
@@ -73,8 +73,8 @@ class Materia(models.Model):
     	return self.nombre_materia 
 
 class Especialidad_Materia(models.Model):
-    codigo_especialidad = models.OneToOneField(Especialidad,on_delete=models.CASCADE)
-    codigo_materia = models.OneToOneField(Materia,on_delete=models.CASCADE)
+    codigo_especialidad = models.ForeignKey(Especialidad,on_delete=models.CASCADE)
+    codigo_materia = models.ForeignKey(Materia,on_delete=models.CASCADE)
     nivel_materia_especialidad = models.IntegerField()
 
 class Grupo(models.Model):
