@@ -83,13 +83,13 @@ class Grupo(models.Model):
     seccion = models.CharField(max_length=8)    
     codigo_especialidad = models.ForeignKey(Especialidad,on_delete=models.CASCADE)
     codigo_docente_encargado = models.ForeignKey(Docente,on_delete=models.SET_NULL,null=True)
+    anio = models.IntegerField(help_text="Año en el que se creo el grupo")
     def __str__(self): 
     	return self.codigo_grupo 
 
 class Alumno_Grupo(models.Model):
     nie = models.OneToOneField(Alumno,on_delete=models.CASCADE)
-    codigo_grupo =  models.ForeignKey(Grupo,on_delete=models.CASCADE)
-    anio_cursado = models.IntegerField(help_text="Año en el cual el alumno esta/estuvo en ese grupo")
+    codigo_grupo =  models.ForeignKey(Grupo,on_delete=models.CASCADE)    
     def __str__(self):
         return '{} ({})'.format(self.nie,self.codigo_grupo)
 class AnioLectivo(models.Model):

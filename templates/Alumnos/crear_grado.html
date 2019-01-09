@@ -32,7 +32,7 @@
 				<select name="codigo_docente_encargado" id="docente" class="form-control">
 					<option>Seleccione Opcion</option>
 					{% for doc in docente %}
-					<option value="{{doc.usuario_docente}}">{{doc.nombre_docente}}</option>
+					<option value="{{doc.usuario_docente}}">{{doc.nombre_docente}} {{doc.apellidos_docente}} </option>
 					{% endfor %}
 				</select>
                </div>
@@ -75,7 +75,7 @@
 		 		}
 		 		
 		 		if (id==0) {
-		 			html;
+		 			html='<option>Seleccione Especialidad</option>';
 		 		}
 		 		$('#especialidad').html(html); 
 		 	}

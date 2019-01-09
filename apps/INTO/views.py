@@ -147,31 +147,29 @@ class CrearGrado2(TemplateView):
 	
 	def post(self, request, *args, **kwargs):
 		grado=Grupo()
-
 		seciones={"A","B","C","D","E"}
 		grado.nivel_especialidad=request.POST['nivel_especialidad']
 		cod_especialidad=request.POST['codigo_especialidad']
 		grado.codigo_especialidad=Especialidad.objects.get(codigo_especialidad=cod_especialidad)
 		docente_encargado=request.POST['codigo_docente_encargado']
-		#id_docente = User.objects.get(username=str(docente_encargado))
-		#docente=Docente.objects.get(usuario_docente=str(id_docente))
-		
-		print(grado.nivel_especialidad)
-		print(cod_especialidad)
-		print(docente_encargado)
 		id_docente=User.objects.get(username=docente_encargado)
 		docente =Docente.objects.get(usuario_docente=id_docente)
-		print(docente.dui_docente)
 		grado.codigo_docente_encargado=docente
-		seccion="A"
+		seccion="B"
+		#Voy a filtrar primero segun el nivel de especialidad
+		filtro_nivel_especialidad=Grupo.objects.filter(nivel_especialidad=str(grado.nivel_especialidad))
+		#filtro_codigo_especialidad=Grupo.objects.get()
+		consulta_seccion=Grupo.objects.all();
+		print(filtro_nivel_especialidad)
 		grado.seccion=seccion
 		algorit1=str(grado.nivel_especialidad)
 		algorit2=seccion
-		algorit3=str(grado.codigo_especialidad)
+		algorit3=cod_especialidad
 		algoritTotal=algorit1+algorit2+algorit3
 		grado.codigo_grupo=algoritTotal
-		grado.save()
-		return redirect('alumno_list')
+		#print("Codigo "+algoritTotal)
+		#grado.save()
+		return redirect('crear_grado')
 	def get(self,request,*args,**kwargs):
 		especialidad=Especialidad.objects.all();		
 		docente=Docente.objects.all()
@@ -183,7 +181,7 @@ from django.http import HttpResponse
 class BusquedaAjaxView(TemplateView):
     def get(self,request,*args,**kwargs):
         nivel_especialidad = request.GET['id']        
-        especialidad=Especialidad.objects.filter(anios_especialidad__lte=nivel_especialidad)              
+        especialidad=Especialidad.objects.filter(anios_especialidad__gte=nivel_especialidad)              
         data = serializers.serialize('json',especialidad)
         return HttpResponse(data, content_type='application/json')
 #Finalizacion de la parte de alumnos
