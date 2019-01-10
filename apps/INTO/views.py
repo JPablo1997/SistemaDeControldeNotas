@@ -241,9 +241,51 @@ def DatosEstadisticos(request):
 	contexto={'años':años,'periodos':periodos,'secciones':secciones,'bachilleratos':bachilleratos}
 	return render(request,'estadisticas/estadisticas.html',contexto)
 
-def anotacion(request):
-	return render(request, 'AgregarAnotacion/AgregarAnotacion.html')
+
+def anotacion(request):	
+	nombre = ""
+	AlumnoNie = ""	
+	AlumnoDato	= Alumno()
+	AnotacionDato = Anotacion()
+	Anot = []
+
+	if request.method == 'POST':
+		form = AnotacionForm(request.POST)
+		if 'btnConsultar' in request.POST:
+			AlumnoNie = request.POST.get('inputNie')		
+			
+
+			try:
+   				AlumnoDato = Alumno.objects.get(nie=AlumnoNie)
+   				Anot=Anotacion.objects.filter(nie_id=AlumnoNie)
+   				nombre = AlumnoDato.nombre_alumno + " "+ AlumnoDato.apellidos_alumno
+			except Alumno.DoesNotExist:
+   				AlumnoDato = None
+   				AlumnoNie = ""
+
+		if 'btnGuardar' in request.POST:
+			
+			if form.is_valid():
+				form.save()	
+			return redirect('Anotacion')
+	else:
+		form = AnotacionForm()	
+			
 		
+			
+			
+	
+
+	return render(request, 'AgregarAnotacion/AgregarAnotacion.html',
+		{'form':form,
+		'AlumnoNie':AlumnoNie,
+		 'nombre': nombre,
+		 'Anot':Anot,
+		 
+		 
+		})
+
+	
 
 def administrarNotas(request):
 	AlumnoNie = ""
