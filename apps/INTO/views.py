@@ -8,7 +8,7 @@ from apps.INTO.models import *
 from decimal import Decimal
 from django.core import serializers
 # Create your views here.
-
+import time
 #vista basada en funcion para los formularios
 def creardocente(request):
 	#si el metodo es POST Hacer esto
@@ -147,7 +147,7 @@ class CrearGrado2(TemplateView):
 	
 	def post(self, request, *args, **kwargs):
 		grado=Grupo()
-		seciones={"A","B","C","D","E"}
+		secciones=("A","B","C","D","E","F")	
 		grado.nivel_especialidad=request.POST['nivel_especialidad']
 		cod_especialidad=request.POST['codigo_especialidad']
 		grado.codigo_especialidad=Especialidad.objects.get(codigo_especialidad=cod_especialidad)
@@ -155,12 +155,25 @@ class CrearGrado2(TemplateView):
 		id_docente=User.objects.get(username=docente_encargado)
 		docente =Docente.objects.get(usuario_docente=id_docente)
 		grado.codigo_docente_encargado=docente
-		seccion="B"
-		#Voy a filtrar primero segun el nivel de especialidad
-		filtro_nivel_especialidad=Grupo.objects.filter(nivel_especialidad=str(grado.nivel_especialidad))
-		#filtro_codigo_especialidad=Grupo.objects.get()
-		consulta_seccion=Grupo.objects.all();
-		print(filtro_nivel_especialidad)
+		año=int(time.strftime("%Y"))
+		seccion=""
+		"""
+		voy a filtrar por nivel_especialidad(Primero,segundo o tercer año)
+		,tambien filtra paralelamente por codigo_especialidad(para traer los de una misma especialidad)
+		y de manera tambien paralela verifica por año en el cual se creo el grupo
+		"""
+		obtener_seccion=Grupo.objects.filter(nivel_especialidad=str(grado.nivel_especialidad),codigo_especialidad=str(cod_especialidad),anio=año)
+		i=0
+		for iteracion in obtener_seccion:
+			i=i+1
+
+		if(i==0):
+			seccion=secciones[i]
+		else:
+			seccion=secciones[i]
+
+		
+		grado.anio=año
 		grado.seccion=seccion
 		algorit1=str(grado.nivel_especialidad)
 		algorit2=seccion
@@ -168,22 +181,46 @@ class CrearGrado2(TemplateView):
 		algoritTotal=algorit1+algorit2+algorit3
 		grado.codigo_grupo=algoritTotal
 		#print("Codigo "+algoritTotal)
-		#grado.save()
-		return redirect('crear_grado')
-	def get(self,request,*args,**kwargs):
-		especialidad=Especialidad.objects.all();		
+		grado.save()
+		
+		return redirect('alumno_list')
+	def get(self,request,*args,**kwargs):				
 		docente=Docente.objects.all()
-		contexto={'especialidad':especialidad,'docente':docente}
+		contexto={'docente':docente}
 		return render(request,"Alumnos/crear_grado.html",contexto)
-
+#Vistas Para retornar los objetos JSON
 from django.core import serializers
 from django.http import HttpResponse
-class BusquedaAjaxView(TemplateView):
+class BusquedaEspecialidad(TemplateView):
     def get(self,request,*args,**kwargs):
-        nivel_especialidad = request.GET['id']        
+        nivel_especialidad = request.GET['nivel']        
         especialidad=Especialidad.objects.filter(anios_especialidad__gte=nivel_especialidad)              
         data = serializers.serialize('json',especialidad)
         return HttpResponse(data, content_type='application/json')
+
+class BusquedaSeccion(TemplateView):
+    def get(self,request,*args,**kwargs):
+    	nivel = request.GET['nivel']
+    	especialidad = request.GET['especialidad']
+    	grupo = Grupo.objects.filter(nivel_especialidad=nivel, codigo_especialidad=especialidad)
+    	data = serializers.serialize('json',grupo)
+    	return HttpResponse(data, content_type='application/json')
+
+class BusquedaDocente(TemplateView):
+	def get(self,request,*args,**kwargs):
+		nivel = request.GET['nivel']
+		especialidad = request.GET['especialidad']
+		seccion =request.GET['seccion']
+		
+		print("Esta es la"+seccion)
+		docente=Grupo.objects.get(codigo_grupo=str(seccion))
+		print("Esta es la"+docente)
+		
+		#grupo_docente =Grupo.objects.filter(nivel_especialidad=nivel, codigo_especialidad=especialidad,codigo_grupo=seccion)
+		#print(grupo_docente.anio)
+		data = serializers.serialize('json',docente)
+		return HttpResponse(data, content_type='application/json')
+#Finalizacion de el retorno de objetos JSON
 #Finalizacion de la parte de alumnos
 class Vista(TemplateView):
 	template_name='base/base.html'
