@@ -1,5 +1,7 @@
 {% extends 'base/base.html'%}
 {% block title %} Agregar Evaluacion {% endblock %}
+{% block act_inicio %}{% endblock %}
+{% block act_evaluaciones %}active{% endblock %}
 {% block content %}
 <br>
        
@@ -9,6 +11,7 @@
         <b class="alertMsg">Atencion!</b> Seleccione el periodo y la actividad para cargar el formulario.
     </div>
 </div>
+
 {%if porcentajePasado and porcentajeRestante %}
     <div class="row justify-content-center">
         <div class="alert alert-warning col-6 col-md-8" style="text-align: center; margin-top: 100px;margin-bottom: 30px; font-size: 1.5em;">
@@ -51,13 +54,15 @@
                 <form name="formClasificacion" method="POST">
                     {% csrf_token %}
                     <table id="frmAgregarEva">
+                    {% if periodos %}
                         <tr class="trAgregarEva">
                             <td class="tdAgregarEva">Seleccione el periodo:&nbsp;</td> 
-                            <td class="tdAgregarEva"><input type="radio" name="periodo" value="periodo1"><b>Periodo 1&nbsp;</b></td> 
-                            <td class="tdAgregarEva"><input type="radio" name="periodo" value="periodo2"> <b>Periodo 2&nbsp;</b></td> 
-                            <td class="tdAgregarEva"><input type="radio" name="periodo" value="periodo3"> <b>Periodo 3</b></td> 
-                            <td class="tdAgregarEva"><input type="radio" name="periodo" value="periodo4"> <b>Periodo 4</b></td>
+                            <td class="tdAgregarEva"><input type="radio" name="periodo" value="{{ periodos.0.codigo_periodo }}"><b>Periodo 1&nbsp;</b></td> 
+                            <td class="tdAgregarEva"><input type="radio" name="periodo" value="{{ periodos.1.codigo_periodo }}"> <b>Periodo 2&nbsp;</b></td> 
+                            <td class="tdAgregarEva"><input type="radio" name="periodo" value="{{ periodos.2.codigo_periodo }}"> <b>Periodo 3</b></td> 
+                            <td class="tdAgregarEva"><input type="radio" name="periodo" value="{{ periodos.3.codigo_periodo }}"> <b>Periodo 4</b></td>
                         </tr>
+                    {% endif %}
                         <tr class="trAgregarEva">
                             <td class="tdAgregarEva">Seleccione la actividad:&nbsp;</td>
                             <td class="tdAgregarEva"><input type="radio" name="actividad" value="actividad1"><b>Actividad 1&nbsp;</b></td>

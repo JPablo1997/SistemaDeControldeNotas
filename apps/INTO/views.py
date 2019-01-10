@@ -628,6 +628,17 @@ def agregarEvaluacion(request):
 	periodoFinalizado = False
 	porcentajePasado = False
 
+	anioLectivos = AnioLectivo.objects.all().order_by('anio_lectivo')
+	for x in anioLectivos:
+		if not x.terminado:
+			anioLectivo = x
+			pass
+			break
+		pass
+
+	periodos = Periodo.objects.filter(codigo_periodo__contains = str(anioLectivo.anio_lectivo)).order_by('codigo_periodo')
+	contexto = {'periodos':periodos}
+
 	docente = Docente.objects.get(usuario_docente=str(request.user.id)).dui_docente
 	materiasImpartidas =  Docente_Materia.objects.filter(codigo_docente=docente)
 	for x in materiasImpartidas:
