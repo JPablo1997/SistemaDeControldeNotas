@@ -84,7 +84,7 @@ DATABASES = {
     'ENGINE': 'django.db.backends.postgresql_psycopg2',
     'NAME': 'SistemaDeControldeNotas',
     'USER':'postgres',
-    'PASSWORD':'dna',    
+    'PASSWORD':'administrador',    
 	'HOST':'localhost',
 	'PORT':5432,
     }
