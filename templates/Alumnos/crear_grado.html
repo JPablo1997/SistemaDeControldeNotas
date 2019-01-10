@@ -56,12 +56,12 @@
 {% endblock %}
 {% block extrajs %}
 <script type="text/javascript">
-	$('#nivel').on('change',inicio);
-	function inicio () {
-		 var id = $('#nivel').val();
+	$('#nivel').on('change',select_nivel);
+	function select_nivel () {
+		var nivel = $('#nivel').val();
 		 $.ajax({
-		 	data:{'id':id},
-		 	url:'/into/busqueda_ajax/',
+		 	data:{'nivel':nivel},
+		 	url:'{% url "busqueda_especialidad" %}',
 		 	type:'get',
 		 	success:function(data) {
 		 		var html="";
@@ -74,7 +74,7 @@
 
 		 		}
 		 		
-		 		if (id==0) {
+		 		if (nivel==0) {
 		 			html='<option>Seleccione Especialidad</option>';
 		 		}
 		 		$('#especialidad').html(html); 
@@ -82,5 +82,7 @@
 		 	
 		 });
 	}
+
+	
 </script>
 {% endblock %}

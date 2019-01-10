@@ -44,7 +44,9 @@ urlpatterns = [
     #Parte de Alumnos
     url(r'^ListadoAlumnos/$',ListadoAlumnos.as_view(),name="alumno_list"),
     url(r'^ListadoAlumnos/creargrado$',CrearGrado2.as_view(),name="crear_grado"),
-    url(r'^busqueda_ajax/$',BusquedaAjaxView.as_view(),name="busqueda_ajax")
+    url(r'^busqueda_especialidad/$',BusquedaEspecialidad.as_view(),name="busqueda_especialidad"),
+    url(r'^busqueda_seccion/$',BusquedaSeccion.as_view(),name="busqueda_seccion"),
+    url(r'^busqueda_docente/$',BusquedaDocente.as_view(),name="busqueda_docente")
     #Finalizacion de la parte de alumnos
 
 ]
