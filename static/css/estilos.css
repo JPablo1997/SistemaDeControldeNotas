@@ -229,7 +229,7 @@ select:focus{ outline: none;}
 
 /*Parte de Diego*/
 .navbar .navbar-nav {
-    display: inline-block;
+    display: inherit;
     float: none;
 }
 
