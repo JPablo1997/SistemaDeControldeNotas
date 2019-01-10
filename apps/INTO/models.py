@@ -148,10 +148,8 @@ class Calificacion(models.Model):
 class Anotacion(models.Model):
     nie = models.ForeignKey(Alumno,on_delete=models.CASCADE)
     dui_docente = models.ForeignKey(Docente,on_delete=models.CASCADE)
-    codigo_anotacion = models.CharField(max_length=10, primary_key=True)
+    #codigo_anotacion = models.CharField(max_length=10, primary_key=True)
     descripcion = models.CharField(max_length=150, null= False)
     fecha_anotacion = models.DateField()
     def __str__(self): 
     	return self.codigo_anotacion 
-    
-    

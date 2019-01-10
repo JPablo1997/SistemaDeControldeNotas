@@ -991,3 +991,108 @@ VALUES (19, 'Examen de Orientacion para la Vida','Que los Alumnos se desenvuelva
 INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
 VALUES (20, 'Examen de Orientacion para la Vida','Que los Alumnos se desenvuelvan bien en su vida',20, 20);
 ----------------------------------------------------Finalizacion parte DIEGO-------------------------------------------
+
+INSERT INTO public."INTO_anotacion" (id, descripcion, fecha_anotacion, dui_docente_id, nie_id) VALUES (1, 'El estudiante fue encontrado fuera del instituro en horas en que posee clases', '01/08/2018', '05833241-1', 'nie0001');
+INSERT INTO public."INTO_anotacion" (id, descripcion, fecha_anotacion, dui_docente_id, nie_id) VALUES (2, 'El estudiante cometio actos de fraude en los examenes', '01/10/2018', '05833241-1', 'nie0001');
+INSERT INTO public."INTO_anotacion" (id, descripcion, fecha_anotacion, dui_docente_id, nie_id) VALUES (3, 'El estudiante no obedece las normativas institucionales', '07/03/2019', '05833241-1', 'nie0001');
+INSERT INTO public."INTO_anotacion" (id, descripcion, fecha_anotacion, dui_docente_id, nie_id) VALUES (4, 'El estudiante no trajo su uniforme escolar y no presente ninguna justificacion ', '05/04/2018', '11534242-3', 'nie0002');
+INSERT INTO public."INTO_anotacion" (id, descripcion, fecha_anotacion, dui_docente_id, nie_id) VALUES (5, 'El estudiante muestra escenas de noviazgo no permitidos', '01/08/2018', '11534242-3', 'nie0002');
+INSERT INTO public."INTO_anotacion" (id, descripcion, fecha_anotacion, dui_docente_id, nie_id) VALUES (6, 'Al estudiante se le encotró armas corto punsantes en su mochila', '23/03/2018', '25738212-2', 'nie0003');
+INSERT INTO public."INTO_anotacion" (id, descripcion, fecha_anotacion, dui_docente_id, nie_id) VALUES (7, 'El estudiante se escapo de la institucion este dia ', '01/11/2018', '25738212-2', 'nie0003');
+INSERT INTO public."INTO_anotacion" (id, descripcion, fecha_anotacion, dui_docente_id, nie_id) VALUES (8, 'El estudiante agredio a una compañera', '02/02/2018', '05833241-1', 'nie0003');
+INSERT INTO public."INTO_anotacion" (id, descripcion, fecha_anotacion, dui_docente_id, nie_id) VALUES (9, 'El estudiante es malcriado', '01/03/2018', '01158242-3', 'nie0005');
+INSERT INTO public."INTO_anotacion" (id, descripcion, fecha_anotacion, dui_docente_id, nie_id) VALUES (10, 'El estudiante come en clases', '20/04/2018', '03532231-3', 'nie0006');
+INSERT INTO public."INTO_anotacion" (id, descripcion, fecha_anotacion, dui_docente_id, nie_id) VALUES (11, 'El estudiante no participa en actos civicos', '01/05/2018', '05417242-4', 'nie0007');
+INSERT INTO public."INTO_anotacion" (id, descripcion, fecha_anotacion, dui_docente_id, nie_id) VALUES (12, 'El estudiante se porto mal', '30/06/2018', '05417242-4', 'nie0007');
+INSERT INTO public."INTO_anotacion" (id, descripcion, fecha_anotacion, dui_docente_id, nie_id) VALUES (13, 'El estudiante', '09/04/2018', '03532231-3', 'nie0006');
+INSERT INTO public."INTO_anotacion" (id, descripcion, fecha_anotacion, dui_docente_id, nie_id) VALUES (14, 'El estudiante', '02/07/2018', '01158242-3', 'nie0005');
+INSERT INTO public."INTO_anotacion" (id, descripcion, fecha_anotacion, dui_docente_id, nie_id) VALUES (15, 'El estudiante', '05/08/2018', '05417242-4', 'nie0007');
+INSERT INTO public."INTO_anotacion" (id, descripcion, fecha_anotacion, dui_docente_id, nie_id) VALUES (16, 'El estudiante', '06/09/2018', '05833241-1', 'nie0004');
+INSERT INTO public."INTO_anotacion" (id, descripcion, fecha_anotacion, dui_docente_id, nie_id) VALUES (17, 'El estudiante', '08/10/2018', '01158242-3', 'nie0005');
+INSERT INTO public."INTO_anotacion" (id, descripcion, fecha_anotacion, dui_docente_id, nie_id) VALUES (18, 'El estudiante', '10/11/2018', '05417242-4', 'nie0007');
+INSERT INTO public."INTO_anotacion" (id, descripcion, fecha_anotacion, dui_docente_id, nie_id) VALUES (19, 'El estudiante', '01/02/2019', '05833241-1', 'nie0006');
+INSERT INTO public."INTO_anotacion" (id, descripcion, fecha_anotacion, dui_docente_id, nie_id) VALUES (20, 'El estudiante', '31/08/2019', '05833241-1', 'nie0001');
+INSERT INTO public."INTO_anotacion" (id, descripcion, fecha_anotacion, dui_docente_id, nie_id) VALUES (21, 'El estudiante', '01/03/2019', '07734242-1', 'nie0008');
+INSERT INTO public."INTO_anotacion" (id, descripcion, fecha_anotacion, dui_docente_id, nie_id) VALUES (22, 'El estudiante', '01/03/2019', '02534252-1', 'nie0009');
+INSERT INTO public."INTO_anotacion" (id, descripcion, fecha_anotacion, dui_docente_id, nie_id) VALUES (23, 'El estudiante', '02/04/2019', '02534252-1', 'nie0010');
+INSERT INTO public."INTO_anotacion" (id, descripcion, fecha_anotacion, dui_docente_id, nie_id) VALUES (24, 'El estudiante', '08/04/2019', '05417242-4', 'nie0007');
+
+
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (1, 7.26, 1,'nie0003' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (2, 8.26, 2,'nie0005' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (3, 3.4, 2,'nie0009' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (4, 7.78, 2,'nie0012' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (5, 8.46, 2,'nie0015' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (6, 7.32, 2,'nie0018' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (7, 4.78, 3,'nie0003' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (8,9.2, 3,'nie0005' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (9, 6.35, 3,'nie0009' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (10, 8.5, 3,'nie0012' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (11, 7.26, 3,'nie0015' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (12, 7.26, 3,'nie0018' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (13, 7.26, 4,'nie0003' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (14, 7.26, 4,'nie0005' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (15, 7.26, 4,'nie0009' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (16, 7.26, 4,'nie0012' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (17, 7.26, 4,'nie0018' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (18, 7.26, 4,'nie0003' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (19, 7.26, 5,'nie0005' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (20, 7.26, 5,'nie0009' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (21, 7.26, 5,'nie0012' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (22, 7.26, 5,'nie0015' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (23, 7.26, 5,'nie0018' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (24, 7.26, 5,'nie0003' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (25, 7.26, 6,'nie0005' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (26, 7.26, 6,'nie0009' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (27, 7.26, 6,'nie0012' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (28, 7.26, 6,'nie0015' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (29, 7.26, 6,'nie0018' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (30, 7.26, 6,'nie0003' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (31, 7.26, 7,'nie0005' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (32, 7.26, 7,'nie0009' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (33, 7.26, 7,'nie0012' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (34, 7.26, 7,'nie0015' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (35, 7.26, 7,'nie0018' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (36, 7.26, 7,'nie0003' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (37, 7.26, 8,'nie0005' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (38, 7.26, 8,'nie0009' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (39, 7.26, 8,'nie0012' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (40, 7.26, 8,'nie0015' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (41, 7.26, 8,'nie0018' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (42, 7.26, 8,'nie0003' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (43, 7.26, 9,'nie0005' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (44, 7.26, 9,'nie0009' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (45, 7.26, 9,'nie0012' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (46, 7.26, 9,'nie0015' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (47, 7.26, 9,'nie0018' );
+
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (48, 8.26, 10,'nie0001' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (49, 8.26, 10,'nie0006' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (50, 8.26, 10,'nie0008' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (51, 8.26, 10,'nie0011' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (52, 8.26, 10,'nie0014' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (53, 8.26, 10,'nie0017' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (54, 8.26, 10,'nie0020' );
+
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (55, 6.35, 11,'nie0001' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (56, 8.26, 11,'nie0006' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (57, 8.26, 11,'nie0008' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (58, 8.26, 11,'nie0011' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (59, 8.26, 11,'nie0014' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (60, 8.26, 11,'nie0017' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (61, 8.26, 11,'nie0020' );
+
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (62, 7.86, 12,'nie0001' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (63, 7.86, 12,'nie0006' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (64, 7.86, 12,'nie0011' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (65, 7.86, 12,'nie0014' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (66, 7.86, 12,'nie0017' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (67, 7.86, 12,'nie0020' );
+
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (68, 7.86, 13,'nie0001' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (69, 7.86, 13,'nie0006' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (70, 7.86, 13,'nie0008' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (71, 7.86, 13,'nie0011' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (72, 7.86, 13,'nie0014' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (73, 7.86, 13,'nie0017' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (74, 7.86, 13,'nie0020' );
