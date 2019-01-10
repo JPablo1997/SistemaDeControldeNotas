@@ -1,5 +1,7 @@
 {% extends 'base/base.html' %}
 {% block title %} Borrar Docente {% endblock %}
+{% block act_inicio %}{% endblock %}
+{% block act_docentes %}active{% endblock %} 
 {% block content %}
 <form method="POST">
 	{% csrf_token %}

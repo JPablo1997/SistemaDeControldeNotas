@@ -211,14 +211,14 @@ class BusquedaDocente(TemplateView):
 		nivel = request.GET['nivel']
 		especialidad = request.GET['especialidad']
 		seccion =request.GET['seccion']
+		dui_docente_encargado=""
 		
-		print("Esta es la"+seccion)
-		docente=Grupo.objects.get(codigo_grupo=str(seccion))
-		print("Esta es la"+docente)
-		
-		#grupo_docente =Grupo.objects.filter(nivel_especialidad=nivel, codigo_especialidad=especialidad,codigo_grupo=seccion)
-		#print(grupo_docente.anio)
+		grupo_docente =Grupo.objects.filter(nivel_especialidad=nivel, codigo_especialidad=especialidad,codigo_grupo=seccion)
+		for share in grupo_docente:
+			dui_docente_encargado=share.codigo_docente_encargado.dui_docente
+		docente=Docente.objects.filter(dui_docente=dui_docente_encargado)
 		data = serializers.serialize('json',docente)
+
 		return HttpResponse(data, content_type='application/json')
 #Finalizacion de el retorno de objetos JSON
 #Finalizacion de la parte de alumnos
