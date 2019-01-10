@@ -1,5 +1,7 @@
 {% extends 'base/base.html' %}
 {% block title %} Crear Grado {% endblock %}
+{% block act_inicio %}{% endblock %}
+{% block act_alumnos %}active{% endblock %}
 {% block content %}
 <form method="post">
 	{% csrf_token %}

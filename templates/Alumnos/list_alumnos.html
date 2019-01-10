@@ -20,13 +20,13 @@
 		<hr>
 		<dt>Seleccione la Especialidad</dt>
 		<select name="codigo_especialidad" id="especialidad" class="form-control">
-				<option>Seleccione Opcion</option>				
+				<option value="0">Seleccione Opcion</option>				
 		</select>
 		<hr>
 		<hr>
 		<dt>Seleccione la Seccion</dt>
 		<select name="seccion" id="seccion" class="form-control">
-			<option >Seleccione Opcion</option>			
+			<option value="0">Seleccione Opcion</option>			
 		</select>
 		<hr>
 		<hr>
@@ -70,11 +70,13 @@
 				<label class="sr-only" for="nie">Nombre: </label>
 				<input class="form-control" id="nie" type="text" placeholder="Telefono:">
 			</div>
-			<div>
-				<dt class="text-justify">Codigo de Grupo: 01</dt>
+			<div class="ml-auto" >
+				<dt>Codigo de Grupo: <div class="text-center" id="grupo_id">00</div></dt>
 			</div>
-			<button class="btn btn-danger ml-auto">Agregar Alumno</button>
+			<a id="boton" class="btn btn-danger ml-auto" disabled>Agregar Alumno</a>
+			<!--<button id="boton" class="btn btn-danger ml-auto" disabled>Agregar Alumno</button>-->
 		</form>
+		
 		<hr>
 		<div class="table-responsive">
 			<table class="table table-bordered table-hover">
@@ -92,6 +94,7 @@
 					
 				</tbody>
 			</table>
+			<h1 class="text-center">No Hay Datos</h1>
 		</div>
 	</div>	
 </div>
@@ -100,37 +103,47 @@
 {% endblock %}
 {% block extrajs %}
 <script type="text/javascript">
+
 	$('#nivel').on('change',select_nivel);
 	function select_nivel () {
 		var nivel = $('#nivel').val();
 		var especialidad = $('#especialidad').val();
+		
 		$.ajax({
 		 	data:{'nivel':nivel},
 		 	url:'{% url "busqueda_especialidad" %}',
 		 	type:'get',
 		 	success:function(data) {
 		 		var html="";
-		 		var html2="<option>Seleccione Opcion</option>";
+		 		var html2='<option value="0">Seleccione Opcion</option>';
 		 		var html3='<dd>-----------------</dd>';
-		 		html+='<option>Seleccione Opcion</option>';
+		 		html+='<option value="0">Seleccione Opcion</option>';
 		 		for(var i = 0; i<data.length; i++){
 		 			html += '<option value="'+data[i].pk+'">'+data[i].fields.nombre_especialidad+'</option>';
 		 		}		 		
 		 		if (nivel==0) {
-		 			html='<option>Seleccione Opcion</option>';
-		 			html2='<option>Seleccione Opcion</option>';
+		 			html='<option value="0">Seleccione Opcion</option>';
+		 			html2='<option value="0">Seleccione Opcion</option>';
 		 			html3='<dd>-----------------</dd>';
+		 			$('#boton').attr("disabled", true);
+		 			$('#grupo_id').html('00');
+		 			
 		 		}
+		 		$('#boton').attr("disabled", true);	 		
+		 		$('#grupo_id').html('00');
 		 		$('#especialidad').html(html);
 		 		$('#seccion').html(html2);
-		 		$('#docente').html(html3); 
+		 		$('#docente').html(html3);
+
+
 		 	}		 	
 		});
 	}
 	$('#especialidad').on('change',select_especialidad);
 	function select_especialidad () {
 		var nivel = $('#nivel').val();
-		var especialidad = $('#especialidad').val();		
+		var especialidad = $('#especialidad').val();
+		var seccion = $('#seccion').val();		
 		$.ajax({
 		 	data:{'especialidad':especialidad,'nivel':nivel},
 		 	url:'{% url "busqueda_seccion" %}',
@@ -145,7 +158,11 @@
 		 		if (especialidad==0) {
 		 			html='<option value="0">Seleccione Opcion</option>';
 		 			html2='<dd>-----------------</dd>';
+		 			$('#boton').attr("disabled", true);
+		 			$('#grupo_id').html('00');
 		 		}
+		 		$('#boton').attr("disabled", true);
+		 		$('#grupo_id').html('00');
 		 		$('#seccion').html(html);
 		 		$('#docente').html(html2); 
 		 	}
@@ -169,10 +186,43 @@
 		 		}		 		
 		 		if (seccion==0) {
 		 			html+='<dd>-----------------</dd>';
+		 			$('#boton').attr("disabled", true);
+		 		}
+		 		else {
+		 			$('#boton').attr("disabled", false);
 		 		}
 		 		$('#docente').html(html); 
 		 	}		 	
 		});
+		$.get({
+			data:{'especialidad':especialidad,'nivel':nivel,'seccion':seccion},
+		 	url:'{% url "busqueda_grupo" %}',
+		 	
+		 	success:function(data) {
+		 		var html="";
+		 				 		
+		 		for(var i = 0; i<data.length; i++){
+
+		 			html += data[i].pk;
+		 		}		 		
+		 		if (seccion==0) {
+		 			html+='00';
+		 			$('#boton').attr("disabled", true);
+		 		}
+		 		else {
+		 			$('#boton').attr("disabled", false);
+		 		}
+		 		$('#grupo_id').html(html); 
+		 	}
+		});
+	
+
 	}
+	$('#boton').on('click',select_grupo);
+	function select_grupo () {
+		var codigoGrupo=$('#grupo_id').text();
+		console.log(codigoGrupo);
+	}
+	
 </script>
 {% endblock %}
