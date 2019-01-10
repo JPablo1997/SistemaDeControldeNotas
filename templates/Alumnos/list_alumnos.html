@@ -73,8 +73,8 @@
 			<div class="ml-auto" >
 				<dt>Codigo de Grupo: <div class="text-center" id="grupo_id">00</div></dt>
 			</div>
-			<a id="boton" class="btn btn-danger ml-auto" disabled>Agregar Alumno</a>
-			<!--<button id="boton" class="btn btn-danger ml-auto" disabled>Agregar Alumno</button>-->
+			
+			<button id="boton" class="btn btn-danger ml-auto" disabled>Agregar Alumno</button>
 		</form>
 		
 		<hr>
@@ -222,6 +222,9 @@
 	function select_grupo () {
 		var codigoGrupo=$('#grupo_id').text();
 		console.log(codigoGrupo);
+		$.ajax({
+			
+		});
 	}
 	
 </script>

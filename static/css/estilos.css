@@ -227,4 +227,13 @@ select:focus{ outline: none;}
   font-size: 2em;
 }
 
+/*Parte de Diego*/
+.navbar .navbar-nav {
+    display: inline-block;
+    display: inherit;
+    float: none;
+}
 
+.navbar .navbar-collapse {
+    text-align: center;
+} 
