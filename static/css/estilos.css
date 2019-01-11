@@ -1,6 +1,4 @@
-.bg-light {
-    background-color: lavender;
-  }
+
 .h4
   {
       border-color: blue;
@@ -227,13 +225,7 @@ select:focus{ outline: none;}
   font-size: 2em;
 }
 
-/*Parte de Diego*/
-.navbar .navbar-nav {
-    display: inline-block;
-    display: inherit;
-    float: none;
-}
 
-.navbar .navbar-collapse {
-    text-align: center;
-} 
+.color-navbar {
+    background-color: lavender;
+}
