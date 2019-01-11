@@ -41,10 +41,8 @@ class Encargado(models.Model):
     dui_encargado = models.CharField(max_length=12, primary_key=True)
     nombre_encargado = models.CharField(max_length=35)
     apellidos_encargado = models.CharField(max_length=35)
-    email = models.CharField(max_length=35)
     telefono = models.CharField(max_length=10, null=True)
     celular = models.CharField(max_length=10)
-    oficio_profesion = models.CharField(max_length=50)
     parentesco = models.CharField(max_length=20)
     def __str__(self): 
     	return self.nombre_encargado 
@@ -104,14 +102,14 @@ class Periodo(models.Model):
     finalizado = models.BooleanField(help_text="Indica si el periodo ya ha finalizado")
         
 class Tipo_actividad(models.Model):
-    codigo_tipo_actividad = models.CharField(max_length=10, primary_key=True)
+    codigo_tipo_actividad = models.CharField(max_length=15, primary_key=True)
     nombre_tipo_actividad = models.CharField(max_length=50)
     descripcion = models.CharField(max_length=150)
     def __str__(self): 
     	return self.nombre_tipo_actividad 
 
 class Actividad(models.Model):
-    codigo_actividad = models.CharField(max_length=15,primary_key=True)
+    codigo_actividad = models.CharField(max_length=30,primary_key=True)
     codigo_tipo_actividad = models.ForeignKey(Tipo_actividad,help_text="Ingrese el tipo de actividad, por ejemplo si es examen o exposicion", on_delete=models.CASCADE)
     porcentaje_actividad = models.DecimalField(max_digits=5,decimal_places=4)
     codigo_periodo = models.ForeignKey(Periodo,on_delete=models.CASCADE)
@@ -120,7 +118,7 @@ class Actividad(models.Model):
     	return self.codigo_actividad 
 
 class Sub_Actividad(models.Model):
-    codigo_sub_actividad = models.CharField(max_length=15,primary_key=True)
+    codigo_sub_actividad = models.CharField(max_length=25,primary_key=True)
     codigo_actividad = models.ForeignKey(Actividad,on_delete=models.CASCADE)
     porcentaje_sub_actividad = models.DecimalField(max_digits=10,decimal_places=2)
     descripcion_sub_actividad = models.CharField(max_length=150,null=True)
@@ -132,7 +130,7 @@ class Docente_Materia(models.Model):
     codigo_materia = models.ForeignKey(Materia,on_delete=models.CASCADE)
 
 class Evaluacion(models.Model):
-    codigo_evaluacion = models.CharField(max_length=15,primary_key=True)
+    codigo_evaluacion = models.CharField(max_length=35,primary_key=True)
     nombre_evaluacion = models.CharField(max_length=50)
     descripcion_evaluacion = models.CharField(max_length= 150,null= True)
     codigo_docente_materia = models.ForeignKey(Docente_Materia,on_delete=models.CASCADE)
