@@ -7,6 +7,7 @@ from django.http import HttpResponse,HttpResponseRedirect
 from apps.INTO.models import *
 from decimal import Decimal
 from django.core import serializers
+from django.contrib import messages
 # Create your views here.
 import time
 #vista basada en funcion para los formularios
@@ -265,25 +266,69 @@ def anotacion(request):
 	AlumnoDato	= Alumno()
 	AnotacionDato = Anotacion()
 	Anot = []
-
+	codigoGrupo = ""
+	AlumnoGrupo = Alumno_Grupo()
+	GrupoE= Grupo()
+	codigoDocente = ""
+	idUser = request.user.id
+	duiDocente = ""
+	docente = Docente()
+	message = "Anotaciones"
+	
 	if request.method == 'POST':
 		form = AnotacionForm(request.POST)
 		if 'btnConsultar' in request.POST:
-			AlumnoNie = request.POST.get('inputNie')		
+			AlumnoNie = request.POST.get('inputNie')
+			AlumnoGrupo = Alumno_Grupo.objects.get(nie=AlumnoNie)
+			codigoGrupo = AlumnoGrupo.codigo_grupo
+			GrupoE = Grupo.objects.get(codigo_grupo=codigoGrupo)
+			codigoDocente = GrupoE.codigo_docente_encargado_id
+			docente = Docente.objects.get(usuario_docente_id=idUser)
+			dui_docente = docente.dui_docente
+			if codigoDocente == dui_docente:
+				try:
+	   				AlumnoDato = Alumno.objects.get(nie=AlumnoNie)
+	   				Anot=Anotacion.objects.filter(nie_id=AlumnoNie)
+	   				nombre = AlumnoDato.nombre_alumno + " "+ AlumnoDato.apellidos_alumno
+	   				
+				except Alumno.DoesNotExist:
+	   				AlumnoDato = None
+	   				AlumnoNie = ""	
+
+
+
+
+
+
 			
 
-			try:
-   				AlumnoDato = Alumno.objects.get(nie=AlumnoNie)
-   				Anot=Anotacion.objects.filter(nie_id=AlumnoNie)
-   				nombre = AlumnoDato.nombre_alumno + " "+ AlumnoDato.apellidos_alumno
-			except Alumno.DoesNotExist:
-   				AlumnoDato = None
-   				AlumnoNie = ""
+			
 
 		if 'btnGuardar' in request.POST:
 			
-			if form.is_valid():
-				form.save()	
+			AlumnoNie = request.POST.get('nie')
+			AlumnoGrupo = Alumno_Grupo.objects.get(nie=AlumnoNie)
+			codigoGrupo = AlumnoGrupo.codigo_grupo
+			GrupoE = Grupo.objects.get(codigo_grupo=codigoGrupo)
+			codigoDocente = GrupoE.codigo_docente_encargado_id
+			docente = Docente.objects.get(usuario_docente_id=idUser)
+			dui_docente = docente.dui_docente
+			if codigoDocente == dui_docente:
+				if form.is_valid():
+
+					anotacionFinal = Anotacion()
+					doc = Docente()
+					alu = Alumno()
+					ni = request.POST.get('nie')
+					alu = Alumno.objects.get(nie=ni)
+					doc = Docente.objects.get(dui_docente=dui_docente)
+					anotacionFinal.nie = alu
+					anotacionFinal.dui_docente = doc
+					anotacionFinal.descripcion = request.POST.get('descripcion')
+					anotacionFinal.fecha_anotacion = request.POST.get('fecha_anotacion')
+					anotacionFinal.save()	
+			
+			
 			return redirect('Anotacion')
 	else:
 		form = AnotacionForm()	
@@ -298,6 +343,7 @@ def anotacion(request):
 		'AlumnoNie':AlumnoNie,
 		 'nombre': nombre,
 		 'Anot':Anot,
+		 'message' : message,
 		 
 		 
 		})
@@ -552,7 +598,17 @@ def listaEvaluacion(request):
 		materias.append(Materia.objects.get(codigo_materia = x.codigo_materia.codigo_materia))
 		pass
 
-	contexto = {'materias':materias}
+	anioLectivos = AnioLectivo.objects.all().order_by('anio_lectivo')
+	for x in anioLectivos:
+		if not x.terminado:
+			anioLectivo = x
+			pass
+			break
+		pass
+
+	periodos = Periodo.objects.filter(codigo_periodo__contains = str(anioLectivo.anio_lectivo)).order_by('codigo_periodo')
+
+	contexto = {'materias':materias, 'periodos':periodos}
 
 	if 'btnCargarEvaluaciones' in request.GET:
 
@@ -645,7 +701,14 @@ def agregarEvaluacion(request):
 		pass
 
 	periodos = Periodo.objects.filter(codigo_periodo__contains = str(anioLectivo.anio_lectivo)).order_by('codigo_periodo')
-	contexto = {'periodos':periodos}
+	periodos_acts = []
+
+	for periodo in periodos:
+		periodos_acts.append(Actividad.objects.filter(codigo_periodo = periodo).order_by('codigo_actividad'))
+		pass
+
+
+	contexto = {'periodos_acts':periodos_acts, 'periodos':periodos}
 
 	docente = Docente.objects.get(usuario_docente=str(request.user.id)).dui_docente
 	materiasImpartidas =  Docente_Materia.objects.filter(codigo_docente=docente)
@@ -665,7 +728,10 @@ def agregarEvaluacion(request):
 				pass
 				break
 			pass
-		if request.POST['actividad'] == 'actividad1' or request.POST['actividad'] == 'actividad2':
+
+		tipo_actividad = Actividad.objects.get(codigo_actividad = actividad).codigo_tipo_actividad
+
+		if tipo_actividad.codigo_tipo_actividad is not 'Examen':
 			periodoSolicitado = Periodo.objects.get(codigo_periodo = periodo, anio_lectivo = anioLectivo)
 
 			if periodoSolicitado.finalizado:
@@ -750,3 +816,13 @@ def editarEvaluacion(request, id_evaluacion):
 		Sub_Actividad.objects.filter(codigo_sub_actividad = evaluacion.codigo_sub_actividad.codigo_sub_actividad).update(porcentaje_sub_actividad = request.POST['porcentajeSubActividad'], descripcion_sub_actividad = request.POST['descripcionSubActividad'])
 		return redirect('/into/listaEvaluacion/')
 	return render(request, 'AgregarEvaluacion/editarEvaluacion.html',{'evaluacion':evaluacion})
+
+def servidorActividades(request):
+	codigo_periodo = request.GET['codigo_periodo']
+	actividades = Actividad.objects.filter(codigo_periodo = codigo_periodo).order_by('codigo_actividad')
+	data = serializers.serialize("json", actividades)
+
+	return HttpResponse(data, content_type='application/json')
+
+def Expediente(request):
+	return render (request,'expediente/expediente.html')
