@@ -37,52 +37,53 @@
 
     <div >
       {% block navbar %}
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+    <nav class="navbar navbar-expand-lg navbar-light color-navbar ">
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav">
-              <li class="nav-item {% block act_inicio %}active{% endblock %}">
-                <a class="nav-link" href="{% url 'index'%}"><i class="fas fa-home"></i> Inicio </a>
+          <div class="collapse navbar-collapse justify-content-center " id="navbarNavDropdown">
+            <ul class="navbar-nav nav-tabs ">
+              <li class="nav-item ">
+                <a class="nav-link {% block act_inicio %}active{% endblock %}" href="{% url 'index'%}"><i class="fas fa-home"></i> Inicio </a>
               </li>
               {% if user.is_superuser == False and user.is_staff == True %}
-              <li class="nav-item {% block act_ingresarNotas %}{% endblock %}">
-                <a class="nav-link" href="{% url 'ingresarNotas'%}"><i class="fas fa-pen"></i> Ingresar Notas</a>
+              <li class="nav-item ">
+                <a class="nav-link {% block act_ingresarNotas %}{% endblock %}" href="{% url 'ingresarNotas'%}"><i class="fas fa-pen"></i> Ingresar Notas</a>
               </li>
               {% endif %}
               {% if user.is_superuser == False and user.is_staff == True %}
-              <li class="nav-item {% block act_evaluaciones %}{% endblock %}">
-                <a class="nav-link" href="{% url 'listaEvaluacion' %}"><i class="fas fa-plus-square"></i> Evaluaciones</a>
+              <li class="nav-item ">
+                <a class="nav-link {% block act_evaluaciones %}{% endblock %}" href="{% url 'listaEvaluacion' %}"><i class="fas fa-plus-square"></i> Evaluaciones</a>
               </li>
               {% endif %}
               {% if user.is_superuser == True and user.is_staff == True %}
-              <li class="nav-item {% block act_administrarNotas %}{% endblock %}">
-                <a class="nav-link" href="{% url 'administrar' %}"><i class="fas fa-edit"></i> Administrar Notas</a>
+              <li class="nav-item ">
+                <a class="nav-link {% block act_administrarNotas %}{% endblock %}" href="{% url 'administrar' %}"><i class="fas fa-edit"></i> Administrar Notas</a>
               </li>
               {% endif %}
               {% if user.is_superuser == False and  user.is_staff == True %}
-              <li class="nav-item {% block act_anotaciones %}{% endblock %}">
-                <a class="nav-link" href="{% url 'Anotacion' %}"><i class="fas fa-edit"></i> Anotaciones</a>
+              <li class="nav-item ">
+                <a class="nav-link {% block act_anotaciones %}{% endblock %}" href="{% url 'Anotacion' %}"><i class="fas fa-edit"></i> Anotaciones</a>
               </li>
               {% endif %}
               {% if user.is_superuser == True and  user.is_staff == True %}
-              <li class="nav-item {% block act_alumnos %}{% endblock %}">
-                <a class="nav-link " href="{% url 'alumno_list'%}"><i class="fas fa-book-open"></i> Alumnos</a>
+              <li class="nav-item ">
+                <a class="nav-link {% block act_alumnos %}{% endblock %}" href="{% url 'alumno_list'%}"><i class="fas fa-book-open"></i> Alumnos</a>
               </li>
               {% endif %}
               {% if user.is_superuser == True and  user.is_staff == True %}
-              <li class="nav-item {% block act_docentes %}{% endblock %}">
-                <a class="nav-link" href="{% url 'docentes-list' %}"><i class="fas fa-chalkboard-teacher"></i> Docentes</a>
+              <li class="nav-item ">
+                <a class="nav-link {% block act_docentes %}{% endblock %}" href="{% url 'docentes-list' %}"><i class="fas fa-chalkboard-teacher"></i> Docentes</a>
               </li>
               {% endif %}
               {% if user.is_superuser == False and user.is_staff == False %}
-              <li class="nav-item {% block act_expediente %}{% endblock %}">
-                <a class="nav-link" href="#"><i class="fas fa-award"></i> Expediente</a>
+              <li class="nav-item ">
+                <a class="nav-link {% block act_expediente %}{% endblock %}" href="#"><i class="fas fa-award"></i> Expediente</a>
               </li>
               {% endif %}
-              <li class="nav-item {% block act_datosEstadisticos %}{% endblock %}">
-                <a class="nav-link" href="{% url 'estadisticas' %}"><i class="fas fa-chart-bar"></i> Datos Estadísticos</a>
+              <li class="nav-item ">
+                <a class="nav-link {% block act_datosEstadisticos %}{% endblock %}" href="{% url 'estadisticas' %}"><i class="fas fa-chart-bar"></i> Datos Estadísticos</a>
               </li>              
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fas fa-user"></i>
