@@ -110,6 +110,7 @@ class Tipo_actividad(models.Model):
 
 class Actividad(models.Model):
     codigo_actividad = models.CharField(max_length=30,primary_key=True)
+    nombre_actividad = models.CharField(max_length=30)
     codigo_tipo_actividad = models.ForeignKey(Tipo_actividad,help_text="Ingrese el tipo de actividad, por ejemplo si es examen o exposicion", on_delete=models.CASCADE)
     porcentaje_actividad = models.DecimalField(max_digits=5,decimal_places=4)
     codigo_periodo = models.ForeignKey(Periodo,on_delete=models.CASCADE)

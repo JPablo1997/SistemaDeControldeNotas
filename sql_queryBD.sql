@@ -344,106 +344,106 @@ INSERT INTO public."INTO_materia" (codigo_materia, nombre_materia,descripcion_ma
 
 
 -------------------------------------------ALUMNO--------------------------------------------
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0001', 'Juan José', 'Pereira Sosa', '12/04/2000', '7851-5468','casa de su mamá','M', '01/01/2018', '01234560-1','esp_contab',1);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0002', 'Pedro', 'andrade', '04/07/1999', '7851-5468','casa de su mamá','M', '01/01/2017', '01234560-1','esp_contab',2);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0003', 'Alcides Juan', 'arevalo', '04/10/2000', '7851-5468','casa de su mamá','M', '01/01/2019', '01234560-2','esp_contab',3);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0004', 'Balmore', 'aristides', '12/04/2001', '7851-5468','casa de su mamá','M', '01/01/2017', '01234560-2','esp_contab',4);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0005', 'Juan', 'aguilar', '12/07/1999', '7851-5468','casa de su mamá','M', '01/01/2019', '01234560-3','esp_contab',5);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0006', 'José', 'andino', '02/01/2000', '7851-5468','casa de su mamá','M', '01/01/2018', '01234560-3','esp_contab',6);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0007', 'Augusto', 'batres', '12/12/2002', '7851-5468','casa de su mamá','M', '01/01/2017', '01234560-4','esp_contab',7);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0008', 'Arturo', 'binagrosa', '08/02/2002', '7851-5468','casa de su mamá','M', '01/01/2018', '01234560-4','esp_contab',8);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0009', 'Agustin', 'bonilla', '30/04/2000', '7851-5468','casa de su mamá','M', '01/01/2019', '01234560-5','esp_contab',9);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0010', 'Buso', 'cabrera', '31/03/2001', '7851-5468','casa de su mamá','M', '01/01/2017', '01234560-5','esp_contab',10);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0011', 'Boni', 'cordoba', '06/01/2000', '7851-5468','casa de su mamá','M', '01/01/2018', '01234560-6','esp_contab',11);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0012', 'Carlos', 'campos', '01/01/1009', '7851-5468','casa de su mamá','M', '01/01/2019', '01234560-6','esp_contab',12);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0013', 'cesar', 'cordero', '02/02/2000', '7851-5468','casa de su mamá','M', '01/01/2017', '01234560-7','esp_contab',13);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0014', 'cornelio', 'castro', '03/03/2001', '7851-5468','casa de su mamá','M', '01/01/2018', '01234560-7','esp_contab',14);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0015', 'cinimaro', 'casas', '04/04/2002', '7851-5468','casa de su mamá','M', '01/01/2019', '01234560-8','esp_contab',15);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0016', 'causto', 'cuellar', '05/05/1999', '7851-5468','casa de su mamá','M', '01/01/2017', '01234560-8','esp_contab',16);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0017', 'daniel', 'duarte', '06/06/2000', '7851-5468','casa de su mamá','M', '01/01/2018', '01234560-9','esp_contab',17);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0018', 'dante', 'alvarez', '07/07/2001', '7851-5468','casa de su mamá','M', '01/01/2019', '01234560-9','esp_contab',18);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0019', 'Dimaria', 'davila', '08/08/2002', '7851-5468','casa de su mamá','M', '01/01/2017', '01234561-0','esp_contab',19);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0020', 'Aquiles', 'dolores', '09/09/1999', '7851-5468','casa de su mamá','M', '01/01/2018', '01234561-0','esp_contab',20);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0021', 'Enrique', 'espinoza', '10/10/2000', '7851-5468','casa de su mamá','M', '01/01/2019', '01234561-1','esp_dsw',21);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0022', 'Ernesto', 'estrada', '11/11/2001', '7851-5468','casa de su mamá','M', '01/01/2017', '01234561-1','esp_dsw',22);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0023', 'emerson', 'figueroa', '12/12/2002', '7851-5468','casa de su mamá','M', '01/01/2018', '01234561-2','esp_dsw',23);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0024', 'Aristides', 'fuentes', '13/01/2003', '7851-5468','casa de su mamá','M', '01/01/2019', '01234560-2','esp_dsw',24);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0025', 'Eber', 'funes', '14/02/1999', '7851-5468','casa de su mamá','M', '01/01/2017', '01234561-3','esp_dsw',25);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0026', 'elias', 'Pereira', '15/03/2000', '7851-5468','casa de su mamá','M', '01/01/2018', '01234561-3','esp_dsw',26);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0027', 'eliezer', 'ferro', '16/05/2001', '7851-5468','casa de su mamá','M', '01/01/2019', '01234561-4','esp_dsw',27);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0028', 'fabricio', 'jurado', '17/06/2002', '7851-5468','casa de su mamá','M', '01/01/2017', '01234561-4','esp_dsw',28);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0029', 'fabian', 'linares', '18/07/2003', '7851-5468','casa de su mamá','M', '01/01/2018', '01234561-5','esp_dsw',29);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0030', 'fabio', 'lisvoa', '19/08/1998', '7851-5468','casa de su mamá','M', '01/01/2019', '01234561-5','esp_dsw',30);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0031', 'gustavo', 'lima', '20/09/1999', '7851-5468','casa de su mamá','M', '01/01/2017', '01234561-6','esp_dsw',31);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0032', 'hugo', 'lula', '21/10/2000', '7851-5468','casa de su mamá','M', '01/01/2018', '01234561-6','esp_dsw',32);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0033', 'antonio', 'dasilva', '22/11/2001', '7851-5468','casa de su mamá','M', '01/01/2019', '01234561-7','esp_dsw',33);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0034', 'jorge', 'marroquin', '23/12/2002', '7851-5468','casa de su mamá','M', '01/01/2017', '01234561-7','esp_dsw',34);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0035', 'jilberto', 'masariego', '24/01/2003', '7851-5468','casa de su mamá','M', '01/01/2018', '01234561-8','esp_dsw',35);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0036', 'Jonathan', 'martinez', '25/02/2004', '7851-5468','casa de su mamá','M', '01/01/2019', '01234561-8','esp_dsw',36);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0037', 'cristian', 'morales', '26/03/1998', '7851-5468','casa de su mamá','M', '01/01/2017', '01234561-9','esp_dsw',37);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0038', 'karlos', 'medina', '27/04/1999', '7851-5468','casa de su mamá','M', '01/01/2018', '01234561-9','esp_dsw',38);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0039', 'kabuto', 'mostraviego', '28/05/2000', '7851-5468','casa de su mamá','M', '01/01/2019', '01234562-0','esp_dsw',39);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0040', 'naruto', 'estupinian', '29/06/2001', '7851-5468','casa de su mamá','M', '01/01/2017', '01234562-0','esp_dsw',40);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0041', 'gilberto', 'menjivar', '30/07/2002', '7851-5468','casa de su mamá','M', '01/01/2018', '01234562-1','esp_genral',41);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0042', 'givo', 'maravilla', '31/08/2003', '7851-5468','casa de su mamá','M', '01/01/2019', '01234562-1','esp_genral',42);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0043', 'leandro', 'najera', '01/09/1998', '7851-5468','casa de su mamá','M', '01/01/2017', '01234522-2','esp_genral',43);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0044', 'leonel', 'nogeira', '02/10/1999', '7851-5468','casa de su mamá','M', '01/01/2018', '01234522-2','esp_genral',44);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0045', 'Leo', 'novert', '03/11/2000', '7851-5468','casa de su mamá','M', '01/01/2019', '01234562-3','esp_genral',45);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0046', 'Ludovico', 'osorio', '04/12/2001', '7851-5468','casa de su mamá','M', '01/01/2017', '01234562-3','esp_genral',46);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0047', 'marco', 'Perez', '05/01/2002', '7851-5468','casa de su mamá','M', '01/01/2018', '01234562-4','esp_genral',47);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0048', 'marcos', 'Pereira', '06/02/2003', '7851-5468','casa de su mamá','M', '01/01/2019', '01234562-4','esp_genral',48);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0049', 'manrique', 'Pereira perez', '07/03/1998', '7851-5468','casa de su mamá','M', '01/01/2017', '01234562-5','esp_genral',49);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0050', 'margarito', 'Pereira nieto', '08/04/1999', '7851-5468','casa de su mamá','M', '01/01/2018', '01234562-5','esp_genral',50);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0051', 'mercedes', 'arias', '09/05/2000', '7851-5468','casa de su mamá','F', '01/01/2019', '01234562-6','esp_genral',51);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0052', 'nicolas', 'garcia', '10/06/2001', '7851-5468','casa de su mamá','F', '01/01/2017', '01234562-6','esp_genral',52);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0053', 'nico', 'hernandez', '11/07/2002', '7851-5468','casa de su mamá','F', '01/01/2018', '01234562-7','esp_genral',53);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0054', 'nicho', 'lopez', '12/08/2003', '7851-5468','casa de su mamá','F', '01/01/2019', '01234562-7','esp_genral',54);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0055', 'andrea', 'dimas', '13/09/1999', '7851-5468','casa de su mamá','F', '01/01/2017', '01234562-8','esp_genral',55);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0056', 'andres', 'abarca', '14/10/2000', '7851-5468','casa de su mamá','F', '01/01/2018', '01234562-8','esp_genral',56);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0057', 'abigail', 'pineda', '15/11/2001', '7851-5468','casa de su mamá','F', '01/01/2019', '01234562-9','esp_genral',57);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0058', 'antonia', 'Pomes', '16/12/2002', '7851-5468','casa de su mamá','F', '01/01/2017', '01234562-9','esp_genral',58);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0059', 'agustina', 'Poma', '17/01/2003', '7851-5468','casa de su mamá','F', '01/01/2018', '01234563-0','esp_genral',60);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0060', 'bety', 'puma', '18/02/1999', '7851-5468','casa de su mamá','F', '01/01/2019', '01234563-0','esp_genral',61);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0061', 'beatriz', 'Peraza', '19/03/2000', '7851-5468','casa de su mamá','F', '01/01/2017', '01234563-1','esp_hyt',62);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0062', 'carla', 'Peralte', '20/04/2001', '7851-5468','casa de su mamá','F', '01/01/2018', '01234563-1','esp_hyt',63);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0063', 'cecia', 'quevedo', '21/05/2002', '7851-5468','casa de su mamá','F', '01/01/2019', '01234523-2','esp_hyt',64);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0064', 'cecia', 'quiros', '22/06/2003', '7851-5468','casa de su mamá','F', '01/01/2017', '01234523-2','esp_hyt',65);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0065', 'cecilia', 'Puentes', '23/07/2004', '7851-5468','casa de su mamá','F', '01/01/2018', '01234563-3','esp_hyt',66);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0066', 'clemente', 'ramos', '24/08/1999', '7851-5468','casa de su mamá','F', '01/01/2019', '01234563-3','esp_hyt',67);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0067', 'clementina', 'ramirez', '25/09/2000', '7851-5468','casa de su mamá','F', '01/01/2017', '01234563-4','esp_hyt',68);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0068', 'alejandra', 'rivera', '26/10/2001', '7851-5468','casa de su mamá','F', '01/01/2018', '01234563-4','esp_hyt',69);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0069', 'alexandra', 'rosco', '27/11/2002', '7851-5468','casa de su mamá','F', '01/01/2019', '01234563-5','esp_hyt',70);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0070', 'alondra', 'suarez', '28/12/2003', '7851-5468','casa de su mamá','F', '01/01/2017', '01234563-5','esp_hyt',71);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0071', 'alba', 'Sosa', '29/04/2000', '7851-5468','casa de su mamá','F', '01/01/2018', '01234563-6','esp_hyt',72);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0072', 'carmen', 'toloza', '30/04/2000', '7851-5468','casa de su mamá','F', '01/01/2019', '01234563-6','esp_hyt',73);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0073', 'camelia', 'toledo', '01/05/2000', '7851-5468','casa de su mamá','F', '01/01/2017', '01234563-7','esp_hyt',74);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0074', 'daniela', 'umaña', '02/05/2000', '7851-5468','casa de su mamá','F', '01/01/2018', '01234563-7','esp_hyt',75);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0075', 'dalia', 'vasquez', '12/05/2000', '7851-5468','casa de su mamá','F', '01/01/2019', '01234563-8','esp_hyt',76);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0076', 'dalila ', 'ventura', '03/05/2000', '7851-5468','casa de su mamá','F', '01/01/2017', '01234563-8','esp_hyt',77);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0077', 'dinora', 'flores', '04/05/2000', '7851-5468','casa de su mamá','F', '01/01/2018', '01234563-9','esp_hyt',78);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0078', 'dolores', 'barillas', '05/05/2000', '7851-5468','casa de su mamá','F', '01/01/2019', '01234564-0','esp_hyt',79);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0079', 'enriqueta', 'cabrera', '06/06/2000', '7851-5468','casa de su mamá','F', '01/01/2017', '01234564-0','esp_hyt',80);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0080', 'ernesta', 'Perez', '07/06/2000', '7851-5468','casa de su mamá','F', '01/01/2018', '01234560-1','esp_secret',81);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0081', 'fatima', 'linares', '08/07/2000', '7851-5468','casa de su mamá','F', '01/01/2019', '01234560-1','esp_secret',82);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0082', 'faustina', 'arias', '09/05/2000', '7851-5468','casa de su mamá','F', '01/01/2017', '01234561-2','esp_secret',83);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0083', 'ingrid', 'nieto', '10/05/2000', '7851-5468','casa de su mamá','F', '01/01/2018', '01234561-2','esp_secret',84);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0084', 'isela', 'osorio', '12/04/2000', '7851-5468','casa de su mamá','F', '01/01/2019', '01234561-3','esp_secret',59);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0085', 'juana', 'marroquin', '12/04/2000', '7851-5468','casa de su mamá','F', '01/01/2017', '01234562-3','esp_secret',85);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0086', 'josefa', 'gavidia', '12/04/2000', '7851-5468','casa de su mamá','F', '01/01/2018', '01234562-4','esp_secret',86);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0087', 'eunice', 'gomez', '12/04/2000', '7851-5468','casa de su mamá','F', '01/01/2019', '01234563-4','esp_secret',87);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0088', 'aurelia', 'guzman', '12/04/2000', '7851-5468','casa de su mamá','F', '01/01/2017', '01234563-5','esp_secret',88);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0089', 'erica', 'hernandez', '12/04/2000', '7851-5468','casa de su mamá','F', '01/01/2018', '01234563-6','esp_secret',89);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0090', 'arely', 'peraza', '12/04/2000', '7851-5468','casa de su mamá','F', '01/01/2019', '01234560-6','esp_secret',90);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0091', 'ivania', 'dimas', '12/04/2000', '7851-5468','casa de su mamá','F', '01/01/2017', '01234560-7','esp_secret',91);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0092', 'keely', 'campos', '12/04/2000', '7851-5468','casa de su mamá','F', '01/01/2018', '01234560-7','esp_secret',92);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0093', 'ester', 'abarca', '12/04/2000', '7851-5468','casa de su mamá','F', '01/01/2019', '01234561-8','esp_secret',93);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0094', 'krisia', 'sorto', '12/04/2000', '7851-5468','casa de su mamá','F', '01/01/2017', '01234561-8','esp_secret',94);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0095', 'leonor', 'cordoba', '12/04/2000', '7851-5468','casa de su mamá','F', '01/01/2018', '01234562-9','esp_secret',95);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0096', 'leonora', 'fuentes', '12/04/2000', '7851-5468','casa de su mamá','F', '01/01/2019', '01234562-9','esp_secret',96);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0097', 'ludovica', 'figueroa', '12/04/2000', '7851-5468','casa de su mamá','F', '01/01/2017', '01234563-1','esp_secret',97);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0098', 'monica', 'duarte', '12/04/2000', '7851-5468','casa de su mamá','F', '01/01/2018', '01234563-1','esp_secret',98);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0099', 'michelle', 'arevalo', '12/04/2000', '7851-5468','casa de su mamá','F', '01/01/2019', '01234561-1','esp_secret',99);
-INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0100', 'xiomara', 'andrade', '12/04/2000', '7851-5468','casa de su mamá','F', '01/01/2017', '01234560-1','esp_secret',100);
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0001', 'Juan José', 'Pereira Sosa', '12/04/2000', '7851-5468','casa de su mamá','M', '01/01/2018', '01234560-1','esp_contab',(SELECT id FROM auth_user WHERE username = 'Alumno01'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0002', 'Pedro', 'andrade', '04/07/1999', '7851-5468','casa de su mamá','M', '01/01/2017', '01234560-1','esp_contab',(SELECT id FROM auth_user WHERE username = 'Alumno02'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0003', 'Alcides Juan', 'arevalo', '04/10/2000', '7851-5468','casa de su mamá','M', '01/01/2019', '01234560-2','esp_contab',(SELECT id FROM auth_user WHERE username = 'Alumno03'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0004', 'Balmore', 'aristides', '12/04/2001', '7851-5468','casa de su mamá','M', '01/01/2017', '01234560-2','esp_contab',(SELECT id FROM auth_user WHERE username = 'Alumno04'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0005', 'Juan', 'aguilar', '12/07/1999', '7851-5468','casa de su mamá','M', '01/01/2019', '01234560-3','esp_contab',(SELECT id FROM auth_user WHERE username = 'Alumno05'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0006', 'José', 'andino', '02/01/2000', '7851-5468','casa de su mamá','M', '01/01/2018', '01234560-3','esp_contab',(SELECT id FROM auth_user WHERE username = 'Alumno06'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0007', 'Augusto', 'batres', '12/12/2002', '7851-5468','casa de su mamá','M', '01/01/2017', '01234560-4','esp_contab',(SELECT id FROM auth_user WHERE username = 'Alumno07'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0008', 'Arturo', 'binagrosa', '08/02/2002', '7851-5468','casa de su mamá','M', '01/01/2018', '01234560-4','esp_contab',(SELECT id FROM auth_user WHERE username = 'Alumno08'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0009', 'Agustin', 'bonilla', '30/04/2000', '7851-5468','casa de su mamá','M', '01/01/2019', '01234560-5','esp_contab',(SELECT id FROM auth_user WHERE username = 'Alumno09'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0010', 'Buso', 'cabrera', '31/03/2001', '7851-5468','casa de su mamá','M', '01/01/2017', '01234560-5','esp_contab',(SELECT id FROM auth_user WHERE username = 'Alumno10'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0011', 'Boni', 'cordoba', '06/01/2000', '7851-5468','casa de su mamá','M', '01/01/2018', '01234560-6','esp_contab',(SELECT id FROM auth_user WHERE username = 'Alumno11'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0012', 'Carlos', 'campos', '01/01/1009', '7851-5468','casa de su mamá','M', '01/01/2019', '01234560-6','esp_contab',(SELECT id FROM auth_user WHERE username = 'Alumno12'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0013', 'cesar', 'cordero', '02/02/2000', '7851-5468','casa de su mamá','M', '01/01/2017', '01234560-7','esp_contab',(SELECT id FROM auth_user WHERE username = 'Alumno13'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0014', 'cornelio', 'castro', '03/03/2001', '7851-5468','casa de su mamá','M', '01/01/2018', '01234560-7','esp_contab',(SELECT id FROM auth_user WHERE username = 'Alumno14'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0015', 'cinimaro', 'casas', '04/04/2002', '7851-5468','casa de su mamá','M', '01/01/2019', '01234560-8','esp_contab',(SELECT id FROM auth_user WHERE username = 'Alumno15'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0016', 'causto', 'cuellar', '05/05/1999', '7851-5468','casa de su mamá','M', '01/01/2017', '01234560-8','esp_contab',(SELECT id FROM auth_user WHERE username = 'Alumno16'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0017', 'daniel', 'duarte', '06/06/2000', '7851-5468','casa de su mamá','M', '01/01/2018', '01234560-9','esp_contab',(SELECT id FROM auth_user WHERE username = 'Alumno17'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0018', 'dante', 'alvarez', '07/07/2001', '7851-5468','casa de su mamá','M', '01/01/2019', '01234560-9','esp_contab',(SELECT id FROM auth_user WHERE username = 'Alumno18'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0019', 'Dimaria', 'davila', '08/08/2002', '7851-5468','casa de su mamá','M', '01/01/2017', '01234561-0','esp_contab',(SELECT id FROM auth_user WHERE username = 'Alumno19'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0020', 'Aquiles', 'dolores', '09/09/1999', '7851-5468','casa de su mamá','M', '01/01/2018', '01234561-0','esp_contab',(SELECT id FROM auth_user WHERE username = 'Alumno20'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0021', 'Enrique', 'espinoza', '10/10/2000', '7851-5468','casa de su mamá','M', '01/01/2019', '01234561-1','esp_dsw',(SELECT id FROM auth_user WHERE username = 'Alumno21'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0022', 'Ernesto', 'estrada', '11/11/2001', '7851-5468','casa de su mamá','M', '01/01/2017', '01234561-1','esp_dsw',(SELECT id FROM auth_user WHERE username = 'Alumno22'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0023', 'emerson', 'figueroa', '12/12/2002', '7851-5468','casa de su mamá','M', '01/01/2018', '01234561-2','esp_dsw',(SELECT id FROM auth_user WHERE username = 'Alumno23'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0024', 'Aristides', 'fuentes', '13/01/2003', '7851-5468','casa de su mamá','M', '01/01/2019', '01234560-2','esp_dsw',(SELECT id FROM auth_user WHERE username = 'Alumno24'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0025', 'Eber', 'funes', '14/02/1999', '7851-5468','casa de su mamá','M', '01/01/2017', '01234561-3','esp_dsw',(SELECT id FROM auth_user WHERE username = 'Alumno25'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0026', 'elias', 'Pereira', '15/03/2000', '7851-5468','casa de su mamá','M', '01/01/2018', '01234561-3','esp_dsw',(SELECT id FROM auth_user WHERE username = 'Alumno26'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0027', 'eliezer', 'ferro', '16/05/2001', '7851-5468','casa de su mamá','M', '01/01/2019', '01234561-4','esp_dsw',(SELECT id FROM auth_user WHERE username = 'Alumno27'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0028', 'fabricio', 'jurado', '17/06/2002', '7851-5468','casa de su mamá','M', '01/01/2017', '01234561-4','esp_dsw',(SELECT id FROM auth_user WHERE username = 'Alumno28'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0029', 'fabian', 'linares', '18/07/2003', '7851-5468','casa de su mamá','M', '01/01/2018', '01234561-5','esp_dsw',(SELECT id FROM auth_user WHERE username = 'Alumno29'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0030', 'fabio', 'lisvoa', '19/08/1998', '7851-5468','casa de su mamá','M', '01/01/2019', '01234561-5','esp_dsw',(SELECT id FROM auth_user WHERE username = 'Alumno30'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0031', 'gustavo', 'lima', '20/09/1999', '7851-5468','casa de su mamá','M', '01/01/2017', '01234561-6','esp_dsw',(SELECT id FROM auth_user WHERE username = 'Alumno31'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0032', 'hugo', 'lula', '21/10/2000', '7851-5468','casa de su mamá','M', '01/01/2018', '01234561-6','esp_dsw',(SELECT id FROM auth_user WHERE username = 'Alumno32'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0033', 'antonio', 'dasilva', '22/11/2001', '7851-5468','casa de su mamá','M', '01/01/2019', '01234561-7','esp_dsw',(SELECT id FROM auth_user WHERE username = 'Alumno33'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0034', 'jorge', 'marroquin', '23/12/2002', '7851-5468','casa de su mamá','M', '01/01/2017', '01234561-7','esp_dsw',(SELECT id FROM auth_user WHERE username = 'Alumno34'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0035', 'jilberto', 'masariego', '24/01/2003', '7851-5468','casa de su mamá','M', '01/01/2018', '01234561-8','esp_dsw',(SELECT id FROM auth_user WHERE username = 'Alumno35'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0036', 'Jonathan', 'martinez', '25/02/2004', '7851-5468','casa de su mamá','M', '01/01/2019', '01234561-8','esp_dsw',(SELECT id FROM auth_user WHERE username = 'Alumno36'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0037', 'cristian', 'morales', '26/03/1998', '7851-5468','casa de su mamá','M', '01/01/2017', '01234561-9','esp_dsw',(SELECT id FROM auth_user WHERE username = 'Alumno37'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0038', 'karlos', 'medina', '27/04/1999', '7851-5468','casa de su mamá','M', '01/01/2018', '01234561-9','esp_dsw',(SELECT id FROM auth_user WHERE username = 'Alumno38'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0039', 'kabuto', 'mostraviego', '28/05/2000', '7851-5468','casa de su mamá','M', '01/01/2019', '01234562-0','esp_dsw',(SELECT id FROM auth_user WHERE username = 'Alumno39'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0040', 'naruto', 'estupinian', '29/06/2001', '7851-5468','casa de su mamá','M', '01/01/2017', '01234562-0','esp_dsw',(SELECT id FROM auth_user WHERE username = 'Alumno40'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0041', 'gilberto', 'menjivar', '30/07/2002', '7851-5468','casa de su mamá','M', '01/01/2018', '01234562-1','esp_genral',(SELECT id FROM auth_user WHERE username = 'Alumno41'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0042', 'givo', 'maravilla', '31/08/2003', '7851-5468','casa de su mamá','M', '01/01/2019', '01234562-1','esp_genral',(SELECT id FROM auth_user WHERE username = 'Alumno42'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0043', 'leandro', 'najera', '01/09/1998', '7851-5468','casa de su mamá','M', '01/01/2017', '01234522-2','esp_genral',(SELECT id FROM auth_user WHERE username = 'Alumno43'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0044', 'leonel', 'nogeira', '02/10/1999', '7851-5468','casa de su mamá','M', '01/01/2018', '01234522-2','esp_genral',(SELECT id FROM auth_user WHERE username = 'Alumno44'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0045', 'Leo', 'novert', '03/11/2000', '7851-5468','casa de su mamá','M', '01/01/2019', '01234562-3','esp_genral',(SELECT id FROM auth_user WHERE username = 'Alumno45'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0046', 'Ludovico', 'osorio', '04/12/2001', '7851-5468','casa de su mamá','M', '01/01/2017', '01234562-3','esp_genral',(SELECT id FROM auth_user WHERE username = 'Alumno46'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0047', 'marco', 'Perez', '05/01/2002', '7851-5468','casa de su mamá','M', '01/01/2018', '01234562-4','esp_genral',(SELECT id FROM auth_user WHERE username = 'Alumno47'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0048', 'marcos', 'Pereira', '06/02/2003', '7851-5468','casa de su mamá','M', '01/01/2019', '01234562-4','esp_genral',(SELECT id FROM auth_user WHERE username = 'Alumno48'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0049', 'manrique', 'Pereira perez', '07/03/1998', '7851-5468','casa de su mamá','M', '01/01/2017', '01234562-5','esp_genral',(SELECT id FROM auth_user WHERE username = 'Alumno49'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0050', 'margarito', 'Pereira nieto', '08/04/1999', '7851-5468','casa de su mamá','M', '01/01/2018', '01234562-5','esp_genral',(SELECT id FROM auth_user WHERE username = 'Alumno50'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0051', 'mercedes', 'arias', '09/05/2000', '7851-5468','casa de su mamá','F', '01/01/2019', '01234562-6','esp_genral',(SELECT id FROM auth_user WHERE username = 'Alumno51'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0052', 'nicolas', 'garcia', '10/06/2001', '7851-5468','casa de su mamá','F', '01/01/2017', '01234562-6','esp_genral',(SELECT id FROM auth_user WHERE username = 'Alumno52'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0053', 'nico', 'hernandez', '11/07/2002', '7851-5468','casa de su mamá','F', '01/01/2018', '01234562-7','esp_genral',(SELECT id FROM auth_user WHERE username = 'Alumno53'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0054', 'nicho', 'lopez', '12/08/2003', '7851-5468','casa de su mamá','F', '01/01/2019', '01234562-7','esp_genral',(SELECT id FROM auth_user WHERE username = 'Alumno54'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0055', 'andrea', 'dimas', '13/09/1999', '7851-5468','casa de su mamá','F', '01/01/2017', '01234562-8','esp_genral',(SELECT id FROM auth_user WHERE username = 'Alumno55'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0056', 'andres', 'abarca', '14/10/2000', '7851-5468','casa de su mamá','F', '01/01/2018', '01234562-8','esp_genral',(SELECT id FROM auth_user WHERE username = 'Alumno56'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0057', 'abigail', 'pineda', '15/11/2001', '7851-5468','casa de su mamá','F', '01/01/2019', '01234562-9','esp_genral',(SELECT id FROM auth_user WHERE username = 'Alumno57'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0058', 'antonia', 'Pomes', '16/12/2002', '7851-5468','casa de su mamá','F', '01/01/2017', '01234562-9','esp_genral',(SELECT id FROM auth_user WHERE username = 'Alumno58'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0059', 'agustina', 'Poma', '17/01/2003', '7851-5468','casa de su mamá','F', '01/01/2018', '01234563-0','esp_genral',(SELECT id FROM auth_user WHERE username = 'Alumno60'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0060', 'bety', 'puma', '18/02/1999', '7851-5468','casa de su mamá','F', '01/01/2019', '01234563-0','esp_genral',(SELECT id FROM auth_user WHERE username = 'Alumno61'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0061', 'beatriz', 'Peraza', '19/03/2000', '7851-5468','casa de su mamá','F', '01/01/2017', '01234563-1','esp_hyt',(SELECT id FROM auth_user WHERE username = 'Alumno62'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0062', 'carla', 'Peralte', '20/04/2001', '7851-5468','casa de su mamá','F', '01/01/2018', '01234563-1','esp_hyt',(SELECT id FROM auth_user WHERE username = 'Alumno63'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0063', 'cecia', 'quevedo', '21/05/2002', '7851-5468','casa de su mamá','F', '01/01/2019', '01234523-2','esp_hyt',(SELECT id FROM auth_user WHERE username = 'Alumno64'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0064', 'cecia', 'quiros', '22/06/2003', '7851-5468','casa de su mamá','F', '01/01/2017', '01234523-2','esp_hyt',(SELECT id FROM auth_user WHERE username = 'Alumno65'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0065', 'cecilia', 'Puentes', '23/07/2004', '7851-5468','casa de su mamá','F', '01/01/2018', '01234563-3','esp_hyt',(SELECT id FROM auth_user WHERE username = 'Alumno66'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0066', 'clemente', 'ramos', '24/08/1999', '7851-5468','casa de su mamá','F', '01/01/2019', '01234563-3','esp_hyt',(SELECT id FROM auth_user WHERE username = 'Alumno67'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0067', 'clementina', 'ramirez', '25/09/2000', '7851-5468','casa de su mamá','F', '01/01/2017', '01234563-4','esp_hyt',(SELECT id FROM auth_user WHERE username = 'Alumno68'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0068', 'alejandra', 'rivera', '26/10/2001', '7851-5468','casa de su mamá','F', '01/01/2018', '01234563-4','esp_hyt',(SELECT id FROM auth_user WHERE username = 'Alumno69'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0069', 'alexandra', 'rosco', '27/11/2002', '7851-5468','casa de su mamá','F', '01/01/2019', '01234563-5','esp_hyt',(SELECT id FROM auth_user WHERE username = 'Alumno70'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0070', 'alondra', 'suarez', '28/12/2003', '7851-5468','casa de su mamá','F', '01/01/2017', '01234563-5','esp_hyt',(SELECT id FROM auth_user WHERE username = 'Alumno71'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0071', 'alba', 'Sosa', '29/04/2000', '7851-5468','casa de su mamá','F', '01/01/2018', '01234563-6','esp_hyt',(SELECT id FROM auth_user WHERE username = 'Alumno72'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0072', 'carmen', 'toloza', '30/04/2000', '7851-5468','casa de su mamá','F', '01/01/2019', '01234563-6','esp_hyt',(SELECT id FROM auth_user WHERE username = 'Alumno73'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0073', 'camelia', 'toledo', '01/05/2000', '7851-5468','casa de su mamá','F', '01/01/2017', '01234563-7','esp_hyt',(SELECT id FROM auth_user WHERE username = 'Alumno74'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0074', 'daniela', 'umaña', '02/05/2000', '7851-5468','casa de su mamá','F', '01/01/2018', '01234563-7','esp_hyt',(SELECT id FROM auth_user WHERE username = 'Alumno75'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0075', 'dalia', 'vasquez', '12/05/2000', '7851-5468','casa de su mamá','F', '01/01/2019', '01234563-8','esp_hyt',(SELECT id FROM auth_user WHERE username = 'Alumno76'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0076', 'dalila ', 'ventura', '03/05/2000', '7851-5468','casa de su mamá','F', '01/01/2017', '01234563-8','esp_hyt',(SELECT id FROM auth_user WHERE username = 'Alumno77'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0077', 'dinora', 'flores', '04/05/2000', '7851-5468','casa de su mamá','F', '01/01/2018', '01234563-9','esp_hyt',(SELECT id FROM auth_user WHERE username = 'Alumno78'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0078', 'dolores', 'barillas', '05/05/2000', '7851-5468','casa de su mamá','F', '01/01/2019', '01234564-0','esp_hyt',(SELECT id FROM auth_user WHERE username = 'Alumno79'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0079', 'enriqueta', 'cabrera', '06/06/2000', '7851-5468','casa de su mamá','F', '01/01/2017', '01234564-0','esp_hyt',(SELECT id FROM auth_user WHERE username = 'Alumno80'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0080', 'ernesta', 'Perez', '07/06/2000', '7851-5468','casa de su mamá','F', '01/01/2018', '01234560-1','esp_secret',(SELECT id FROM auth_user WHERE username = 'Alumno81'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0081', 'fatima', 'linares', '08/07/2000', '7851-5468','casa de su mamá','F', '01/01/2019', '01234560-1','esp_secret',(SELECT id FROM auth_user WHERE username = 'Alumno82'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0082', 'faustina', 'arias', '09/05/2000', '7851-5468','casa de su mamá','F', '01/01/2017', '01234561-2','esp_secret',(SELECT id FROM auth_user WHERE username = 'Alumno83'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0083', 'ingrid', 'nieto', '10/05/2000', '7851-5468','casa de su mamá','F', '01/01/2018', '01234561-2','esp_secret',(SELECT id FROM auth_user WHERE username = 'Alumno84'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0084', 'isela', 'osorio', '12/04/2000', '7851-5468','casa de su mamá','F', '01/01/2019', '01234561-3','esp_secret',(SELECT id FROM auth_user WHERE username = 'Alumno59'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0085', 'juana', 'marroquin', '12/04/2000', '7851-5468','casa de su mamá','F', '01/01/2017', '01234562-3','esp_secret',(SELECT id FROM auth_user WHERE username = 'Alumno85'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0086', 'josefa', 'gavidia', '12/04/2000', '7851-5468','casa de su mamá','F', '01/01/2018', '01234562-4','esp_secret',(SELECT id FROM auth_user WHERE username = 'Alumno86'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0087', 'eunice', 'gomez', '12/04/2000', '7851-5468','casa de su mamá','F', '01/01/2019', '01234563-4','esp_secret',(SELECT id FROM auth_user WHERE username = 'Alumno87'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0088', 'aurelia', 'guzman', '12/04/2000', '7851-5468','casa de su mamá','F', '01/01/2017', '01234563-5','esp_secret',(SELECT id FROM auth_user WHERE username = 'Alumno88'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0089', 'erica', 'hernandez', '12/04/2000', '7851-5468','casa de su mamá','F', '01/01/2018', '01234563-6','esp_secret',(SELECT id FROM auth_user WHERE username = 'Alumno89'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0090', 'arely', 'peraza', '12/04/2000', '7851-5468','casa de su mamá','F', '01/01/2019', '01234560-6','esp_secret',(SELECT id FROM auth_user WHERE username = 'Alumno90'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0091', 'ivania', 'dimas', '12/04/2000', '7851-5468','casa de su mamá','F', '01/01/2017', '01234560-7','esp_secret',(SELECT id FROM auth_user WHERE username = 'Alumno91'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0092', 'keely', 'campos', '12/04/2000', '7851-5468','casa de su mamá','F', '01/01/2018', '01234560-7','esp_secret',(SELECT id FROM auth_user WHERE username = 'Alumno92'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0093', 'ester', 'abarca', '12/04/2000', '7851-5468','casa de su mamá','F', '01/01/2019', '01234561-8','esp_secret',(SELECT id FROM auth_user WHERE username = 'Alumno93'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0094', 'krisia', 'sorto', '12/04/2000', '7851-5468','casa de su mamá','F', '01/01/2017', '01234561-8','esp_secret',(SELECT id FROM auth_user WHERE username = 'Alumno94'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0095', 'leonor', 'cordoba', '12/04/2000', '7851-5468','casa de su mamá','F', '01/01/2018', '01234562-9','esp_secret',(SELECT id FROM auth_user WHERE username = 'Alumno95'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0096', 'leonora', 'fuentes', '12/04/2000', '7851-5468','casa de su mamá','F', '01/01/2019', '01234562-9','esp_secret',(SELECT id FROM auth_user WHERE username = 'Alumno96'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0097', 'ludovica', 'figueroa', '12/04/2000', '7851-5468','casa de su mamá','F', '01/01/2017', '01234563-1','esp_secret',(SELECT id FROM auth_user WHERE username = 'Alumno97'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0098', 'monica', 'duarte', '12/04/2000', '7851-5468','casa de su mamá','F', '01/01/2018', '01234563-1','esp_secret',(SELECT id FROM auth_user WHERE username = 'Alumno98'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0099', 'michelle', 'arevalo', '12/04/2000', '7851-5468','casa de su mamá','F', '01/01/2019', '01234561-1','esp_secret',(SELECT id FROM auth_user WHERE username = 'Alumno99'));
+INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0100', 'xiomara', 'andrade', '12/04/2000', '7851-5468','casa de su mamá','F', '01/01/2017', '01234560-1','esp_secret',(SELECT id FROM auth_user WHERE username = 'Alumno100'));
 
 --------------------------------Especialidad_materia-------------------------------------------
 
@@ -739,92 +739,54 @@ INSERT INTO "INTO_tipo_actividad"(codigo_tipo_actividad, nombre_tipo_actividad, 
 
 -----------Actividad-------------------
 
-----------Actividades del año 2017-----------------
-INSERT INTO "INTO_actividad"(codigo_actividad, porcentaje_actividad, cantidad_max_sub_act,codigo_periodo_id, codigo_tipo_actividad_id) 
-VALUES ('act1_per1_2017', 0.35, '1','2017_PER_1', 'Exposicion');
-INSERT INTO "INTO_actividad"(codigo_actividad, porcentaje_actividad, cantidad_max_sub_act,codigo_periodo_id, codigo_tipo_actividad_id) 
-VALUES ('act2_per1_2017', 0.35, '2','2017_PER_1', 'Baile');
-INSERT INTO "INTO_actividad"(codigo_actividad, porcentaje_actividad, cantidad_max_sub_act,codigo_periodo_id, codigo_tipo_actividad_id) 
-VALUES ('exa1_per1_2017', 0.30, '1','2017_PER_1', 'Examen');
-
-INSERT INTO "INTO_actividad"(codigo_actividad, porcentaje_actividad, cantidad_max_sub_act,codigo_periodo_id, codigo_tipo_actividad_id) 
-VALUES ('act1_per2_2017', 0.35, '4','2017_PER_2', 'Exposicion');
-INSERT INTO "INTO_actividad"(codigo_actividad, porcentaje_actividad, cantidad_max_sub_act,codigo_periodo_id, codigo_tipo_actividad_id) 
-VALUES ('act2_per2_2017', 0.35, '1','2017_PER_2', 'Baile');
-INSERT INTO "INTO_actividad"(codigo_actividad, porcentaje_actividad, cantidad_max_sub_act,codigo_periodo_id, codigo_tipo_actividad_id) 
-VALUES ('exa1_per2_2017', 0.30, '1','2017_PER_2', 'Examen');
-
-INSERT INTO "INTO_actividad"(codigo_actividad, porcentaje_actividad, cantidad_max_sub_act,codigo_periodo_id, codigo_tipo_actividad_id) 
-VALUES ('act1_per3_2017', 0.35, '1','2017_PER_3', 'Exposicion');
-INSERT INTO "INTO_actividad"(codigo_actividad, porcentaje_actividad, cantidad_max_sub_act,codigo_periodo_id, codigo_tipo_actividad_id) 
-VALUES ('act2_per3_2017', 0.35, '1','2017_PER_3', 'Baile');
-INSERT INTO "INTO_actividad"(codigo_actividad, porcentaje_actividad, cantidad_max_sub_act,codigo_periodo_id, codigo_tipo_actividad_id) 
-VALUES ('exa1_per3_2017', 0.30, '1','2017_PER_3', 'Examen');
-
-INSERT INTO "INTO_actividad"(codigo_actividad, porcentaje_actividad, cantidad_max_sub_act,codigo_periodo_id, codigo_tipo_actividad_id) 
-VALUES ('act1_per4_2017', 0.35, '1','2017_PER_4', 'Exposicion');
-INSERT INTO "INTO_actividad"(codigo_actividad, porcentaje_actividad, cantidad_max_sub_act,codigo_periodo_id, codigo_tipo_actividad_id) 
-VALUES ('act2_per4_2017', 0.35, '1','2017_PER_4', 'Baile');
-INSERT INTO "INTO_actividad"(codigo_actividad, porcentaje_actividad, cantidad_max_sub_act,codigo_periodo_id, codigo_tipo_actividad_id) 
-VALUES ('exa1_per4_2017', 0.30, '1','2017_PER_4', 'Examen');
-
-----------Actividades del año 2018-----------------
-INSERT INTO "INTO_actividad"(codigo_actividad, porcentaje_actividad, cantidad_max_sub_act,codigo_periodo_id, codigo_tipo_actividad_id) 
-VALUES ('act1_per1_2018', 0.35, '1','2018_PER_1', 'Exposicion');
-INSERT INTO "INTO_actividad"(codigo_actividad, porcentaje_actividad, cantidad_max_sub_act,codigo_periodo_id, codigo_tipo_actividad_id) 
-VALUES ('act2_per1_2018', 0.35, '2','2018_PER_1', 'Baile');
-INSERT INTO "INTO_actividad"(codigo_actividad, porcentaje_actividad, cantidad_max_sub_act,codigo_periodo_id, codigo_tipo_actividad_id) 
-VALUES ('exa1_per1_2018', 0.30, '1','2018_PER_1', 'Examen');
-
-INSERT INTO "INTO_actividad"(codigo_actividad, porcentaje_actividad, cantidad_max_sub_act,codigo_periodo_id, codigo_tipo_actividad_id) 
-VALUES ('act1_per2_2018', 0.35, '4','2018_PER_2', 'Exposicion');
-INSERT INTO "INTO_actividad"(codigo_actividad, porcentaje_actividad, cantidad_max_sub_act,codigo_periodo_id, codigo_tipo_actividad_id) 
-VALUES ('act2_per2_2018', 0.35, '1','2018_PER_2', 'Baile');
-INSERT INTO "INTO_actividad"(codigo_actividad, porcentaje_actividad, cantidad_max_sub_act,codigo_periodo_id, codigo_tipo_actividad_id) 
-VALUES ('exa1_per2_2018', 0.30, '1','2018_PER_2', 'Examen');
-
-INSERT INTO "INTO_actividad"(codigo_actividad, porcentaje_actividad, cantidad_max_sub_act,codigo_periodo_id, codigo_tipo_actividad_id) 
-VALUES ('act1_per3_2018', 0.35, '1','2018_PER_3', 'Exposicion');
-INSERT INTO "INTO_actividad"(codigo_actividad, porcentaje_actividad, cantidad_max_sub_act,codigo_periodo_id, codigo_tipo_actividad_id) 
-VALUES ('act2_per3_2018', 0.35, '1','2018_PER_3', 'Baile');
-INSERT INTO "INTO_actividad"(codigo_actividad, porcentaje_actividad, cantidad_max_sub_act,codigo_periodo_id, codigo_tipo_actividad_id) 
-VALUES ('exa1_per3_2018', 0.30, '1','2018_PER_3', 'Examen');
-
-INSERT INTO "INTO_actividad"(codigo_actividad, porcentaje_actividad, cantidad_max_sub_act,codigo_periodo_id, codigo_tipo_actividad_id) 
-VALUES ('act1_per4_2018', 0.35, '1','2018_PER_4', 'Exposicion');
-INSERT INTO "INTO_actividad"(codigo_actividad, porcentaje_actividad, cantidad_max_sub_act,codigo_periodo_id, codigo_tipo_actividad_id) 
-VALUES ('act2_per4_2018', 0.35, '1','2018_PER_4', 'Baile');
-INSERT INTO "INTO_actividad"(codigo_actividad, porcentaje_actividad, cantidad_max_sub_act,codigo_periodo_id, codigo_tipo_actividad_id) 
-VALUES ('exa1_per4_2018', 0.30, '1','2018_PER_4', 'Examen');
-
-----------Actividades del año 2019-----------------
-INSERT INTO "INTO_actividad"(codigo_actividad, porcentaje_actividad, cantidad_max_sub_act,codigo_periodo_id, codigo_tipo_actividad_id) 
-VALUES ('act1_per1_2019', 0.35, '1','2019_PER_1', 'Exposicion');
-INSERT INTO "INTO_actividad"(codigo_actividad, porcentaje_actividad, cantidad_max_sub_act,codigo_periodo_id, codigo_tipo_actividad_id) 
-VALUES ('act2_per1_2019', 0.35, '2','2019_PER_1', 'Baile');
-INSERT INTO "INTO_actividad"(codigo_actividad, porcentaje_actividad, cantidad_max_sub_act,codigo_periodo_id, codigo_tipo_actividad_id) 
-VALUES ('exa1_per1_2019', 0.30, '1','2019_PER_1', 'Examen');
-
-INSERT INTO "INTO_actividad"(codigo_actividad, porcentaje_actividad, cantidad_max_sub_act,codigo_periodo_id, codigo_tipo_actividad_id) 
-VALUES ('act1_per2_2019', 0.35, '4','2019_PER_2', 'Exposicion');
-INSERT INTO "INTO_actividad"(codigo_actividad, porcentaje_actividad, cantidad_max_sub_act,codigo_periodo_id, codigo_tipo_actividad_id) 
-VALUES ('act2_per2_2019', 0.35, '1','2019_PER_2', 'Baile');
-INSERT INTO "INTO_actividad"(codigo_actividad, porcentaje_actividad, cantidad_max_sub_act,codigo_periodo_id, codigo_tipo_actividad_id) 
-VALUES ('exa1_per2_2019', 0.30, '1','2019_PER_2', 'Examen');
-
-INSERT INTO "INTO_actividad"(codigo_actividad, porcentaje_actividad, cantidad_max_sub_act,codigo_periodo_id, codigo_tipo_actividad_id) 
-VALUES ('act1_per3_2019', 0.35, '1','2019_PER_3', 'Exposicion');
-INSERT INTO "INTO_actividad"(codigo_actividad, porcentaje_actividad, cantidad_max_sub_act,codigo_periodo_id, codigo_tipo_actividad_id) 
-VALUES ('act2_per3_2019', 0.35, '1','2019_PER_3', 'Baile');
-INSERT INTO "INTO_actividad"(codigo_actividad, porcentaje_actividad, cantidad_max_sub_act,codigo_periodo_id, codigo_tipo_actividad_id) 
-VALUES ('exa1_per3_2019', 0.30, '1','2019_PER_3', 'Examen');
-
-INSERT INTO "INTO_actividad"(codigo_actividad, porcentaje_actividad, cantidad_max_sub_act,codigo_periodo_id, codigo_tipo_actividad_id) 
-VALUES ('act1_per4_2019', 0.35, '1','2019_PER_4', 'Exposicion');
-INSERT INTO "INTO_actividad"(codigo_actividad, porcentaje_actividad, cantidad_max_sub_act,codigo_periodo_id, codigo_tipo_actividad_id) 
-VALUES ('act2_per4_2019', 0.35, '1','2019_PER_4', 'Baile');
-INSERT INTO "INTO_actividad"(codigo_actividad, porcentaje_actividad, cantidad_max_sub_act,codigo_periodo_id, codigo_tipo_actividad_id) 
-VALUES ('exa1_per4_2019', 0.30, '1','2019_PER_4', 'Examen');
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('act1_per1_2017', 'Actividad 1',      0.3500,7,       '2017_PER_1',   'Exposicion');
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('act2_per1_2017', 'Actividad 2',	0.3500,	7,	'2017_PER_1',	'Baile');
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('exa1_per1_2017', 'Examen 1',	0.3000,	1,	'2017_PER_1',	'Examen');
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('exa2_per1_2017', 'Examen 2',	0.3000,	1,	'2017_PER_1',	'Examen');
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('act1_per2_2017', 'Actividad 1',	0.3500,	7,	'2017_PER_2',	'Exposicion');
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('act2_per2_2017', 'Actividad 2',	0.3500,	7,	'2017_PER_2',	'Baile');
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('exa1_per2_2017', 'Examen 1',	0.3000,	1,	'2017_PER_2',	'Examen');
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('exa2_per2_2017', 'Examen 2',	0.3000,	1,	'2017_PER_2',	'Examen');
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('act1_per3_2017', 'Actividad 1',	0.3500,	7,	'2017_PER_3',	'Exposicion');
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('act2_per3_2017', 'Actividad 2',	0.3500,	7,	'2017_PER_3',	'Baile');
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('exa1_per3_2017', 'Examen 1',	0.3000, 1,	'2017_PER_3',	'Examen');
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('exa2_per3_2017', 'Examen 2',	0.3000,	1,	'2017_PER_3',	'Examen');
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('act1_per4_2017', 'Actividad 1',	0.3500,	7,	'2017_PER_4',	'Exposicion');
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('act2_per4_2017', 'Actividad 2',	0.3500,	7,	'2017_PER_4',	'Baile');
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('exa1_per4_2017', 'Examen 1',	0.3000,	1,	'2017_PER_4',	'Examen');
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('exa2_per4_2017', 'Examen 2',	0.3000,	1,	'2017_PER_4',	'Examen');
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('act1_per1_2018', 'Actividad 1',	0.3500,	7,	'2018_PER_1',	'Exposicion');
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('act2_per1_2018', 'Actividad 2',	0.3500,	7,	'2018_PER_1',	'Baile');
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('exa1_per1_2018', 'Examen 1',	0.3000,	1,	'2018_PER_1',	'Examen');
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('exa2_per1_2018', 'Examen 2',	0.3000,	1,	'2018_PER_1',	'Examen');
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('act1_per2_2018', 'Actividad 1',	0.3500,	7,	'2018_PER_2',	'Exposicion');
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('act2_per2_2018', 'Actividad 2',	0.3500,	7,	'2018_PER_2',	'Baile');
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('exa1_per2_2018', 'Examen 1',	0.3000,	1,	'2018_PER_2',	'Examen');
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('exa2_per2_2018', 'Examen 2',	0.3000,	1,	'2018_PER_2',	'Examen');
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('act1_per3_2018', 'Actividad 1',	0.3500,	7,	'2018_PER_3',	'Exposicion');
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('act2_per3_2018', 'Actividad 2',	0.3500,	7,	'2018_PER_3',	'Baile');
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('exa1_per3_2018', 'Examen 1',	0.3000,	1,	'2018_PER_3',	'Examen');
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('exa2_per3_2018', 'Examen 2',	0.3000, 1,	'2018_PER_3',	'Examen');
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('act1_per4_2018', 'Actividad 1',	0.3500,	7,	'2018_PER_4',	'Exposicion');
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('act2_per4_2018', 'Actividad 2',	0.3500,	7,	'2018_PER_4',	'Baile');
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('exa1_per4_2018', 'Examen 1',	0.3000,	1,	'2018_PER_4',	'Examen');
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('exa2_per4_2018', 'Examen 2',	0.3000,	1,	'2018_PER_4',	'Examen');
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('act1_per1_2019', 'Actividad 1',	0.3500,	7,	'2019_PER_1',	'Exposicion');
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('act2_per1_2019', 'Actividad 2',	0.3500,	7,	'2019_PER_1',	'Baile');
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('exa1_per1_2019', 'Examen 1',	0.3000,	1,	'2019_PER_1',	'Examen');
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('exa2_per1_2019', 'Examen 2',	0.3000,	1,	'2019_PER_1',	'Examen');
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('act1_per2_2019', 'Actividad 1',	0.3500,	7,	'2019_PER_2',	'Exposicion');
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('act2_per2_2019', 'Actividad 2',	0.3500,	7,	'2019_PER_2',	'Baile');
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('exa1_per2_2019', 'Examen 1',	0.3000,	1,	'2019_PER_2',	'Examen');
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('exa2_per2_2019', 'Examen 2',	0.3000,	1,	'2019_PER_2',	'Examen');
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('act1_per3_2019', 'Actividad 1',	0.3500,	7,	'2019_PER_3',	'Exposicion');
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('act2_per3_2019', 'Actividad 2',	0.3500,	7,	'2019_PER_3',	'Baile');
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('exa1_per3_2019', 'Examen 1',	0.3000,	1,	'2019_PER_3',	'Examen');
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('exa2_per3_2019', 'Examen 2',	0.3000,	1,	'2019_PER_3',	'Examen');
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('act1_per4_2019', 'Actividad 1',	0.3500,	7,	'2019_PER_4',	'Exposicion');
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('act2_per4_2019', 'Actividad 2',	0.3500,	7,	'2019_PER_4',	'Baile');
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('exa1_per4_2019', 'Examen 1',	0.3000,	1,	'2019_PER_4',	'Examen');
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('exa2_per4_2019', 'Examen 2',	0.3000,	1,	'2019_PER_4',	'Examen');
 
 -----------------sub_actividad-------------------------------
 ----------------------AÑO 2017--------------------------------
@@ -943,144 +905,144 @@ VALUES ('sub1_exa1_per4_2019',0.30,'Examen Trimestral','exa1_per4_2019');
 
 
 -----docente_materia---------
-INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (default, '01158242-3', 'CN');
-INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (default, '02534252-1', 'CN');
-INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (default, '03358242-3', 'CN');
-INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (default, '03532231-3', 'CN');
-INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (default, '05417242-4', 'CN');
+INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (1, '01158242-3', 'CN');
+INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (2, '02534252-1', 'CN');
+INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (3, '03358242-3', 'CN');
+INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (4, '03532231-3', 'CN');
+INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (5, '05417242-4', 'CN');
 
-INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (default, '01158242-3', 'EDF');
-INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (default, '02534252-1', 'EDF');
-INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (default, '03358242-3', 'EDF');
-INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (default, '03532231-3', 'EDF');
-INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (default, '05417242-4', 'EDF');
+INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (6, '01158242-3', 'EDF');
+INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (7, '02534252-1', 'EDF');
+INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (8, '03358242-3', 'EDF');
+INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (9, '03532231-3', 'EDF');
+INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (10, '05417242-4', 'EDF');
 
-INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (default, '01158242-3', 'EN');
-INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (default, '02534252-1', 'EN');
-INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (default, '03358242-3', 'EN');
-INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (default, '03532231-3', 'EN');
-INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (default, '05417242-4', 'EN');
+INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (11, '01158242-3', 'EN');
+INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (12, '02534252-1', 'EN');
+INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (13, '03358242-3', 'EN');
+INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (14, '03532231-3', 'EN');
+INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (15, '05417242-4', 'EN');
 
-INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (default, '01158242-3', 'IC');
-INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (default, '02534252-1', 'IC');
-INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (default, '03358242-3', 'IC');
-INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (default, '03532231-3', 'IC');
-INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (default, '05417242-4', 'IC');
+INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (16, '01158242-3', 'IC');
+INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (17, '02534252-1', 'IC');
+INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (18, '03358242-3', 'IC');
+INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (19, '03532231-3', 'IC');
+INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (20, '05417242-4', 'IC');
 
 ----Evaluacion------
 ----------------AÑO 2017----------------------------
 ----------------Periodo 1----------------------------
 INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES (1, 'Obra la Ultima Guinda','Conocimientos sobre la trama y personajes',2, 'sub1_act1_per1_2017');
+VALUES ('eva1', 'Obra la Ultima Guinda','Conocimientos sobre la trama y personajes',2, 'sub1_act1_per1_2017');
 INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES (2, 'Baile Bueno 1','Para que Aprendan a Bailar 1',2, 'sub1_act2_per1_2017');
+VALUES ('eva2', 'Baile Bueno 1','Para que Aprendan a Bailar 1',2, 'sub1_act2_per1_2017');
 INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES (3, 'Baile Bueno 2','Para que Aprendan a Bailar 2',2, 'sub2_act2_per1_2017');
+VALUES ('eva3', 'Baile Bueno 2','Para que Aprendan a Bailar 2',2, 'sub2_act2_per1_2017');
 INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES (4, 'Examen Final','Examen Para Evaluar todo lo del periodo',2, 'sub1_exa1_per1_2017');
+VALUES ('eva4', 'Examen Final','Examen Para Evaluar todo lo del periodo',2, 'sub1_exa1_per1_2017');
 ----------------Periodo 2-----------------------------
 INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES (5, 'Obra la Ultima Guinda','Conocimientos sobre la trama y personajes',3, 'sub1_act1_per2_2017');
+VALUES ('eva5', 'Obra la Ultima Guinda','Conocimientos sobre la trama y personajes',3, 'sub1_act1_per2_2017');
 INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES (6, 'Obra la Ultima Guinda','Conocimientos sobre la trama y personajes',5, 'sub2_act1_per2_2017');
+VALUES ('eva6', 'Obra la Ultima Guinda','Conocimientos sobre la trama y personajes',5, 'sub2_act1_per2_2017');
 INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES (7, 'Obra la Ultima Guinda','Conocimientos sobre la trama y personajes',7, 'sub3_act1_per2_2017');
+VALUES ('eva7', 'Obra la Ultima Guinda','Conocimientos sobre la trama y personajes',7, 'sub3_act1_per2_2017');
 INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES (8, 'Obra la Ultima Guinda','Conocimientos sobre la trama y personajes',8, 'sub4_act1_per2_2017');
+VALUES ('eva8', 'Obra la Ultima Guinda','Conocimientos sobre la trama y personajes',8, 'sub4_act1_per2_2017');
 INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES (9, 'Baile Bueno','Para que Aprendan a Bailar 2',12, 'sub1_act2_per2_2017');
+VALUES ('eva9', 'Baile Bueno','Para que Aprendan a Bailar 2',12, 'sub1_act2_per2_2017');
 INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES (10, 'Examen Final','Examen Para Evaluar todo lo del periodo',16, 'sub1_exa1_per2_2017');
+VALUES ('eva10', 'Examen Final','Examen Para Evaluar todo lo del periodo',16, 'sub1_exa1_per2_2017');
 ----------------Periodo 3-------------------------------
 INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES (11, 'Obra la Ultima Guinda','Conocimientos sobre la trama y personajes',9, 'sub1_act1_per3_2017');
+VALUES ('eva11', 'Obra la Ultima Guinda','Conocimientos sobre la trama y personajes',9, 'sub1_act1_per3_2017');
 INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES (12, 'Baile Bueno','Para que Aprendan a Bailar 2',1, 'sub1_act2_per3_2017');
+VALUES ('eva12', 'Baile Bueno','Para que Aprendan a Bailar 2',1, 'sub1_act2_per3_2017');
 INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES (13, 'Examen Final','Examen Para Evaluar todo lo del periodo',5, 'sub1_exa1_per3_2017');
+VALUES ('eva13', 'Examen Final','Examen Para Evaluar todo lo del periodo',5, 'sub1_exa1_per3_2017');
 ----------------Periodo 4-------------------------------
 INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES (14, 'Obra la Ultima Guinda','Conocimientos sobre la trama y personajes',7, 'sub1_act1_per4_2017');
+VALUES ('eva14', 'Obra la Ultima Guinda','Conocimientos sobre la trama y personajes',7, 'sub1_act1_per4_2017');
 INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES (15, 'Baile Bueno','Para que Aprendan a Bailar 2',6, 'sub1_act2_per4_2017');
+VALUES ('eva15', 'Baile Bueno','Para que Aprendan a Bailar 2',6, 'sub1_act2_per4_2017');
 INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES (16, 'Examen Final','Examen Para Evaluar todo lo del periodo',3, 'sub1_exa1_per4_2017');
+VALUES ('eva16', 'Examen Final','Examen Para Evaluar todo lo del periodo',3, 'sub1_exa1_per4_2017');
 
 ----------------AÑO 2018----------------------------
 ----------------Periodo 1----------------------------
 INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES (17, 'Obra la Ultima Guinda','Conocimientos sobre la trama y personajes',3, 'sub1_act1_per1_2018');
+VALUES ('eva17', 'Obra la Ultima Guinda','Conocimientos sobre la trama y personajes',3, 'sub1_act1_per1_2018');
 INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES (18, 'Baile Bueno 1','Para que Aprendan a Bailar 1',8, 'sub1_act2_per1_2018');
+VALUES ('eva18', 'Baile Bueno 1','Para que Aprendan a Bailar 1',8, 'sub1_act2_per1_2018');
 INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES (19, 'Baile Bueno 2','Para que Aprendan a Bailar 2',7, 'sub2_act2_per1_2018');
+VALUES ('eva19', 'Baile Bueno 2','Para que Aprendan a Bailar 2',7, 'sub2_act2_per1_2018');
 INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES (20, 'Examen Final','Examen Para Evaluar todo lo del periodo',18, 'sub1_exa1_per1_2018');
+VALUES ('eva20', 'Examen Final','Examen Para Evaluar todo lo del periodo',18, 'sub1_exa1_per1_2018');
 ----------------Periodo 2-----------------------------
 INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES (21, 'Obra la Ultima Guinda','Conocimientos sobre la trama y personajes',15, 'sub1_act1_per2_2018');
+VALUES ('eva21', 'Obra la Ultima Guinda','Conocimientos sobre la trama y personajes',15, 'sub1_act1_per2_2018');
 INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES (22, 'Obra la Ultima Guinda','Conocimientos sobre la trama y personajes',11, 'sub2_act1_per2_2018');
+VALUES ('eva22', 'Obra la Ultima Guinda','Conocimientos sobre la trama y personajes',11, 'sub2_act1_per2_2018');
 INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES (23, 'Obra la Ultima Guinda','Conocimientos sobre la trama y personajes',1, 'sub3_act1_per2_2018');
+VALUES ('eva23', 'Obra la Ultima Guinda','Conocimientos sobre la trama y personajes',1, 'sub3_act1_per2_2018');
 INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES (24, 'Obra la Ultima Guinda','Conocimientos sobre la trama y personajes',17, 'sub4_act1_per2_2018');
+VALUES ('eva24', 'Obra la Ultima Guinda','Conocimientos sobre la trama y personajes',17, 'sub4_act1_per2_2018');
 INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES (25, 'Baile Bueno','Para que Aprendan a Bailar 2',19, 'sub1_act2_per2_2018');
+VALUES ('eva25', 'Baile Bueno','Para que Aprendan a Bailar 2',19, 'sub1_act2_per2_2018');
 INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES (26, 'Examen Final','Examen Para Evaluar todo lo del periodo',20, 'sub1_exa1_per2_2018');
+VALUES ('eva26', 'Examen Final','Examen Para Evaluar todo lo del periodo',20, 'sub1_exa1_per2_2018');
 ----------------Periodo 3-------------------------------
 INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES (27, 'Obra la Ultima Guinda','Conocimientos sobre la trama y personajes',5, 'sub1_act1_per3_2018');
+VALUES ('eva27', 'Obra la Ultima Guinda','Conocimientos sobre la trama y personajes',5, 'sub1_act1_per3_2018');
 INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES (28, 'Baile Bueno','Para que Aprendan a Bailar 2',4, 'sub1_act2_per3_2018');
+VALUES ('eva28', 'Baile Bueno','Para que Aprendan a Bailar 2',4, 'sub1_act2_per3_2018');
 INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES (29, 'Examen Final','Examen Para Evaluar todo lo del periodo',1, 'sub1_exa1_per3_2018');
+VALUES ('eva29', 'Examen Final','Examen Para Evaluar todo lo del periodo',1, 'sub1_exa1_per3_2018');
 ----------------Periodo 4-------------------------------
 INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES (30, 'Obra la Ultima Guinda','Conocimientos sobre la trama y personajes',6, 'sub1_act1_per4_2018');
+VALUES ('eva30', 'Obra la Ultima Guinda','Conocimientos sobre la trama y personajes',6, 'sub1_act1_per4_2018');
 INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES (31, 'Baile Bueno','Para que Aprendan a Bailar 2',3, 'sub1_act2_per4_2018');
+VALUES ('eva31', 'Baile Bueno','Para que Aprendan a Bailar 2',3, 'sub1_act2_per4_2018');
 INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES (32, 'Examen Final','Examen Para Evaluar todo lo del periodo',7, 'sub1_exa1_per4_2018');
+VALUES ('eva32', 'Examen Final','Examen Para Evaluar todo lo del periodo',7, 'sub1_exa1_per4_2018');
 
 ----------------AÑO 2019----------------------------
 ----------------Periodo 1----------------------------
 INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES (33, 'Obra la Ultima Guinda','Conocimientos sobre la trama y personajes',8, 'sub1_act1_per1_2019');
+VALUES ('eva33', 'Obra la Ultima Guinda','Conocimientos sobre la trama y personajes',8, 'sub1_act1_per1_2019');
 INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES (34, 'Baile Bueno 1','Para que Aprendan a Bailar 1',9, 'sub1_act2_per1_2019');
+VALUES ('eva34', 'Baile Bueno 1','Para que Aprendan a Bailar 1',9, 'sub1_act2_per1_2019');
 INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES (35, 'Baile Bueno 2','Para que Aprendan a Bailar 2',10, 'sub2_act2_per1_2019');
+VALUES ('eva35', 'Baile Bueno 2','Para que Aprendan a Bailar 2',10, 'sub2_act2_per1_2019');
 INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES (36, 'Examen Final','Examen Para Evaluar todo lo del periodo',19, 'sub1_exa1_per1_2019');
+VALUES ('eva36', 'Examen Final','Examen Para Evaluar todo lo del periodo',19, 'sub1_exa1_per1_2019');
 ----------------Periodo 2-----------------------------
 INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES (37, 'Obra la Ultima Guinda','Conocimientos sobre la trama y personajes',2, 'sub1_act1_per2_2019');
+VALUES ('eva37', 'Obra la Ultima Guinda','Conocimientos sobre la trama y personajes',2, 'sub1_act1_per2_2019');
 INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES (38, 'Obra la Ultima Guinda','Conocimientos sobre la trama y personajes',4, 'sub2_act1_per2_2019');
+VALUES ('eva38', 'Obra la Ultima Guinda','Conocimientos sobre la trama y personajes',4, 'sub2_act1_per2_2019');
 INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES (39, 'Obra la Ultima Guinda','Conocimientos sobre la trama y personajes',7, 'sub3_act1_per2_2019');
+VALUES ('eva39', 'Obra la Ultima Guinda','Conocimientos sobre la trama y personajes',7, 'sub3_act1_per2_2019');
 INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES (40, 'Obra la Ultima Guinda','Conocimientos sobre la trama y personajes',4, 'sub4_act1_per2_2019');
+VALUES ('eva40', 'Obra la Ultima Guinda','Conocimientos sobre la trama y personajes',4, 'sub4_act1_per2_2019');
 INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES (41, 'Baile Bueno','Para que Aprendan a Bailar 2',6, 'sub1_act2_per2_2019');
+VALUES ('eva41', 'Baile Bueno','Para que Aprendan a Bailar 2',6, 'sub1_act2_per2_2019');
 INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES (42, 'Examen Final','Examen Para Evaluar todo lo del periodo',9, 'sub1_exa1_per2_2019');
+VALUES ('eva42', 'Examen Final','Examen Para Evaluar todo lo del periodo',9, 'sub1_exa1_per2_2019');
 ----------------Periodo 3-------------------------------
 INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES (43, 'Obra la Ultima Guinda','Conocimientos sobre la trama y personajes',4, 'sub1_act1_per3_2019');
+VALUES ('eva43', 'Obra la Ultima Guinda','Conocimientos sobre la trama y personajes',4, 'sub1_act1_per3_2019');
 INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES (44, 'Baile Bueno','Para que Aprendan a Bailar 2',14, 'sub1_act2_per3_2019');
+VALUES ('eva44', 'Baile Bueno','Para que Aprendan a Bailar 2',14, 'sub1_act2_per3_2019');
 INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES (45, 'Examen Final','Examen Para Evaluar todo lo del periodo',13, 'sub1_exa1_per3_2019');
+VALUES ('eva45', 'Examen Final','Examen Para Evaluar todo lo del periodo',13, 'sub1_exa1_per3_2019');
 ----------------Periodo 4-------------------------------
 INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES (46, 'Obra la Ultima Guinda','Conocimientos sobre la trama y personajes',16, 'sub1_act1_per4_2019');
+VALUES ('eva46', 'Obra la Ultima Guinda','Conocimientos sobre la trama y personajes',16, 'sub1_act1_per4_2019');
 INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES (47, 'Baile Bueno','Para que Aprendan a Bailar 2',6, 'sub1_act2_per4_2019');
+VALUES ('eva47', 'Baile Bueno','Para que Aprendan a Bailar 2',6, 'sub1_act2_per4_2019');
 INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES (48, 'Examen Final','Examen Para Evaluar todo lo del periodo',5, 'sub1_exa1_per4_2019');
+VALUES ('eva48', 'Examen Final','Examen Para Evaluar todo lo del periodo',5, 'sub1_exa1_per4_2019');
 ----------------------------------------------------Finalizacion parte DIEGO-------------------------------------------
 
 INSERT INTO public."INTO_anotacion" (id, descripcion, fecha_anotacion, dui_docente_id, nie_id) VALUES (1, 'El estudiante fue encontrado fuera del instituro en horas en que posee clases', '01/08/2018', '05833241-1', 'nie0001');
@@ -1109,81 +1071,3 @@ INSERT INTO public."INTO_anotacion" (id, descripcion, fecha_anotacion, dui_docen
 INSERT INTO public."INTO_anotacion" (id, descripcion, fecha_anotacion, dui_docente_id, nie_id) VALUES (24, 'El estudiante', '08/04/2019', '05417242-4', 'nie0007');
 
 
-INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (1, 7.26, 1,'nie0003' );
-INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (2, 8.26, 2,'nie0005' );
-INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (3, 3.4, 2,'nie0009' );
-INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (4, 7.78, 2,'nie0012' );
-INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (5, 8.46, 2,'nie0015' );
-INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (6, 7.32, 2,'nie0018' );
-INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (7, 4.78, 3,'nie0003' );
-INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (8,9.2, 3,'nie0005' );
-INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (9, 6.35, 3,'nie0009' );
-INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (10, 8.5, 3,'nie0012' );
-INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (11, 7.26, 3,'nie0015' );
-INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (12, 7.26, 3,'nie0018' );
-INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (13, 7.26, 4,'nie0003' );
-INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (14, 7.26, 4,'nie0005' );
-INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (15, 7.26, 4,'nie0009' );
-INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (16, 7.26, 4,'nie0012' );
-INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (17, 7.26, 4,'nie0018' );
-INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (18, 7.26, 4,'nie0003' );
-INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (19, 7.26, 5,'nie0005' );
-INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (20, 7.26, 5,'nie0009' );
-INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (21, 7.26, 5,'nie0012' );
-INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (22, 7.26, 5,'nie0015' );
-INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (23, 7.26, 5,'nie0018' );
-INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (24, 7.26, 5,'nie0003' );
-INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (25, 7.26, 6,'nie0005' );
-INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (26, 7.26, 6,'nie0009' );
-INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (27, 7.26, 6,'nie0012' );
-INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (28, 7.26, 6,'nie0015' );
-INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (29, 7.26, 6,'nie0018' );
-INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (30, 7.26, 6,'nie0003' );
-INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (31, 7.26, 7,'nie0005' );
-INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (32, 7.26, 7,'nie0009' );
-INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (33, 7.26, 7,'nie0012' );
-INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (34, 7.26, 7,'nie0015' );
-INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (35, 7.26, 7,'nie0018' );
-INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (36, 7.26, 7,'nie0003' );
-INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (37, 7.26, 8,'nie0005' );
-INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (38, 7.26, 8,'nie0009' );
-INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (39, 7.26, 8,'nie0012' );
-INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (40, 7.26, 8,'nie0015' );
-INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (41, 7.26, 8,'nie0018' );
-INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (42, 7.26, 8,'nie0003' );
-INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (43, 7.26, 9,'nie0005' );
-INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (44, 7.26, 9,'nie0009' );
-INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (45, 7.26, 9,'nie0012' );
-INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (46, 7.26, 9,'nie0015' );
-INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (47, 7.26, 9,'nie0018' );
-
-INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (48, 8.26, 10,'nie0001' );
-INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (49, 8.26, 10,'nie0006' );
-INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (50, 8.26, 10,'nie0008' );
-INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (51, 8.26, 10,'nie0011' );
-INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (52, 8.26, 10,'nie0014' );
-INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (53, 8.26, 10,'nie0017' );
-INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (54, 8.26, 10,'nie0020' );
-
-INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (55, 6.35, 11,'nie0001' );
-INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (56, 8.26, 11,'nie0006' );
-INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (57, 8.26, 11,'nie0008' );
-INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (58, 8.26, 11,'nie0011' );
-INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (59, 8.26, 11,'nie0014' );
-INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (60, 8.26, 11,'nie0017' );
-INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (61, 8.26, 11,'nie0020' );
-
-INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (62, 7.86, 12,'nie0001' );
-INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (63, 7.86, 12,'nie0006' );
-INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (64, 7.86, 12,'nie0011' );
-INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (65, 7.86, 12,'nie0014' );
-INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (66, 7.86, 12,'nie0017' );
-INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (67, 7.86, 12,'nie0020' );
-
-INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (68, 7.86, 13,'nie0001' );
-INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (69, 7.86, 13,'nie0006' );
-INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (70, 7.86, 13,'nie0008' );
-INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (71, 7.86, 13,'nie0011' );
-INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (72, 7.86, 13,'nie0014' );
-INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (73, 7.86, 13,'nie0017' );
-INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (74, 7.86, 13,'nie0020' );

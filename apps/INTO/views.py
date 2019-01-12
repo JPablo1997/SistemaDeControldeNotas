@@ -590,7 +590,17 @@ def listaEvaluacion(request):
 		materias.append(Materia.objects.get(codigo_materia = x.codigo_materia.codigo_materia))
 		pass
 
-	contexto = {'materias':materias}
+	anioLectivos = AnioLectivo.objects.all().order_by('anio_lectivo')
+	for x in anioLectivos:
+		if not x.terminado:
+			anioLectivo = x
+			pass
+			break
+		pass
+
+	periodos = Periodo.objects.filter(codigo_periodo__contains = str(anioLectivo.anio_lectivo)).order_by('codigo_periodo')
+
+	contexto = {'materias':materias, 'periodos':periodos}
 
 	if 'btnCargarEvaluaciones' in request.GET:
 
@@ -683,7 +693,14 @@ def agregarEvaluacion(request):
 		pass
 
 	periodos = Periodo.objects.filter(codigo_periodo__contains = str(anioLectivo.anio_lectivo)).order_by('codigo_periodo')
-	contexto = {'periodos':periodos}
+	periodos_acts = []
+
+	for periodo in periodos:
+		periodos_acts.append(Actividad.objects.filter(codigo_periodo = periodo).order_by('codigo_actividad'))
+		pass
+
+
+	contexto = {'periodos_acts':periodos_acts, 'periodos':periodos}
 
 	docente = Docente.objects.get(usuario_docente=str(request.user.id)).dui_docente
 	materiasImpartidas =  Docente_Materia.objects.filter(codigo_docente=docente)
@@ -703,7 +720,10 @@ def agregarEvaluacion(request):
 				pass
 				break
 			pass
-		if request.POST['actividad'] == 'actividad1' or request.POST['actividad'] == 'actividad2':
+
+		tipo_actividad = Actividad.objects.get(codigo_actividad = actividad).codigo_tipo_actividad
+
+		if tipo_actividad.codigo_tipo_actividad is not 'Examen':
 			periodoSolicitado = Periodo.objects.get(codigo_periodo = periodo, anio_lectivo = anioLectivo)
 
 			if periodoSolicitado.finalizado:
@@ -789,6 +809,12 @@ def editarEvaluacion(request, id_evaluacion):
 		return redirect('/into/listaEvaluacion/')
 	return render(request, 'AgregarEvaluacion/editarEvaluacion.html',{'evaluacion':evaluacion})
 
+def servidorActividades(request):
+	codigo_periodo = request.GET['codigo_periodo']
+	actividades = Actividad.objects.filter(codigo_periodo = codigo_periodo).order_by('codigo_actividad')
+	data = serializers.serialize("json", actividades)
+
+	return HttpResponse(data, content_type='application/json')
 
 def Expediente(request):
 	return render (request,'expediente/expediente.html')

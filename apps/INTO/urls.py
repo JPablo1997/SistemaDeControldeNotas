@@ -48,7 +48,8 @@ urlpatterns = [
     url(r'^busqueda_especialidad/$',BusquedaEspecialidad.as_view(),name="busqueda_especialidad"),
     url(r'^busqueda_seccion/$',BusquedaSeccion.as_view(),name="busqueda_seccion"),
     url(r'^busqueda_docente/$',BusquedaDocente.as_view(),name="busqueda_docente"),
-    url(r'^busqueda_grupo/$',BusquedaGrupo.as_view(),name="busqueda_grupo")
+    url(r'^busqueda_grupo/$',BusquedaGrupo.as_view(),name="busqueda_grupo"),
     #Finalizacion de la parte de alumnos
+    url(r'^servidorActividades/$',login_required(servidorActividades),name="servidorActividades"),
 
 ]
