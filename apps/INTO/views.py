@@ -560,30 +560,40 @@ def IngresarNotas(request):
 	return render(request,'IngresarNotas/ingresarNotas.html',contexto)
 
 def servidorIngresarNotas(request):
+	"""AQUIIIII HAY QUE VALIDAR anio_lectivo vigente y periodos no finalizados"""
 	if request.GET['accion'] == 'obtenerEvaluaciones':
+
+		anioLectivos = AnioLectivo.objects.all().order_by('anio_lectivo')
+		for x in anioLectivos:
+			if not x.terminado:
+				anioLectivo = x
+				pass
+				break
+			pass
+		periodos = Periodo.objects.filter(anio_lectivo = anioLectivo, finalizado = False)
 		codigo_materia = request.GET['codigo_materia']
 		materia = Materia.objects.get(codigo_materia = codigo_materia)
 		docente = Docente.objects.get(usuario_docente=str(request.user.id))
 		docente_materia = Docente_Materia.objects.get(codigo_docente = docente, codigo_materia = materia)
-		evaluaciones = Evaluacion.objects.filter(codigo_docente_materia = docente_materia)
-		data = serializers.serialize('json', evaluaciones)
-		return HttpResponse(data, content_type = 'application/json')
-		pass
 
-	elif request.GET['accion'] == 'obtenerGrupos':
-		codigo_materia = request.GET['codigo_materia']
-		materia = Materia.objects.get(codigo_materia = codigo_materia)
-		especialidades_materia = Especialidad_Materia.objects.filter(codigo_materia = materia)
+		evaluaciones = []
 
-		grupos = []
-		for especialidad_materia in especialidades_materia:
-			grupos_especialidad_materia = Grupo.objects.filter(codigo_especialidad = especialidad_materia.codigo_especialidad,nivel_especialidad = especialidad_materia.nivel_materia_especialidad)
-			for grupo in grupos_especialidad_materia:
-				grupos.append(grupo)
+		for periodo in periodos:
+			actividades = Actividad.objects.filter(codigo_periodo = periodo)
+
+			for actividad in actividades:
+				subactividades = Sub_Actividad.objects.filter(codigo_actividad = actividad)
+				
+				for subactividad in subactividades:
+					if Evaluacion.objects.filter(codigo_sub_actividad = subactividad, codigo_docente_materia = docente_materia).exists():
+						evaluacion = Evaluacion.objects.get(codigo_sub_actividad = subactividad, codigo_docente_materia = docente_materia)
+						evaluaciones.append(evaluacion)
+						pass 
+					pass
 				pass
 			pass
 
-		data = serializers.serialize('json', grupos)
+		data = serializers.serialize('json', evaluaciones)
 		return HttpResponse(data, content_type = 'application/json')
 		pass
 
@@ -613,7 +623,8 @@ def listaEvaluacion(request):
 	if 'btnCargarEvaluaciones' in request.GET:
 
 		periodoFinalizado = False
-		evaluaciones = cargarEvaluaciones(request.GET['materiaSelect'], request.GET['periodo'], request.GET['actividad'])
+		docente = Docente.objects.get(usuario_docente=str(request.user.id)).dui_docente
+		evaluaciones = cargarEvaluaciones(request.GET['materiaSelect'], request.GET['periodo'], request.GET['actividad'], docente)
 		if evaluaciones != []:
 			anioLectivo = None
 			anioLectivos = AnioLectivo.objects.all().order_by('anio_lectivo')
@@ -642,7 +653,8 @@ def listaEvaluacion(request):
 			codigo_evaluacion = request.POST['evaluacion']
 			evaluacion = Evaluacion.objects.get(codigo_evaluacion = codigo_evaluacion)
 			evaluacion.codigo_sub_actividad.delete()
-			evaluaciones = cargarEvaluaciones(request.GET['materiaSelect'], request.GET['periodo'], request.GET['actividad'])
+			docente = Docente.objects.get(usuario_docente=str(request.user.id)).dui_docente
+			evaluaciones = cargarEvaluaciones(request.GET['materiaSelect'], request.GET['periodo'], request.GET['actividad'],docente)
 			contexto = {'evaluaciones':evaluaciones, 'materia':request.GET['materiaSelect'], 'periodo':request.GET['periodo'], 'actividad':request.GET['actividad']}
 			pass
 		else:
@@ -653,7 +665,7 @@ def listaEvaluacion(request):
 
 	return render(request,'AgregarEvaluacion/listaEvaluacion.html',contexto)
 
-def cargarEvaluaciones(materia, periodo, actividad):
+def cargarEvaluaciones(materia, periodo, actividad, docente):
 	evaluaciones = []
 	anioLectivos = AnioLectivo.objects.all().order_by('anio_lectivo')
 	for x in anioLectivos:
@@ -668,9 +680,15 @@ def cargarEvaluaciones(materia, periodo, actividad):
 	if Actividad.objects.filter(codigo_actividad = actividad, codigo_periodo = periodoSolicitado).exists():
 		actividadSolicitada = Actividad.objects.get(codigo_actividad = actividad, codigo_periodo = periodoSolicitado)
 		SubActs = Sub_Actividad.objects.filter(codigo_actividad = actividadSolicitada)
+
+		materia = Materia.objects.get(codigo_materia = materia)
+		docente_materia = Docente_Materia.objects.get(codigo_docente = docente, codigo_materia = materia).id
+
 		for x in SubActs:
 			evaluacion = Evaluacion.objects.get(codigo_sub_actividad = x)
-			evaluaciones.append(evaluacion)
+			if evaluacion.codigo_docente_materia.id == docente_materia:
+				evaluaciones.append(evaluacion)
+				pass
 			pass
 		return evaluaciones
 		pass
