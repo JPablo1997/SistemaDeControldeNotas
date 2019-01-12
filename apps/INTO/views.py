@@ -742,3 +742,7 @@ def editarEvaluacion(request, id_evaluacion):
 		Sub_Actividad.objects.filter(codigo_sub_actividad = evaluacion.codigo_sub_actividad.codigo_sub_actividad).update(porcentaje_sub_actividad = request.POST['porcentajeSubActividad'], descripcion_sub_actividad = request.POST['descripcionSubActividad'])
 		return redirect('/into/listaEvaluacion/')
 	return render(request, 'AgregarEvaluacion/editarEvaluacion.html',{'evaluacion':evaluacion})
+
+
+def Expediente(request):
+	return render (request,'expediente/expediente.html')
