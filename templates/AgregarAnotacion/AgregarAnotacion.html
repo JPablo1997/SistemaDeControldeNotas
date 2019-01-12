@@ -11,7 +11,7 @@
 	<div class= "row">
 		<section class="col-md-12">
 			<div class= "container">
-				<form method="POST">
+				<form method="POST" name="form1">
 					{% csrf_token %}
 					<section class="col-md-4"></section>
 
@@ -24,9 +24,13 @@
 		         				<input type="text" id="nie" name="inputNie" required minlength="1" maxlength="8" placeholder="Digitar nie" />		
 		         			</td>
 		         		</tr>  
-		         		<button type="submit" class="btn btn-success" name = "btnConsultar" id="btnConsultar">Buscar</button>              
+		         		<button type="submit" class="btn btn-success" name = "btnConsultar" id="btnConsultar" onclick="anotacionNie(nie.value)">Buscar</button>              
 		         		
-		                <br/><br/>                                                        
+		                <br/><br/>  
+		                 
+		                <script>
+    					alert('{{ message }}');
+						</script>                                                     
             		</div>
             		
                  	<table class="table table-hover border">
@@ -65,7 +69,7 @@
                     <tbody>
                         {%for x in Anot%}
                         <tr>
-                            <td>{{x.id}}</td>
+                            <td></td>
                             <td>{{x.fecha_anotacion}}</td>
                             <td>{{x.descripcion}}</td>
                                          
@@ -90,20 +94,17 @@
 		</section>	
 		<section class="col-md-6">
 			<div class= "container">
-				<form method="POST">
+				<form method="POST" >
 					{% csrf_token %}					
 					<button type="button" class="btn btn-success" name = "btnAgregar" id="btnAgregar" onclick="AnotacionDesactivar()">Agregar</button>																																			
 					<table>
 						<thead>
                             <tr>
-                            	<th>Digite el nie del alumno</th>
+                            	<th>Nie</th>
                        			<th>{{form.nie}}</th>
                             </tr>                            
                             <br>
-                            <tr>
-                            	<th>Digite el dui</th>
-                       			<th>{{form.dui_docente}}</th>
-                            </tr>							
+                            
                             <tr>
                             	<th>Fecha de anotacion</th>
                        			<th>{{form.fecha_anotacion}}</th>
