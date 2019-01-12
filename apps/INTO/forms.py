@@ -6,6 +6,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError 
 import re,datetime
 
+
 class DocenteForm(forms.ModelForm):
   
     
@@ -148,24 +149,24 @@ class MateriaForm(forms.ModelForm):
 
 class AnotacionForm(forms.ModelForm):
     class Meta:
-        model = Anotacion
+        model = Anotacion        
 
         fields = [
             'nie',
-            'dui_docente',
+            #'dui_docente',
             'descripcion',
             'fecha_anotacion',
 
         ]
         labels = {
             'nie' : 'nie',
-            'dui_docente' : 'dui_docente',
+            #'dui_docente' : 'dui_docente',
             'descripcion' : 'descripcion',
             'fecha_anotacion' : 'fecha_anotacion',
         }
         widgets = {
-            'nie' : forms.TextInput(attrs={'class':'form-control','id':"1",'onkeyup':"AnotacionDesactivar()",'disabled': 'true'}),
-            'dui_docente' : forms.TextInput(attrs={'class':'form-control','id':"2",'onkeyup':"AnotacionDesactivar()",'disabled': 'true'}),
+            'nie' : forms.TextInput(attrs={'class':'form-control','id':"1",'onkeyup':"anotacionNie()",'disabled': 'true'}),
+            #'dui_docente' : forms.TextInput(attrs={'class':'form-control','id':"dui",'onkeyup':"AnotacionDesactivar()",'disabled': 'true'}),
             'descripcion' : forms.Textarea(attrs={'class':'form-control','id':"3",'onkeyup':"AnotacionDesactivar()",'disabled': 'true'}),
             'fecha_anotacion' : forms.TextInput(attrs={'class':'form-control','type':'date' ,'cols': 80, 'rows': 20,'id':"4",'onkeyup':"AnotacionDesactivar()",'disabled': 'true'}),
         }

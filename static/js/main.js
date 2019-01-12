@@ -306,8 +306,8 @@ jQuery(function($){
 function AnotacionDesactivar(){
 var c1=document.getElementById("1");
 c1.disabled = false;
-var c2=document.getElementById("2");
-c2.disabled = false;
+//var c2=document.getElementById("dui");
+//2.disabled = false;
 var c3=document.getElementById("3");
 c3.disabled = false;
 var c4=document.getElementById("4");
@@ -321,6 +321,14 @@ c7.disabled = true;
 var c8=document.getElementById("btnGuardar");
 c8.disabled = false;
 
+
+function anotacionNie(nie)
+{
+	
+//var c6 document.getElementById('nie').value;
+document.getElementById('nie').value=nie;
+
+}
 
 
 

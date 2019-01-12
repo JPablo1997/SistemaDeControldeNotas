@@ -7,6 +7,7 @@ from django.http import HttpResponse,HttpResponseRedirect
 from apps.INTO.models import *
 from decimal import Decimal
 from django.core import serializers
+from django.contrib import messages
 # Create your views here.
 import time
 #vista basada en funcion para los formularios
@@ -257,25 +258,69 @@ def anotacion(request):
 	AlumnoDato	= Alumno()
 	AnotacionDato = Anotacion()
 	Anot = []
-
+	codigoGrupo = ""
+	AlumnoGrupo = Alumno_Grupo()
+	GrupoE= Grupo()
+	codigoDocente = ""
+	idUser = request.user.id
+	duiDocente = ""
+	docente = Docente()
+	message = "Anotaciones"
+	
 	if request.method == 'POST':
 		form = AnotacionForm(request.POST)
 		if 'btnConsultar' in request.POST:
-			AlumnoNie = request.POST.get('inputNie')		
+			AlumnoNie = request.POST.get('inputNie')
+			AlumnoGrupo = Alumno_Grupo.objects.get(nie=AlumnoNie)
+			codigoGrupo = AlumnoGrupo.codigo_grupo
+			GrupoE = Grupo.objects.get(codigo_grupo=codigoGrupo)
+			codigoDocente = GrupoE.codigo_docente_encargado_id
+			docente = Docente.objects.get(usuario_docente_id=idUser)
+			dui_docente = docente.dui_docente
+			if codigoDocente == dui_docente:
+				try:
+	   				AlumnoDato = Alumno.objects.get(nie=AlumnoNie)
+	   				Anot=Anotacion.objects.filter(nie_id=AlumnoNie)
+	   				nombre = AlumnoDato.nombre_alumno + " "+ AlumnoDato.apellidos_alumno
+	   				
+				except Alumno.DoesNotExist:
+	   				AlumnoDato = None
+	   				AlumnoNie = ""	
+
+
+
+
+
+
 			
 
-			try:
-   				AlumnoDato = Alumno.objects.get(nie=AlumnoNie)
-   				Anot=Anotacion.objects.filter(nie_id=AlumnoNie)
-   				nombre = AlumnoDato.nombre_alumno + " "+ AlumnoDato.apellidos_alumno
-			except Alumno.DoesNotExist:
-   				AlumnoDato = None
-   				AlumnoNie = ""
+			
 
 		if 'btnGuardar' in request.POST:
 			
-			if form.is_valid():
-				form.save()	
+			AlumnoNie = request.POST.get('nie')
+			AlumnoGrupo = Alumno_Grupo.objects.get(nie=AlumnoNie)
+			codigoGrupo = AlumnoGrupo.codigo_grupo
+			GrupoE = Grupo.objects.get(codigo_grupo=codigoGrupo)
+			codigoDocente = GrupoE.codigo_docente_encargado_id
+			docente = Docente.objects.get(usuario_docente_id=idUser)
+			dui_docente = docente.dui_docente
+			if codigoDocente == dui_docente:
+				if form.is_valid():
+
+					anotacionFinal = Anotacion()
+					doc = Docente()
+					alu = Alumno()
+					ni = request.POST.get('nie')
+					alu = Alumno.objects.get(nie=ni)
+					doc = Docente.objects.get(dui_docente=dui_docente)
+					anotacionFinal.nie = alu
+					anotacionFinal.dui_docente = doc
+					anotacionFinal.descripcion = request.POST.get('descripcion')
+					anotacionFinal.fecha_anotacion = request.POST.get('fecha_anotacion')
+					anotacionFinal.save()	
+			
+			
 			return redirect('Anotacion')
 	else:
 		form = AnotacionForm()	
@@ -290,6 +335,7 @@ def anotacion(request):
 		'AlumnoNie':AlumnoNie,
 		 'nombre': nombre,
 		 'Anot':Anot,
+		 'message' : message,
 		 
 		 
 		})
