@@ -37,45 +37,52 @@
 	</div>
 	<div class="col-md-10">
 		
-		<hr>
-		<dt>Campos Obligatorios:</dt>
-		<form action="" class="form-inline">
-			<div class="form-group">
-				<label class="sr-only" for="nie">Nombre: </label>
-				<input class="form-control" id="nie" type="text" placeholder="NIE:">
+		
+		<form action="/into/guardar_alumno/" method="post" id="form_alumno">
+			{% csrf_token %}
+			<hr>
+			<dt>Campos Obligatorios:</dt>
+			<div class="row">
+				<div class="form-group col-md-2">
+					<label class="sr-only" for="nie">Nombre: </label>
+					<input class="form-control" id="nie" type="text" placeholder="NIE:">
+				</div>
+				<div class="form-group col-md-4">
+					<label class="sr-only" for="nie">Nombre: </label>
+					<input class="form-control" id="nie" type="text" placeholder="Nombres:">
+				</div>
+				<div class="form-group col-md-4">
+					<label class="sr-only" for="nie">Nombre: </label>
+					<input class="form-control" id="nie" type="text" placeholder="Apellidos:">
+				</div>
+				<div class="form-group col-md-2">
+					<select name="" id="" class="form-control">
+						<option value="">Masculino</option>
+						<option value="">Femenino</option>
+					</select>
+				</div>
 			</div>
-			<div class="form-group">
-				<label class="sr-only" for="nie">Nombre: </label>
-				<input class="form-control" id="nie" type="text" placeholder="Nombres:">
-			</div>
-			<div class="form-group">
-				<label class="sr-only" for="nie">Nombre: </label>
-				<input class="form-control" id="nie" type="text" placeholder="Apellidos:">
-			</div>
-			<div class="form-group">
-				<select name="" id="" class="form-control">
-					<option value="">Masculino</option>
-					<option value="">Femenino</option>
-				</select>
-			</div>
-		</form>
-		<hr>
-		<dt>Campos Opcionales:</dt>
-		<form action="" class="form-inline">
-			<div class="form-group">
+			<hr>
+			<dt>Campos Opcionales:</dt>
+			<div class="row">
+				<div class="form-group col">
 				<label class="sr-only" for="nie">Nombre: </label>
 				<input class="form-control" id="nie" type="text" placeholder="Direccion">
 			</div>
-			<div class="form-group">
+			<div class="form-group col">
 				<label class="sr-only" for="nie">Nombre: </label>
 				<input class="form-control" id="nie" type="text" placeholder="Telefono:">
 			</div>
-			<div class="ml-auto" >
-				<dt>Codigo de Grupo: <div class="text-center" id="grupo_id">00</div></dt>
+			<div class="ml-auto text-center col" >
+				<dt>Codigo de Grupo: <div id="grupo_id">00</div></dt>
+			</div>
+			<div class="col">
+				<button id="boton" class="btn btn-danger ml-auto">Agregar Alumno</button>
 			</div>
 			
-			<button id="boton" class="btn btn-danger ml-auto" disabled>Agregar Alumno</button>
-		</form>
+			</div>
+	
+		</form>	
 		
 		<hr>
 		<div class="table-responsive">
@@ -216,6 +223,23 @@
 		 	}
 		});
 
+	}
+	$('#form_alumno').on('submit',guardar_alumno);
+	function guardar_alumno () {
+		var grupo=$('#grupo_id').text();
+		
+		$.ajax({
+			data: {'grupo':grupo,csrfmiddlewaretoken:'{{ csrf_token }}'}, // get the form data
+            type: $(this).attr('method'), // GET or POST
+            url: $(this).attr('action'), // the file to call
+            success: function(data) { // on success..
+                console.log(data);
+            }
+
+
+		});
+		return false;
+		// body... 
 	}
 	
 	
