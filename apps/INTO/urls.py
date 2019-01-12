@@ -29,6 +29,7 @@ urlpatterns = [
     url(r'^ingresarNotas/$',login_required(IngresarNotas),name="ingresarNotas"),
     url(r'^servidorIngresarNotas/$',login_required(servidorIngresarNotas),name="servidorIngresarNotas"),
     url(r'^estadisticas/$',login_required(DatosEstadisticos),name="estadisticas"),
+    url(r'^expediente/$',login_required(Expediente),name="expediente"),
     url(r'^administrar/$',login_required(administrarNotas),name="administrar"),
     url(r'^Anotacion/$',login_required(anotacion),name="Anotacion"),
     url(r'^administrarMaterias/$',login_required(MateriaList.as_view()),name="administrarMaterias"),
