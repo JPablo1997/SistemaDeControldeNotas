@@ -479,12 +479,20 @@ def materia_view(request):
 			materia.objetivos=request.POST['objetivos']	
 			#Guardamos  
 			materia.save()
-			if "docent" in request.POST:
+
+			for docente in docentes:
+				if 'docente_'+docente.dui_docente in request.POST:
+					cant = Docente_Materia.objects.all().count()
+					docente_materia = Docente_Materia(cant + 1,codigo_docente = docente, codigo_materia = materia)
+					docente_materia.save()
+					pass
+				pass
+			"""if "docente_" in request.POST:
 				for doc in docentes:
 					if doc.dui_docente == request.POST['docent']:
 						docMat.codigo_docente = doc
 						docMat.codigo_materia = materia
-						docMat.save()
+						docMat.save()"""
 			#	arrayDoc = request.POST.getlist('docent[]')
 		return redirect('/into/administrarMaterias')
 	else:
