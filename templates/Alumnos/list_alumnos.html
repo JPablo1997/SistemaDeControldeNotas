@@ -1,22 +1,16 @@
 {% extends 'base/base.html' %}
+{% block title %}Alumnos{% endblock %}
+{% block act_inicio %}{% endblock %}
+{% block act_alumnos %}active{% endblock %}
 {% block content %}
 <br>
 <div class="row">
 	<div class="col-md-2">
 		<dt class="text-center">BUSQUEDA</dt>
 		<hr>
-		<dt>Seleccione El Tipo</dt>
-		<select name="" id="" class="form-control">
-			<option  value="0">Seleccione Opcion</option>
-			<option  value="1">General</option>
-			<option  value="2">Tecnico</option>
-			
-		</select>
-		
-		<hr>
 		<hr>
 		<dt>Selecione el Nivel</dt>
-		<select name="" id="" class="form-control">
+		<select name="nivel_especialidad" id="nivel" class="form-control">
 			<option  value="0">Seleccione Opcion</option>
 			<option  value="1">Primer Año</option>
 			<option  value="2">Segundo Año</option>
@@ -25,68 +19,71 @@
 		<hr>
 		<hr>
 		<dt>Seleccione la Especialidad</dt>
-		<select name="" id="" class="form-control">
-			<option  value="0">Seleccione Opcion</option>
-			<option  value="1">Idiomas</option>
-			<option  value="2">Software</option>
-			<option  value="3">contador</option>
+		<select name="codigo_especialidad" id="especialidad" class="form-control">
+				<option value="0">Seleccione Opcion</option>				
 		</select>
 		<hr>
 		<hr>
 		<dt>Seleccione la Seccion</dt>
-		<select name="" id="" class="form-control">
-			<option >Seleccione Opcion</option>
-			<option  value="1">A</option>
-			<option  value="2">B</option>
-			<option  value="3">C</option>
+		<select name="seccion" id="seccion" class="form-control">
+			<option value="0">Seleccione Opcion</option>			
 		</select>
 		<hr>
 		<hr>
-		<dt>Docente Encargado</dt>
-		<dd>Diego Ochoa</dd>
+		<dt class="text-center">Docente Encargado</dt>
+		<dd id="docente" class="text-center">-----------------</dd>
 		<hr>
 		<dt class="text-center"><a class="btn btn-primary" href="{% url 'crear_grado'%}">Crear Grado</a></dt>
 	</div>
 	<div class="col-md-10">
 		
-		<hr>
-		<dt>Campos Obligatorios:</dt>
-		<form action="" class="form-inline">
-			<div class="form-group">
-				<label class="sr-only" for="nie">Nombre: </label>
-				<input class="form-control" id="nie" type="text" placeholder="NIE:">
+		
+		<form action="/into/guardar_alumno/" method="post" id="form_alumno">
+			{% csrf_token %}
+			<hr>
+			<dt>Campos Obligatorios:</dt>
+			<div class="row">
+				<div class="form-group col-md-2">
+					<label class="sr-only" for="nie">Nombre: </label>
+					<input class="form-control" id="nie" type="text" placeholder="NIE:">
+				</div>
+				<div class="form-group col-md-4">
+					<label class="sr-only" for="nie">Nombre: </label>
+					<input class="form-control" id="nie" type="text" placeholder="Nombres:">
+				</div>
+				<div class="form-group col-md-4">
+					<label class="sr-only" for="nie">Nombre: </label>
+					<input class="form-control" id="nie" type="text" placeholder="Apellidos:">
+				</div>
+				<div class="form-group col-md-2">
+					<select name="" id="" class="form-control">
+						<option value="">Masculino</option>
+						<option value="">Femenino</option>
+					</select>
+				</div>
 			</div>
-			<div class="form-group">
-				<label class="sr-only" for="nie">Nombre: </label>
-				<input class="form-control" id="nie" type="text" placeholder="Nombres:">
-			</div>
-			<div class="form-group">
-				<label class="sr-only" for="nie">Nombre: </label>
-				<input class="form-control" id="nie" type="text" placeholder="Apellidos:">
-			</div>
-			<div class="form-group">
-				<select name="" id="" class="form-control">
-					<option value="">Masculino</option>
-					<option value="">Femenino</option>
-				</select>
-			</div>
-		</form>
-		<hr>
-		<dt>Campos Opcionales:</dt>
-		<form action="" class="form-inline">
-			<div class="form-group">
+			<hr>
+			<dt>Campos Opcionales:</dt>
+			<div class="row">
+				<div class="form-group col">
 				<label class="sr-only" for="nie">Nombre: </label>
 				<input class="form-control" id="nie" type="text" placeholder="Direccion">
 			</div>
-			<div class="form-group">
+			<div class="form-group col">
 				<label class="sr-only" for="nie">Nombre: </label>
 				<input class="form-control" id="nie" type="text" placeholder="Telefono:">
 			</div>
-			<div>
-				<dt class="text-justify">Codigo de Grupo: 01</dt>
+			<div class="ml-auto text-center col" >
+				<dt>Codigo de Grupo: <div id="grupo_id">00</div></dt>
 			</div>
-			<button class="btn btn-danger ml-auto">Agregar Alumno</button>
-		</form>
+			<div class="col">
+				<button id="boton" class="btn btn-danger ml-auto">Agregar Alumno</button>
+			</div>
+			
+			</div>
+	
+		</form>	
+		
 		<hr>
 		<div class="table-responsive">
 			<table class="table table-bordered table-hover">
@@ -100,57 +97,151 @@
 					<th>Telefono</th>
 					<th>Acciones</th>
 				</thead>
-				<tbody class="text-center">
-					<tr>
-						<td>1</td>
-						<td>4545662</td>
-						<td>Diego Ochoa</td>
-						<td>Masculino</td>
-						<td>2016</td>
-						<td>San Salvador</td>
-						<td>Sin Registros</td>
-						<td>
-							<a href="#" class="btn btn-default btn-xs">
-	                        <span class="fas fa-pencil-alt"></span>
-	                        </a>
-	                            
-	                        <a href="#" class="btn btn-default btn-xs">
-	                        <span class="fas fa-th-large"></span>
-	                        </a>
-	                        <a href="#" 
-	                        class="btn btn-default btn-xs">
-	                        <span class="fas fa-trash"></span>
-	                        </a>
-						</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>5456565</td>
-						<td>Victor Garcia</td>
-						<td>Masculino</td>
-						<td>2017</td>
-						<td>Chalatenango</td>
-						<td>Sin Registros</td>
-						<td>
-							<a href="#" class="btn btn-default btn-xs">
-	                        <span class="fas fa-pencil-alt"></span>
-	                        </a>
-	                            
-	                        <a href="#" class="btn btn-default btn-xs">
-	                        <span class="fas fa-th-large"></span>
-	                        </a>
-	                        <a href="#" 
-	                        class="btn btn-default btn-xs">
-	                        <span class="fas fa-trash"></span>
-	                        </a>
-						</td>
-					</tr>
+				<tbody class="text-center">				
 					
 				</tbody>
 			</table>
+			<h1 class="text-center">No Hay Datos</h1>
 		</div>
 	</div>	
 </div>
 <br>
 <br>
+{% endblock %}
+{% block extrajs %}
+<script type="text/javascript">
+
+	$('#nivel').on('change',select_nivel);
+	function select_nivel () {
+		var nivel = $('#nivel').val();
+		var especialidad = $('#especialidad').val();
+		
+		$.ajax({
+		 	data:{'nivel':nivel},
+		 	url:'{% url "busqueda_especialidad" %}',
+		 	type:'get',
+		 	success:function(data) {
+		 		var html="";
+		 		var html2='<option value="0">Seleccione Opcion</option>';
+		 		var html3='<dd>-----------------</dd>';
+		 		html+='<option value="0">Seleccione Opcion</option>';
+		 		for(var i = 0; i<data.length; i++){
+		 			html += '<option value="'+data[i].pk+'">'+data[i].fields.nombre_especialidad+'</option>';
+		 		}		 		
+		 		if (nivel==0) {
+		 			html='<option value="0">Seleccione Opcion</option>';
+		 			html2='<option value="0">Seleccione Opcion</option>';
+		 			html3='<dd>-----------------</dd>';
+		 			$('#boton').attr("disabled", true);
+		 			$('#grupo_id').html('00');
+		 			
+		 		}
+		 		$('#boton').attr("disabled", true);	 		
+		 		$('#grupo_id').html('00');
+		 		$('#especialidad').html(html);
+		 		$('#seccion').html(html2);
+		 		$('#docente').html(html3);
+
+
+		 	}		 	
+		});
+	}
+	$('#especialidad').on('change',select_especialidad);
+	function select_especialidad () {
+		var nivel = $('#nivel').val();
+		var especialidad = $('#especialidad').val();
+		var seccion = $('#seccion').val();		
+		$.ajax({
+		 	data:{'especialidad':especialidad,'nivel':nivel},
+		 	url:'{% url "busqueda_seccion" %}',
+		 	type:'get',
+		 	success:function(data) {
+		 		var html="";		 		
+		 		html+='<option value="0">Seleccione Opcion</option>';
+		 		var html2='<dd>-----------------</dd>';
+		 		for(var i = 0; i<data.length; i++){
+		 			html += '<option value="'+data[i].pk+'">'+data[i].fields.seccion+'</option>';
+		 		}		 		
+		 		if (especialidad==0) {
+		 			html='<option value="0">Seleccione Opcion</option>';
+		 			html2='<dd>-----------------</dd>';
+		 			$('#boton').attr("disabled", true);
+		 			$('#grupo_id').html('00');
+		 		}
+		 		$('#boton').attr("disabled", true);
+		 		$('#grupo_id').html('00');
+		 		$('#seccion').html(html);
+		 		$('#docente').html(html2); 
+		 	}
+		 	
+		}); 
+	}
+	$('#seccion').on('change',select_seccion);
+	function select_seccion () {
+		var nivel = $('#nivel').val();
+		var especialidad = $('#especialidad').val();
+		var seccion = $('#seccion').val();
+		
+		$.ajax({
+		 	data:{'especialidad':especialidad,'nivel':nivel,'seccion':seccion},
+		 	url:'{% url "busqueda_docente" %}',
+		 	type:'get',
+		 	success:function(data) {
+		 		var html="";		 		
+		 		for(var i = 0; i<data.length; i++){
+		 			html += '<dd class="text-center">'+data[i].fields.nombre_docente+" "+data[i].fields.apellidos_docente+'</dd>';
+		 		}		 		
+		 		if (seccion==0) {
+		 			html+='<dd>-----------------</dd>';
+		 			$('#boton').attr("disabled", true);
+		 		}
+		 		else {
+		 			$('#boton').attr("disabled", false);
+		 		}
+		 		$('#docente').html(html); 
+		 	}		 	
+		});
+		$.get({
+			data:{'especialidad':especialidad,'nivel':nivel,'seccion':seccion},
+		 	url:'{% url "busqueda_grupo" %}',
+		 	
+		 	success:function(data) {
+		 		var html="";
+		 				 		
+		 		for(var i = 0; i<data.length; i++){
+
+		 			html += data[i].pk;
+		 		}		 		
+		 		if (seccion==0) {
+		 			html+='00';
+		 			$('#boton').attr("disabled", true);
+		 		}
+		 		else {
+		 			$('#boton').attr("disabled", false);
+		 		}
+		 		$('#grupo_id').html(html); 
+		 	}
+		});
+
+	}
+	$('#form_alumno').on('submit',guardar_alumno);
+	function guardar_alumno () {
+		var grupo=$('#grupo_id').text();
+		
+		$.ajax({
+			data: {'grupo':grupo,csrfmiddlewaretoken:'{{ csrf_token }}'}, // get the form data
+            type: $(this).attr('method'), // GET or POST
+            url: $(this).attr('action'), // the file to call
+            success: function(data) { // on success..
+                console.log(data);
+            }
+
+
+		});
+		return false;
+		// body... 
+	}
+	
+	
+</script>
 {% endblock %}

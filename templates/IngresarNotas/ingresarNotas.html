@@ -1,5 +1,7 @@
 {% extends 'base/base.html'%}
 {% block title %} Ingresar Notas {% endblock %}
+{% block act_ingresarNotas %}active{% endblock %}
+{% block act_inicio %}{% endblock %}
 {% block content %}
 {% if alumnos and evaluacion %}
 <br>
@@ -68,6 +70,7 @@
       <div id="evaluacionesLista" style="display: none;">
         <select id="evaluacionSelect" class="form-group col-12 col-md-6" style="margin-bottom: 50px;">
           <option class="opt" value="default">--Seleccione una evaluacion--</option>
+          <div id="info"></div>
         </select>
       </div>
       <div id="grupos" style="display: none; margin-bottom: 150px;">
@@ -102,13 +105,13 @@
                 dataType:'json',
                 data : {'codigo_materia': value, 'accion': accion},
                 success: function(data){
-                  var optionsText;
-
+                  var optionsText = '<option class="opt" value="default">--Seleccione una evaluacion--</option>';
+                  console.log(data);
                   for( var i in data){
-                    optionsText += '<option class="opt" value="'+data[i].pk+'">'+data[i].fields.nombre_evaluacion+'</option>';
+                    optionsText += '<option class="opt" value="'+data[i].pk+'">'+data[i].fields.codigo_sub_actividad+' --> '+data[i].fields.nombre_evaluacion+'</option>';
                   }
 
-                  $('#evaluacionSelect').append(optionsText);
+                  $('#evaluacionSelect').html(optionsText);
                   $('#evaluacionesLista').css('display','block');
                   $('#evaluacionesLista').css('padding-top','5px');
                 },

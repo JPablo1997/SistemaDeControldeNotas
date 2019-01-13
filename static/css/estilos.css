@@ -1,6 +1,4 @@
-.bg-light {
-    background-color: lavender;
-  }
+
 .h4
   {
       border-color: blue;
@@ -227,3 +225,25 @@ select:focus{ outline: none;}
   font-size: 2em;
 }
 
+
+.color-navbar {
+    background-color: lavender;
+}
+
+
+
+/*Inicio Expediente*/
+#Gen_expediente{
+  width: 90%;
+max-width: 100%;
+margin: auto;
+border: 1px solid #000;
+padding: 15px;
+}
+
+.botonesaños{
+  text-align: center;
+
+
+}
+/*fin Expediente*/

@@ -7,8 +7,9 @@ from django.http import HttpResponse,HttpResponseRedirect
 from apps.INTO.models import *
 from decimal import Decimal
 from django.core import serializers
+from django.contrib import messages
 # Create your views here.
-
+import time
 #vista basada en funcion para los formularios
 def creardocente(request):
 	#si el metodo es POST Hacer esto
@@ -147,7 +148,7 @@ class CrearGrado2(TemplateView):
 	
 	def post(self, request, *args, **kwargs):
 		grado=Grupo()
-		seciones={"A","B","C","D","E"}
+		secciones=("A","B","C","D","E","F")	
 		grado.nivel_especialidad=request.POST['nivel_especialidad']
 		cod_especialidad=request.POST['codigo_especialidad']
 		grado.codigo_especialidad=Especialidad.objects.get(codigo_especialidad=cod_especialidad)
@@ -155,12 +156,25 @@ class CrearGrado2(TemplateView):
 		id_docente=User.objects.get(username=docente_encargado)
 		docente =Docente.objects.get(usuario_docente=id_docente)
 		grado.codigo_docente_encargado=docente
-		seccion="B"
-		#Voy a filtrar primero segun el nivel de especialidad
-		filtro_nivel_especialidad=Grupo.objects.filter(nivel_especialidad=str(grado.nivel_especialidad))
-		#filtro_codigo_especialidad=Grupo.objects.get()
-		consulta_seccion=Grupo.objects.all();
-		print(filtro_nivel_especialidad)
+		año=int(time.strftime("%Y"))
+		seccion=""
+		"""
+		voy a filtrar por nivel_especialidad(Primero,segundo o tercer año)
+		,tambien filtra paralelamente por codigo_especialidad(para traer los de una misma especialidad)
+		y de manera tambien paralela verifica por año en el cual se creo el grupo
+		"""
+		obtener_seccion=Grupo.objects.filter(nivel_especialidad=str(grado.nivel_especialidad),codigo_especialidad=str(cod_especialidad),anio=año)
+		i=0
+		for iteracion in obtener_seccion:
+			i=i+1
+
+		if(i==0):
+			seccion=secciones[i]
+		else:
+			seccion=secciones[i]
+
+		
+		grado.anio=año
 		grado.seccion=seccion
 		algorit1=str(grado.nivel_especialidad)
 		algorit2=seccion
@@ -168,22 +182,63 @@ class CrearGrado2(TemplateView):
 		algoritTotal=algorit1+algorit2+algorit3
 		grado.codigo_grupo=algoritTotal
 		#print("Codigo "+algoritTotal)
-		#grado.save()
-		return redirect('crear_grado')
-	def get(self,request,*args,**kwargs):
-		especialidad=Especialidad.objects.all();		
+		grado.save()
+		
+		return redirect('alumno_list')
+	def get(self,request,*args,**kwargs):				
 		docente=Docente.objects.all()
-		contexto={'especialidad':especialidad,'docente':docente}
+		contexto={'docente':docente}
 		return render(request,"Alumnos/crear_grado.html",contexto)
-
+#Vistas Para retornar los objetos JSON
 from django.core import serializers
 from django.http import HttpResponse
-class BusquedaAjaxView(TemplateView):
+class BusquedaEspecialidad(TemplateView):
     def get(self,request,*args,**kwargs):
-        nivel_especialidad = request.GET['id']        
+        nivel_especialidad = request.GET['nivel']        
         especialidad=Especialidad.objects.filter(anios_especialidad__gte=nivel_especialidad)              
         data = serializers.serialize('json',especialidad)
         return HttpResponse(data, content_type='application/json')
+
+class BusquedaSeccion(TemplateView):
+    def get(self,request,*args,**kwargs):
+    	nivel = request.GET['nivel']
+    	especialidad = request.GET['especialidad']
+    	grupo = Grupo.objects.filter(nivel_especialidad=nivel, codigo_especialidad=especialidad)
+    	data = serializers.serialize('json',grupo)
+    	return HttpResponse(data, content_type='application/json')
+
+class BusquedaDocente(TemplateView):
+	def get(self,request,*args,**kwargs):
+		nivel = request.GET['nivel']
+		especialidad = request.GET['especialidad']
+		seccion =request.GET['seccion']
+		dui_docente_encargado=""
+		
+		grupo_docente =Grupo.objects.filter(nivel_especialidad=nivel, codigo_especialidad=especialidad,codigo_grupo=seccion)
+		for share in grupo_docente:
+			dui_docente_encargado=share.codigo_docente_encargado.dui_docente
+		docente=Docente.objects.filter(dui_docente=dui_docente_encargado)
+		data = serializers.serialize('json',docente)
+
+		return HttpResponse(data, content_type='application/json')
+
+class BusquedaGrupo(TemplateView):
+	def get(self,request,*args,**kwargs):
+		nivel = request.GET['nivel']
+		especialidad = request.GET['especialidad']
+		seccion =request.GET['seccion']		
+		grupo_docente =Grupo.objects.filter(nivel_especialidad=nivel, codigo_especialidad=especialidad,codigo_grupo=seccion)
+		data = serializers.serialize('json',grupo_docente)
+		return HttpResponse(data, content_type='application/json')
+class RegistroAlumno(TemplateView):
+	def post(self,request,*args,**kwargs):
+		pruebacod=request.POST['grupo']
+		print(pruebacod)
+		docente=Docente.objects.all()
+		data = serializers.serialize('json',docente)
+		print(data)
+		return HttpResponse(data, content_type='application/json')
+#Finalizacion de el retorno de objetos JSON
 #Finalizacion de la parte de alumnos
 class Vista(TemplateView):
 	template_name='base/base.html'
@@ -204,9 +259,96 @@ def DatosEstadisticos(request):
 	contexto={'años':años,'periodos':periodos,'secciones':secciones,'bachilleratos':bachilleratos}
 	return render(request,'estadisticas/estadisticas.html',contexto)
 
-def anotacion(request):
-	return render(request, 'AgregarAnotacion/AgregarAnotacion.html')
+
+def anotacion(request):	
+	nombre = ""
+	AlumnoNie = ""	
+	AlumnoDato	= Alumno()
+	AnotacionDato = Anotacion()
+	Anot = []
+	codigoGrupo = ""
+	AlumnoGrupo = Alumno_Grupo()
+	GrupoE= Grupo()
+	codigoDocente = ""
+	idUser = request.user.id
+	duiDocente = ""
+	docente = Docente()
+	message = "Anotaciones"
+	
+	if request.method == 'POST':
+		form = AnotacionForm(request.POST)
+		if 'btnConsultar' in request.POST:
+			AlumnoNie = request.POST.get('inputNie')
+			AlumnoGrupo = Alumno_Grupo.objects.get(nie=AlumnoNie)
+			codigoGrupo = AlumnoGrupo.codigo_grupo
+			GrupoE = Grupo.objects.get(codigo_grupo=codigoGrupo)
+			codigoDocente = GrupoE.codigo_docente_encargado_id
+			docente = Docente.objects.get(usuario_docente_id=idUser)
+			dui_docente = docente.dui_docente
+			if codigoDocente == dui_docente:
+				try:
+	   				AlumnoDato = Alumno.objects.get(nie=AlumnoNie)
+	   				Anot=Anotacion.objects.filter(nie_id=AlumnoNie)
+	   				nombre = AlumnoDato.nombre_alumno + " "+ AlumnoDato.apellidos_alumno
+	   				
+				except Alumno.DoesNotExist:
+	   				AlumnoDato = None
+	   				AlumnoNie = ""	
+
+
+
+
+
+
+			
+
+			
+
+		if 'btnGuardar' in request.POST:
+			
+			AlumnoNie = request.POST.get('nie')
+			AlumnoGrupo = Alumno_Grupo.objects.get(nie=AlumnoNie)
+			codigoGrupo = AlumnoGrupo.codigo_grupo
+			GrupoE = Grupo.objects.get(codigo_grupo=codigoGrupo)
+			codigoDocente = GrupoE.codigo_docente_encargado_id
+			docente = Docente.objects.get(usuario_docente_id=idUser)
+			dui_docente = docente.dui_docente
+			if codigoDocente == dui_docente:
+				if form.is_valid():
+
+					anotacionFinal = Anotacion()
+					doc = Docente()
+					alu = Alumno()
+					ni = request.POST.get('nie')
+					alu = Alumno.objects.get(nie=ni)
+					doc = Docente.objects.get(dui_docente=dui_docente)
+					anotacionFinal.nie = alu
+					anotacionFinal.dui_docente = doc
+					anotacionFinal.descripcion = request.POST.get('descripcion')
+					anotacionFinal.fecha_anotacion = request.POST.get('fecha_anotacion')
+					anotacionFinal.save()	
+			
+			
+			return redirect('Anotacion')
+	else:
+		form = AnotacionForm()	
+			
 		
+			
+			
+	
+
+	return render(request, 'AgregarAnotacion/AgregarAnotacion.html',
+		{'form':form,
+		'AlumnoNie':AlumnoNie,
+		 'nombre': nombre,
+		 'Anot':Anot,
+		 'message' : message,
+		 
+		 
+		})
+
+	
 
 def administrarNotas(request):
 	AlumnoNie = ""
@@ -428,30 +570,40 @@ def IngresarNotas(request):
 	return render(request,'IngresarNotas/ingresarNotas.html',contexto)
 
 def servidorIngresarNotas(request):
+	"""AQUIIIII HAY QUE VALIDAR anio_lectivo vigente y periodos no finalizados"""
 	if request.GET['accion'] == 'obtenerEvaluaciones':
+
+		anioLectivos = AnioLectivo.objects.all().order_by('anio_lectivo')
+		for x in anioLectivos:
+			if not x.terminado:
+				anioLectivo = x
+				pass
+				break
+			pass
+		periodos = Periodo.objects.filter(anio_lectivo = anioLectivo, finalizado = False)
 		codigo_materia = request.GET['codigo_materia']
 		materia = Materia.objects.get(codigo_materia = codigo_materia)
 		docente = Docente.objects.get(usuario_docente=str(request.user.id))
 		docente_materia = Docente_Materia.objects.get(codigo_docente = docente, codigo_materia = materia)
-		evaluaciones = Evaluacion.objects.filter(codigo_docente_materia = docente_materia)
-		data = serializers.serialize('json', evaluaciones)
-		return HttpResponse(data, content_type = 'application/json')
-		pass
 
-	elif request.GET['accion'] == 'obtenerGrupos':
-		codigo_materia = request.GET['codigo_materia']
-		materia = Materia.objects.get(codigo_materia = codigo_materia)
-		especialidades_materia = Especialidad_Materia.objects.filter(codigo_materia = materia)
+		evaluaciones = []
 
-		grupos = []
-		for especialidad_materia in especialidades_materia:
-			grupos_especialidad_materia = Grupo.objects.filter(codigo_especialidad = especialidad_materia.codigo_especialidad,nivel_especialidad = especialidad_materia.nivel_materia_especialidad)
-			for grupo in grupos_especialidad_materia:
-				grupos.append(grupo)
+		for periodo in periodos:
+			actividades = Actividad.objects.filter(codigo_periodo = periodo)
+
+			for actividad in actividades:
+				subactividades = Sub_Actividad.objects.filter(codigo_actividad = actividad)
+				
+				for subactividad in subactividades:
+					if Evaluacion.objects.filter(codigo_sub_actividad = subactividad, codigo_docente_materia = docente_materia).exists():
+						evaluacion = Evaluacion.objects.get(codigo_sub_actividad = subactividad, codigo_docente_materia = docente_materia)
+						evaluaciones.append(evaluacion)
+						pass 
+					pass
 				pass
 			pass
 
-		data = serializers.serialize('json', grupos)
+		data = serializers.serialize('json', evaluaciones)
 		return HttpResponse(data, content_type = 'application/json')
 		pass
 
@@ -466,12 +618,23 @@ def listaEvaluacion(request):
 		materias.append(Materia.objects.get(codigo_materia = x.codigo_materia.codigo_materia))
 		pass
 
-	contexto = {'materias':materias}
+	anioLectivos = AnioLectivo.objects.all().order_by('anio_lectivo')
+	for x in anioLectivos:
+		if not x.terminado:
+			anioLectivo = x
+			pass
+			break
+		pass
+
+	periodos = Periodo.objects.filter(codigo_periodo__contains = str(anioLectivo.anio_lectivo)).order_by('codigo_periodo')
+
+	contexto = {'materias':materias, 'periodos':periodos}
 
 	if 'btnCargarEvaluaciones' in request.GET:
 
 		periodoFinalizado = False
-		evaluaciones = cargarEvaluaciones(request.GET['materiaSelect'], request.GET['periodo'], request.GET['actividad'])
+		docente = Docente.objects.get(usuario_docente=str(request.user.id)).dui_docente
+		evaluaciones = cargarEvaluaciones(request.GET['materiaSelect'], request.GET['periodo'], request.GET['actividad'], docente)
 		if evaluaciones != []:
 			anioLectivo = None
 			anioLectivos = AnioLectivo.objects.all().order_by('anio_lectivo')
@@ -500,7 +663,8 @@ def listaEvaluacion(request):
 			codigo_evaluacion = request.POST['evaluacion']
 			evaluacion = Evaluacion.objects.get(codigo_evaluacion = codigo_evaluacion)
 			evaluacion.codigo_sub_actividad.delete()
-			evaluaciones = cargarEvaluaciones(request.GET['materiaSelect'], request.GET['periodo'], request.GET['actividad'])
+			docente = Docente.objects.get(usuario_docente=str(request.user.id)).dui_docente
+			evaluaciones = cargarEvaluaciones(request.GET['materiaSelect'], request.GET['periodo'], request.GET['actividad'],docente)
 			contexto = {'evaluaciones':evaluaciones, 'materia':request.GET['materiaSelect'], 'periodo':request.GET['periodo'], 'actividad':request.GET['actividad']}
 			pass
 		else:
@@ -511,7 +675,7 @@ def listaEvaluacion(request):
 
 	return render(request,'AgregarEvaluacion/listaEvaluacion.html',contexto)
 
-def cargarEvaluaciones(materia, periodo, actividad):
+def cargarEvaluaciones(materia, periodo, actividad, docente):
 	evaluaciones = []
 	anioLectivos = AnioLectivo.objects.all().order_by('anio_lectivo')
 	for x in anioLectivos:
@@ -526,9 +690,15 @@ def cargarEvaluaciones(materia, periodo, actividad):
 	if Actividad.objects.filter(codigo_actividad = actividad, codigo_periodo = periodoSolicitado).exists():
 		actividadSolicitada = Actividad.objects.get(codigo_actividad = actividad, codigo_periodo = periodoSolicitado)
 		SubActs = Sub_Actividad.objects.filter(codigo_actividad = actividadSolicitada)
+
+		materia = Materia.objects.get(codigo_materia = materia)
+		docente_materia = Docente_Materia.objects.get(codigo_docente = docente, codigo_materia = materia).id
+
 		for x in SubActs:
 			evaluacion = Evaluacion.objects.get(codigo_sub_actividad = x)
-			evaluaciones.append(evaluacion)
+			if evaluacion.codigo_docente_materia.id == docente_materia:
+				evaluaciones.append(evaluacion)
+				pass
 			pass
 		return evaluaciones
 		pass
@@ -550,6 +720,24 @@ def agregarEvaluacion(request):
 	periodoFinalizado = False
 	porcentajePasado = False
 
+	anioLectivos = AnioLectivo.objects.all().order_by('anio_lectivo')
+	for x in anioLectivos:
+		if not x.terminado:
+			anioLectivo = x
+			pass
+			break
+		pass
+
+	periodos = Periodo.objects.filter(codigo_periodo__contains = str(anioLectivo.anio_lectivo)).order_by('codigo_periodo')
+	periodos_acts = []
+
+	for periodo in periodos:
+		periodos_acts.append(Actividad.objects.filter(codigo_periodo = periodo).order_by('codigo_actividad'))
+		pass
+
+
+	contexto = {'periodos_acts':periodos_acts, 'periodos':periodos}
+
 	docente = Docente.objects.get(usuario_docente=str(request.user.id)).dui_docente
 	materiasImpartidas =  Docente_Materia.objects.filter(codigo_docente=docente)
 	for x in materiasImpartidas:
@@ -568,7 +756,10 @@ def agregarEvaluacion(request):
 				pass
 				break
 			pass
-		if request.POST['actividad'] == 'actividad1' or request.POST['actividad'] == 'actividad2':
+
+		tipo_actividad = Actividad.objects.get(codigo_actividad = actividad).codigo_tipo_actividad
+
+		if tipo_actividad.codigo_tipo_actividad is not 'Examen':
 			periodoSolicitado = Periodo.objects.get(codigo_periodo = periodo, anio_lectivo = anioLectivo)
 
 			if periodoSolicitado.finalizado:
@@ -653,3 +844,17 @@ def editarEvaluacion(request, id_evaluacion):
 		Sub_Actividad.objects.filter(codigo_sub_actividad = evaluacion.codigo_sub_actividad.codigo_sub_actividad).update(porcentaje_sub_actividad = request.POST['porcentajeSubActividad'], descripcion_sub_actividad = request.POST['descripcionSubActividad'])
 		return redirect('/into/listaEvaluacion/')
 	return render(request, 'AgregarEvaluacion/editarEvaluacion.html',{'evaluacion':evaluacion})
+
+def servidorActividades(request):
+	codigo_periodo = request.GET['codigo_periodo']
+	actividades = Actividad.objects.filter(codigo_periodo = codigo_periodo).order_by('codigo_actividad')
+	data = serializers.serialize("json", actividades)
+
+	return HttpResponse(data, content_type='application/json')
+
+def Expediente(request):
+	return render (request,'expediente/expediente.html')
+
+def actualizarUser(request):
+	
+	return render(request, 'actualizarUser/actualizarUser.html',{'user':request.user})

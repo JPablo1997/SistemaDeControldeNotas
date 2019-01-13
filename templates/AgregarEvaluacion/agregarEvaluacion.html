@@ -1,5 +1,7 @@
 {% extends 'base/base.html'%}
 {% block title %} Agregar Evaluacion {% endblock %}
+{% block act_inicio %}{% endblock %}
+{% block act_evaluaciones %}active{% endblock %}
 {% block content %}
 <br>
        
@@ -9,6 +11,7 @@
         <b class="alertMsg">Atencion!</b> Seleccione el periodo y la actividad para cargar el formulario.
     </div>
 </div>
+
 {%if porcentajePasado and porcentajeRestante %}
     <div class="row justify-content-center">
         <div class="alert alert-warning col-6 col-md-8" style="text-align: center; margin-top: 100px;margin-bottom: 30px; font-size: 1.5em;">
@@ -48,27 +51,25 @@
               <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
               <strong>Indicación:</strong> Seleccione el periodo y la actividad a la cual desea agregar una evaluación.
             </div>
-                <form name="formClasificacion" method="POST">
-                    {% csrf_token %}
-                    <table id="frmAgregarEva">
-                        <tr class="trAgregarEva">
-                            <td class="tdAgregarEva">Seleccione el periodo:&nbsp;</td> 
-                            <td class="tdAgregarEva"><input type="radio" name="periodo" value="periodo1"><b>Periodo 1&nbsp;</b></td> 
-                            <td class="tdAgregarEva"><input type="radio" name="periodo" value="periodo2"> <b>Periodo 2&nbsp;</b></td> 
-                            <td class="tdAgregarEva"><input type="radio" name="periodo" value="periodo3"> <b>Periodo 3</b></td> 
-                            <td class="tdAgregarEva"><input type="radio" name="periodo" value="periodo4"> <b>Periodo 4</b></td>
-                        </tr>
-                        <tr class="trAgregarEva">
-                            <td class="tdAgregarEva">Seleccione la actividad:&nbsp;</td>
-                            <td class="tdAgregarEva"><input type="radio" name="actividad" value="actividad1"><b>Actividad 1&nbsp;</b></td>
-                            <td class="tdAgregarEva"><input type="radio" name="actividad" value="actividad2"><b>Actividad 2&nbsp;</b></td> 
-                            <td class="tdAgregarEva"><input type="radio" name="actividad" value="examen1"><b>Examen 1&nbsp;</b></td>
-                            <td class="tdAgregarEva"><input type="radio" name="actividad" value="examen2"><b>Examen 2&nbsp;</b></td>
-                        </tr>
-                    </table>  
-                    <input type="button" id="btnCargarFormValidar" onclick="validar()" name="btnCargarFormValidar" class="btn btn-secondary" value="Cargar formulario">
-                    <input type="submit" id="btnCargarForm" name="btnCargarForm" class="btn btn-secondary" style="display: none;">
-                </form>
+                {% if periodos_acts and periodos %}
+                    <form name="formClasificacion" method="POST">
+                        {% csrf_token %}
+                            
+                            <table id="frmAgregarEva">
+                                <tr class="trAgregarEva">
+                                    <td class="tdAgregarEva">Seleccione el periodo:&nbsp;</td> 
+                                    <td class="tdAgregarEva"><input type="radio" name="periodo" value="{{ periodos.0.codigo_periodo }}"> <b>Periodo 1&nbsp;</b></td>
+                                    <td class="tdAgregarEva"><input type="radio" name="periodo" value="{{ periodos.1.codigo_periodo }}"> <b>Periodo 2&nbsp;</b></td> 
+                                    <td class="tdAgregarEva"><input type="radio" name="periodo" value="{{ periodos.2.codigo_periodo }}"> <b>Periodo 3&nbsp;</b></td> 
+                                    <td class="tdAgregarEva"><input type="radio" name="periodo" value="{{ periodos.3.codigo_periodo }}"> <b>Periodo 4&nbsp;</b></td>
+                                </tr>
+                                <tr id="info" class="trAgregarEva"></tr>
+                            </table>  
+                            
+                        <input type="button" id="btnCargarFormValidar" onclick="validar()" name="btnCargarFormValidar" class="btn btn-secondary" value="Cargar formulario">
+                        <input type="submit" id="btnCargarForm" name="btnCargarForm" class="btn btn-secondary" style="display: none;">
+                    </form>
+                {% endif %}
             {% endif %}
         {% endif %}
     {% endif %}  
@@ -255,5 +256,40 @@
           
         }
     }
+
+
+        $(document).ready(function(){
+            $( "input[name='periodo']" ).on('click',function(){
+                $.ajax({
+                    url: '/into/servidorActividades/',
+                    type:'GET',
+                    contentType:'json',
+                    data:{'codigo_periodo':$(this).val()},
+                    success: function(data){
+                        console.log(data);
+                        var html = '<td class="tdAgregarEva">Seleccione la actividad:&nbsp;</td>';
+                        
+                        for (var i = 0; i < data.length; i++) {
+                            html += '<td class="tdAgregarEva"><input type="radio" name="actividad" value="'+data[i].pk+'"><b>'+data[i].fields.nombre_actividad+'&nbsp;</b></td>';
+                        }
+                        
+                        
+                        if ($('#info').html() == "" ) {
+                            $('#info').html(html);
+                            
+                        }else{
+                            window.location.replace('.');
+                        }
+                    },
+                    error: function(xhr, status, error){
+                        console.log(xhr);
+                        console.log(status);
+                        console.log(error);
+                    }
+                });
+            });
+        });
+        
+    
 </script>
 {% endblock %}
