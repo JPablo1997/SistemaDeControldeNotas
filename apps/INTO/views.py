@@ -844,3 +844,7 @@ def servidorActividades(request):
 
 def Expediente(request):
 	return render (request,'expediente/expediente.html')
+
+def actualizarUser(request):
+	
+	return render(request, 'actualizarUser/actualizarUser.html',{'user':request.user})

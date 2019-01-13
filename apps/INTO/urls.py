@@ -52,5 +52,6 @@ urlpatterns = [
     url(r'^guardar_alumno/$',login_required(RegistroAlumno.as_view()),name="guardar_alumno"),
     #Finalizacion de la parte de alumnos
     url(r'^servidorActividades/$',login_required(servidorActividades),name="servidorActividades"),
+     url(r'^actualizarUser/$',login_required(actualizarUser),name="actualizarUser"),
 
 ]
