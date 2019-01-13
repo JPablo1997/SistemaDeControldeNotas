@@ -327,20 +327,30 @@ def materia_view(request):
 		#si el formulario es Valido hacer lo siguiente 
 		if form.is_valid():
 			#Hacemos la creacion de los objetos 
-			materia=Materia()		
+			materia=Materia()
+			docentes=Docente.objects.all()
+			docMat = Docente_Materia()		
 			#Asignammos a cada objeto lo que resivimos de cada campo del formulario
 			materia.codigo_materia=request.POST['codigo_materia']
 			materia.nombre_materia=request.POST['nombre_materia']
 			materia.descripcion_materia=request.POST['descripcion_materia']
 			materia.objetivos=request.POST['objetivos']	
 			#Guardamos  
-			materia.save()	
-							
+			materia.save()
+			if "docent" in request.POST:
+				for doc in docentes:
+					if doc.dui_docente == request.POST['docent']:
+						docMat.codigo_docente = doc
+						docMat.codigo_materia = materia
+						docMat.save()
+			#	arrayDoc = request.POST.getlist('docent[]')
 		return redirect('/into/administrarMaterias')
 	else:
 		#muestra el formulario
 		form=MateriaForm()
-		contexto={'form':form}		
+		especialidad=Especialidad.objects.all()
+		docente=Docente.objects.all()
+		contexto={'form':form,'docente':docente,'especialidad':especialidad}		
 	return render(request,'administrarMaterias/agregarMateria.html',contexto)
 
 def materia_edit(request, codigo_materia):

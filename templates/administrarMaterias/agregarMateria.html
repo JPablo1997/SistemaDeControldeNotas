@@ -4,6 +4,27 @@
 <form method="post">
 	{% csrf_token %}
 	{{ form.as_p }}
+
+	<div class="col-md-8">		
+		<div class="form-group">
+			<br>
+			<br>
+			<h2>Selecciones Los Docentes asignados a la Materia</h2>
+			<br>
+			<div class="checkbox text-justify">
+				{% for doc in docente %}
+
+				<label>
+					&nbsp&nbsp&nbsp&nbsp&nbsp
+					<input type="checkbox" name="docent" value="{{doc.dui_docente}}">
+					{{doc.nombre_docente}} {{doc.apellidos_docente}}
+				</label>
+
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+	
 	<button type="submit" class="btn btn-primary">Guardar</button>
 	<a href="{% url 'administrarMaterias' %}" class="btn btn-warning">Volver a la lista</a> 
 </form>
