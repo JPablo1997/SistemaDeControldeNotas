@@ -233,10 +233,11 @@ class BusquedaGrupo(TemplateView):
 class RegistroAlumno(TemplateView):
 	def post(self,request,*args,**kwargs):
 		pruebacod=request.POST['grupo']
-		print(pruebacod)
-		docente=Docente.objects.all()
-		data = serializers.serialize('json',docente)
-		print(data)
+		alumnos4=[]
+		alumno=Alumno_Grupo.objects.filter(codigo_grupo=pruebacod)
+		for x in alumno:
+			alumnos4.append(Alumno.objects.get(nie=x.nie.nie))		
+		data = serializers.serialize('json',alumnos4)
 		return HttpResponse(data, content_type='application/json')
 #Finalizacion de el retorno de objetos JSON
 #Finalizacion de la parte de alumnos

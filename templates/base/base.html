@@ -74,7 +74,7 @@
               {% endif %}
               {% if user.is_superuser == True and  user.is_staff == True %}
               <li class="nav-item ">
-                <a class="nav-link {% block act_alumnos %}{% endblock %}" href="{% url 'alumno_list'%}"><i class="fas fa-book-open"></i> Alumnos</a>
+                <a class="nav-link {% block act_alumnos %}{% endblock %}" href="{% url 'alumno_list'%}"><i class="fas fa-users"></i> Alumnos</a>
               </li>
               {% endif %}
               {% if user.is_superuser == True and  user.is_staff == True %}
