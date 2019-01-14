@@ -62,6 +62,11 @@
                 <a class="nav-link {% block act_administrarNotas %}{% endblock %}" href="{% url 'administrar' %}"><i class="fas fa-edit"></i> Administrar Notas</a>
               </li>
               {% endif %}
+              {% if user.is_superuser == True and user.is_staff == True %}
+              <li class="nav-item ">
+                <a class="nav-link {% block act_administrarMaterias %}{% endblock %}" href="{% url 'administrarMaterias' %}"><i class="fas fa-book-reader"></i> Administrar Materias</a>
+              </li>
+              {% endif %}
               {% if user.is_superuser == False and  user.is_staff == True %}
               <li class="nav-item ">
                 <a class="nav-link {% block act_anotaciones %}{% endblock %}" href="{% url 'Anotacion' %}"><i class="fas fa-edit"></i> Anotaciones</a>

@@ -471,8 +471,7 @@ def materia_view(request):
 			#Hacemos la creacion de los objetos 
 			materia=Materia()
 			docentes=Docente.objects.all()
-			especialidades=Especialidad.objects.all()
-			docMat = Docente_Materia()		
+			especialidades=Especialidad.objects.all()	
 			#Asignammos a cada objeto lo que resivimos de cada campo del formulario
 			materia.codigo_materia=request.POST['codigo_materia']
 			materia.nombre_materia=request.POST['nombre_materia']

@@ -2,53 +2,74 @@
 {% block title %} Agregar Materia {% endblock %}
 {% block content %}
 <form method="post">
-	{% csrf_token %}
-	{{ form.as_p }}
-
-	<div class="col-md-8">		
-		<div class="form-group">
+	<div class="row">
+		<div class="col-md-8">
+			{% csrf_token %}
+			<br><br>
+			<h2>Agregar Materia</h2>
 			<br>
-			<br>
-			<h2>Selecciones Los Docentes asignados a la Materia</h2>
-			<br>
-			<div class="checkbox text-justify">
-				{% for doc in docente %}
+			{{ form.as_p }}
 
-				<label>
-					&nbsp&nbsp&nbsp&nbsp&nbsp
-					<input type="checkbox" name="docente_{{doc.dui_docente}}">
-					{{doc.nombre_docente}} {{doc.apellidos_docente}}
-				</label>
+			<div class="col-md-8">		
+				<div class="form-group">
+					<br>
+					<br>
+					<h2>Selecciones Los Docentes asignados a la Materia</h2>
+					<br>
+					<div class="checkbox text-justify">
+						{% for doc in docente %}
 
-				{% endfor %}
+						<label>
+							&nbsp&nbsp&nbsp&nbsp&nbsp
+							<input type="checkbox" name="docente_{{doc.dui_docente}}">
+							{{doc.nombre_docente}} {{doc.apellidos_docente}}
+						</label>
+
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+			<div>
+				
+				<br>
+				<br>
+				<h2>Seleccione la Especialidad y El Año en que se impartira la Materia</h2>
+				<br>
+				<table>
+					<tbody>
+					<tr>
+						<td></td>
+						<td>Primer Año&nbsp;&nbsp;&nbsp;</td>
+						<td>Segundo Año&nbsp;&nbsp;&nbsp;</td>
+						<td>Tercer Año&nbsp;&nbsp;&nbsp;</td>
+					</tr>
+					{% for esp in especialidad %}
+
+					{% if esp.anios_especialidad == 3 %}	
+					<tr>
+						<td>{{esp.nombre_especialidad}}&nbsp;&nbsp;&nbsp;</td>
+						<td><input type="radio" name="{{esp.codigo_especialidad}}" value="1_{{esp.codigo_especialidad}}"></td>
+						<td><input type="radio" name="{{esp.codigo_especialidad}}" value="2_{{esp.codigo_especialidad}}"></td>
+						<td><input type="radio" name="{{esp.codigo_especialidad}}" value="3_{{esp.codigo_especialidad}}"></td>
+					</tr>
+					{% endif %}
+
+					{% if esp.anios_especialidad == 2 %}	
+					<tr>
+						<td>{{esp.nombre_especialidad}}&nbsp;&nbsp;&nbsp;</td>
+						<td><input type="radio" name="{{esp.codigo_especialidad}}" value="1_{{esp.codigo_especialidad}}"></td>
+						<td><input type="radio" name="{{esp.codigo_especialidad}}" value="2_{{esp.codigo_especialidad}}"></td>
+					</tr>
+					{% endif %}
+
+					{% endfor %}
+					</tbody>
+				</table> 
+				<br>
+				<br>
+			
 			</div>
 		</div>
-	</div>
-	<div>
-		
-		<br>
-		<br>
-		<h2>Seleccione la Especialidad y El Año en que se impartira la Materia</h2>
-		<br>
-		<table>
-			<tbody>
-			<tr>
-				<td></td>
-				<td>Primer Año&nbsp;&nbsp;&nbsp;</td>
-				<td>Segundo Año&nbsp;&nbsp;&nbsp;</td>
-				<td>Tercer Año&nbsp;&nbsp;&nbsp;</td>
-			</tr>
-			{% for esp in especialidad %}
-			<tr>
-				<td>{{esp.nombre_especialidad}}&nbsp;&nbsp;&nbsp;</td>
-				<td><input type="radio" name="{{esp.codigo_especialidad}}" value="1_{{esp.codigo_especialidad}}"></td>
-				<td><input type="radio" name="{{esp.codigo_especialidad}}" value="2_{{esp.codigo_especialidad}}"></td>
-				<td><input type="radio" name="{{esp.codigo_especialidad}}" value="3_{{esp.codigo_especialidad}}"></td>
-			{% endfor %}
-		</tbody></table> 
-		<br>
-		<br>
-	
 	</div>
 	<button type="submit" class="btn btn-primary">Guardar</button>
 	<a href="{% url 'administrarMaterias' %}" class="btn btn-warning">Volver a la lista</a> 
