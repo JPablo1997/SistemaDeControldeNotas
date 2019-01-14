@@ -132,6 +132,7 @@ class MateriaForm(forms.ModelForm):
             'nombre_materia',
             'descripcion_materia',
             'objetivos',
+
         ]
         labels = {
             'codigo_materia' : 'Código',

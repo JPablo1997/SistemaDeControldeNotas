@@ -43,14 +43,17 @@ urlpatterns = [
     path('detalleDocente/<str:id_del_docente>/',login_required(docente_detalle),name='docente_detalle'),
     path('actualizarDocente/<str:id_del_docente>/',login_required(docente_edit),name='docente_actualizar'),
     #Parte de Alumnos
-    url(r'^ListadoAlumnos/$',ListadoAlumnos.as_view(),name="alumno_list"),
-    url(r'^ListadoAlumnos/creargrado$',CrearGrado2.as_view(),name="crear_grado"),
-    url(r'^busqueda_especialidad/$',BusquedaEspecialidad.as_view(),name="busqueda_especialidad"),
-    url(r'^busqueda_seccion/$',BusquedaSeccion.as_view(),name="busqueda_seccion"),
-    url(r'^busqueda_docente/$',BusquedaDocente.as_view(),name="busqueda_docente"),
-    url(r'^busqueda_grupo/$',BusquedaGrupo.as_view(),name="busqueda_grupo"),
-    url(r'^guardar_alumno/$',RegistroAlumno.as_view(),name="guardar_alumno"),
+
+    url(r'^ListadoAlumnos/$',login_required(ListadoAlumnos.as_view()),name="alumno_list"),
+    url(r'^ListadoAlumnos/creargrado$',login_required(CrearGrado2.as_view()),name="crear_grado"),
+    url(r'^busqueda_especialidad/$',login_required(BusquedaEspecialidad.as_view()),name="busqueda_especialidad"),
+    url(r'^busqueda_seccion/$',login_required(BusquedaSeccion.as_view()),name="busqueda_seccion"),
+    url(r'^busqueda_docente/$',login_required(BusquedaDocente.as_view()),name="busqueda_docente"),
+    url(r'^busqueda_grupo/$',login_required(BusquedaGrupo.as_view()),name="busqueda_grupo"),
+    url(r'^guardar_alumno/$',login_required(RegistroAlumno.as_view()),name="guardar_alumno"),
+
     #Finalizacion de la parte de alumnos
     url(r'^servidorActividades/$',login_required(servidorActividades),name="servidorActividades"),
+     url(r'^actualizarUser/$',login_required(actualizarUser),name="actualizarUser"),
 
 ]
