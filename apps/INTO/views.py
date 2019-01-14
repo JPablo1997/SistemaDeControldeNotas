@@ -471,6 +471,7 @@ def materia_view(request):
 			#Hacemos la creacion de los objetos 
 			materia=Materia()
 			docentes=Docente.objects.all()
+			especialidades=Especialidad.objects.all()
 			docMat = Docente_Materia()		
 			#Asignammos a cada objeto lo que resivimos de cada campo del formulario
 			materia.codigo_materia=request.POST['codigo_materia']
@@ -494,6 +495,24 @@ def materia_view(request):
 						docMat.codigo_materia = materia
 						docMat.save()"""
 			#	arrayDoc = request.POST.getlist('docent[]')
+			for especialidad in especialidades:
+				if '1_'+especialidad.codigo_especialidad in request.POST[especialidad.codigo_especialidad]:
+					num = Especialidad_Materia.objects.all().count()
+					especialidad_materia = Especialidad_Materia(num + 1, codigo_especialidad = especialidad, codigo_materia = materia, nivel_materia_especialidad = 1)
+					especialidad_materia.save()
+					pass
+				elif '2_'+especialidad.codigo_especialidad in request.POST[especialidad.codigo_especialidad]:
+					num = Especialidad_Materia.objects.all().count()
+					especialidad_materia = Especialidad_Materia(num + 1, codigo_especialidad = especialidad, codigo_materia = materia, nivel_materia_especialidad = 2)
+					especialidad_materia.save()
+					pass
+				elif '3_'+especialidad.codigo_especialidad in request.POST[especialidad.codigo_especialidad]:
+					num = Especialidad_Materia.objects.all().count()
+					especialidad_materia = Especialidad_Materia(num + 1, codigo_especialidad = especialidad, codigo_materia = materia, nivel_materia_especialidad = 3)
+					especialidad_materia.save()
+					pass
+				pass
+
 		return redirect('/into/administrarMaterias')
 	else:
 		#muestra el formulario

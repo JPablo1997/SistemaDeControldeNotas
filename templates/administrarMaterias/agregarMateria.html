@@ -24,7 +24,32 @@
 			</div>
 		</div>
 	</div>
+	<div>
+		
+		<br>
+		<br>
+		<h2>Seleccione la Especialidad y El Año en que se impartira la Materia</h2>
+		<br>
+		<table>
+			<tbody>
+			<tr>
+				<td></td>
+				<td>Primer Año&nbsp;&nbsp;&nbsp;</td>
+				<td>Segundo Año&nbsp;&nbsp;&nbsp;</td>
+				<td>Tercer Año&nbsp;&nbsp;&nbsp;</td>
+			</tr>
+			{% for esp in especialidad %}
+			<tr>
+				<td>{{esp.nombre_especialidad}}&nbsp;&nbsp;&nbsp;</td>
+				<td><input type="radio" name="{{esp.codigo_especialidad}}" value="1_{{esp.codigo_especialidad}}"></td>
+				<td><input type="radio" name="{{esp.codigo_especialidad}}" value="2_{{esp.codigo_especialidad}}"></td>
+				<td><input type="radio" name="{{esp.codigo_especialidad}}" value="3_{{esp.codigo_especialidad}}"></td>
+			{% endfor %}
+		</tbody></table> 
+		<br>
+		<br>
 	
+	</div>
 	<button type="submit" class="btn btn-primary">Guardar</button>
 	<a href="{% url 'administrarMaterias' %}" class="btn btn-warning">Volver a la lista</a> 
 </form>
