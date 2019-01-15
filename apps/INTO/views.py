@@ -660,6 +660,7 @@ def IngresarNotas(request):
 
 def servidorIngresarNotas(request):
 	"""AQUIIIII HAY QUE VALIDAR anio_lectivo vigente y periodos no finalizados"""
+	data = []
 	if request.GET['accion'] == 'obtenerEvaluaciones':
 
 		anioLectivos = AnioLectivo.objects.all().order_by('anio_lectivo')
@@ -691,10 +692,24 @@ def servidorIngresarNotas(request):
 					pass
 				pass
 			pass
-
 		data = serializers.serialize('json', evaluaciones)
-		return HttpResponse(data, content_type = 'application/json')
 		pass
+
+	elif request.GET['accion'] == 'obtenerGrupos':
+		codigo_materia = request.GET['codigo_materia']
+		materia = Materia.objects.get(codigo_materia = codigo_materia)
+		docente = Docente.objects.get(usuario_docente=str(request.user.id))
+		docente_materia = Docente_Materia.objects.get(codigo_docente = docente, codigo_materia = materia)
+		docente_materia_grupos = Docente_Materia_Grupo.objects.filter(docente_materia = docente_materia)
+		grupos = []
+		for docente_materia_grupo in docente_materia_grupos:
+			grupos.append(docente_materia_grupo.grupo)
+			pass
+		data = serializers.serialize('json', grupos)
+		pass
+
+	return HttpResponse(data, content_type = 'application/json')
+
 
 def listaEvaluacion(request):
 	materias = []
@@ -754,7 +769,12 @@ def listaEvaluacion(request):
 			evaluacion.codigo_sub_actividad.delete()
 			docente = Docente.objects.get(usuario_docente=str(request.user.id)).dui_docente
 			evaluaciones = cargarEvaluaciones(request.GET['materiaSelect'], request.GET['periodo'], request.GET['actividad'],docente)
-			contexto = {'evaluaciones':evaluaciones, 'materia':request.GET['materiaSelect'], 'periodo':request.GET['periodo'], 'actividad':request.GET['actividad']}
+			if evaluaciones != []:
+				contexto = {'evaluaciones':evaluaciones, 'materia':request.GET['materiaSelect'], 'periodo':request.GET['periodo'], 'actividad':request.GET['actividad']}
+				pass
+			else:
+				return redirect('.')
+				pass
 			pass
 		else:
 			codigo_evaluacion = request.POST['evaluacion']

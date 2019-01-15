@@ -447,148 +447,148 @@ INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nac
 
 --------------------------------Especialidad_materia-------------------------------------------
 
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('01','1','esp_genral','CN');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('02','1','esp_genral','EDF');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('03','1','esp_genral','EN');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('04','1','esp_genral','ES');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('05','1','esp_genral','INF');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('06','1','esp_genral','LYL');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('07','1','esp_genral','MAT');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('08','1','esp_genral','OPV');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('09','1','esp_genral','SM');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(01,'1','esp_genral','CN');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(02,'1','esp_genral','EDF');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(03,'1','esp_genral','EN');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(04,'1','esp_genral','ES');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(05,'1','esp_genral','INF');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(06,'1','esp_genral','LYL');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(07,'1','esp_genral','MAT');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(08,'1','esp_genral','OPV');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(09,'1','esp_genral','SM');
 
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('10','2','esp_genral','CN');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('11','2','esp_genral','EDF');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('12','2','esp_genral','EN');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('13','2','esp_genral','ES');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('14','2','esp_genral','INF');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('15','2','esp_genral','LYL');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('16','2','esp_genral','MAT');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('17','2','esp_genral','OPV');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('18','2','esp_genral','SM');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(10,'2','esp_genral','CN');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(11,'2','esp_genral','EDF');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(12,'2','esp_genral','EN');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(13,'2','esp_genral','ES');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(14,'2','esp_genral','INF');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(15,'2','esp_genral','LYL');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(16,'2','esp_genral','MAT');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(17,'2','esp_genral','OPV');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(18,'2','esp_genral','SM');
 
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('19','1','esp_contab','CN');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('20','1','esp_contab','EDF');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('21','1','esp_contab','EN');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('22','1','esp_contab','ES');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('23','1','esp_contab','INF');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('24','1','esp_contab','LYL');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('25','1','esp_contab','MAT');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('26','1','esp_contab','OPV');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('27','1','esp_contab','SM');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(19,'1','esp_contab','CN');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(20,'1','esp_contab','EDF');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(21,'1','esp_contab','EN');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(22,'1','esp_contab','ES');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(23,'1','esp_contab','INF');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(24,'1','esp_contab','LYL');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(25,'1','esp_contab','MAT');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(26,'1','esp_contab','OPV');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(27,'1','esp_contab','SM');
 
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('200','2','esp_contab','CN');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('201','2','esp_contab','EDF');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('202','2','esp_contab','EN');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('203','2','esp_contab','ES');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('204','2','esp_contab','INF');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('205','2','esp_contab','LYL');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('206','2','esp_contab','MAT');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('207','2','esp_contab','OPV');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('208','2','esp_contab','SM');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(200,'2','esp_contab','CN');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(201,'2','esp_contab','EDF');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(202,'2','esp_contab','EN');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(203,'2','esp_contab','ES');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(204,'2','esp_contab','INF');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(205,'2','esp_contab','LYL');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(206,'2','esp_contab','MAT');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(207,'2','esp_contab','OPV');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(208,'2','esp_contab','SM');
 
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('28','3','esp_contab','CN');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('29','3','esp_contab','EDF');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('30','3','esp_contab','EN');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('31','3','esp_contab','ES');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('32','3','esp_contab','INF');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('33','3','esp_contab','LYL');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('34','3','esp_contab','MAT');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('35','3','esp_contab','OPV');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('36','3','esp_contab','SM');
-
-
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('37','1','esp_dsw','CN');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('38','1','esp_dsw','EDF');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('39','1','esp_dsw','EN');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('40','1','esp_dsw','ES');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('41','1','esp_dsw','INF');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('42','1','esp_dsw','LYL');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('43','1','esp_dsw','MAT');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('44','1','esp_dsw','OPV');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('45','1','esp_dsw','SM');
-
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('46','2','esp_dsw','CN');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('47','2','esp_dsw','EDF');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('48','2','esp_dsw','EN');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('49','2','esp_dsw','ES');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('50','2','esp_dsw','INF');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('51','2','esp_dsw','LYL');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('52','2','esp_dsw','MAT');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('53','2','esp_dsw','OPV');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('54','2','esp_dsw','SM');
-
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('55','3','esp_dsw','CN');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('56','3','esp_dsw','EDF');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('57','3','esp_dsw','EN');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('58','3','esp_dsw','ES');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('59','3','esp_dsw','INF');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('60','3','esp_dsw','LYL');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('61','3','esp_dsw','MAT');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('62','3','esp_dsw','OPV');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('63','3','esp_dsw','SM');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(28,'3','esp_contab','CN');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(29,'3','esp_contab','EDF');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(30,'3','esp_contab','EN');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(31,'3','esp_contab','ES');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(32,'3','esp_contab','INF');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(33,'3','esp_contab','LYL');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(34,'3','esp_contab','MAT');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(35,'3','esp_contab','OPV');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(36,'3','esp_contab','SM');
 
 
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('64','1','esp_hyt','CN');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('65','1','esp_hyt','EDF');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('66','1','esp_hyt','EN');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('67','1','esp_hyt','ES');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('68','1','esp_hyt','INF');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('69','1','esp_hyt','LYL');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('70','1','esp_hyt','MAT');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('71','1','esp_hyt','OPV');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('72','1','esp_hyt','SM');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(37,'1','esp_dsw','CN');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(38,'1','esp_dsw','EDF');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(39,'1','esp_dsw','EN');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(40,'1','esp_dsw','ES');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(41,'1','esp_dsw','INF');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(42,'1','esp_dsw','LYL');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(43,'1','esp_dsw','MAT');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(44,'1','esp_dsw','OPV');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(45,'1','esp_dsw','SM');
 
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('73','2','esp_hyt','CN');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('74','2','esp_hyt','EDF');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('75','2','esp_hyt','EN');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('76','2','esp_hyt','ES');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('77','2','esp_hyt','INF');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('78','2','esp_hyt','LYL');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('79','2','esp_hyt','MAT');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('80','2','esp_hyt','OPV');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('81','2','esp_hyt','SM');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(46,'2','esp_dsw','CN');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(47,'2','esp_dsw','EDF');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(48,'2','esp_dsw','EN');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(49,'2','esp_dsw','ES');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(50,'2','esp_dsw','INF');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(51,'2','esp_dsw','LYL');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(52,'2','esp_dsw','MAT');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(53,'2','esp_dsw','OPV');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(54,'2','esp_dsw','SM');
 
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('82','3','esp_hyt','CN');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('83','3','esp_hyt','EDF');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('84','3','esp_hyt','EN');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('85','3','esp_hyt','ES');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('86','3','esp_hyt','INF');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('87','3','esp_hyt','LYL');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('88','3','esp_hyt','MAT');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('89','3','esp_hyt','OPV');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('90','3','esp_hyt','SM');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(55,'3','esp_dsw','CN');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(56,'3','esp_dsw','EDF');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(57,'3','esp_dsw','EN');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(58,'3','esp_dsw','ES');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(59,'3','esp_dsw','INF');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(60,'3','esp_dsw','LYL');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(61,'3','esp_dsw','MAT');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(62,'3','esp_dsw','OPV');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(63,'3','esp_dsw','SM');
 
 
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('91','1','esp_secret','CN');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('92','1','esp_secret','EDF');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('93','1','esp_secret','EN');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('94','1','esp_secret','ES');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('95','1','esp_secret','INF');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('96','1','esp_secret','LYL');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('97','1','esp_secret','MAT');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('98','1','esp_secret','OPV');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('99','1','esp_secret','SM');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(64,'1','esp_hyt','CN');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(65,'1','esp_hyt','EDF');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(66,'1','esp_hyt','EN');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(67,'1','esp_hyt','ES');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(68,'1','esp_hyt','INF');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(69,'1','esp_hyt','LYL');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(70,'1','esp_hyt','MAT');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(71,'1','esp_hyt','OPV');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(72,'1','esp_hyt','SM');
 
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('100','2','esp_secret','CN');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('101','2','esp_secret','EDF');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('102','2','esp_secret','EN');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('103','2','esp_secret','ES');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('104','2','esp_secret','INF');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('105','2','esp_secret','LYL');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('106','2','esp_secret','MAT');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('107','2','esp_secret','OPV');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('108','2','esp_secret','SM');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(73,'2','esp_hyt','CN');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(74,'2','esp_hyt','EDF');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(75,'2','esp_hyt','EN');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(76,'2','esp_hyt','ES');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(77,'2','esp_hyt','INF');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(78,'2','esp_hyt','LYL');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(79,'2','esp_hyt','MAT');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(80,'2','esp_hyt','OPV');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(81,'2','esp_hyt','SM');
 
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('109','3','esp_secret','CN');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('110','3','esp_secret','EDF');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('111','3','esp_secret','EN');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('112','3','esp_secret','ES');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('113','3','esp_secret','INF');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('114','3','esp_secret','LYL');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('115','3','esp_secret','MAT');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('116','3','esp_secret','OPV');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES('117','3','esp_secret','SM');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(82,'3','esp_hyt','CN');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(83,'3','esp_hyt','EDF');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(84,'3','esp_hyt','EN');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(85,'3','esp_hyt','ES');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(86,'3','esp_hyt','INF');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(87,'3','esp_hyt','LYL');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(88,'3','esp_hyt','MAT');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(89,'3','esp_hyt','OPV');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(90,'3','esp_hyt','SM');
+
+
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(91,'1','esp_secret','CN');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(92,'1','esp_secret','EDF');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(93,'1','esp_secret','EN');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(94,'1','esp_secret','ES');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(95,'1','esp_secret','INF');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(96,'1','esp_secret','LYL');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(97,'1','esp_secret','MAT');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(98,'1','esp_secret','OPV');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(99,'1','esp_secret','SM');
+
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(100,'2','esp_secret','CN');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(101,'2','esp_secret','EDF');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(102,'2','esp_secret','EN');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(103,'2','esp_secret','ES');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(104,'2','esp_secret','INF');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(105,'2','esp_secret','LYL');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(106,'2','esp_secret','MAT');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(107,'2','esp_secret','OPV');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(108,'2','esp_secret','SM');
+
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(109,'3','esp_secret','CN');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(110,'3','esp_secret','EDF');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(111,'3','esp_secret','EN');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(112,'3','esp_secret','ES');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(113,'3','esp_secret','INF');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(114,'3','esp_secret','LYL');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(115,'3','esp_secret','MAT');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(116,'3','esp_secret','OPV');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(117,'3','esp_secret','SM');
 
 -------------------------------------------------------Parte Marco---------------------------------------------------
 
@@ -928,6 +928,60 @@ INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VAL
 INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (18, '03358242-3', 'IC');
 INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (19, '03532231-3', 'IC');
 INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (20, '05417242-4', 'IC');
+
+-----------------Docente_Materia_Grupo-------------------
+
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(1,1,'GP-08');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(2,1,'GP-07');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(3,1,'GP-09');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(4,2,'GP-01');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(5,2,'GP-02');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(6,2,'GP-03');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(7,3,'GP-04');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(8,3,'GP-05');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(9,3,'GP-06');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(10,4,'GP-10');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(11,4,'GP-11');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(12,4,'GP-12');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(13,5,'GP-13');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(14,5,'GP-14');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(15,5,'GP-15');
+--
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(16,6,'GP-08');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(17,6,'GP-07');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(18,6,'GP-09');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(19,7,'GP-01');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(20,7,'GP-02');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(21,7,'GP-03');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(22,8,'GP-04');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(23,8,'GP-05');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(24,8,'GP-06');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(25,9,'GP-10');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(26,9,'GP-11');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(27,9,'GP-12');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(28,10,'GP-13');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(29,10,'GP-14');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(30,10,'GP-15');
+--
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(31,11,'GP-08');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(32,11,'GP-07');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(33,11,'GP-09');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(34,12,'GP-01');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(35,12,'GP-02');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(36,12,'GP-03');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(37,13,'GP-04');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(38,13,'GP-05');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(39,13,'GP-06');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(40,14,'GP-10');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(41,14,'GP-11');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(42,14,'GP-12');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(43,15,'GP-13');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(44,15,'GP-14');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(45,15,'GP-15');
+
+
+
+
 
 ----Evaluacion------
 ----------------AÑO 2017----------------------------
