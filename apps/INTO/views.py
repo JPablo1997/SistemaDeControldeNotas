@@ -636,15 +636,12 @@ def servidorIngresarNotas(request):
 	elif request.GET['accion'] == 'obtenerGrupos':
 		codigo_materia = request.GET['codigo_materia']
 		materia = Materia.objects.get(codigo_materia = codigo_materia)
-		especialidades_materia = Especialidad_Materia.objects.filter(codigo_materia = materia)
-
+		docente = Docente.objects.get(usuario_docente=str(request.user.id))
+		docente_materia = Docente_Materia.objects.get(codigo_docente = docente, codigo_materia = materia)
+		docente_materia_grupos = Docente_Materia_Grupo.objects.filter(docente_materia = docente_materia)
 		grupos = []
-
-		for especialidad_materia in especialidades_materia:
-			grupos_especialidad_materia = Grupo.objects.filter(codigo_especialidad = especialidad_materia.codigo_especialidad,nivel_especialidad = especialidad_materia.nivel_materia_especialidad)
-			for grupo in grupos_especialidad_materia:
-				grupos.append(grupo)
-				pass
+		for docente_materia_grupo in docente_materia_grupos:
+			grupos.append(docente_materia_grupo.grupo)
 			pass
 		data = serializers.serialize('json', grupos)
 		pass
