@@ -707,7 +707,12 @@ def listaEvaluacion(request):
 			evaluacion.codigo_sub_actividad.delete()
 			docente = Docente.objects.get(usuario_docente=str(request.user.id)).dui_docente
 			evaluaciones = cargarEvaluaciones(request.GET['materiaSelect'], request.GET['periodo'], request.GET['actividad'],docente)
-			contexto = {'evaluaciones':evaluaciones, 'materia':request.GET['materiaSelect'], 'periodo':request.GET['periodo'], 'actividad':request.GET['actividad']}
+			if evaluaciones != []:
+				contexto = {'evaluaciones':evaluaciones, 'materia':request.GET['materiaSelect'], 'periodo':request.GET['periodo'], 'actividad':request.GET['actividad']}
+				pass
+			else:
+				return redirect('.')
+				pass
 			pass
 		else:
 			codigo_evaluacion = request.POST['evaluacion']
