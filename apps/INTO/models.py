@@ -130,6 +130,10 @@ class Docente_Materia(models.Model):
     codigo_docente = models.ForeignKey(Docente,on_delete=models.CASCADE)
     codigo_materia = models.ForeignKey(Materia,on_delete=models.CASCADE)
 
+class Docente_Materia_Grupo(models.Model):
+    docente_materia = models.ForeignKey(Docente_Materia,on_delete=models.CASCADE)
+    grupo = models.ForeignKey(Grupo,on_delete=models.CASCADE)
+
 class Evaluacion(models.Model):
     codigo_evaluacion = models.CharField(max_length=35,primary_key=True)
     nombre_evaluacion = models.CharField(max_length=50)
