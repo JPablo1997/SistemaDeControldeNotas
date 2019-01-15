@@ -297,11 +297,6 @@ imprimirencaja(2,mensaje,mensaje,1);
 
                       /*fin de pagina de estadisticas*/
 
-jQuery(function($){
-  // Definimos las mascaras para cada input 
-  $("#id_dui_docente").mask("99999999-9");
-  $("#id_telefono_docente").mask("9999-9999");  
-});
 
 function AnotacionDesactivar(){
 var c1=document.getElementById("1");
@@ -333,3 +328,13 @@ document.getElementById('nie').value=nie;
 
 
 }
+
+jQuery(function($){
+  // Definimos las mascaras para cada input 
+  $("#id_dui_docente").mask("99999999-9");
+  $("#id_telefono_docente").mask("9999-9999");
+  $("#dui_encargado").mask("99999999-9");
+  $("#telefono_alumno").mask("9999-9999");
+  $("#telefono_encargado").mask("9999-9999");
+  $("#celular_encargado").mask("9999-9999"); 
+});
