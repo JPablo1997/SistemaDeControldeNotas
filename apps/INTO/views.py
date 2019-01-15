@@ -598,6 +598,7 @@ def IngresarNotas(request):
 
 def servidorIngresarNotas(request):
 	"""AQUIIIII HAY QUE VALIDAR anio_lectivo vigente y periodos no finalizados"""
+	data = []
 	if request.GET['accion'] == 'obtenerEvaluaciones':
 
 		anioLectivos = AnioLectivo.objects.all().order_by('anio_lectivo')
@@ -629,10 +630,27 @@ def servidorIngresarNotas(request):
 					pass
 				pass
 			pass
-
 		data = serializers.serialize('json', evaluaciones)
-		return HttpResponse(data, content_type = 'application/json')
 		pass
+
+	elif request.GET['accion'] == 'obtenerGrupos':
+		codigo_materia = request.GET['codigo_materia']
+		materia = Materia.objects.get(codigo_materia = codigo_materia)
+		especialidades_materia = Especialidad_Materia.objects.filter(codigo_materia = materia)
+
+		grupos = []
+
+		for especialidad_materia in especialidades_materia:
+			grupos_especialidad_materia = Grupo.objects.filter(codigo_especialidad = especialidad_materia.codigo_especialidad,nivel_especialidad = especialidad_materia.nivel_materia_especialidad)
+			for grupo in grupos_especialidad_materia:
+				grupos.append(grupo)
+				pass
+			pass
+		data = serializers.serialize('json', grupos)
+		pass
+
+	return HttpResponse(data, content_type = 'application/json')
+
 
 def listaEvaluacion(request):
 	materias = []
