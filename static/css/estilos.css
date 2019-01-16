@@ -215,7 +215,7 @@ select:focus{ outline: none;}
   padding-top: 1em;
 }
 
-#docenteSelect,#materiaSelect, #evaluacionSelect{
+#docenteSelect2,#materiaSelect, #evaluacionSelect{
   text-align: center;
   border: solid;
   border-color: #3498db;
@@ -224,6 +224,10 @@ select:focus{ outline: none;}
   font-size: 2em;
 }
 
+#tbody,#th
+{
+  text-align: center;
+}
 
 .color-navbar {
     background-color: lavender;

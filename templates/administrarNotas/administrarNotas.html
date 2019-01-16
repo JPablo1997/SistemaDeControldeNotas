@@ -32,16 +32,16 @@
            <table class="table">
             <thead  class="thead-dark">
              <tr>
-                <th scope="col">NIE</td>
-                <th scope="col">Aumno</td>
-                <th scope="col">Nota</td>
-                <th scope="col">Correcion</td>
+                <th scope="col" id="th">NIE</td>
+                <th scope="col" id="th">Aumno</td>
+                <th scope="col" id="th">Nota</td>
+                <th scope="col" id="th">Correcion</td>
                 
               </tr>
 
 
             </thead>
-           <tbody>
+           <tbody id="tbody">
          {% for alumno in alumnos %}
 
           <tr class="trNotas">
@@ -115,17 +115,24 @@
         <form id="frmGrupos">
           {% csrf_token %}
           <input type="text" style="display: none;" name="txtCodigoEvaluado" id="txtCodigoEvaluado">
-          <table id="info" class="table">
-            <thead class="thead-dark">
-              <tr>
-                <th scope="col">Nivel especialidad</td>
-                  <th scope="col">Seccion</td>
-                    <th scope="col">Codigo especialidad</td>
-                      <th scope="col">Cargar alumnos</td>
-                      </tr>
-                    </thead>
-                    <tbody id="tbody"></tbody>
-                  </table>
+          <div class="container">
+            <section class="main row">
+              <article class="col-md-12">
+                <table id="info" class="table">
+                  <thead class="thead-dark">
+                    <tr>
+                      <th scope="col" id="th">Nivel especialidad</td>
+                        <th scope="col" id="th">Seccion</td>
+                          <th scope="col" id="th">Codigo especialidad</td>
+                            <th scope="col" id="th">Cargar alumnos</td>
+                            </tr>
+                          </thead>
+                          <tbody id="tbody"></tbody>
+                        </table>
+              </article>
+            </section>            
+          </div>
+          
                   <input type="submit" class="btn btn-primary" name="btnCargarAlumnos" value="Cargar alumnos">
                 </form>
               </div>

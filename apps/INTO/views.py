@@ -286,7 +286,11 @@ def anotacion(request):
 			codigoDocente = GrupoE.codigo_docente_encargado_id
 			docente = Docente.objects.get(usuario_docente_id=idUser)
 			dui_docente = docente.dui_docente
+			print(codigoDocente)
+			print(len(codigoDocente))
+			print(dui_docente)
 			if codigoDocente == dui_docente:
+				print(dui_docente)
 				try:
 	   				AlumnoDato = Alumno.objects.get(nie=AlumnoNie)
 	   				Anot=Anotacion.objects.filter(nie_id=AlumnoNie)
@@ -382,7 +386,7 @@ def administrarNotas(request):
 			pass		
 		pass
 		if alumnos == []:
-			noAlumnos = "No hay alumnos pendiente de nota en esta evaluación."
+			noAlumnos = "No se han encontrado alumnos con nota en esta evaluacion."
 			pass	
 
 	if 'btnGuardar' in request.POST:
