@@ -42,6 +42,8 @@ urlpatterns = [
     path('eliminarDocente/<str:id_del_docente>/',login_required(docente_delete),name='docente-delete'),
     path('detalleDocente/<str:id_del_docente>/',login_required(docente_detalle),name='docente_detalle'),
     path('actualizarDocente/<str:id_del_docente>/',login_required(docente_edit),name='docente_actualizar'),
+    url(r'^buscarMaterias/$',login_required(buscarMaterias),name="buscarMaterias"),
+    url(r'^buscarEvaluaciones/$',login_required(buscarEvaluaciones),name="buscarEvaluaciones"),
     #Parte de Alumnos
 
     url(r'^ListadoAlumnos/$',login_required(ListadoAlumnos.as_view()),name="alumno_list"),
