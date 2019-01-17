@@ -483,13 +483,8 @@ def buscarEvaluaciones(request):
 		data = serializers.serialize('json', evaluaciones)
 		return HttpResponse(data, content_type = 'application/json')
 		pass
-
+	
 	elif request.GET['accion'] == 'obtenerGrupos':
-		codigo_materia = request.GET['codigo_materia']
-		materia = Materia.objects.get(codigo_materia = codigo_materia)
-		especialidades_materia = Especialidad_Materia.objects.filter(codigo_materia = materia)
-
-		grupos = []
 		dui_docente = request.GET['dui_docente']		
 		indice = 0
 		dui = ""		
@@ -500,14 +495,17 @@ def buscarEvaluaciones(request):
 		    if dui:
 		    	print (dui)
 		    indice += 1
-		for especialidad_materia in especialidades_materia:
-			grupos_especialidad_materia = Grupo.objects.filter(codigo_especialidad = especialidad_materia.codigo_especialidad,nivel_especialidad = especialidad_materia.nivel_materia_especialidad)
-			for grupo in grupos_especialidad_materia:
-				grupos.append(grupo)
-				pass
+		codigo_materia = request.GET['codigo_materia']
+		materia = Materia.objects.get(codigo_materia = codigo_materia)
+		docente = Docente.objects.get(dui_docente=codigo)
+		docente_materia = Docente_Materia.objects.get(codigo_docente = docente, codigo_materia = materia)
+		docente_materia_grupos = Docente_Materia_Grupo.objects.filter(docente_materia = docente_materia)
+		grupos = []
+		for docente_materia_grupo in docente_materia_grupos:
+			grupos.append(docente_materia_grupo.grupo)
 			pass
-
 		data = serializers.serialize('json', grupos)
+		
 		return HttpResponse(data, content_type = 'application/json')
 		pass
 
