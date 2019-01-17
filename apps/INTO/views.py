@@ -286,7 +286,11 @@ def anotacion(request):
 			codigoDocente = GrupoE.codigo_docente_encargado_id
 			docente = Docente.objects.get(usuario_docente_id=idUser)
 			dui_docente = docente.dui_docente
+			print(codigoDocente)
+			print(len(codigoDocente))
+			print(dui_docente)
 			if codigoDocente == dui_docente:
+				print(dui_docente)
 				try:
 	   				AlumnoDato = Alumno.objects.get(nie=AlumnoNie)
 	   				Anot=Anotacion.objects.filter(nie_id=AlumnoNie)
@@ -349,96 +353,161 @@ def anotacion(request):
 		 
 		})
 
+
 	
+def administrarNotas(request):	
+	docente = Docente.objects.all()		
+	alumnos = []
+	evaluacion = []
+	noAlumnos = ""
+	exitoGuardar = ""
+	cal = []
 
-def administrarNotas(request):
-	AlumnoNie = ""
-	codigoEvaluacion = 0
-	nota = 0
-	codigoMateria = 0
-	codigoDocente = 0
-	id_docente_materia=0
-	nombre= ""
-	apellidos = ""
-	codigoEspecialidad = ""
-	codigoSubActividad = ""
-	codigoActividad = ""
-	cantidadSubActividades = ""
+	if 'btnCargarAlumnos' in request.GET:
+		grupos = Grupo.objects.all()
+		alumnos_grupo = []
+		evaluacion = Evaluacion.objects.get(codigo_evaluacion = request.GET['txtCodigoEvaluado'])
+		i = 0
+		for x in grupos:
+			if x.codigo_grupo in request.GET:
+				if request.GET[x.codigo_grupo] == 'on':
+					alumnos_grupo.append(Alumno_Grupo.objects.filter(codigo_grupo=x.codigo_grupo))
+					for y in alumnos_grupo[i]:
 
-	form = AdministrarNotasForm()
+						if Calificacion.objects.filter(nie =y.nie, codigo_evaluacion=evaluacion).exists():
+							alumnos.append(Alumno.objects.get(nie = y.nie.nie))							
+							cal.append(Calificacion.objects.get(nie =y.nie, codigo_evaluacion=evaluacion))
+							pass
 
-	if 'btnConsultar' in request.POST:
+						pass
+					i = i + 1
+					pass
+				pass				
+			pass		
+		pass
+		if alumnos == []:
+			noAlumnos = "No se han encontrado alumnos con nota en esta evaluacion."
+			pass	
+
+	if 'btnGuardar' in request.POST:
+		alumnosAll = Alumno.objects.all()
+
 	
+		for x in alumnosAll:
+			if str(x.nie) in request.POST:
+				eva = Evaluacion.objects.get(codigo_evaluacion=request.POST['codigoEva'])
+				nota = request.POST[x.nie]
+				if nota != "":
+					notaf = Decimal(nota)
+					c = Calificacion.objects.get(nie = x, codigo_evaluacion_id=request.POST['codigoEva'])
+					c.nota = notaf 
+					c.save()
+				alumnos = []
+				evaluacion = []
+				pass
+		exitoGuardar = "Las calificaciones se han guardado de manera exitosa!"
 		
-		
-		datoDocenteMateria = Docente_Materia.objects.all()
-		datoCalificacion = Calificacion.objects.all()
-		datoAlumno = Alumno.objects.all()
-		datoEvaluacion = Evaluacion.objects.all()
-		datoSubActividad = Sub_Actividad.objects.all()
-		datoActividad = Actividad.objects.all()
+	contexto = {'cal':cal,'docente':docente, 'alumnos':alumnos, 'evaluacion':evaluacion, 'noAlumnos':noAlumnos, 'exitoGuardar':exitoGuardar}
+	return render(request,'administrarNotas/administrarNotas.html',contexto)
 
 
-		
-		AlumnoNie = request.POST.get('inputCodAlumno')
-		codigoMateria = request.POST.get('inputCodMateria')
-		codigoDocente = request.POST.get('inputCodDocente')
-		
-		
+def buscarMaterias(request):
 
+	if request.GET['accion'] == 'obtenerMateriasDocente':
+		materias = []
+		dui_docente = request.GET['dui_docente']		
+		indice = 0
+		dui = ""		
+		codigo = ""
+		while indice < 10:
+		    dui = dui_docente[indice]
+		    codigo += dui 
+		    if dui:
+		    	print (dui)
+		    indice += 1
+		materiasImpartidas = Docente_Materia.objects.filter(codigo_docente = str(codigo))
+		print(materiasImpartidas)
+		for x in materiasImpartidas:
+			codigo_materia = x.codigo_materia_id
+			materia = Materia.objects.get(codigo_materia = codigo_materia)
+			materias.append(materia)
+			pass		
+		data = serializers.serialize('json', materias)
+		return HttpResponse(data, content_type = 'application/json')		
+		pass
 
-		for i in datoDocenteMateria	:
-			if i.codigo_docente_id == codigoDocente and i.codigo_materia_id == codigoMateria:				
-				id_docente_materia= i.id					
-		for i in datoCalificacion	:
-			if i.nie == AlumnoNie:
-				codigoEvaluacion = i.codigo_evaluacion					
-		for i in datoAlumno	:
-			if i.nie == AlumnoNie:
-				nombre= i.nombre_alumno
-				apellidos= i.apellidos_alumno				
-				codigoEspecialidad	= i.especialidad_alumno_id
-		for i in datoEvaluacion	:
-			if i.codigo_docente_materia_id == id_docente_materia:
-				codigoSubActividad = i.codigo_sub_actividad_id	
+def buscarEvaluaciones(request):
+	"""AQUIIIII HAY QUE VALIDAR anio_lectivo vigente y periodos no finalizados"""
+	if request.GET['accion'] == 'obtenerEvaluaciones':
 
-		for i in datoSubActividad	:
-			if i.codigo_sub_actividad == codigoSubActividad:
-				codigoActividad = i.codigo_actividad_id
+		anioLectivos = AnioLectivo.objects.all().order_by('anio_lectivo')
+		for x in anioLectivos:
+			if not x.terminado:
+				anioLectivo = x
+				pass
+				break
+			pass
+		periodos = Periodo.objects.filter(anio_lectivo = anioLectivo, finalizado = False)
+		codigo_materia = request.GET['codigo_materia']
+		dui_docente = request.GET['dui_docente']		
+		indice = 0
+		dui = ""		
+		codigo = ""
+		while indice < 10:
+		    dui = dui_docente[indice]
+		    codigo += dui 
+		    if dui:
+		    	print (dui)
+		    indice += 1
+		materia = Materia.objects.get(codigo_materia = codigo_materia)
+		docente = Docente.objects.get(dui_docente=codigo)
+		docente_materia = Docente_Materia.objects.get(codigo_docente = docente, codigo_materia = materia)
+		print(docente_materia)
+		evaluaciones = []
 
-		for i in datoActividad	:
-			if i.codigo_actividad == codigoActividad:
-				cantidadSubActividades = i.cantidad_max_sub_act			
+		for periodo in periodos:
+			actividades = Actividad.objects.filter(codigo_periodo = periodo)
 
+			for actividad in actividades:
+				subactividades = Sub_Actividad.objects.filter(codigo_actividad = actividad)
 				
+				for subactividad in subactividades:
+					if Evaluacion.objects.filter(codigo_sub_actividad = subactividad, codigo_docente_materia = docente_materia).exists():
+						evaluacion = Evaluacion.objects.get(codigo_sub_actividad = subactividad, codigo_docente_materia = docente_materia)
+						evaluaciones.append(evaluacion)
+						pass 
+					pass
+				pass
+			pass
+
+		data = serializers.serialize('json', evaluaciones)
+		return HttpResponse(data, content_type = 'application/json')
+		pass
+	
+	elif request.GET['accion'] == 'obtenerGrupos':
+		dui_docente = request.GET['dui_docente']		
+		indice = 0
+		dui = ""		
+		codigo = ""
+		while indice < 10:
+		    dui = dui_docente[indice]
+		    codigo += dui 
+		    if dui:
+		    	print (dui)
+		    indice += 1
+		codigo_materia = request.GET['codigo_materia']
+		materia = Materia.objects.get(codigo_materia = codigo_materia)
+		docente = Docente.objects.get(dui_docente=codigo)
+		docente_materia = Docente_Materia.objects.get(codigo_docente = docente, codigo_materia = materia)
+		docente_materia_grupos = Docente_Materia_Grupo.objects.filter(docente_materia = docente_materia)
+		grupos = []
+		for docente_materia_grupo in docente_materia_grupos:
+			grupos.append(docente_materia_grupo.grupo)
+			pass
+		data = serializers.serialize('json', grupos)
 		
-
-
-	else: 	
-		form = AdministrarNotasForm()
-
-			
-
-
-			
-	return render(request, 'administrarNotas/administrarNotas.html',
-		{'form':form,
-		 'nota': nota,
-		 'codigoEvaluacion': codigoEvaluacion,
-		 'AlumnoNie':AlumnoNie,
-		 'codigoMateria' : codigoMateria,	
-		 'codigoDocente' : codigoDocente,
-		 'nombre': nombre,
-		 'apellidos':apellidos,
-		 'codigoEspecialidad': codigoEspecialidad,
-		 'codigoMateria':codigoMateria,
-		 'codigoSubActividad':codigoSubActividad,
-		 'codigoActividad' : codigoActividad,
-		 'cantidadSubActividades':cantidadSubActividades
-		}
-
-
-		)
+		return HttpResponse(data, content_type = 'application/json')
+		pass
 
 
 
@@ -606,6 +675,7 @@ def IngresarNotas(request):
 
 def servidorIngresarNotas(request):
 	"""AQUIIIII HAY QUE VALIDAR anio_lectivo vigente y periodos no finalizados"""
+	data = []
 	if request.GET['accion'] == 'obtenerEvaluaciones':
 
 		anioLectivos = AnioLectivo.objects.all().order_by('anio_lectivo')
@@ -637,10 +707,24 @@ def servidorIngresarNotas(request):
 					pass
 				pass
 			pass
-
 		data = serializers.serialize('json', evaluaciones)
-		return HttpResponse(data, content_type = 'application/json')
 		pass
+
+	elif request.GET['accion'] == 'obtenerGrupos':
+		codigo_materia = request.GET['codigo_materia']
+		materia = Materia.objects.get(codigo_materia = codigo_materia)
+		docente = Docente.objects.get(usuario_docente=str(request.user.id))
+		docente_materia = Docente_Materia.objects.get(codigo_docente = docente, codigo_materia = materia)
+		docente_materia_grupos = Docente_Materia_Grupo.objects.filter(docente_materia = docente_materia)
+		grupos = []
+		for docente_materia_grupo in docente_materia_grupos:
+			grupos.append(docente_materia_grupo.grupo)
+			pass
+		data = serializers.serialize('json', grupos)
+		pass
+
+	return HttpResponse(data, content_type = 'application/json')
+
 
 def listaEvaluacion(request):
 	materias = []
@@ -700,7 +784,12 @@ def listaEvaluacion(request):
 			evaluacion.codigo_sub_actividad.delete()
 			docente = Docente.objects.get(usuario_docente=str(request.user.id)).dui_docente
 			evaluaciones = cargarEvaluaciones(request.GET['materiaSelect'], request.GET['periodo'], request.GET['actividad'],docente)
-			contexto = {'evaluaciones':evaluaciones, 'materia':request.GET['materiaSelect'], 'periodo':request.GET['periodo'], 'actividad':request.GET['actividad']}
+			if evaluaciones != []:
+				contexto = {'evaluaciones':evaluaciones, 'materia':request.GET['materiaSelect'], 'periodo':request.GET['periodo'], 'actividad':request.GET['actividad']}
+				pass
+			else:
+				return redirect('.')
+				pass
 			pass
 		else:
 			codigo_evaluacion = request.POST['evaluacion']

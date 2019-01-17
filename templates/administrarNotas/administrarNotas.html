@@ -1,77 +1,255 @@
 {% extends 'base/base.html'%}
 {% block title %} Administrar Notas {% endblock %}
+{% block act_ingresarNotas %}active{% endblock %}
+{% block act_inicio %}{% endblock %}
 {% block content %}
-<hr/>
-	<div class="hero-text text-center">
-		<p>Administracion y correccion de notas</p>
-	</div>
-<hr/>
-<div class= "container">
-	<div class= "row">
-		<section class="col-md-3">
-			<div class= "container">
-				<form method="POST">
-					{% csrf_token %}
-                    <div>
-                        Nie                    
-                    </div>
-                    <input type="text" id="codAlumno" name="inputCodAlumno" required minlength="1" maxlength="7" placeholder="Codigo de Alumno" />                                                            
-                    <br/><br/>
-                    <div>
-                        Codigo de materia                    
-                    </div>
-                    <input type="text" id="codMateria" name="inputCodMateria" required minlength="1" maxlength="5" placeholder="Codigo de materia" />
-                    <br/><br/>
-                    <div>
-                        Codigo de Docente
-                    </div>
-                    <input type="text" id="codDocente" name="inputCodDocente" required minlength="1" maxlength="10" placeholder="Codigo de Docente" />
-                    <br/>
-                    <br/>
-                    <button type= "submit" id= "btnConsultar" name= "btnConsultar"> Consultar </button>
-					
-                    
-				</form>
-			</div>		
-		</section>
-		<aside class="col-md-9 hidden-xs hidden-sm">
-			<div class="table-responsive">
-                <table class="table table-hover border">
-                    <tr class="table-success text-center">
-                        <th >Nie</th>
-                        <th>Nombre</th>
-                        <th>Apellidos</th>
-                        <th>Codigo De especialidad</th>                                                    
-                        <th>Materia</th>                        
-                    </tr>                        
-                    <tr class="text-center">
-                        <td>{{AlumnoNie}}</td>                        
-                        <td>{{nombre}}</td>
-                        <td>{{apellidos}}</td>
-                        <td>{{codigoEspecialidad}}</td>
-                        <td>{{codigoMateria}}</td>                        
-                    </tr>                        
-        	    </table> 
-                <hr/>
-                <table class="table table-hover border">
-                    <tr class="table-success text-center">
-                        <th>Calificacion 1</th>
-                        <th>Calificacion 2</th>
-                        <th>Calificacion 3</th>
-                        
-                    </tr>                        
-                    <tr class="text-center">
-                        <td></td>                        
-                        <td></td>
-                        <td></td>
-                        
-                    </tr>                        
-                </table> 
-            </div> 
-		<aside/>
-	</div>	
-<hr/>
+{% if alumnos and evaluacion %}
+<br>
+<div class="container">
+  <section class="main row">
+    
+  </section>
+  
 </div>
-	
-	
+<table>
+  <thead></thead>
+  <tbody>
+   <tr>
+    <td><label>Evaluacion [codigo: <b>{{ evaluacion.codigo_evaluacion }}</b>,&nbsp;</label></td>
+    <td><label>nombre: <b>{{ evaluacion.nombre_evaluacion }}</b>,&nbsp;</label></td>
+    <td><label>descripcion: <b> {{ evaluacion.descripcion_evaluacion }}]</b></label></td>
+  </tr>
+  </tbody>
+</table><br>
+
+    
+    <div class="container">
+      
+      <form id="formNotas" method="POST">
+        {% csrf_token %}
+      <section class="main row">
+        <article class="col-md-12">
+           <table class="table">
+            <thead  class="thead-dark">
+             <tr>
+                <th scope="col" id="th">NIE</td>
+                <th scope="col" id="th">Aumno</td>
+                <th scope="col" id="th">Nota</td>
+                <th scope="col" id="th">Correcion</td>
+                
+              </tr>
+
+
+            </thead>
+           <tbody id="tbody">
+         {% for alumno in alumnos %}
+
+          <tr class="trNotas">
+            <td class="tdNotas"><label>{{ alumno.nie }}</label></td>
+            <td class="tdNotas"><label>{{ alumno.apellidos_alumno }}, {{ alumno.nombre_alumno }}</label></td>
+            {% for c in cal %}
+            {% if alumno.nie == c.nie_id %}
+            <td class="tdNotas"><label>{{ c.nota }}</label></td>
+            {% endif %}
+            {% endfor %}
+            <td class="tdNotas"><input class="form-group"  type="text" id="{{ alumno.nie }}" name="{{ alumno.nie }}" pattern="(([1][0]\.[0][0])|([0]*[0-9]\.[0-9][0-9]))"></td>
+                  
+          </tr>
+        {% endfor %}
+        
+        </tbody>
+        </table>       
+        </article>   
+
+        
+        <br><br>
+          <div class="container" id="trans"> 
+            <input class="btn btn-primary" id="btnGuardar" name="btnGuardar" type="submit" value="Guardar">
+          </div> 
+      </section>
+        
+        <input style="display: none;" type="text" id="codigoEva" name="codigoEva" value="{{ evaluacion.codigo_evaluacion }}">
+        </form><br><br>
+    </div>
+
+   
+        
+
+
+{% else %}
+  {% if noAlumnos %}
+  <div class="row justify-content-center">
+    <div class="alert alert-warning col-6 col-md-8" style="text-align: center; margin-top: 100px;margin-bottom: 30px; font-size: 1.5em;">
+      <strong>Atención!</strong> {{ noAlumnos }}
+    </div>
+  </div>
+    <h4 style="text-align: center; padding-bottom: 350px;"><a href="{% url 'administrar' %}">Regresar</a></h4>
+  {% else %}
+    {% if exitoGuardar %}
+    <div class="row justify-content-center">
+      <div class="alert alert-success col-6 col-md-8" style="text-align: center; margin-top: 100px;margin-bottom: 30px; font-size: 1.5em;">
+        <strong>Petición finalizada, </strong> {{ exitoGuardar }}
+      </div>
+    </div>
+      <h4 style="text-align: center; padding-bottom: 350px;"><a href="{% url 'administrar' %}">Seguir</a></h4>
+    {% else %}
+    <div id="docenteLista"  ><br>
+        <select id="docenteSelect2" class="form-group col-12 col-md-6" style="margin-bottom: 50px;">
+          <option class="opt" value="default">--Seleccione una docente--</option>
+          {% if docente %}
+          {% for docentes in docente %}
+          <option class="opt" value="{{ docentes.dui_docente }} ">{{ docentes.nombre_docente }} {{ docentes.apellidos_docente }}</option>
+          {% endfor %}
+          {% endif %}
+        </select>
+    </div>
+    {{ dui }}
+    <br><br>
+      <div id="materiasLista" style="display: none;">
+        <select id="materiaSelect" class="form-group col-12 col-md-6" style="margin-bottom: 50px;">
+          <option class="opt" value="default">--Seleccione una Materia--</option>
+          <div id="info"></div>
+        </select>
+      </div>
+      <br><br>
+      <div id="evaluacionesLista" style="display: none;">
+        <select id="evaluacionSelect" class="form-group col-12 col-md-6" style="margin-bottom: 50px;">
+          <option class="opt" value="default">--Seleccione una evaluacion--</option>
+          <div id="info"></div>
+        </select>
+      </div>
+      <div id="grupos" style="display: none; margin-bottom: 150px;">
+        <form id="frmGrupos">
+          {% csrf_token %}
+          <input type="text" style="display: none;" name="txtCodigoEvaluado" id="txtCodigoEvaluado">
+          <div class="container">
+            <section class="main row">
+              <article class="col-md-12">
+                <table id="info" class="table">
+                  <thead class="thead-dark">
+                    <tr>
+                      <th scope="col" id="th">Nivel especialidad</td>
+                        <th scope="col" id="th">Seccion</td>
+                          <th scope="col" id="th">Codigo especialidad</td>
+                            <th scope="col" id="th">Cargar alumnos</td>
+                            </tr>
+                          </thead>
+                          <tbody id="tbody"></tbody>
+                        </table>
+              </article>
+            </section>            
+          </div>
+          <br><br>
+          <div class="container" id="trans"> 
+            <input type="submit" class="btn btn-primary" name="btnCargarAlumnos" value="Cargar alumnos">
+          </div> 
+          
+                  
+                </form>
+              </div>
+      <script type="text/javascript">
+        $(document).ready(function () {
+          
+
+           $('#docenteSelect2').on('change', function(){            
+            var value = $('#docenteSelect2').val();
+            var accion = "obtenerMateriasDocente";
+            if (value != 'default') {              
+              $.ajax({
+                url:'/into/buscarMaterias/',
+                type:'GET',
+                dataType:'json',
+                data : {'dui_docente': value, 'accion': accion},
+                success: function(data){
+                  console.log(data);
+                  
+                  var optionsText = '<option class="opt" value="default">--Seleccione una materia--</option>';
+                  
+                  for( var i in data){
+                    optionsText += '<option class="opt" value="'+data[i].pk+'">'+data[i].fields.nombre_materia+'</option>';
+                  }
+
+                  $('#materiaSelect').html(optionsText);
+                  $('#materiasLista').css('display','block');
+                  $('#materiasLista').css('padding-top','5px');
+                },
+                error: function(xhr, status, error){
+                  console.log(xhr);
+                  console.log(status);
+                  console.log(error);
+                }
+              });
+            }
+          });
+          $('#materiaSelect').on('change', function(){
+            //Value posee el valor del codigo de la materia seleccionada o value default en caso de no haber elegido aun
+            var value = $('#materiaSelect').val();
+            var val = $('#docenteSelect2').val();
+            var accion = "obtenerEvaluaciones";
+            if (value != 'default') {
+              //Realizar peticion Ajax para obtener evaluaciones asociadas a la materia seleccionada
+              $.ajax({
+                url:'/into/buscarEvaluaciones/',
+                type:'GET',
+                dataType:'json',
+                data : {'dui_docente': val, 'codigo_materia': value, 'accion': accion},
+                success: function(data){
+                  var optionsText = '<option class="opt" value="default">--Seleccione una evaluacion--</option>';
+                  console.log(data);
+
+                  for( var i in data){
+                    optionsText += '<option class="opt" value="'+data[i].pk+'">'+data[i].fields.nombre_evaluacion+'</option>';
+                  }
+
+                  $('#evaluacionSelect').html(optionsText);
+                  $('#evaluacionesLista').css('display','block');
+                  $('#evaluacionesLista').css('padding-top','5px');
+                },
+                error: function(xhr, status, error){
+                  console.log(xhr);
+                  console.log(status);
+                  console.log(error);
+                }
+              });
+            }
+          });
+          $('#evaluacionSelect').on('change', function(){
+            var value = $('#materiaSelect').val();
+            var accion = "obtenerGrupos";
+            var val = $('#docenteSelect2').val();
+            var valueEvaluacionSelect = $('#evaluacionSelect').val();
+            if (valueEvaluacionSelect != 'default') {
+                //Peticion ajax al seleccionar evaluacion para cargar en pantalla los grupos
+               $.ajax({
+                  url:'/into/buscarEvaluaciones/',
+                  type:'GET',
+                  dataType:'json',
+                  data : {'dui_docente': val,'codigo_materia': value, 'accion': accion},
+                  success: function(data){
+                    console.log(data);
+
+                    var htmlText;
+                    for (var i in data) {
+                      htmlText += '<tr><td><label>'+ data[i].fields.nivel_especialidad+'</label></td><td><label>'+data[i].fields.seccion+'</label></td><td><label>'+data[i].fields.codigo_especialidad+'</label></td><td><input type="checkbox" name="'+data[i].pk+'"></td>tr>';   
+                    }
+                    $('#tbody').html(htmlText);
+                    $('#grupos').css('display','block');
+                    $('#txtCodigoEvaluado').val($('#evaluacionSelect').val());
+                  },
+                  error: function(xhr, status, error){
+                    console.log(xhr);
+                    console.log(status);
+                    console.log(error);
+                  }
+                });
+            }
+          });
+ 
+
+        });           
+      </script>
+    {% endif %}
+  {% endif %}
+{% endif%}
 {% endblock %}
+
