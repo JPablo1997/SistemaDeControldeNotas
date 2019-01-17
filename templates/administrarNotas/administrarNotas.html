@@ -162,7 +162,8 @@
                 data : {'dui_docente': value, 'accion': accion},
                 success: function(data){
                   console.log(data);
-                  var optionsText;
+                  
+                  var optionsText = '<option class="opt" value="default">--Seleccione una materia--</option>';
                   
                   for( var i in data){
                     optionsText += '<option class="opt" value="'+data[i].pk+'">'+data[i].fields.nombre_materia+'</option>';
@@ -193,7 +194,7 @@
                 dataType:'json',
                 data : {'dui_docente': val, 'codigo_materia': value, 'accion': accion},
                 success: function(data){
-                  var optionsText;
+                  var optionsText = '<option class="opt" value="default">--Seleccione una evaluacion--</option>';
                   console.log(data);
 
                   for( var i in data){
