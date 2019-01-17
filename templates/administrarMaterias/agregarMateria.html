@@ -12,26 +12,8 @@
 
 			<div class="col-md-8">		
 				<div class="form-group">
-					<br>
-					<br>
-					<h2>Selecciones Los Docentes asignados a la Materia</h2>
-					<br>
-					<div class="checkbox text-justify">
-						{% for doc in docente %}
 
-						<label>
-							&nbsp&nbsp&nbsp&nbsp&nbsp
-							<input type="checkbox" name="docente_{{doc.dui_docente}}">
-							{{doc.nombre_docente}} {{doc.apellidos_docente}}
-						</label>
-
-						{% endfor %}
-					</div>
-				</div>
-			</div>
-			<div>
-				
-				<br>
+					<br>
 				<br>
 				<h2>Seleccione la Especialidad y El Año en que se impartira la Materia</h2>
 				<br>
@@ -67,6 +49,25 @@
 				</table> 
 				<br>
 				<br>
+
+					<br>
+					<br>
+					<h2>Selecciones Los Docentes asignados a la Materia</h2>
+					<br>
+					<div class="checkbox text-justify">
+						{% for doc in docente %}
+
+						<label>
+							&nbsp&nbsp&nbsp&nbsp&nbsp
+							<input type="checkbox" id="" name="docente_{{doc.dui_docente}}" >
+							{{doc.nombre_docente}} {{doc.apellidos_docente}}
+						</label>
+						<br>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+			<div>
 			
 			</div>
 		</div>
@@ -74,4 +75,62 @@
 	<button type="submit" class="btn btn-primary">Guardar</button>
 	<a href="{% url 'administrarMaterias' %}" class="btn btn-warning">Volver a la lista</a> 
 </form>
+<script type="text/javascript">
+	$(':checkbox').on('click', function()
+	{
+		if( $(this).is(':checked') )
+		{
+			alert('Seleccionado');
+		}
+	});
+//	$(document).ready(function()
+//	{
+//		$('#check_Docente').click(function()
+///		{
+//			if($('#check_Docente').prop('checked'))
+//			{
+//				alert('Seleccionado');
+//			}else{
+//				//hacer otra cosa
+//			}	
+//		});
+//	});
+//	$('#nivel').on('change',select_nivel);
+//	function select_nivel () {
+//		var nivel = $('#nivel').val();
+//		 $.ajax({
+//		 	data:{'nivel':nivel},
+//		 	url:'{% url "busqueda_especialidad" %}',
+//		 	type:'get',
+//		 	success:function(data) {
+//		 		var html="";
+//		 		
+//		 		html+='<option>Seleccione Especialidad</option>';
+//		 		for(var i = 0; i<data.length; i++){
+//
+//
+//		 			html += '<option value="'+data[i].pk+'">'+data[i].fields.nombre_especialidad+'</option>';	//	
+//		 		}
+//		 		
+//		 		if (nivel==0) {
+//		 			html='<option>Seleccione Especialidad</option>';
+//		 		}
+//		 		$('#especialidad').html(html); 
+//		 	}
+//		 	
+//		 });
+//	}
+//	}
+</script>
+<!--<select name="codigo_especialidad" id="especialidad" class="form-control">
+						<option>Seleccione Especialidad</option>				
+				</select>
+				<dt>Selecione el Nivel</dt>
+				<select name="nivel_especialidad" id="nivel" class="form-control">
+					<option  value="0">Seleccione Opcion</option>
+					<option  value="1">Primer Año</option>
+					<option  value="2">Segundo Año</option>
+					<option  value="3">Tercer Año</option>
+				</select>
+-->
 {% endblock %}

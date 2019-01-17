@@ -526,12 +526,20 @@ def materia_edit(request, codigo_materia):
 	materia = Materia.objects.get(pk=codigo_materia)
 	if request.method == 'GET':
 		form = MateriaForm(instance=materia)
+		especialidad=Especialidad.objects.all()
+		docente=Docente.objects.all()
+
+		docente_materia=Docente_Materia.objects.all()
+		especialidad_materia=Especialidad_Materia.objects.all()
+		grupos=Grupo.objects.all()
+		
+		contexto={'form':form,'docente':docente,'especialidad':especialidad,'especialidad_materia':especialidad_materia, 'docente_materia':docente_materia, 'grupos':grupos}
 	else:
 		form = MateriaForm(request.POST, instance=materia)
 		if form.is_valid():
 			form.save() 
 		return redirect('/into/administrarMaterias')
-	return render(request, 'administrarMaterias/agregarMateria.html', {'form' : form})
+	return render(request,'administrarMaterias/editarMateria.html',contexto)
 
 def materia_delete(request, codigo_materia):
 	materia = Materia.objects.get(pk=codigo_materia)
