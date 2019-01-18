@@ -58,4 +58,7 @@ urlpatterns = [
     url(r'^servidorActividades/$',login_required(servidorActividades),name="servidorActividades"),
      url(r'^actualizarUser/$',login_required(actualizarUser),name="actualizarUser"),
 
+
+     url(r'^CargarGrupos/$',login_required(CargarGrupos.as_view()),name="CargarGrupos"),
+
 ]

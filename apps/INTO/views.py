@@ -522,6 +522,11 @@ class MateriaCreate(CreateView):
 	template_name = 'administrarMaterias/agregarMateria.html'
 	success_url = reverse_lazy('administrarMaterias')
 
+class CargarGrupos(TemplateView):
+    def get(self,request,*args,**kwargs):       
+        grupos=Grupo.objects.all()             
+        data = serializers.serialize('json',grupos)
+        return HttpResponse(data, content_type='application/json')
 
 def materia_view(request):
 #	if request.method == 'POST':
@@ -557,13 +562,7 @@ def materia_view(request):
 					docente_materia.save()
 					pass
 				pass
-			"""if "docente_" in request.POST:
-				for doc in docentes:
-					if doc.dui_docente == request.POST['docent']:
-						docMat.codigo_docente = doc
-						docMat.codigo_materia = materia
-						docMat.save()"""
-			#	arrayDoc = request.POST.getlist('docent[]')
+
 			for especialidad in especialidades:
 				if '1_'+especialidad.codigo_especialidad in request.POST[especialidad.codigo_especialidad]:
 					num = Especialidad_Materia.objects.all().count()

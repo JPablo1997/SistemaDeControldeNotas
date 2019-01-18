@@ -30,7 +30,7 @@
 					{% if esp.anios_especialidad == 3 %}	
 					<tr>
 						<td>{{esp.nombre_especialidad}}&nbsp;&nbsp;&nbsp;</td>
-						<td><input type="radio" name="{{esp.codigo_especialidad}}" value="1_{{esp.codigo_especialidad}}"></td>
+						<td><input  type="radio" name="{{esp.codigo_especialidad}}" value="1_{{esp.codigo_especialidad}}"></td>
 						<td><input type="radio" name="{{esp.codigo_especialidad}}" value="2_{{esp.codigo_especialidad}}"></td>
 						<td><input type="radio" name="{{esp.codigo_especialidad}}" value="3_{{esp.codigo_especialidad}}"></td>
 					</tr>
@@ -59,9 +59,12 @@
 
 						<label>
 							&nbsp&nbsp&nbsp&nbsp&nbsp
-							<input type="checkbox" id="" name="docente_{{doc.dui_docente}}" >
+							<input type="checkbox" name="docente_{{doc.dui_docente}}" >
 							{{doc.nombre_docente}} {{doc.apellidos_docente}}
 						</label>
+						<div class="docente_{{doc.dui_docente}}">
+							
+						</div>
 						<br>
 						{% endfor %}
 					</div>
@@ -76,61 +79,68 @@
 	<a href="{% url 'administrarMaterias' %}" class="btn btn-warning">Volver a la lista</a> 
 </form>
 <script type="text/javascript">
-	$(':checkbox').on('click', function()
-	{
-		if( $(this).is(':checked') )
-		{
-			alert('Seleccionado');
+
+//	function crearGrupo()
+//	{
+//
+//	}
+
+$(document).ready(function(){
+	$(':checkbox').prop("checked",false);
+	$(':checkbox').click(function(){
+		var docente = $(this).attr('name');
+		var chec = '.'+docente;
+		if($(':checkbox').is(':checked')){
+			var valor = '';
+		 $.ajax({
+		 	data:{'valor':valor},
+		 	url:'{% url "CargarGrupos" %}',
+		 	type:'get',
+		 	success:function(data) {
+		 		var html="";
+		 		
+		 		html+='';
+		 		for(var i = 0; i<data.length; i++){
+
+		 			html += '<label>&nbsp;&nbsp;<input type="checkbox" name="'+docente+'_'+data[i].pk+'">'+data[i].pk+'</label>';
+		 		}
+		 		
+		 		$(chec).html(html); 
+		 	}
+		 	
+		 });	
+		}
+		else{
+			var html=""
+			$(chec).html(html);
+
 		}
 	});
-//	$(document).ready(function()
-//	{
-//		$('#check_Docente').click(function()
-///		{
-//			if($('#check_Docente').prop('checked'))
-//			{
-//				alert('Seleccionado');
-//			}else{
-//				//hacer otra cosa
-//			}	
-//		});
-//	});
-//	$('#nivel').on('change',select_nivel);
+});
+
+//$(':checkbox').is(':checked',select_nivel);
 //	function select_nivel () {
-//		var nivel = $('#nivel').val();
+//		alert('chequiado');
+//		var varlor = '';
 //		 $.ajax({
-//		 	data:{'nivel':nivel},
-//		 	url:'{% url "busqueda_especialidad" %}',
+//		 	data:{'valor':varlor},
+//		 	url:'{% url "CargarGrupos" %}',
 //		 	type:'get',
 //		 	success:function(data) {
 //		 		var html="";
 //		 		
-//		 		html+='<option>Seleccione Especialidad</option>';
+//		 		html+='';
 //		 		for(var i = 0; i<data.length; i++){
 //
-//
-//		 			html += '<option value="'+data[i].pk+'">'+data[i].fields.nombre_especialidad+'</option>';	//	
+//		 			html += '<label>&nbsp;&nbsp;<input type="checkbox" name="'+data[i].pk+'">'+data[i].pk+'</label>';
 //		 		}
 //		 		
-//		 		if (nivel==0) {
-//		 			html='<option>Seleccione Especialidad</option>';
-//		 		}
-//		 		$('#especialidad').html(html); 
+//		 		$('#grados').html(html); 
 //		 	}
 //		 	
 //		 });
 //	}
-//	}
 </script>
-<!--<select name="codigo_especialidad" id="especialidad" class="form-control">
-						<option>Seleccione Especialidad</option>				
-				</select>
-				<dt>Selecione el Nivel</dt>
-				<select name="nivel_especialidad" id="nivel" class="form-control">
-					<option  value="0">Seleccione Opcion</option>
-					<option  value="1">Primer Año</option>
-					<option  value="2">Segundo Año</option>
-					<option  value="3">Tercer Año</option>
-				</select>
--->
+
+
 {% endblock %}
