@@ -3,5 +3,72 @@
 {% block act_inicio %}{% endblock %}
 {% block act_docentes %}active{% endblock %} 
 {% block content %}
- 
+ 	<div class="offset-sm-2 col-sm-8 col-sm-offset-2">
+ 		<br><div class="card">
+		  <div class="card-header">
+		    <div class="row">
+		    	<h3 style="text-align: center;"> <i class="fas fa-user"></i> Detalles de usuario</h3>
+		    </div>
+		  </div>
+		  <div class="card-body">
+		    {% if user %}
+		    		<table>
+		    			<tr>
+		    				<td style="padding-left: 200px;">
+			    				<label>Nombre:</label>
+			    				<label><b>{{ user.first_name }}</b></label><br>
+			    			
+			    				<label>Apellido:</label>
+			    				<label><b>{{ user.last_name }}</b></label><br>
+			    			
+			    				<label>Username:</label>
+			    				<label><b>{{ user.username }}</b></label>
+			    			</td>
+			    			<td style="padding-left: 150px;">
+			    				<label>Email:</label>
+			    				<label><b>{{ user.email }}</b></label><br>
+
+			    				<label>Fecha de creación:</label>
+			    				<label><b>{{ user.date_joined }}</b></label><br>
+
+			    				<label>Ultimo acceso:</label>
+			    				<label><b>{{ user.last_login }}</b></label>
+			    			</td>
+		    			</tr>
+		    			<tr>
+		    				<td style="padding-left: 25px;">
+		    					<button class="btn btn-primary" onclick="document.getElementById('frm').style.display = 'inline-block';"><i class="fas fa-pencil-alt"></i> Realizar cambios</button>
+		    				</td>
+		    			</tr>
+		    		</table>
+		    {% endif %}
+		  </div>
+		</div><br>
+ 	</div>
+
+<div id="frm" class="offset-sm-4 col-sm-4 col-sm-offset-4" style="display: none;">
+	<h5 style="text-align: center; color: #e67e22">¡Deje en blanco los campos que no desee cambiar!</h5>
+ 	<form method="POST">
+ 		{% csrf_token %}
+ 		<div class="form-group">
+ 			<label>Username:</label>
+ 			<input class="form-control" type="text" name="txtUsername" placeholder="Ingresa el nuevo Username...">
+ 		</div>
+ 		<div class="form-group">
+ 			<label>Email:</label>
+ 			<input class="form-control" type="email" name="txtEmail" placeholder="Ingresa el nuevo Email...">
+ 		</div>
+ 		<div class="form-group">
+ 			<label>Password:</label>
+ 			<input class="form-control" type="password" name="txtPassword" placeholder="Ingresa la nueva Password...">
+ 			<small id="emailHelp" class="form-text text-muted">Debe contener mayusculas, minusculas, numeros y simbolos. Por cuestiones de seguridad <b>NO</b> ingrese datos personales, como nombres, fecha de nacimiento, etc.</small>
+ 		</div>
+ 		<div class="form-group">
+ 			<label>Confirmar password:</label>
+ 			<input class="form-control" type="password" name="txtConfirm" placeholder="Ingresa de nuevo la Password..">
+ 		</div><br>
+ 		<input class="btn btn-primary" type="submit" name="btnGuardar" value="Guardar">
+ 		<input class="btn btn-secondary" type="button" name="btnCancelar" value="Cancelar">
+ 	</form>
+ </div>
 {% endblock %}

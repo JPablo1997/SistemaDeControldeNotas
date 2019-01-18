@@ -645,7 +645,6 @@ def IngresarNotas(request):
 						if not Calificacion.objects.filter(nie =y.nie, codigo_evaluacion=evaluacion).exists():
 							alumnos.append(Alumno.objects.get(nie = y.nie.nie))
 							pass
-
 						pass
 					i = i + 1
 					pass
@@ -653,20 +652,22 @@ def IngresarNotas(request):
 			pass		
 		pass
 		if alumnos == []:
-			noAlumnos = "No hay alumnos pendiente de nota en esta evaluación."
+			noAlumnos = "No hay alumnos pendiente de nota en esta evaluación para los grupos seleccionados."
 			pass
 
 	if 'btnGuardar' in request.POST:
 		alumnosAll = Alumno.objects.all()
 		for x in alumnosAll:
 			if str(x.nie) in request.POST:
-				eva = Evaluacion.objects.get(codigo_evaluacion=request.POST['codigoEva'])
-				nota = Decimal(request.POST[x.nie])
-				c = Calificacion(nie = x, codigo_evaluacion= eva, nota= nota)
-				c.save()
-				alumnos = []
-				evaluacion = []
+				if request.POST[str(x.nie)] != "":
+					eva = Evaluacion.objects.get(codigo_evaluacion=request.POST['codigoEva'])
+					nota = Decimal(request.POST[x.nie])
+					c = Calificacion(nie = x, codigo_evaluacion= eva, nota= nota)
+					c.save()
+					pass
 				pass
+		alumnos = []
+		evaluacion = []
 		exitoGuardar = "Las calificaciones se han guardado de manera exitosa!"
 		
 	contexto = {'materias': materias, 'alumnos':alumnos, 'evaluacion':evaluacion, 'noAlumnos':noAlumnos, 'exitoGuardar':exitoGuardar}
@@ -979,5 +980,20 @@ def Expediente(request):
 	return render (request,'expediente/expediente.html')
 
 def actualizarUser(request):
-	
+	if 'btnGuardar' in request.POST:
+		usuario = request.user
+		if request.POST['txtUsername'] != "":
+			usuario.username = request.POST['txtUsername']
+			pass
+		if request.POST['txtEmail'] != "":
+			usuario.email = request.POST['txtEmail']
+			pass
+		if request.POST['txtPassword'] != "" and request.POST['txtConfirm'] != "":
+			if request.POST['txtPassword'] == request.POST['txtConfirm']:
+				usuario.set_password(request.POST['txtPassword'])
+				pass
+			pass
+		usuario.save()
+		return redirect('.')
+		pass
 	return render(request, 'actualizarUser/actualizarUser.html',{'user':request.user})
