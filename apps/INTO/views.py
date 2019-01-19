@@ -532,14 +532,28 @@ def CargarGrupos(request):
 			if Grupo.objects.filter(codigo_especialidad = especialidad_materia.codigo_especialidad, nivel_especialidad = especialidad_materia.nivel_materia_especialidad).exists():
 				grupos_filtrados = Grupo.objects.filter(codigo_especialidad = especialidad_materia.codigo_especialidad, nivel_especialidad = especialidad_materia.nivel_materia_especialidad)
 				for grupo in grupos_filtrados:
-					grupos.append(grupo)
+					docentes_materia = Docente_Materia.objects.filter(codigo_materia = materia)
+					grupo_ya_asignado = False
+					for docente_materia in docentes_materia:
+						if Docente_Materia_Grupo.objects.filter(docente_materia = docente_materia, grupo = grupo).exists():
+							grupo_ya_asignado = True
+							break
+							pass
+						pass
+					if not grupo_ya_asignado:
+						grupos.append(grupo)
+						pass
 					pass
 				pass
 			pass
 		pass
-
-	data = serializers.serialize('json', grupos)	
-	return HttpResponse(data, content_type='application/json')
+	if grupos == []:
+		return HttpResponse({}, content_type='application/json')
+		pass
+	else:
+		data = serializers.serialize('json', grupos)	
+		return HttpResponse(data, content_type='application/json')
+		pass
 
 def materia_view(request):
 #	if request.method == 'POST':
@@ -551,7 +565,26 @@ def materia_view(request):
 #		form = MateriaForm()
 #	return render(request, 'administrarMaterias/agregarMateria.html', {'form' : form})
 #   si el metodo es POST Hacer esto
-	if request.method=='POST':
+	if 'guardarAsignaciones' in request.POST:
+		docente = Docente.objects.get(dui_docente = request.POST['docente'])
+		materia = Materia.objects.get(codigo_materia = request.POST['materia'])
+		grupos = Grupo.objects.all()
+		for grupo in grupos:
+			if 'grupo_'+grupo.codigo_grupo in request.POST:
+				count = Docente_Materia.objects.all().count()
+				docente_materia = Docente_Materia(id = count+1, codigo_docente = docente, codigo_materia = materia)
+				docente_materia.save()
+				count2 = Docente_Materia_Grupo.objects.all().count()
+				docente_materia_grupo = Docente_Materia_Grupo(id = count2+1, docente_materia = docente_materia,grupo = grupo)
+				docente_materia_grupo.save()
+				pass
+			pass
+		pass
+
+		docentes = Docente.objects.all()
+		contexto = {'docentes':	docentes, 'materia':materia}
+
+	elif request.method=='POST':
 		#Resivimos todos los parametros del formulario
 		form=MateriaForm(request.POST)
 		#si el formulario es Valido hacer lo siguiente 

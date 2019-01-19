@@ -127,10 +127,12 @@ class Sub_Actividad(models.Model):
     	return self.codigo_sub_actividad 
 
 class Docente_Materia(models.Model):
+    id = models.AutoField(primary_key=True)
     codigo_docente = models.ForeignKey(Docente,on_delete=models.CASCADE)
     codigo_materia = models.ForeignKey(Materia,on_delete=models.CASCADE)
 
 class Docente_Materia_Grupo(models.Model):
+    id = models.AutoField(primary_key=True)
     docente_materia = models.ForeignKey(Docente_Materia,on_delete=models.CASCADE)
     grupo = models.ForeignKey(Grupo,on_delete=models.CASCADE)
 
