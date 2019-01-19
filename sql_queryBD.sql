@@ -343,6 +343,7 @@ INSERT INTO public."INTO_materia" (codigo_materia, nombre_materia,descripcion_ma
 INSERT INTO public."INTO_materia" (codigo_materia, nombre_materia,descripcion_materia, objetivos) VALUES('SM','Seminario','Materia que se encarga de enseñar reglas para realizacion de documentos','Introducir al alumno al seminario');
 
 
+
 -------------------------------------------ALUMNO--------------------------------------------
 INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0001', 'Juan José', 'Pereira Sosa', '12/04/2000', '7851-5468','casa de su mamá','M', '01/01/2018', '01234560-1','esp_contab',(SELECT id FROM auth_user WHERE username = 'Alumno01'));
 INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0002', 'Pedro', 'andrade', '04/07/1999', '7851-5468','casa de su mamá','M', '01/01/2017', '01234560-1','esp_contab',(SELECT id FROM auth_user WHERE username = 'Alumno02'));
@@ -445,6 +446,7 @@ INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nac
 INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0099', 'michelle', 'arevalo', '12/04/2000', '7851-5468','casa de su mamá','F', '01/01/2019', '01234561-1','esp_secret',(SELECT id FROM auth_user WHERE username = 'Alumno99'));
 INSERT INTO public."INTO_alumno"(nie, nombre_alumno, apellidos_alumno, fecha_nacimiento_alumno,telefono_alumno, direccion_alumno, sexo_alumno, anio_ingreso, encargado_id, especialidad_alumno_id, usuario_alumno_id)VALUES ('nie0100', 'xiomara', 'andrade', '12/04/2000', '7851-5468','casa de su mamá','F', '01/01/2017', '01234560-1','esp_secret',(SELECT id FROM auth_user WHERE username = 'Alumno100'));
 
+
 --------------------------------Especialidad_materia-------------------------------------------
 
 INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(01,'1','esp_genral','CN');
@@ -467,15 +469,12 @@ INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,c
 INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(17,'2','esp_genral','OPV');
 INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(18,'2','esp_genral','SM');
 
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(19,'1','esp_contab','CN');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(20,'1','esp_contab','EDF');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(21,'1','esp_contab','EN');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(22,'1','esp_contab','ES');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(23,'1','esp_contab','INF');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(24,'1','esp_contab','LYL');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(25,'1','esp_contab','MAT');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(26,'1','esp_contab','OPV');
-INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(27,'1','esp_contab','SM');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(19,'1','esp_contab','MAT');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(20,'1','esp_contab','CN');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(21,'1','esp_contab','ES');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(22,'1','esp_contab','LYL');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(23,'1','esp_contab','TEC');
+INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(24,'1','esp_contab','OPV');
 
 INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(200,'2','esp_contab','CN');
 INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(201,'2','esp_contab','EDF');
@@ -590,12 +589,13 @@ INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,c
 INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(116,'3','esp_secret','OPV');
 INSERT INTO public."INTO_especialidad_materia" (id, nivel_materia_especialidad,codigo_especialidad_id, codigo_materia_id) VALUES(117,'3','esp_secret','SM');
 
+
 -------------------------------------------------------Parte Marco---------------------------------------------------
 
 -------------------------------------------------------Grupo---------------------------------------------------
-INSERT INTO public."INTO_grupo" (codigo_grupo, nivel_especialidad, seccion, anio, codigo_docente_encargado_id, codigo_especialidad_id) VALUES ('GP-01', '1', 'C-01', '2019', '01158242-3', 'esp_contab');
+INSERT INTO public."INTO_grupo" (codigo_grupo, nivel_especialidad, seccion, anio, codigo_docente_encargado_id, codigo_especialidad_id) VALUES ('GP-01', '1', 'C-01', '2017', '01158242-3', 'esp_contab');
 INSERT INTO public."INTO_grupo" (codigo_grupo, nivel_especialidad, seccion, anio, codigo_docente_encargado_id, codigo_especialidad_id) VALUES ('GP-02', '2', 'C-02', '2018', '02534252-1', 'esp_contab');
-INSERT INTO public."INTO_grupo" (codigo_grupo, nivel_especialidad, seccion, anio, codigo_docente_encargado_id, codigo_especialidad_id) VALUES ('GP-03', '3', 'C-03', '2017', '03358242-3', 'esp_contab');
+INSERT INTO public."INTO_grupo" (codigo_grupo, nivel_especialidad, seccion, anio, codigo_docente_encargado_id, codigo_especialidad_id) VALUES ('GP-03', '3', 'C-03', '2019', '03358242-3', 'esp_contab');
 INSERT INTO public."INTO_grupo" (codigo_grupo, nivel_especialidad, seccion, anio, codigo_docente_encargado_id, codigo_especialidad_id) VALUES ('GP-04', '1', 'D-01', '2019', '03532231-3', 'esp_dsw');
 INSERT INTO public."INTO_grupo" (codigo_grupo, nivel_especialidad, seccion, anio, codigo_docente_encargado_id, codigo_especialidad_id) VALUES ('GP-05', '2', 'D-02', '2018', '05138254-3', 'esp_dsw');
 INSERT INTO public."INTO_grupo" (codigo_grupo, nivel_especialidad, seccion, anio, codigo_docente_encargado_id, codigo_especialidad_id) VALUES ('GP-06', '3', 'D-03', '2017', '05417242-4', 'esp_dsw');
@@ -608,8 +608,10 @@ INSERT INTO public."INTO_grupo" (codigo_grupo, nivel_especialidad, seccion, anio
 INSERT INTO public."INTO_grupo" (codigo_grupo, nivel_especialidad, seccion, anio, codigo_docente_encargado_id, codigo_especialidad_id) VALUES ('GP-13', '1', 'S-01', '2019', '21537242-3', 'esp_secret');
 INSERT INTO public."INTO_grupo" (codigo_grupo, nivel_especialidad, seccion, anio, codigo_docente_encargado_id, codigo_especialidad_id) VALUES ('GP-14', '2', 'S-02', '2018', '25738212-2', 'esp_secret');
 INSERT INTO public."INTO_grupo" (codigo_grupo, nivel_especialidad, seccion, anio, codigo_docente_encargado_id, codigo_especialidad_id) VALUES ('GP-15', '3', 'S-03', '2017', '40531221-6', 'esp_secret');
+
 -------------------------------------------------------Alumno_Grupo---------------------------------------------------
 INSERT INTO public."INTO_alumno_grupo" (id, codigo_grupo_id, nie_id) VALUES (default, 'GP-01', 'nie0003');
+INSERT INTO public."INTO_alumno_grupo" (id, codigo_grupo_id, nie_id) VALUES (default, 'GP-01', 'nie0001');
 INSERT INTO public."INTO_alumno_grupo" (id, codigo_grupo_id, nie_id) VALUES (default, 'GP-01', 'nie0005');
 INSERT INTO public."INTO_alumno_grupo" (id, codigo_grupo_id, nie_id) VALUES (default, 'GP-01', 'nie0009');
 INSERT INTO public."INTO_alumno_grupo" (id, codigo_grupo_id, nie_id) VALUES (default, 'GP-01', 'nie0012');
@@ -623,6 +625,7 @@ INSERT INTO public."INTO_alumno_grupo" (id, codigo_grupo_id, nie_id) VALUES (def
 INSERT INTO public."INTO_alumno_grupo" (id, codigo_grupo_id, nie_id) VALUES (default, 'GP-02', 'nie0017');
 INSERT INTO public."INTO_alumno_grupo" (id, codigo_grupo_id, nie_id) VALUES (default, 'GP-02', 'nie0020');
 INSERT INTO public."INTO_alumno_grupo" (id, codigo_grupo_id, nie_id) VALUES (default, 'GP-03', 'nie0002');
+INSERT INTO public."INTO_alumno_grupo" (id, codigo_grupo_id, nie_id) VALUES (default, 'GP-03', 'nie0001');
 INSERT INTO public."INTO_alumno_grupo" (id, codigo_grupo_id, nie_id) VALUES (default, 'GP-03', 'nie0004');
 INSERT INTO public."INTO_alumno_grupo" (id, codigo_grupo_id, nie_id) VALUES (default, 'GP-03', 'nie0007');
 INSERT INTO public."INTO_alumno_grupo" (id, codigo_grupo_id, nie_id) VALUES (default, 'GP-03', 'nie0010');
@@ -726,260 +729,173 @@ INSERT INTO public."INTO_periodo" (codigo_periodo, finalizado, anio_lectivo_id) 
 INSERT INTO public."INTO_periodo" (codigo_periodo, finalizado, anio_lectivo_id) VALUES ('2019_PER_2', 'False', '2019');
 INSERT INTO public."INTO_periodo" (codigo_periodo, finalizado, anio_lectivo_id) VALUES ('2019_PER_3', 'False', '2019');
 INSERT INTO public."INTO_periodo" (codigo_periodo, finalizado, anio_lectivo_id) VALUES ('2019_PER_4', 'False', '2019');
-
-
-
 ------------------------------------------------------Parte DIEGO------------------------------------------------------
 ----Tipo_actividad------------
 
-INSERT INTO "INTO_tipo_actividad"(codigo_tipo_actividad, nombre_tipo_actividad, descripcion)VALUES ('Exposicion', 'Exposicion', 'Los Alumnos Exponen');
-INSERT INTO "INTO_tipo_actividad"(codigo_tipo_actividad, nombre_tipo_actividad, descripcion)VALUES ('Examen', 'Examen', 'Para subir puntos');
-INSERT INTO "INTO_tipo_actividad"(codigo_tipo_actividad, nombre_tipo_actividad, descripcion)VALUES ('Baile', 'Baile', 'Los Alumnos Ganan Puntos al Bailar');
-INSERT INTO "INTO_tipo_actividad"(codigo_tipo_actividad, nombre_tipo_actividad, descripcion)VALUES ('Asistencia', 'Asistencia', 'Dar Puntos Por asistir a clases');
-
+INSERT INTO "INTO_tipo_actividad"(codigo_tipo_actividad, nombre_tipo_actividad, descripcion)VALUES ('ActividadN', 'Activides de 35%', 'Los Alumnos Exponen');
+INSERT INTO "INTO_tipo_actividad"(codigo_tipo_actividad, nombre_tipo_actividad, descripcion)VALUES ('Examen', 'Examenes que representan el 30%', 'Para subir puntos');
 -----------Actividad-------------------
 
-INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('act1_per1_2017', 'Actividad 1',      0.3500,7,       '2017_PER_1',   'Exposicion');
-INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('act2_per1_2017', 'Actividad 2',	0.3500,	7,	'2017_PER_1',	'Baile');
-INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('exa1_per1_2017', 'Examen 1',	0.3000,	1,	'2017_PER_1',	'Examen');
-INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('exa2_per1_2017', 'Examen 2',	0.3000,	1,	'2017_PER_1',	'Examen');
-INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('act1_per2_2017', 'Actividad 1',	0.3500,	7,	'2017_PER_2',	'Exposicion');
-INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('act2_per2_2017', 'Actividad 2',	0.3500,	7,	'2017_PER_2',	'Baile');
-INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('exa1_per2_2017', 'Examen 1',	0.3000,	1,	'2017_PER_2',	'Examen');
-INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('exa2_per2_2017', 'Examen 2',	0.3000,	1,	'2017_PER_2',	'Examen');
-INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('act1_per3_2017', 'Actividad 1',	0.3500,	7,	'2017_PER_3',	'Exposicion');
-INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('act2_per3_2017', 'Actividad 2',	0.3500,	7,	'2017_PER_3',	'Baile');
-INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('exa1_per3_2017', 'Examen 1',	0.3000, 1,	'2017_PER_3',	'Examen');
-INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('exa2_per3_2017', 'Examen 2',	0.3000,	1,	'2017_PER_3',	'Examen');
-INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('act1_per4_2017', 'Actividad 1',	0.3500,	7,	'2017_PER_4',	'Exposicion');
-INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('act2_per4_2017', 'Actividad 2',	0.3500,	7,	'2017_PER_4',	'Baile');
-INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('exa1_per4_2017', 'Examen 1',	0.3000,	1,	'2017_PER_4',	'Examen');
-INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('exa2_per4_2017', 'Examen 2',	0.3000,	1,	'2017_PER_4',	'Examen');
-INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('act1_per1_2018', 'Actividad 1',	0.3500,	7,	'2018_PER_1',	'Exposicion');
-INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('act2_per1_2018', 'Actividad 2',	0.3500,	7,	'2018_PER_1',	'Baile');
-INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('exa1_per1_2018', 'Examen 1',	0.3000,	1,	'2018_PER_1',	'Examen');
-INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('exa2_per1_2018', 'Examen 2',	0.3000,	1,	'2018_PER_1',	'Examen');
-INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('act1_per2_2018', 'Actividad 1',	0.3500,	7,	'2018_PER_2',	'Exposicion');
-INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('act2_per2_2018', 'Actividad 2',	0.3500,	7,	'2018_PER_2',	'Baile');
-INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('exa1_per2_2018', 'Examen 1',	0.3000,	1,	'2018_PER_2',	'Examen');
-INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('exa2_per2_2018', 'Examen 2',	0.3000,	1,	'2018_PER_2',	'Examen');
-INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('act1_per3_2018', 'Actividad 1',	0.3500,	7,	'2018_PER_3',	'Exposicion');
-INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('act2_per3_2018', 'Actividad 2',	0.3500,	7,	'2018_PER_3',	'Baile');
-INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('exa1_per3_2018', 'Examen 1',	0.3000,	1,	'2018_PER_3',	'Examen');
-INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('exa2_per3_2018', 'Examen 2',	0.3000, 1,	'2018_PER_3',	'Examen');
-INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('act1_per4_2018', 'Actividad 1',	0.3500,	7,	'2018_PER_4',	'Exposicion');
-INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('act2_per4_2018', 'Actividad 2',	0.3500,	7,	'2018_PER_4',	'Baile');
-INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('exa1_per4_2018', 'Examen 1',	0.3000,	1,	'2018_PER_4',	'Examen');
-INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('exa2_per4_2018', 'Examen 2',	0.3000,	1,	'2018_PER_4',	'Examen');
-INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('act1_per1_2019', 'Actividad 1',	0.3500,	7,	'2019_PER_1',	'Exposicion');
-INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('act2_per1_2019', 'Actividad 2',	0.3500,	7,	'2019_PER_1',	'Baile');
-INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('exa1_per1_2019', 'Examen 1',	0.3000,	1,	'2019_PER_1',	'Examen');
-INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('exa2_per1_2019', 'Examen 2',	0.3000,	1,	'2019_PER_1',	'Examen');
-INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('act1_per2_2019', 'Actividad 1',	0.3500,	7,	'2019_PER_2',	'Exposicion');
-INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('act2_per2_2019', 'Actividad 2',	0.3500,	7,	'2019_PER_2',	'Baile');
-INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('exa1_per2_2019', 'Examen 1',	0.3000,	1,	'2019_PER_2',	'Examen');
-INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('exa2_per2_2019', 'Examen 2',	0.3000,	1,	'2019_PER_2',	'Examen');
-INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('act1_per3_2019', 'Actividad 1',	0.3500,	7,	'2019_PER_3',	'Exposicion');
-INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('act2_per3_2019', 'Actividad 2',	0.3500,	7,	'2019_PER_3',	'Baile');
-INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('exa1_per3_2019', 'Examen 1',	0.3000,	1,	'2019_PER_3',	'Examen');
-INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('exa2_per3_2019', 'Examen 2',	0.3000,	1,	'2019_PER_3',	'Examen');
-INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('act1_per4_2019', 'Actividad 1',	0.3500,	7,	'2019_PER_4',	'Exposicion');
-INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('act2_per4_2019', 'Actividad 2',	0.3500,	7,	'2019_PER_4',	'Baile');
-INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('exa1_per4_2019', 'Examen 1',	0.3000,	1,	'2019_PER_4',	'Examen');
-INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('exa2_per4_2019', 'Examen 2',	0.3000,	1,	'2019_PER_4',	'Examen');
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('act1_per1_2017', 'Actividad 1',      0.3500,7,       '2017_PER_1',   'ActividadN');
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('act2_per1_2017', 'Actividad 2',	0.3500,	7,	'2017_PER_1',	'ActividadN');
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('exa1_per1_2017', 'Examen 1',	0.3000,	2,	'2017_PER_1',	'Examen');
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('act1_per2_2017', 'Actividad 1',	0.3500,	7,	'2017_PER_2',	'ActividadN');
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('act2_per2_2017', 'Actividad 2',	0.3500,	7,	'2017_PER_2',	'ActividadN');
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('exa2_per2_2017', 'Examen 2',	0.3000,	2,	'2017_PER_2',	'Examen');
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('act1_per3_2017', 'Actividad 1',	0.3500,	7,	'2017_PER_3',	'ActividadN');
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('act2_per3_2017', 'Actividad 2',	0.3500,	7,	'2017_PER_3',	'ActividadN');
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('exa3_per3_2017', 'Examen 3',	0.3000,	2,	'2017_PER_3',	'Examen');
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('act1_per4_2017', 'Actividad 1',	0.3500,	7,	'2017_PER_4',	'ActividadN');
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('act2_per4_2017', 'Actividad 2',	0.3500, 7,	'2017_PER_4',	'ActividadN');
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('exa4_per4_2017', 'Examen 4',	0.3000,	2,	'2017_PER_4',	'Examen');
 
------------------sub_actividad-------------------------------
-----------------------AÑO 2017--------------------------------
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('act1_per1_2018', 'Actividad 1',      0.3500,7,       '2018_PER_1',   'ActividadN');
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('act2_per1_2018', 'Actividad 2',	0.3500,	7,	'2018_PER_1',	'ActividadN');
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('exa1_per1_2018', 'Examen 1',	0.3000,	2,	'2018_PER_1',	'Examen');
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('act1_per2_2018', 'Actividad 1',	0.3500,	7,	'2018_PER_2',	'ActividadN');
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('act2_per2_2018', 'Actividad 2',	0.3500,	7,	'2018_PER_2',	'ActividadN');
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('exa2_per2_2018', 'Examen 2',	0.3000,	2,	'2018_PER_2',	'Examen');
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('act1_per3_2018', 'Actividad 1',	0.3500,	7,	'2018_PER_3',	'ActividadN');
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('act2_per3_2018', 'Actividad 2',	0.3500,	7,	'2018_PER_3',	'ActividadN');
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('exa3_per3_2018', 'Examen 3',	0.3000,	2,	'2018_PER_3',	'Examen');
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('act1_per4_2018', 'Actividad 1',	0.3500,	7,	'2018_PER_4',	'ActividadN');
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('act2_per4_2018', 'Actividad 2',	0.3500, 7,	'2018_PER_4',	'ActividadN');
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('exa4_per4_2018', 'Examen 4',	0.3000,	2,	'2018_PER_4',	'Examen');
+
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('act1_per1_2019', 'Actividad 1',      0.3500,7, '2019_PER_1',   'ActividadN');
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('act2_per1_2019', 'Actividad 2',	0.3500,	7,	'2019_PER_1',	'ActividadN');
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('exa1_per1_2019', 'Examen 1',	0.3000,	2,	'2019_PER_1',	'Examen');
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('act1_per2_2019', 'Actividad 1',	0.3500,	7,	'2019_PER_2',	'ActividadN');
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('act2_per2_2019', 'Actividad 2',	0.3500,	7,	'2019_PER_2',	'ActividadN');
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('exa2_per2_2019', 'Examen 2',	0.3000,	2,	'2019_PER_2',	'Examen');
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('act1_per3_2019', 'Actividad 1',	0.3500,	7,	'2019_PER_3',	'ActividadN');
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('act2_per3_2019', 'Actividad 2',	0.3500,	7,	'2019_PER_3',	'ActividadN');
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('exa3_per3_2019', 'Examen 3',	0.3000,	2,	'2019_PER_3',	'Examen');
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('act1_per4_2019', 'Actividad 1',	0.3500,	7,	'2019_PER_4',	'ActividadN');
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('act2_per4_2019', 'Actividad 2',	0.3500, 7,	'2019_PER_4',	'ActividadN');
+INSERT INTO public."INTO_actividad" (codigo_actividad, nombre_actividad, porcentaje_actividad, cantidad_max_sub_act, codigo_periodo_id, codigo_tipo_actividad_id) VALUES ('exa4_per4_2019', 'Examen 4',	0.3000,	2,	'2019_PER_4',	'Examen');
+
+
 ---------Sub-Actividades primer periodo----------------------
-INSERT INTO "INTO_sub_actividad"(codigo_sub_actividad, porcentaje_sub_actividad, descripcion_sub_actividad,codigo_actividad_id)
-VALUES ('sub1_act1_per1_2017',0.35,'Entrega de Guion de Obra','act1_per1_2017');
-INSERT INTO "INTO_sub_actividad"(codigo_sub_actividad, porcentaje_sub_actividad, descripcion_sub_actividad,codigo_actividad_id)
-VALUES ('sub1_act2_per1_2017',0.175,'Hacer Baile Merengue','act2_per1_2017');
-INSERT INTO "INTO_sub_actividad"(codigo_sub_actividad, porcentaje_sub_actividad, descripcion_sub_actividad,codigo_actividad_id)
-VALUES ('sub2_act2_per1_2017',0.175,'Hacer Baile de Salsa','act2_per1_2017');
-INSERT INTO "INTO_sub_actividad"(codigo_sub_actividad, porcentaje_sub_actividad, descripcion_sub_actividad,codigo_actividad_id)
-VALUES ('sub1_exa1_per1_2017',0.30,'Examen Trimestral','exa1_per1_2017');
----------Sub-Actividades segundo periodo----------------------
-INSERT INTO "INTO_sub_actividad"(codigo_sub_actividad, porcentaje_sub_actividad, descripcion_sub_actividad,codigo_actividad_id)
-VALUES ('sub1_act1_per2_2017',0.0875,'Exposicion 1','act1_per2_2017');
-INSERT INTO "INTO_sub_actividad"(codigo_sub_actividad, porcentaje_sub_actividad, descripcion_sub_actividad,codigo_actividad_id)
-VALUES ('sub2_act1_per2_2017',0.0875,'Exposicion 2','act1_per2_2017');
-INSERT INTO "INTO_sub_actividad"(codigo_sub_actividad, porcentaje_sub_actividad, descripcion_sub_actividad,codigo_actividad_id)
-VALUES ('sub3_act1_per2_2017',0.0875,'Exposicion 3','act1_per2_2017');
-INSERT INTO "INTO_sub_actividad"(codigo_sub_actividad, porcentaje_sub_actividad, descripcion_sub_actividad,codigo_actividad_id)
-VALUES ('sub4_act1_per2_2017',0.0875,'Exposicion 4','act1_per2_2017');
-INSERT INTO "INTO_sub_actividad"(codigo_sub_actividad, porcentaje_sub_actividad, descripcion_sub_actividad,codigo_actividad_id)
-VALUES ('sub1_act2_per2_2017',0.35,'Baile de Regaeton','act2_per1_2017');
-INSERT INTO "INTO_sub_actividad"(codigo_sub_actividad, porcentaje_sub_actividad, descripcion_sub_actividad,codigo_actividad_id)
-VALUES ('sub1_exa1_per2_2017',0.30,'Examen Trimestral','exa1_per1_2017');
----------Sub-Actividades tercer periodo----------------------
-INSERT INTO "INTO_sub_actividad"(codigo_sub_actividad, porcentaje_sub_actividad, descripcion_sub_actividad,codigo_actividad_id)
-VALUES ('sub1_act1_per3_2017',0.35,'Entrega de Guion de Obra','act1_per3_2017');
-INSERT INTO "INTO_sub_actividad"(codigo_sub_actividad, porcentaje_sub_actividad, descripcion_sub_actividad,codigo_actividad_id)
-VALUES ('sub1_act2_per3_2017',0.35,'Hacer Baile Merengue','act2_per3_2017');
-INSERT INTO "INTO_sub_actividad"(codigo_sub_actividad, porcentaje_sub_actividad, descripcion_sub_actividad,codigo_actividad_id)
-VALUES ('sub1_exa1_per3_2017',0.30,'Examen Trimestral','exa1_per3_2017');
----------Sub-Actividades tercer periodo----------------------
-INSERT INTO "INTO_sub_actividad"(codigo_sub_actividad, porcentaje_sub_actividad, descripcion_sub_actividad,codigo_actividad_id)
-VALUES ('sub1_act1_per4_2017',0.35,'Entrega de Guion de Obra','act1_per4_2017');
-INSERT INTO "INTO_sub_actividad"(codigo_sub_actividad, porcentaje_sub_actividad, descripcion_sub_actividad,codigo_actividad_id)
-VALUES ('sub1_act2_per4_2017',0.35,'Hacer Baile Bachata','act2_per4_2017');
-INSERT INTO "INTO_sub_actividad"(codigo_sub_actividad, porcentaje_sub_actividad, descripcion_sub_actividad,codigo_actividad_id)
-VALUES ('sub1_exa1_per4_2017',0.30,'Examen Trimestral','exa1_per4_2017');
 
-----------------------AÑO 2018--------------------------------
----------Sub-Actividades primer periodo----------------------
 INSERT INTO "INTO_sub_actividad"(codigo_sub_actividad, porcentaje_sub_actividad, descripcion_sub_actividad,codigo_actividad_id)
-VALUES ('sub1_act1_per1_2018',0.35,'Entrega de Guion de Obra','act1_per1_2018');
+VALUES ('sub1_act1_per1_2017',0.25,'Entrega de Guion de Obra','act1_per1_2017');
 INSERT INTO "INTO_sub_actividad"(codigo_sub_actividad, porcentaje_sub_actividad, descripcion_sub_actividad,codigo_actividad_id)
-VALUES ('sub1_act2_per1_2018',0.175,'Hacer Baile Merengue','act2_per1_2018');
+VALUES ('sub2_act1_per1_2017',0.10,'Hacer Baile Merengue','act1_per1_2017');
 INSERT INTO "INTO_sub_actividad"(codigo_sub_actividad, porcentaje_sub_actividad, descripcion_sub_actividad,codigo_actividad_id)
-VALUES ('sub2_act2_per1_2018',0.175,'Hacer Baile de Salsa','act2_per1_2018');
+VALUES ('sub3_act2_per1_2017',0.35,'Hacer Baile de Salsa','act2_per1_2017');
 INSERT INTO "INTO_sub_actividad"(codigo_sub_actividad, porcentaje_sub_actividad, descripcion_sub_actividad,codigo_actividad_id)
-VALUES ('sub1_exa1_per1_2018',0.30,'Examen Trimestral','exa1_per1_2018');
----------Sub-Actividades segundo periodo----------------------
+VALUES ('sub4_exa1_per1_2017',0.15,'Examen Trimestral','exa1_per1_2017');
 INSERT INTO "INTO_sub_actividad"(codigo_sub_actividad, porcentaje_sub_actividad, descripcion_sub_actividad,codigo_actividad_id)
-VALUES ('sub1_act1_per2_2018',0.0875,'Exposicion 1','act1_per2_2018');
-INSERT INTO "INTO_sub_actividad"(codigo_sub_actividad, porcentaje_sub_actividad, descripcion_sub_actividad,codigo_actividad_id)
-VALUES ('sub2_act1_per2_2018',0.0875,'Exposicion 2','act1_per2_2018');
-INSERT INTO "INTO_sub_actividad"(codigo_sub_actividad, porcentaje_sub_actividad, descripcion_sub_actividad,codigo_actividad_id)
-VALUES ('sub3_act1_per2_2018',0.0875,'Exposicion 3','act1_per2_2018');
-INSERT INTO "INTO_sub_actividad"(codigo_sub_actividad, porcentaje_sub_actividad, descripcion_sub_actividad,codigo_actividad_id)
-VALUES ('sub4_act1_per2_2018',0.0875,'Exposicion 4','act1_per2_2018');
-INSERT INTO "INTO_sub_actividad"(codigo_sub_actividad, porcentaje_sub_actividad, descripcion_sub_actividad,codigo_actividad_id)
-VALUES ('sub1_act2_per2_2018',0.35,'Baile de Regaeton','act2_per1_2018');
-INSERT INTO "INTO_sub_actividad"(codigo_sub_actividad, porcentaje_sub_actividad, descripcion_sub_actividad,codigo_actividad_id)
-VALUES ('sub1_exa1_per2_2018',0.30,'Examen Trimestral','exa1_per1_2018');
----------Sub-Actividades tercer periodo----------------------
-INSERT INTO "INTO_sub_actividad"(codigo_sub_actividad, porcentaje_sub_actividad, descripcion_sub_actividad,codigo_actividad_id)
-VALUES ('sub1_act1_per3_2018',0.35,'Entrega de Guion de Obra','act1_per3_2018');
-INSERT INTO "INTO_sub_actividad"(codigo_sub_actividad, porcentaje_sub_actividad, descripcion_sub_actividad,codigo_actividad_id)
-VALUES ('sub1_act2_per3_2018',0.35,'Hacer Baile Merengue','act2_per3_2018');
-INSERT INTO "INTO_sub_actividad"(codigo_sub_actividad, porcentaje_sub_actividad, descripcion_sub_actividad,codigo_actividad_id)
-VALUES ('sub1_exa1_per3_2018',0.30,'Examen Trimestral','exa1_per3_2018');
----------Sub-Actividades tercer periodo----------------------
-INSERT INTO "INTO_sub_actividad"(codigo_sub_actividad, porcentaje_sub_actividad, descripcion_sub_actividad,codigo_actividad_id)
-VALUES ('sub1_act1_per4_2018',0.35,'Entrega de Guion de Obra','act1_per4_2018');
-INSERT INTO "INTO_sub_actividad"(codigo_sub_actividad, porcentaje_sub_actividad, descripcion_sub_actividad,codigo_actividad_id)
-VALUES ('sub1_act2_per4_2018',0.35,'Hacer Baile Bachata','act2_per4_2018');
-INSERT INTO "INTO_sub_actividad"(codigo_sub_actividad, porcentaje_sub_actividad, descripcion_sub_actividad,codigo_actividad_id)
-VALUES ('sub1_exa1_per4_2018',0.30,'Examen Trimestral','exa1_per4_2018');
+VALUES ('sub5_exa2_per1_2017',0.15,'Examen Trimestral','exa1_per1_2017');
 
-----------------------AÑO 2019--------------------------------
----------Sub-Actividades primer periodo----------------------
 INSERT INTO "INTO_sub_actividad"(codigo_sub_actividad, porcentaje_sub_actividad, descripcion_sub_actividad,codigo_actividad_id)
-VALUES ('sub1_act1_per1_2019',0.35,'Entrega de Guion de Obra','act1_per1_2019');
+VALUES ('sub6_act1_per1_2017',0.25,'Entrega de Guion de Obra','act1_per1_2017');
 INSERT INTO "INTO_sub_actividad"(codigo_sub_actividad, porcentaje_sub_actividad, descripcion_sub_actividad,codigo_actividad_id)
-VALUES ('sub1_act2_per1_2019',0.175,'Hacer Baile Merengue','act2_per1_2019');
+VALUES ('sub7_act1_per1_2017',0.10,'Hacer Baile Merengue','act1_per1_2017');
 INSERT INTO "INTO_sub_actividad"(codigo_sub_actividad, porcentaje_sub_actividad, descripcion_sub_actividad,codigo_actividad_id)
-VALUES ('sub2_act2_per1_2019',0.175,'Hacer Baile de Salsa','act2_per1_2019');
+VALUES ('sub8_act2_per1_2017',0.35,'Hacer Baile de Salsa','act2_per1_2017');
 INSERT INTO "INTO_sub_actividad"(codigo_sub_actividad, porcentaje_sub_actividad, descripcion_sub_actividad,codigo_actividad_id)
-VALUES ('sub1_exa1_per1_2019',0.30,'Examen Trimestral','exa1_per1_2019');
----------Sub-Actividades segundo periodo----------------------
+VALUES ('sub9_exa1_per1_2017',0.15,'Examen Trimestral','exa1_per1_2017');
 INSERT INTO "INTO_sub_actividad"(codigo_sub_actividad, porcentaje_sub_actividad, descripcion_sub_actividad,codigo_actividad_id)
-VALUES ('sub1_act1_per2_2019',0.0875,'Exposicion 1','act1_per2_2019');
-INSERT INTO "INTO_sub_actividad"(codigo_sub_actividad, porcentaje_sub_actividad, descripcion_sub_actividad,codigo_actividad_id)
-VALUES ('sub2_act1_per2_2019',0.0875,'Exposicion 2','act1_per2_2019');
-INSERT INTO "INTO_sub_actividad"(codigo_sub_actividad, porcentaje_sub_actividad, descripcion_sub_actividad,codigo_actividad_id)
-VALUES ('sub3_act1_per2_2019',0.0875,'Exposicion 3','act1_per2_2019');
-INSERT INTO "INTO_sub_actividad"(codigo_sub_actividad, porcentaje_sub_actividad, descripcion_sub_actividad,codigo_actividad_id)
-VALUES ('sub4_act1_per2_2019',0.0875,'Exposicion 4','act1_per2_2019');
-INSERT INTO "INTO_sub_actividad"(codigo_sub_actividad, porcentaje_sub_actividad, descripcion_sub_actividad,codigo_actividad_id)
-VALUES ('sub1_act2_per2_2019',0.35,'Baile de Regaeton','act2_per1_2019');
-INSERT INTO "INTO_sub_actividad"(codigo_sub_actividad, porcentaje_sub_actividad, descripcion_sub_actividad,codigo_actividad_id)
-VALUES ('sub1_exa1_per2_2019',0.30,'Examen Trimestral','exa1_per1_2019');
----------Sub-Actividades tercer periodo----------------------
-INSERT INTO "INTO_sub_actividad"(codigo_sub_actividad, porcentaje_sub_actividad, descripcion_sub_actividad,codigo_actividad_id)
-VALUES ('sub1_act1_per3_2019',0.35,'Entrega de Guion de Obra','act1_per3_2019');
-INSERT INTO "INTO_sub_actividad"(codigo_sub_actividad, porcentaje_sub_actividad, descripcion_sub_actividad,codigo_actividad_id)
-VALUES ('sub1_act2_per3_2019',0.35,'Hacer Baile Merengue','act2_per3_2019');
-INSERT INTO "INTO_sub_actividad"(codigo_sub_actividad, porcentaje_sub_actividad, descripcion_sub_actividad,codigo_actividad_id)
-VALUES ('sub1_exa1_per3_2019',0.30,'Examen Trimestral','exa1_per3_2019');
----------Sub-Actividades tercer periodo----------------------
-INSERT INTO "INTO_sub_actividad"(codigo_sub_actividad, porcentaje_sub_actividad, descripcion_sub_actividad,codigo_actividad_id)
-VALUES ('sub1_act1_per4_2019',0.35,'Entrega de Guion de Obra','act1_per4_2019');
-INSERT INTO "INTO_sub_actividad"(codigo_sub_actividad, porcentaje_sub_actividad, descripcion_sub_actividad,codigo_actividad_id)
-VALUES ('sub1_act2_per4_2019',0.35,'Hacer Baile Bachata','act2_per4_2019');
-INSERT INTO "INTO_sub_actividad"(codigo_sub_actividad, porcentaje_sub_actividad, descripcion_sub_actividad,codigo_actividad_id)
-VALUES ('sub1_exa1_per4_2019',0.30,'Examen Trimestral','exa1_per4_2019');
+VALUES ('sub10_exa2_per1_2017',0.15,'Examen Trimestral','exa1_per1_2017');
 
+INSERT INTO "INTO_sub_actividad"(codigo_sub_actividad, porcentaje_sub_actividad, descripcion_sub_actividad,codigo_actividad_id)
+VALUES ('sub11_act1_per1_2017',0.25,'Entrega de Guion de Obra','act1_per1_2017');
+INSERT INTO "INTO_sub_actividad"(codigo_sub_actividad, porcentaje_sub_actividad, descripcion_sub_actividad,codigo_actividad_id)
+VALUES ('sub12_act1_per1_2017',0.10,'Hacer Baile Merengue','act1_per1_2017');
+INSERT INTO "INTO_sub_actividad"(codigo_sub_actividad, porcentaje_sub_actividad, descripcion_sub_actividad,codigo_actividad_id)
+VALUES ('sub13_act2_per1_2017',0.35,'Hacer Baile de Salsa','act2_per1_2017');
+INSERT INTO "INTO_sub_actividad"(codigo_sub_actividad, porcentaje_sub_actividad, descripcion_sub_actividad,codigo_actividad_id)
+VALUES ('sub14_exa1_per1_2017',0.15,'Examen Trimestral','exa1_per1_2017');
+INSERT INTO "INTO_sub_actividad"(codigo_sub_actividad, porcentaje_sub_actividad, descripcion_sub_actividad,codigo_actividad_id)
+VALUES ('sub15_exa2_per1_2017',0.15,'Examen Trimestral','exa1_per1_2017');
+
+INSERT INTO "INTO_sub_actividad"(codigo_sub_actividad, porcentaje_sub_actividad, descripcion_sub_actividad,codigo_actividad_id)
+VALUES ('sub16_act1_per1_2017',0.25,'Entrega de Guion de Obra','act1_per1_2017');
+INSERT INTO "INTO_sub_actividad"(codigo_sub_actividad, porcentaje_sub_actividad, descripcion_sub_actividad,codigo_actividad_id)
+VALUES ('sub17_act1_per1_2017',0.10,'Hacer Baile Merengue','act1_per1_2017');
+INSERT INTO "INTO_sub_actividad"(codigo_sub_actividad, porcentaje_sub_actividad, descripcion_sub_actividad,codigo_actividad_id)
+VALUES ('sub18_act2_per1_2017',0.35,'Hacer Baile de Salsa','act2_per1_2017');
+INSERT INTO "INTO_sub_actividad"(codigo_sub_actividad, porcentaje_sub_actividad, descripcion_sub_actividad,codigo_actividad_id)
+VALUES ('sub19_exa1_per1_2017',0.15,'Examen Trimestral','exa1_per1_2017');
+INSERT INTO "INTO_sub_actividad"(codigo_sub_actividad, porcentaje_sub_actividad, descripcion_sub_actividad,codigo_actividad_id)
+VALUES ('sub20_exa2_per1_2017',0.15,'Examen Trimestral','exa1_per1_2017');
+
+INSERT INTO "INTO_sub_actividad"(codigo_sub_actividad, porcentaje_sub_actividad, descripcion_sub_actividad,codigo_actividad_id)
+VALUES ('sub21_act1_per1_2017',0.25,'Entrega de Guion de Obra','act1_per1_2017');
+INSERT INTO "INTO_sub_actividad"(codigo_sub_actividad, porcentaje_sub_actividad, descripcion_sub_actividad,codigo_actividad_id)
+VALUES ('sub22_act1_per1_2017',0.10,'Hacer Baile Merengue','act1_per1_2017');
+INSERT INTO "INTO_sub_actividad"(codigo_sub_actividad, porcentaje_sub_actividad, descripcion_sub_actividad,codigo_actividad_id)
+VALUES ('sub23_act2_per1_2017',0.35,'Hacer Baile de Salsa','act2_per1_2017');
+INSERT INTO "INTO_sub_actividad"(codigo_sub_actividad, porcentaje_sub_actividad, descripcion_sub_actividad,codigo_actividad_id)
+VALUES ('sub24_exa1_per1_2017',0.15,'Examen Trimestral','exa1_per1_2017');
+INSERT INTO "INTO_sub_actividad"(codigo_sub_actividad, porcentaje_sub_actividad, descripcion_sub_actividad,codigo_actividad_id)
+VALUES ('sub25_exa2_per1_2017',0.15,'Examen Trimestral','exa1_per1_2017');
+
+INSERT INTO "INTO_sub_actividad"(codigo_sub_actividad, porcentaje_sub_actividad, descripcion_sub_actividad,codigo_actividad_id)
+VALUES ('sub26_act1_per1_2017',0.25,'Entrega de Guion de Obra','act1_per1_2017');
+INSERT INTO "INTO_sub_actividad"(codigo_sub_actividad, porcentaje_sub_actividad, descripcion_sub_actividad,codigo_actividad_id)
+VALUES ('sub27_act1_per1_2017',0.10,'Hacer Baile Merengue','act1_per1_2017');
+INSERT INTO "INTO_sub_actividad"(codigo_sub_actividad, porcentaje_sub_actividad, descripcion_sub_actividad,codigo_actividad_id)
+VALUES ('sub28_act2_per1_2017',0.35,'Hacer Baile de Salsa','act2_per1_2017');
+INSERT INTO "INTO_sub_actividad"(codigo_sub_actividad, porcentaje_sub_actividad, descripcion_sub_actividad,codigo_actividad_id)
+VALUES ('sub29_exa1_per1_2017',0.15,'Examen Trimestral','exa1_per1_2017');
+INSERT INTO "INTO_sub_actividad"(codigo_sub_actividad, porcentaje_sub_actividad, descripcion_sub_actividad,codigo_actividad_id)
+VALUES ('sub30_exa2_per1_2017',0.15,'Examen Trimestral','exa1_per1_2017');
 
 -----docente_materia---------
-INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (1, '01158242-3', 'CN');
-INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (2, '02534252-1', 'CN');
-INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (3, '03358242-3', 'CN');
-INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (4, '03532231-3', 'CN');
-INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (5, '05417242-4', 'CN');
+INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (1, '01158242-3', 'MAT');
+INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (2, '02534252-1', 'MAT');
+INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (3, '03358242-3', 'MAT');
+INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (4, '03532231-3', 'MAT');
+INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (5, '05417242-4', 'MAT');
+INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (6, '05833241-1', 'MAT');
 
-INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (6, '01158242-3', 'EDF');
-INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (7, '02534252-1', 'EDF');
-INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (8, '03358242-3', 'EDF');
-INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (9, '03532231-3', 'EDF');
-INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (10, '05417242-4', 'EDF');
 
-INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (11, '01158242-3', 'EN');
-INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (12, '02534252-1', 'EN');
-INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (13, '03358242-3', 'EN');
-INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (14, '03532231-3', 'EN');
-INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (15, '05417242-4', 'EN');
+INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (7, '01158242-3', 'TEC');
+INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (8, '02534252-1', 'TEC');
+INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (9, '03358242-3', 'TEC');
+INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (10, '03532231-3', 'TEC');
+INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (11, '05417242-4', 'TEC');
+INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (12, '05833241-1', 'TEC');
 
-INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (16, '01158242-3', 'IC');
-INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (17, '02534252-1', 'IC');
-INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (18, '03358242-3', 'IC');
-INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (19, '03532231-3', 'IC');
-INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (20, '05417242-4', 'IC');
+INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (13, '01158242-3', 'CN');
+INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (14, '02534252-1', 'CN');
+INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (15, '03358242-3', 'CN');
+INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (16, '03532231-3', 'CN');
+INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (17, '05417242-4', 'CN');
+INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (18, '05833241-1', 'CN');
+
+INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (19, '01158242-3', 'ES');
+INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (20, '02534252-1', 'ES');
+INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (21, '03358242-3', 'ES');
+INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (22, '03532231-3', 'ES');
+INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (23, '05417242-4', 'ES');
+INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (24, '05833241-1', 'ES');
+
+INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (25, '01158242-3', 'LYL');
+INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (26, '02534252-1', 'LYL');
+INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (27, '03358242-3', 'LYL');
+INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (28, '03532231-3', 'LYL');
+INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (29, '05417242-4', 'LYL');
+INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (30, '05833241-1', 'LYL');
+
+INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (31, '01158242-3', 'OPV');
+INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (32, '02534252-1', 'OPV');
+INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (33, '03358242-3', 'OPV');
+INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (34, '03532231-3', 'OPV');
+INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (35, '05417242-4', 'OPV');
+INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VALUES (36, '05833241-1', 'OPV');
 
 -----------------Docente_Materia_Grupo-------------------
 
-INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(1,1,'GP-08');
-INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(2,1,'GP-07');
-INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(3,1,'GP-09');
-INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(4,2,'GP-01');
-INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(5,2,'GP-02');
-INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(6,2,'GP-03');
-INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(7,3,'GP-04');
-INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(8,3,'GP-05');
-INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(9,3,'GP-06');
-INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(10,4,'GP-10');
-INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(11,4,'GP-11');
-INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(12,4,'GP-12');
-INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(13,5,'GP-13');
-INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(14,5,'GP-14');
-INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(15,5,'GP-15');
---
-INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(16,6,'GP-08');
-INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(17,6,'GP-07');
-INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(18,6,'GP-09');
-INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(19,7,'GP-01');
-INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(20,7,'GP-02');
-INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(21,7,'GP-03');
-INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(22,8,'GP-04');
-INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(23,8,'GP-05');
-INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(24,8,'GP-06');
-INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(25,9,'GP-10');
-INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(26,9,'GP-11');
-INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(27,9,'GP-12');
-INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(28,10,'GP-13');
-INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(29,10,'GP-14');
-INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(30,10,'GP-15');
---
-INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(31,11,'GP-08');
-INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(32,11,'GP-07');
-INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(33,11,'GP-09');
-INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(34,12,'GP-01');
-INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(35,12,'GP-02');
-INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(36,12,'GP-03');
-INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(37,13,'GP-04');
-INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(38,13,'GP-05');
-INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(39,13,'GP-06');
-INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(40,14,'GP-10');
-INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(41,14,'GP-11');
-INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(42,14,'GP-12');
-INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(43,15,'GP-13');
-INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(44,15,'GP-14');
-INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(45,15,'GP-15');
-
-
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(1,1,'GP-01');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(2,7,'GP-01');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(3,13,'GP-01');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(4,19,'GP-01');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(5,25,'GP-01');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(6,31,'GP-01');
 
 
 
@@ -987,117 +903,100 @@ INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUE
 ----------------AÑO 2017----------------------------
 ----------------Periodo 1----------------------------
 INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES ('eva1', 'Obra la Ultima Guinda','Conocimientos sobre la trama y personajes',2, 'sub1_act1_per1_2017');
+VALUES ('eva1', 'Obra la Ultima Guinda','Conocimientos sobre la trama y personajes',1, 'sub1_act1_per1_2017');
 INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES ('eva2', 'Baile Bueno 1','Para que Aprendan a Bailar 1',2, 'sub1_act2_per1_2017');
+VALUES ('eva2', 'Baile Bueno 1','Para que Aprendan a Bailar 1',1, 'sub2_act1_per1_2017');
 INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES ('eva3', 'Baile Bueno 2','Para que Aprendan a Bailar 2',2, 'sub2_act2_per1_2017');
+VALUES ('eva3', 'Baile Bueno 2','Para que Aprendan a Bailar 2',1, 'sub3_act2_per1_2017');
 INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES ('eva4', 'Examen Final','Examen Para Evaluar todo lo del periodo',2, 'sub1_exa1_per1_2017');
-----------------Periodo 2-----------------------------
+VALUES ('eva4', 'Examen Final','Examen Para Evaluar todo lo del periodo',1, 'sub4_exa1_per1_2017');
 INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES ('eva5', 'Obra la Ultima Guinda','Conocimientos sobre la trama y personajes',3, 'sub1_act1_per2_2017');
+VALUES ('eva5', 'Obra la Ultima Guinda','Conocimientos sobre la trama y personajes',1, 'sub5_exa2_per1_2017');
 INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES ('eva6', 'Obra la Ultima Guinda','Conocimientos sobre la trama y personajes',5, 'sub2_act1_per2_2017');
+VALUES ('eva6', 'Obra la Ultima Guinda','Conocimientos sobre la trama y personajes',7, 'sub6_act1_per1_2017');
 INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES ('eva7', 'Obra la Ultima Guinda','Conocimientos sobre la trama y personajes',7, 'sub3_act1_per2_2017');
+VALUES ('eva7', 'Obra la Ultima Guinda','Conocimientos sobre la trama y personajes',7, 'sub7_act1_per1_2017');
 INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES ('eva8', 'Obra la Ultima Guinda','Conocimientos sobre la trama y personajes',8, 'sub4_act1_per2_2017');
+VALUES ('eva8', 'Obra la Ultima Guinda','Conocimientos sobre la trama y personajes',7, 'sub8_act2_per1_2017');
 INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES ('eva9', 'Baile Bueno','Para que Aprendan a Bailar 2',12, 'sub1_act2_per2_2017');
+VALUES ('eva9', 'Baile Bueno','Para que Aprendan a Bailar 2',7, 'sub9_exa1_per1_2017');
 INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES ('eva10', 'Examen Final','Examen Para Evaluar todo lo del periodo',16, 'sub1_exa1_per2_2017');
-----------------Periodo 3-------------------------------
+VALUES ('eva10', 'Examen Final','Examen Para Evaluar todo lo del periodo',7, 'sub10_exa2_per1_2017');
 INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES ('eva11', 'Obra la Ultima Guinda','Conocimientos sobre la trama y personajes',9, 'sub1_act1_per3_2017');
+VALUES ('eva11', 'Obra la Ultima Guinda','Conocimientos sobre la trama y personajes',13, 'sub11_act1_per1_2017');
 INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES ('eva12', 'Baile Bueno','Para que Aprendan a Bailar 2',1, 'sub1_act2_per3_2017');
+VALUES ('eva12', 'Baile Bueno','Para que Aprendan a Bailar 2',13, 'sub12_act1_per1_2017');
 INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES ('eva13', 'Examen Final','Examen Para Evaluar todo lo del periodo',5, 'sub1_exa1_per3_2017');
-----------------Periodo 4-------------------------------
+VALUES ('eva13', 'Examen Final','Examen Para Evaluar todo lo del periodo',13, 'sub13_act2_per1_2017');
 INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES ('eva14', 'Obra la Ultima Guinda','Conocimientos sobre la trama y personajes',7, 'sub1_act1_per4_2017');
+VALUES ('eva14', 'Obra la Ultima Guinda','Conocimientos sobre la trama y personajes',13, 'sub14_exa1_per1_2017');
 INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES ('eva15', 'Baile Bueno','Para que Aprendan a Bailar 2',6, 'sub1_act2_per4_2017');
+VALUES ('eva15', 'Baile Bueno','Para que Aprendan a Bailar 2',13, 'sub15_exa2_per1_2017');
 INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES ('eva16', 'Examen Final','Examen Para Evaluar todo lo del periodo',3, 'sub1_exa1_per4_2017');
-
-----------------AÑO 2018----------------------------
-----------------Periodo 1----------------------------
+VALUES ('eva16', 'Examen Final','Examen Para Evaluar todo lo del periodo',19, 'sub16_act1_per1_2017');
 INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES ('eva17', 'Obra la Ultima Guinda','Conocimientos sobre la trama y personajes',3, 'sub1_act1_per1_2018');
+VALUES ('eva17', 'Obra la Ultima Guinda','Conocimientos sobre la trama y personajes',19, 'sub17_act1_per1_2017');
 INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES ('eva18', 'Baile Bueno 1','Para que Aprendan a Bailar 1',8, 'sub1_act2_per1_2018');
+VALUES ('eva18', 'Baile Bueno 1','Para que Aprendan a Bailar 1',19, 'sub18_act2_per1_2017');
 INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES ('eva19', 'Baile Bueno 2','Para que Aprendan a Bailar 2',7, 'sub2_act2_per1_2018');
+VALUES ('eva19', 'Baile Bueno 2','Para que Aprendan a Bailar 2',19, 'sub19_exa1_per1_2017');
 INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES ('eva20', 'Examen Final','Examen Para Evaluar todo lo del periodo',18, 'sub1_exa1_per1_2018');
-----------------Periodo 2-----------------------------
+VALUES ('eva20', 'Examen Final','Examen Para Evaluar todo lo del periodo',19, 'sub20_exa2_per1_2017');
 INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES ('eva21', 'Obra la Ultima Guinda','Conocimientos sobre la trama y personajes',15, 'sub1_act1_per2_2018');
+VALUES ('eva21', 'Obra la Ultima Guinda','Conocimientos sobre la trama y personajes',25, 'sub21_act1_per1_2017');
 INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES ('eva22', 'Obra la Ultima Guinda','Conocimientos sobre la trama y personajes',11, 'sub2_act1_per2_2018');
+VALUES ('eva22', 'Obra la Ultima Guinda','Conocimientos sobre la trama y personajes',25, 'sub22_act1_per1_2017');
 INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES ('eva23', 'Obra la Ultima Guinda','Conocimientos sobre la trama y personajes',1, 'sub3_act1_per2_2018');
+VALUES ('eva23', 'Obra la Ultima Guinda','Conocimientos sobre la trama y personajes',25, 'sub23_act2_per1_2017');
 INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES ('eva24', 'Obra la Ultima Guinda','Conocimientos sobre la trama y personajes',17, 'sub4_act1_per2_2018');
+VALUES ('eva24', 'Obra la Ultima Guinda','Conocimientos sobre la trama y personajes',25, 'sub24_exa1_per1_2017');
 INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES ('eva25', 'Baile Bueno','Para que Aprendan a Bailar 2',19, 'sub1_act2_per2_2018');
+VALUES ('eva25', 'Baile Bueno','Para que Aprendan a Bailar 2',25, 'sub25_exa2_per1_2017');
 INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES ('eva26', 'Examen Final','Examen Para Evaluar todo lo del periodo',20, 'sub1_exa1_per2_2018');
-----------------Periodo 3-------------------------------
+VALUES ('eva26', 'Examen Final','Examen Para Evaluar todo lo del periodo',31, 'sub26_act1_per1_2017');
 INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES ('eva27', 'Obra la Ultima Guinda','Conocimientos sobre la trama y personajes',5, 'sub1_act1_per3_2018');
+VALUES ('eva27', 'Obra la Ultima Guinda','Conocimientos sobre la trama y personajes',31, 'sub27_act1_per1_2017');
 INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES ('eva28', 'Baile Bueno','Para que Aprendan a Bailar 2',4, 'sub1_act2_per3_2018');
+VALUES ('eva28', 'Baile Bueno','Para que Aprendan a Bailar 2',31, 'sub28_act2_per1_2017');
 INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES ('eva29', 'Examen Final','Examen Para Evaluar todo lo del periodo',1, 'sub1_exa1_per3_2018');
-----------------Periodo 4-------------------------------
+VALUES ('eva29', 'Examen Final','Examen Para Evaluar todo lo del periodo',31, 'sub29_exa1_per1_2017');
 INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES ('eva30', 'Obra la Ultima Guinda','Conocimientos sobre la trama y personajes',6, 'sub1_act1_per4_2018');
-INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES ('eva31', 'Baile Bueno','Para que Aprendan a Bailar 2',3, 'sub1_act2_per4_2018');
-INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES ('eva32', 'Examen Final','Examen Para Evaluar todo lo del periodo',7, 'sub1_exa1_per4_2018');
-
-----------------AÑO 2019----------------------------
-----------------Periodo 1----------------------------
-INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES ('eva33', 'Obra la Ultima Guinda','Conocimientos sobre la trama y personajes',8, 'sub1_act1_per1_2019');
-INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES ('eva34', 'Baile Bueno 1','Para que Aprendan a Bailar 1',9, 'sub1_act2_per1_2019');
-INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES ('eva35', 'Baile Bueno 2','Para que Aprendan a Bailar 2',10, 'sub2_act2_per1_2019');
-INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES ('eva36', 'Examen Final','Examen Para Evaluar todo lo del periodo',19, 'sub1_exa1_per1_2019');
-----------------Periodo 2-----------------------------
-INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES ('eva37', 'Obra la Ultima Guinda','Conocimientos sobre la trama y personajes',2, 'sub1_act1_per2_2019');
-INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES ('eva38', 'Obra la Ultima Guinda','Conocimientos sobre la trama y personajes',4, 'sub2_act1_per2_2019');
-INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES ('eva39', 'Obra la Ultima Guinda','Conocimientos sobre la trama y personajes',7, 'sub3_act1_per2_2019');
-INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES ('eva40', 'Obra la Ultima Guinda','Conocimientos sobre la trama y personajes',4, 'sub4_act1_per2_2019');
-INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES ('eva41', 'Baile Bueno','Para que Aprendan a Bailar 2',6, 'sub1_act2_per2_2019');
-INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES ('eva42', 'Examen Final','Examen Para Evaluar todo lo del periodo',9, 'sub1_exa1_per2_2019');
-----------------Periodo 3-------------------------------
-INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES ('eva43', 'Obra la Ultima Guinda','Conocimientos sobre la trama y personajes',4, 'sub1_act1_per3_2019');
-INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES ('eva44', 'Baile Bueno','Para que Aprendan a Bailar 2',14, 'sub1_act2_per3_2019');
-INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES ('eva45', 'Examen Final','Examen Para Evaluar todo lo del periodo',13, 'sub1_exa1_per3_2019');
-----------------Periodo 4-------------------------------
-INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES ('eva46', 'Obra la Ultima Guinda','Conocimientos sobre la trama y personajes',16, 'sub1_act1_per4_2019');
-INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES ('eva47', 'Baile Bueno','Para que Aprendan a Bailar 2',6, 'sub1_act2_per4_2019');
-INSERT INTO "INTO_evaluacion"(codigo_evaluacion, nombre_evaluacion, descripcion_evaluacion,codigo_docente_materia_id, codigo_sub_actividad_id)
-VALUES ('eva48', 'Examen Final','Examen Para Evaluar todo lo del periodo',5, 'sub1_exa1_per4_2019');
+VALUES ('eva30', 'Obra la Ultima Guinda','Conocimientos sobre la trama y personajes',31, 'sub30_exa2_per1_2017');
 ----------------------------------------------------Finalizacion parte DIEGO-------------------------------------------
+
+
+
+
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (1, 7.26, 'eva1','nie0001' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (2, 8.26, 'eva2','nie0001' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (3, 3.4, 'eva3','nie0001' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (4, 7.78, 'eva4','nie0001' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (5, 8.46, 'eva5','nie0001' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (6, 7.32, 'eva6','nie0001' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (7, 4.78, 'eva7','nie0001' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (8, 7.26, 'eva8','nie0001' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (9, 6.35, 'eva9','nie0001' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (10, 8.5, 'eva10','nie0001' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (11, 7.26, 'eva11','nie0001' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (12, 7.26,'eva12','nie0001' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (13, 7.26, 'eva13','nie0001' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (14, 7.26, 'eva14','nie0001' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (15, 7.26, 'eva15','nie0001' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (16, 7.26, 'eva16','nie0001' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (17, 7.26, 'eva17','nie0001' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (18, 7.26, 'eva18','nie0001' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (19, 7.26, 'eva19','nie0001' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (20, 7.26, 'eva20','nie0001' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (21, 7.26, 'eva21','nie0001' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (22, 7.26, 'eva22','nie0001' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (23, 7.26, 'eva23','nie0001' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (24, 7.26, 'eva24','nie0001' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (25, 7.26, 'eva25','nie0001' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (26, 7.26, 'eva26','nie0001' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (27, 7.26, 'eva27','nie0001' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (28, 7.26, 'eva28','nie0001' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (29, 7.26, 'eva29','nie0001' );
+INSERT INTO public."INTO_calificacion" (id, nota, codigo_evaluacion_id, nie_id) VALUES (30, 7.26, 'eva30','nie0001' );
 
 INSERT INTO public."INTO_anotacion" (id, descripcion, fecha_anotacion, dui_docente_id, nie_id) VALUES (1, 'El estudiante fue encontrado fuera del instituro en horas en que posee clases', '01/08/2018', '05833241-1', 'nie0001');
 INSERT INTO public."INTO_anotacion" (id, descripcion, fecha_anotacion, dui_docente_id, nie_id) VALUES (2, 'El estudiante cometio actos de fraude en los examenes', '01/10/2018', '05833241-1', 'nie0001');
@@ -1123,5 +1022,3 @@ INSERT INTO public."INTO_anotacion" (id, descripcion, fecha_anotacion, dui_docen
 INSERT INTO public."INTO_anotacion" (id, descripcion, fecha_anotacion, dui_docente_id, nie_id) VALUES (22, 'El estudiante', '01/03/2019', '02534252-1', 'nie0009');
 INSERT INTO public."INTO_anotacion" (id, descripcion, fecha_anotacion, dui_docente_id, nie_id) VALUES (23, 'El estudiante', '02/04/2019', '02534252-1', 'nie0010');
 INSERT INTO public."INTO_anotacion" (id, descripcion, fecha_anotacion, dui_docente_id, nie_id) VALUES (24, 'El estudiante', '08/04/2019', '05417242-4', 'nie0007');
-
-

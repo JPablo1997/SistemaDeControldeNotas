@@ -86,7 +86,7 @@ class Grupo(models.Model):
     	return self.codigo_grupo 
 
 class Alumno_Grupo(models.Model):
-    nie = models.OneToOneField(Alumno,on_delete=models.CASCADE)
+    nie = models.ForeignKey(Alumno,on_delete=models.CASCADE)
     codigo_grupo =  models.ForeignKey(Grupo,on_delete=models.CASCADE)    
     def __str__(self):
         return '{} ({})'.format(self.nie,self.codigo_grupo)
