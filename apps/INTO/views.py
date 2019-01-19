@@ -522,11 +522,38 @@ class MateriaCreate(CreateView):
 	template_name = 'administrarMaterias/agregarMateria.html'
 	success_url = reverse_lazy('administrarMaterias')
 
-class CargarGrupos(TemplateView):
-    def get(self,request,*args,**kwargs):       
-        grupos=Grupo.objects.all()             
-        data = serializers.serialize('json',grupos)
-        return HttpResponse(data, content_type='application/json')
+def CargarGrupos(request):
+
+	grupos = []
+	if 'codigo_materia' in request.GET:
+		materia = Materia.objects.get(codigo_materia = request.GET['codigo_materia'])
+		especialidades_materia = Especialidad_Materia.objects.filter(codigo_materia = materia)
+		for especialidad_materia in especialidades_materia:
+			if Grupo.objects.filter(codigo_especialidad = especialidad_materia.codigo_especialidad, nivel_especialidad = especialidad_materia.nivel_materia_especialidad).exists():
+				grupos_filtrados = Grupo.objects.filter(codigo_especialidad = especialidad_materia.codigo_especialidad, nivel_especialidad = especialidad_materia.nivel_materia_especialidad)
+				for grupo in grupos_filtrados:
+					docentes_materia = Docente_Materia.objects.filter(codigo_materia = materia)
+					grupo_ya_asignado = False
+					for docente_materia in docentes_materia:
+						if Docente_Materia_Grupo.objects.filter(docente_materia = docente_materia, grupo = grupo).exists():
+							grupo_ya_asignado = True
+							break
+							pass
+						pass
+					if not grupo_ya_asignado:
+						grupos.append(grupo)
+						pass
+					pass
+				pass
+			pass
+		pass
+	if grupos == []:
+		return HttpResponse({}, content_type='application/json')
+		pass
+	else:
+		data = serializers.serialize('json', grupos)	
+		return HttpResponse(data, content_type='application/json')
+		pass
 
 def materia_view(request):
 #	if request.method == 'POST':
@@ -538,7 +565,26 @@ def materia_view(request):
 #		form = MateriaForm()
 #	return render(request, 'administrarMaterias/agregarMateria.html', {'form' : form})
 #   si el metodo es POST Hacer esto
-	if request.method=='POST':
+	if 'guardarAsignaciones' in request.POST:
+		docente = Docente.objects.get(dui_docente = request.POST['docente'])
+		materia = Materia.objects.get(codigo_materia = request.POST['materia'])
+		grupos = Grupo.objects.all()
+		for grupo in grupos:
+			if 'grupo_'+grupo.codigo_grupo in request.POST:
+				count = Docente_Materia.objects.all().count()
+				docente_materia = Docente_Materia(id = count+1, codigo_docente = docente, codigo_materia = materia)
+				docente_materia.save()
+				count2 = Docente_Materia_Grupo.objects.all().count()
+				docente_materia_grupo = Docente_Materia_Grupo(id = count2+1, docente_materia = docente_materia,grupo = grupo)
+				docente_materia_grupo.save()
+				pass
+			pass
+		pass
+
+		docentes = Docente.objects.all()
+		contexto = {'docentes':	docentes, 'materia':materia}
+
+	elif request.method=='POST':
 		#Resivimos todos los parametros del formulario
 		form=MateriaForm(request.POST)
 		#si el formulario es Valido hacer lo siguiente 
@@ -546,7 +592,7 @@ def materia_view(request):
 			#Hacemos la creacion de los objetos 
 			materia=Materia()
 			docentes=Docente.objects.all()
-			especialidades=Especialidad.objects.all()	
+			especialidades=Especialidad.objects.all()
 			#Asignammos a cada objeto lo que resivimos de cada campo del formulario
 			materia.codigo_materia=request.POST['codigo_materia']
 			materia.nombre_materia=request.POST['nombre_materia']
@@ -555,39 +601,37 @@ def materia_view(request):
 			#Guardamos  
 			materia.save()
 
-			for docente in docentes:
-				if 'docente_'+docente.dui_docente in request.POST:
-					cant = Docente_Materia.objects.all().count()
-					docente_materia = Docente_Materia(cant + 1,codigo_docente = docente, codigo_materia = materia)
-					docente_materia.save()
-					pass
-				pass
+			nivel = None
 
 			for especialidad in especialidades:
-				if '1_'+especialidad.codigo_especialidad in request.POST[especialidad.codigo_especialidad]:
+
+				if '1_'+especialidad.codigo_especialidad in request.POST:
 					num = Especialidad_Materia.objects.all().count()
 					especialidad_materia = Especialidad_Materia(num + 1, codigo_especialidad = especialidad, codigo_materia = materia, nivel_materia_especialidad = 1)
 					especialidad_materia.save()
 					pass
-				elif '2_'+especialidad.codigo_especialidad in request.POST[especialidad.codigo_especialidad]:
+				elif '2_'+especialidad.codigo_especialidad in request.POST:
 					num = Especialidad_Materia.objects.all().count()
 					especialidad_materia = Especialidad_Materia(num + 1, codigo_especialidad = especialidad, codigo_materia = materia, nivel_materia_especialidad = 2)
 					especialidad_materia.save()
 					pass
-				elif '3_'+especialidad.codigo_especialidad in request.POST[especialidad.codigo_especialidad]:
+				elif '3_'+especialidad.codigo_especialidad in request.POST:
 					num = Especialidad_Materia.objects.all().count()
 					especialidad_materia = Especialidad_Materia(num + 1, codigo_especialidad = especialidad, codigo_materia = materia, nivel_materia_especialidad = 3)
 					especialidad_materia.save()
 					pass
 				pass
 
-		return redirect('/into/administrarMaterias')
+			contexto = {'docentes':	docentes, 'materia':materia}
+
+		"""return redirect('/into/administrarMaterias')"""
 	else:
 		#muestra el formulario
 		form=MateriaForm()
-		especialidad=Especialidad.objects.all()
+		especialidad=Especialidad.objects.all().order_by('-anios_especialidad')
 		docente=Docente.objects.all()
-		contexto={'form':form,'docente':docente,'especialidad':especialidad}		
+		contexto={'form':form,'especialidad':especialidad}
+
 	return render(request,'administrarMaterias/agregarMateria.html',contexto)
 
 def materia_edit(request, codigo_materia):

@@ -59,6 +59,6 @@ urlpatterns = [
      url(r'^actualizarUser/$',login_required(actualizarUser),name="actualizarUser"),
 
 
-     url(r'^CargarGrupos/$',login_required(CargarGrupos.as_view()),name="CargarGrupos"),
+     url(r'^CargarGrupos/$',login_required(CargarGrupos),name="CargarGrupos"),
 
 ]
