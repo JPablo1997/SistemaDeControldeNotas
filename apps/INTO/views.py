@@ -301,6 +301,14 @@ class BusquedaAlumno(TemplateView):
 			alumnos4.append(Alumno.objects.get(nie=x.nie.nie))		
 		data = serializers.serialize('json',alumnos4)
 		return HttpResponse(data, content_type='application/json')
+
+class BusquedaDuiEncargado(TemplateView):
+	def get(self,request,*args,**kwargs):
+		duidocente=[]
+		dui_encargado=request.GET['search']
+		dui=Encargado.objects.filter(dui_encargado=dui_encargado)
+		data=serializers.serialize('json',dui)
+		return HttpResponse(data,content_type='application/json')
 		
 #Finalizacion de el retorno de objetos JSON
 #Finalizacion de la parte de alumnos

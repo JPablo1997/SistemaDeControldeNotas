@@ -2,6 +2,26 @@
 {% block title %}Alumnos{% endblock %}
 {% block act_inicio %}{% endblock %}
 {% block act_alumnos %}active{% endblock %}
+{% block extracss %}
+<style type="text/css">
+input {
+  margin-right: 10px;
+}
+
+input:invalid ~ span:after {
+    content: '✖';
+    padding-left: 5px;
+    position: absolute:
+}
+
+input:valid ~ span:after {
+    content: '✓';
+    padding-left: 5px;
+    position: absolute:
+}
+	
+</style>
+{% endblock %}
 {% block content %}
 <br>
 <div class="row">
@@ -408,6 +428,32 @@
 		return false;
 		 
 	}
+
+	$('#dui_encargado').autocomplete({
+		minLength:3,
+		source:function(req,add) {
+			var search=$(this).val();
+			$.ajax({
+				async:false,
+				dataType:'json',
+				data:{'search':search},
+				type:'get',
+				url:'{% url "busqueda_dui_encargado" %}',
+				
+				success:function(data) {
+					var suggestion=[];
+
+					$.each(data,function(index,objeto) {
+						suggestion.push(objeto.value); 
+					});
+					add(suggestion);
+				},
+				error:function(err) {
+					alert('error'); 
+				}
+			}); 
+		}
+	});
 	
 	
 </script>

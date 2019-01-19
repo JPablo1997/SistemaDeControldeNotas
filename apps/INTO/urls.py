@@ -54,10 +54,11 @@ urlpatterns = [
     url(r'^busqueda_grupo/$',login_required(BusquedaGrupo.as_view()),name="busqueda_grupo"),
     url(r'^guardar_alumno/$',login_required(RegistroAlumno.as_view()),name="guardar_alumno"),
     url(r'^busqueda_alumnos/$',login_required(BusquedaAlumno.as_view()),name="busqueda_alumnos"),
+    url(r'^busqueda_dui_encargado/$',login_required(BusquedaDuiEncargado.as_view()),name="busqueda_dui_encargado"),
 
     #Finalizacion de la parte de alumnos
     url(r'^servidorActividades/$',login_required(servidorActividades),name="servidorActividades"),
-     url(r'^actualizarUser/$',login_required(actualizarUser),name="actualizarUser"),
+    url(r'^actualizarUser/$',login_required(actualizarUser),name="actualizarUser"),
 
 
      url(r'^CargarGrupos/$',login_required(CargarGrupos),name="CargarGrupos"),
