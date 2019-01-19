@@ -14,60 +14,64 @@
 				<div class="form-group">
 
 					<br>
-				<br>
-				<h2>Seleccione la Especialidad y El Año en que se impartira la Materia</h2>
-				<br>
-				<table>
-					<tbody>
-					<tr>
-						<td></td>
-						<td>Primer Año&nbsp;&nbsp;&nbsp;</td>
-						<td>Segundo Año&nbsp;&nbsp;&nbsp;</td>
-						<td>Tercer Año&nbsp;&nbsp;&nbsp;</td>
-					</tr>
-					{% for esp in especialidad %}
+				{% if especialidad %}
+					<br>
+					<h2>Seleccione la Especialidad y El Año en que se impartira la Materia</h2>
+					<br>
+					<table>
+						<tbody>
+						<tr>
+							<td></td>
+							<td>Primer Año&nbsp;&nbsp;&nbsp;</td>
+							<td>Segundo Año&nbsp;&nbsp;&nbsp;</td>
+							<td>Tercer Año&nbsp;&nbsp;&nbsp;</td>
+						</tr>
+							{% for esp in especialidad %}
 
-					{% if esp.anios_especialidad == 3 %}	
-					<tr>
-						<td>{{esp.nombre_especialidad}}&nbsp;&nbsp;&nbsp;</td>
-						<td><input  type="radio" name="{{esp.codigo_especialidad}}" value="1_{{esp.codigo_especialidad}}"></td>
-						<td><input type="radio" name="{{esp.codigo_especialidad}}" value="2_{{esp.codigo_especialidad}}"></td>
-						<td><input type="radio" name="{{esp.codigo_especialidad}}" value="3_{{esp.codigo_especialidad}}"></td>
-					</tr>
-					{% endif %}
+							{% if esp.anios_especialidad == 3 %}	
+							<tr>
+								<td>{{esp.nombre_especialidad}}&nbsp;&nbsp;&nbsp;</td>
+								<td><input  type="radio" name="1_{{	esp.codigo_especialidad }}" value="{{ esp.codigo_especialidad }}"></td>
+								<td><input type="radio" name="2_{{ esp.codigo_especialidad }}" value="{{ esp.codigo_especialidad }}"></td>
+								<td><input type="radio" name="3_{{ esp.codigo_especialidad }}" value="{{ esp.codigo_especialidad }}"></td>
+							</tr>
+							{% endif %}
 
-					{% if esp.anios_especialidad == 2 %}	
-					<tr>
-						<td>{{esp.nombre_especialidad}}&nbsp;&nbsp;&nbsp;</td>
-						<td><input type="radio" name="{{esp.codigo_especialidad}}" value="1_{{esp.codigo_especialidad}}"></td>
-						<td><input type="radio" name="{{esp.codigo_especialidad}}" value="2_{{esp.codigo_especialidad}}"></td>
-					</tr>
-					{% endif %}
+							{% if esp.anios_especialidad == 2 %}	
+							<tr>
+								<td>{{esp.nombre_especialidad}}&nbsp;&nbsp;&nbsp;</td>
+								<td><input type="radio" name="1_{{ esp.codigo_especialidad }}" value="{{ esp.codigo_especialidad }}"></td>
+								<td><input type="radio" name="2_{{ esp.codigo_especialidad }}" value="{{ esp.codigo_especialidad }}"></td>
+							</tr>
+							{% endif %}
 
-					{% endfor %}
-					</tbody>
-				</table> 
+							{% endfor %}
+						</tbody>
+					</table> 
+				{% endif %}
 				<br>
 				<br>
 
 					<br>
 					<br>
-					<h2>Selecciones Los Docentes asignados a la Materia</h2>
-					<br>
-					<div class="checkbox text-justify">
-						{% for doc in docente %}
-
-						<label>
-							&nbsp&nbsp&nbsp&nbsp&nbsp
-							<input type="checkbox" name="docente_{{doc.dui_docente}}" >
-							{{doc.nombre_docente}} {{doc.apellidos_docente}}
-						</label>
-						<div class="docente_{{doc.dui_docente}}">
-							
-						</div>
+					{% if docentes and materia %}
+						<h2>Selecciones Los Docentes asignados a la Materia</h2>
 						<br>
-						{% endfor %}
-					</div>
+						<div class="checkbox text-justify">
+							{% for docente in docentes %}
+
+							<label>
+								&nbsp&nbsp&nbsp&nbsp&nbsp
+								<input type="checkbox" name="docente_{{doc.dui_docente}}" onclick="cargar_grupos('{{ materia.codigo_materia }}');">
+								{{docente.nombre_docente}} {{docente.apellidos_docente}}
+							</label>
+							<div class="docente_{{doc.dui_docente}}">
+								
+							</div>
+							<br>
+							{% endfor %}
+						</div>
+					{% endif %}
 				</div>
 			</div>
 			<div>
@@ -85,38 +89,26 @@
 //
 //	}
 
-$(document).ready(function(){
-	$(':checkbox').prop("checked",false);
-	$(':checkbox').click(function(){
-		var docente = $(this).attr('name');
-		var chec = '.'+docente;
-		if($(':checkbox').is(':checked')){
-			var valor = '';
-		 $.ajax({
-		 	data:{'valor':valor},
-		 	url:'{% url "CargarGrupos" %}',
-		 	type:'get',
-		 	success:function(data) {
-		 		var html="";
-		 		
-		 		html+='';
-		 		for(var i = 0; i<data.length; i++){
+function cargar_grupos(codigo_materia) {
+	var codigo_materia = codigo_materia;
+	$(document).ready(function(){
+		$.ajax({
+			url: '/into/CargarGrupos/',
+			type: 'GET',
+			contentType: 'json',
+			data: {codigo_materia:codigo_materia},
+			success: function (data) {
+				console.log(data);
+			},
+			error: function (xhr, error, status) {
 
-		 			html += '<label>&nbsp;&nbsp;<input type="checkbox" name="'+docente+'_'+data[i].pk+'">'+data[i].pk+'</label>';
-		 		}
-		 		
-		 		$(chec).html(html); 
-		 	}
-		 	
-		 });	
-		}
-		else{
-			var html=""
-			$(chec).html(html);
+			}
 
-		}
-	});
-});
+		});
+	});	
+}
+
+
 
 //$(':checkbox').is(':checked',select_nivel);
 //	function select_nivel () {
