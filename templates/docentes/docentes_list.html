@@ -15,7 +15,7 @@
                 <br><br>
                 <div class="table-responsive">
                     <table class="table table-hover table-bordered">
-                        <tr class="table-success ">
+                        <thead class="table-dark">
                             <th>DUI</th>
                             <th>Nombre</th>
                             <th>Fecha Nacimiento</th>
@@ -24,9 +24,9 @@
                             <th>Fecha Contratacion</th>
                             <!--<th>Direccion del docente</th>-->
                             <th>Acciones</th>
-                        </tr>
+                        </thead>
                         {% for docente in object_list %}
-                        <tr >
+                        <tbody >
                             <td>{{ docente.dui_docente }}</td>
                             <td>{{ docente.nombre_docente }} {{ docente.apellidos_docente }}</td>
                             <td>{{ docente.fecha_nacimiento_docente}}</td>
@@ -52,7 +52,7 @@
                                 <span class="fas fa-trash"></span>
                                 </a>
                             </td>                          
-                        </tr>
+                        </tbody>
                         {% endfor %}
                     </table> 
 

@@ -234,13 +234,75 @@ class BusquedaGrupo(TemplateView):
 		return HttpResponse(data, content_type='application/json')
 class RegistroAlumno(TemplateView):
 	def post(self,request,*args,**kwargs):
-		pruebacod=request.POST['grupo']
+		alumno=Alumno()
+		encargado=Encargado()
+		usuario=User()
+		alumnoGrupo=Alumno_Grupo()
+		#Resivimos los datos que vienen del post
+		#Codigo de Grupo
+		codigo_grupo=request.POST['grupo']
+		#Datos del Alumno y los asignamos al objeto
+		alumno.nie=request.POST['nie']
+		alumno.nombre_alumno=request.POST['nombre_alumno']
+		alumno.apellidos_alumno=request.POST['apellidos_alumno']
+		alumno.sexo_alumno=request.POST['sexo_alumno']
+		alumno.fecha_nacimiento_alumno=time.strftime("%Y-%m-%d")
+		alumno.telefono_alumno=request.POST['telefono_alumno']
+		alumno.direccion_alumno=request.POST['direccion_alumno']
+		alumno.anio_ingreso=time.strftime("%Y-%m-%d")
+		especialidad=Especialidad.objects.get(codigo_especialidad=request.POST['especialidad'])
+		alumno.especialidad_alumno=especialidad
+		#Resivimos los datos del Encargado
+		encargado.dui_encargado=request.POST['dui_encargado']
+		encargado.nombre_encargado=request.POST['nombre_encargado']
+		encargado.apellidos_encargado=request.POST['apellidos_encargado']
+		encargado.telefono=request.POST['telefono_encargado']
+		encargado.celular=request.POST['celular_encargado']
+		encargado.parentesco=request.POST['parentesco']
+		#Guardamos el encargado primero porque lo necesitamos para el alumno
+		encargado.save()
+		encargado_alumno=Encargado.objects.get(dui_encargado=encargado.dui_encargado)
+		alumno.encargado=encargado_alumno
+
+		#Ahora Guardamos el usuario igual se necesita para guardar el alumno
+		usuario.username=alumno.nie
+		usuario.first_name=alumno.nombre_alumno
+		usuario.last_name=alumno.apellidos_alumno
+		usuario.email=""
+		usuario.set_password("administrador10")
+		usuario.save()
+		usuario_alumno=User.objects.get(username=str(usuario.username))
+		alumno.usuario_alumno=usuario_alumno
+		alumno.save()
+		alumno_nie=Alumno.objects.get(nie=alumno.nie)
+		alumno_grupo=Grupo.objects.get(codigo_grupo=codigo_grupo)
+		alumnoGrupo.nie=alumno_nie
+		alumnoGrupo.codigo_grupo=alumno_grupo
+		alumnoGrupo.save();
 		alumnos4=[]
-		alumno=Alumno_Grupo.objects.filter(codigo_grupo=pruebacod)
+		alumno=Alumno_Grupo.objects.filter(codigo_grupo=codigo_grupo)
 		for x in alumno:
 			alumnos4.append(Alumno.objects.get(nie=x.nie.nie))		
 		data = serializers.serialize('json',alumnos4)
 		return HttpResponse(data, content_type='application/json')
+
+class BusquedaAlumno(TemplateView):
+	def get(self,request,*args,**kwargs):
+		nivel = request.GET['nivel']
+		especialidad = request.GET['especialidad']
+		seccion =request.GET['seccion']		
+		grupo_docente =Grupo.objects.filter(nivel_especialidad=nivel, codigo_especialidad=especialidad,codigo_grupo=seccion)
+		grupo=""
+		for x in grupo_docente:
+			grupo=x.codigo_grupo
+		
+		alumnos4=[]
+		alumno=Alumno_Grupo.objects.filter(codigo_grupo=str(grupo))
+		for x in alumno:
+			alumnos4.append(Alumno.objects.get(nie=x.nie.nie))		
+		data = serializers.serialize('json',alumnos4)
+		return HttpResponse(data, content_type='application/json')
+		
 #Finalizacion de el retorno de objetos JSON
 #Finalizacion de la parte de alumnos
 class Vista(TemplateView):

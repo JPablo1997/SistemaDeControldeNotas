@@ -56,6 +56,7 @@ urlpatterns = [
     url(r'^busqueda_docente/$',login_required(BusquedaDocente.as_view()),name="busqueda_docente"),
     url(r'^busqueda_grupo/$',login_required(BusquedaGrupo.as_view()),name="busqueda_grupo"),
     url(r'^guardar_alumno/$',login_required(RegistroAlumno.as_view()),name="guardar_alumno"),
+    url(r'^busqueda_alumnos/$',login_required(BusquedaAlumno.as_view()),name="busqueda_alumnos"),
 
     #Finalizacion de la parte de alumnos
     url(r'^servidorActividades/$',login_required(servidorActividades),name="servidorActividades"),
