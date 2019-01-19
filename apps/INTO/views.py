@@ -9,6 +9,7 @@ from decimal import Decimal
 from django.core import serializers
 from django.contrib import messages
 from datetime import date
+import json
 # Create your views here.
 import time
 #vista basada en funcion para los formularios
@@ -1032,9 +1033,185 @@ def servidorActividades(request):
 
 	return HttpResponse(data, content_type='application/json')
 
-def Expediente(request):
-	return render (request,'expediente/expediente.html')
 
+#Inicio de codigo del Expediente (Fc!)
+
+def Expediente(request):
+	estudiante=Alumno.objects.get(usuario_alumno_id=request.user.id)
+	bachillerato=Especialidad.objects.get(codigo_especialidad=estudiante.especialidad_alumno_id)
+	cant_grupos=Alumno_Grupo.objects.filter(nie=estudiante.nie).order_by('id')#devuelve todos los registros de alumno grupo
+	secciones=[]#almacenara los registros de todas las secciones del estudiante
+	for x in cant_grupos:
+		g=Grupo.objects.get(codigo_grupo=x.codigo_grupo)
+		secciones.append(g)
+		pass
+	ultima_seccion=cant_grupos.reverse()[0]#registro de ultima seccion alumno
+	seccion=Grupo.objects.get(codigo_grupo=ultima_seccion.codigo_grupo)#seccion actual
+	contexto={'estudiante':estudiante,'bachillerato':bachillerato,'seccion':seccion,'grados':secciones}
+	return render (request,'expediente/expediente.html',contexto)
+
+def BuscarPeriodos(request):
+	codigos_periodos=Periodo.objects.filter(anio_lectivo_id=request.GET['anio'],finalizado=True)
+
+	data=serializers.serialize('json',codigos_periodos)
+	return HttpResponse(data,content_type='application/json')
+	
+def BuscarNotas(request):
+	alumno=Alumno.objects.get(usuario_alumno_id=request.user.id)
+
+	nie=alumno.nie
+	periodo=Periodo.objects.get(codigo_periodo=request.GET['codigo_periodo'])
+	datos=ObtenerPromedioPeriodo(alumno,nie,periodo,'Periodo')
+
+	return HttpResponse(datos,content_type='application/json')
+
+def PromedioFin(request):
+	alumno=Alumno.objects.get(usuario_alumno_id=request.user.id)
+	nie=alumno.nie
+	#periodo_anio=  Periodo.objects.get(codigo_periodo=request.GET['codigo_periodo']).anio_lectivo_id
+	#periodos=Periodo.objects.filter(anio_lectivo_id=periodo_anio)
+	periodo=Periodo.objects.get(codigo_periodo=request.GET['codigo_periodo'])
+	periodo1=ObtenerPromedioPeriodo(alumno,nie,periodo,'Final')
+	periodo2=ObtenerPromedioPeriodo(alumno,nie,periodo,'Final')
+	periodo3=ObtenerPromedioPeriodo(alumno,nie,periodo,'Final')
+	periodo4=ObtenerPromedioPeriodo(alumno,nie,periodo,'Final')
+	promedio_materias_fin=ObtenerPromedioAnual(periodo1['promedios'],periodo2['promedios'],periodo3['promedios'],periodo4['promedios'])
+	estados=VerificarEstados(promedio_materias_fin)
+	diccionario={'materias':periodo1['materiaN'],'codigos':periodo1['materiaC'],'promedio':promedio_materias_fin,'estados':estados}
+	datos=json.dumps(diccionario)
+	return HttpResponse(datos,content_type='application/json')
+
+def ObtenerPromedioActividad_Materia(nie,materia_cod,docentes_grado_materia,actividad):
+	notas=[]
+	sub_actividades=Sub_Actividad.objects.filter(codigo_actividad_id=actividad.codigo_actividad)
+	#falta filtrar la materia
+	#obtener las doce evaluaciones luego filtrarlas con el for de docentes_grado _materia
+	evaluaciones_materias=[]
+	evaluaciones=[]
+	calificaciones=[]
+	doc=0
+	for x in docentes_grado_materia:
+		if materia_cod==x.docente_materia.codigo_materia_id:
+			doc=x
+			pass
+		pass
+	for x in sub_actividades:
+		eva=Evaluacion.objects.get(codigo_sub_actividad_id=x.codigo_sub_actividad)
+		evaluaciones_materias.append(eva)
+		pass
+	for x in evaluaciones_materias:
+		if x.codigo_docente_materia_id==doc.docente_materia_id:
+			cal=Calificacion.objects.get(nie_id=nie,codigo_evaluacion_id=x.codigo_evaluacion).nota
+			e=x.codigo_sub_actividad.porcentaje_sub_actividad
+			res_Cal=ObtenerNotaPorcentaje(cal,e)
+			calificaciones.append(res_Cal)
+			pass
+		pass
+	suma=SumarNotasMateriaActividad(calificaciones)
+	return suma
+
+def ObtenerNotaPorcentaje(nota,porcentaje):
+	valor=nota*porcentaje
+
+	return valor
+
+def SumarNotasMateriaActividad(notas):
+	suma =0
+	for x in notas:
+		suma+=x
+		pass
+	return float(suma) 
+def SumarNotasMateriasPeriodo(nota1,nota2,nota3):
+	suma=nota1+nota2+nota3
+	return float(suma)
+
+
+
+def ObtenerPromedioPeriodo(alumno,nie,periodo,tipo):
+	anio_lec=periodo.anio_lectivo_id#año seleccionado
+	secciones=Alumno_Grupo.objects.filter(nie=nie)#registros de los grados del estudiante
+	for x in secciones:
+		seccion=Grupo.objects.get(codigo_grupo=x.codigo_grupo)#se los datos del grupo x
+		if seccion.anio == anio_lec:
+			grado=seccion#aqui se obtiene el grado del año seleccionado
+			pass
+		pass
+	especialidad=Especialidad.objects.get(codigo_especialidad=alumno.especialidad_alumno_id)
+	materias_esp=[] #guardara todas las materias_esp del año
+	materias_codigos=[]
+	materias_nombres=[]
+	materias_esp= Especialidad_Materia.objects.filter(codigo_especialidad_id=especialidad.codigo_especialidad,nivel_materia_especialidad=grado.nivel_especialidad).order_by('codigo_especialidad')
+
+	docentes_grado_materia=Docente_Materia_Grupo.objects.filter(grupo_id=grado.codigo_grupo).reverse()#obtiene los docentes que dan clases a la seccion
+
+	actividades=[]
+	actividades=Actividad.objects.filter(codigo_periodo_id=periodo.codigo_periodo).order_by('codigo_actividad')
+		#contendran los promedios de cada materia
+
+	prom_Act1=[]
+	prom_Act2=[]
+	prom_Act3=[]
+	calificaciones=[]
+	promedios_materia=[]
+	for x in materias_esp:#se obtienen los objetos de las materias que recibe el estudiante en el año seleccionado
+		cod_nombre=Materia.objects.get(codigo_materia=x.codigo_materia_id).codigo_materia
+		materias_codigos.append(cod_nombre)
+		cod_nombre=Materia.objects.get(codigo_materia=x.codigo_materia_id).nombre_materia
+		materias_nombres.append(cod_nombre)
+		pass
+
+	con1=0
+	con2=0
+	act1=actividades[0]
+	act2=actividades[1]
+	act3=actividades[2]
+		#OBTENER PROMEDIOS DE ACTIVAD DE MATERIAS
+	for x in materias_codigos:
+		resultado=ObtenerPromedioActividad_Materia(nie,x,docentes_grado_materia,act1)
+		prom_Act1.append(resultado)
+		resultado=ObtenerPromedioActividad_Materia(nie,x,docentes_grado_materia,act2)
+		prom_Act2.append(resultado)
+		resultado=ObtenerPromedioActividad_Materia(nie,x,docentes_grado_materia,act3)
+		prom_Act3.append(resultado)
+		pass
+
+	for i in range(len(materias_codigos)):
+		prom=SumarNotasMateriasPeriodo(prom_Act1[i],prom_Act2[i],prom_Act3[i])
+		promedios_materia.append(prom)
+		pass
+
+	dicci={'materiaN':materias_nombres,'materiaC':materias_codigos, 'a1':prom_Act1,'a2':prom_Act2,'a3':prom_Act3,'promedios':promedios_materia}
+	datos=json.dumps(dicci)
+
+	if tipo=='Periodo':
+		resultado=datos
+	else:
+	 	resultado= dicci
+
+	return resultado
+
+def ObtenerPromedioAnual(periodo1,periodo2,periodo3,periodo4):
+	finales=[]
+	for i in range(len(periodo1)):
+		r=(periodo1[i]+periodo2[i]+periodo3[i]+periodo4[i])/4
+		float(r)
+		finales.append(r)
+	return finales
+
+def VerificarEstados(promedio_materias_fin):
+	print('hola')
+	estados=[]
+	es='Aprobada'
+	for i in range(len(promedio_materias_fin)):
+		if promedio_materias_fin[i]<5.95:
+			print(promedio_materias_fin[i])
+			es='Reprobada'
+		estados.append(es)
+
+	print(estados)
+	return estados
+
+#Fin de codigo del Expediente (Fc!)
 def actualizarUser(request):
 	if 'btnGuardar' in request.POST:
 		usuario = request.user
