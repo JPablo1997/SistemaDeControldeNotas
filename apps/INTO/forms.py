@@ -153,22 +153,22 @@ class AnotacionForm(forms.ModelForm):
         model = Anotacion        
 
         fields = [
-            'nie',
+        
             #'dui_docente',
             'descripcion',
-            'fecha_anotacion',
+            
 
         ]
         labels = {
-            'nie' : 'nie',
+        
             #'dui_docente' : 'dui_docente',
             'descripcion' : 'descripcion',
-            'fecha_anotacion' : 'fecha_anotacion',
+            
         }
         widgets = {
-            'nie' : forms.TextInput(attrs={'class':'form-control','id':"1",'onkeyup':"anotacionNie()",'disabled': 'true'}),
+        
             #'dui_docente' : forms.TextInput(attrs={'class':'form-control','id':"dui",'onkeyup':"AnotacionDesactivar()",'disabled': 'true'}),
             'descripcion' : forms.Textarea(attrs={'class':'form-control','id':"3",'onkeyup':"AnotacionDesactivar()",'disabled': 'true'}),
-            'fecha_anotacion' : forms.TextInput(attrs={'class':'form-control','type':'date' ,'cols': 80, 'rows': 20,'id':"4",'onkeyup':"AnotacionDesactivar()",'disabled': 'true'}),
+            
         }
 

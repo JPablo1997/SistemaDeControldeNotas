@@ -1,66 +1,35 @@
 {% extends 'base/base.html'%}
 {% block title %} Administrar Notas {% endblock %}
 {% block content %}
+{% if AlumnoNie %}
 <hr/>
 	<div class="hero-text text-center">
 		<h3>Anotaciones y observaciones a alumnos</h3>
 	</div>
 <hr/>
-
-<div class= "container">
-	<div class= "row">
-		<section class="col-md-12">
-			<div class= "container">
-				<form method="POST" name="form1">
-					{% csrf_token %}
-					<section class="col-md-4"></section>
-
-                 	<div class="table-responsive">
-		         		<tr>
-		         			<td>
-		         				<label>Nie de alumno :</label>	
-		         			</td>
-		         			<td>
-		         				<input type="text" id="nie" name="inputNie" required minlength="1" maxlength="8" placeholder="Digitar nie" />		
-		         			</td>
-		         		</tr>  
-		         		<button type="submit" class="btn btn-success" name = "btnConsultar" id="btnConsultar" onclick="anotacionNie(nie.value)">Buscar</button>              
-		         		
-		                <br/><br/>  
-		                 
-		                <script>
-    					alert('{{ message }}');
-						</script>                                                     
-            		</div>
-            		
-                 	<table class="table table-hover border">
-                    <tr class="table-success text-center">
-                        <th>Nie</th>
-                        <th>Nombres</th>
-                        <th>Especialidad y seccion</th>                                                
-                    </tr>                        
-                    <tr class="text-center">                                            
-                        <td>{{AlumnoNie}}</td>                        
-                        <td>{{nombre}}</td>
-                        <td></td>
-                               
-                    </tr>                        
-                	</table>   					                    
-
-				</form>
-			</div>		
-		</section>
-		
+<div class="container">
+	<div class="main row">
+		<div class="col-md-12">
+			<table class="table table-hover border">
+                <tr class="table-success text-center">
+                    <th>Nie</th>
+                    <th>Nombres</th>
+                </tr>                        
+                <tr class="text-center">                                            
+                    <td>{{AlumnoNie}}</td>                        
+                    <td>{{nombre}}</td>               
+                </tr>                        
+            </table>
+		</div>
 	</div>
-
-	
-	<div class= "row">
+</div>
+<div class= "row">
 		<section class="col-md-12">
 			<div class= "container">				
                 <table class="table table-striped table-bordered table-hover">
                     <thead>
-                        <tr>
-                            <th>#</th>
+                        <tr class="text-center">
+                            
                             <th>Fecha</th>
                             <th>Descripcion</th>
 
@@ -68,8 +37,8 @@
             	    </thead>
                     <tbody>
                         {%for x in Anot%}
-                        <tr>
-                            <td></td>
+                        <tr class="text-center">
+                            
                             <td>{{x.fecha_anotacion}}</td>
                             <td>{{x.descripcion}}</td>
                                          
@@ -79,38 +48,24 @@
                 </table>
             </div>               				
         </section>
-	</div>		
-		
-		
-	
-
-	
-
-
-
-
-	<div class= "row">
-		<section class="col-md-3">
-		</section>	
-		<section class="col-md-6">
-			<div class= "container">
+</div>		
+<br>
+<hr/>
+<div class= "container">		
+		<section class="main row">
+			<div class= "col-md-2"></div>
+			<div class= "col-md-8">
+				
 				<form method="POST" >
-					{% csrf_token %}					
-					<button type="button" class="btn btn-success" name = "btnAgregar" id="btnAgregar" onclick="AnotacionDesactivar()">Agregar</button>																																			
+					{% csrf_token %}	
+					<div class="container" id="trans"> 
+            			<button type="button" class="btn btn-success" name = "btnAgregar" id="btnAgregar" onclick="AnotacionDesactivar()">Agregar anotacion</button>																					
+          			</div> 				
+												
 					<table>
-						<thead>
-                            <tr>
-                            	<th>Nie</th>
-                       			<th>{{form.nie}}</th>
-                            </tr>                            
-                            <br>
-                            
-                            <tr>
-                            	<th>Fecha de anotacion</th>
-                       			<th>{{form.fecha_anotacion}}</th>
-                            </tr>
-                            <br>                            
-							
+						<thead>                                                      
+                            <br>                                                        
+                                                     
 							<tr>
 								<th>Describa su anotacion</th>
 								<th>{{form.descripcion}}</th>                       			
@@ -118,18 +73,87 @@
                         </thead>
 					</table>
 					
-					
-					<button type="submit" class="btn btn-success" name = "btnGuardar" id="btnGuardar" disabled = "false">Guardar</button>				
+					<br>
+					<div class="container" id="trans"> 
+            			<button type="submit" class="btn btn-success" name = "btnGuardar" id="btnGuardar" disabled = "false">Guardar anotacion</button>				
+          			</div> 
+					<input style="display: none;" type="text"  name="nie" id="nie" value="{{ AlumnoNie }}">
 				</form>
+			</div>		
+			<div class= "col-md-2"></div>
+		</section>
+</div>
+<br>
+<br>
+
+{% else %}
+
+{% if mensaje %}
+		<div class="row justify-content-center">
+		    <div class="alert alert-warning col-6 col-md-8" style="text-align: center; margin-top: 100px;margin-bottom: 30px; font-size: 1.5em;">
+	      		<strong>Atención!</strong> {{ mensaje }}
+	    	</div>
+	  	</div>
+	    <h4 style="text-align: center; padding-bottom: 350px;"><a href="{% url 'Anotacion' %}">Regresar</a></h4>
+			<hr/>	
+			<br/>
+		
+			<hr/>
+{% else %}
+<hr/>
+	<div class="hero-text text-center">
+		<h3>Anotaciones y observaciones a alumnos</h3>
+	</div>
+<hr/>			
+<br>
+<div class= "container">
+	<div class= "row">
+		<section class="col-md-12">
+			<div class= "container">
+				<form method="POST" name="form1">
+					{% csrf_token %}					
+                 	<div class="table-responsive">
+                 		<div class="container" id="trans"> 
+		         		<tr>
+		         			<td>
+		         				<label>Nie de alumno :</label>	
+		         			</td>
+
+		         			<td>
+		         				<input type="text" id="nie" name="inputNie" required minlength="1" maxlength="8" placeholder="Digitar nie" />		
+		         			</td>
+		         		</tr>  
+
+		         		</div>
+		         	</div>
+		         	<br/>
+		         		<div class="container" id="trans"> 
+            				<button type="submit" class="btn btn-success" name = "btnConsultar" id="btnConsultar">Buscar</button>              
+          				</div> 
+		         		
+		         		
+		                <br/>
+		                 
+		        </form>        
 			</div>		
 		</section>
 		
 	</div>
-	<hr/>	
-	<br/>
-	
-<hr/>
 </div>
 
+	
+		
+		
+	
 
+	
+
+
+
+
+	
+
+
+{% endif %}
+{% endif %}
 {% endblock %}
