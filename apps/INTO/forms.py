@@ -168,7 +168,7 @@ class AnotacionForm(forms.ModelForm):
         widgets = {
         
             #'dui_docente' : forms.TextInput(attrs={'class':'form-control','id':"dui",'onkeyup':"AnotacionDesactivar()",'disabled': 'true'}),
-            'descripcion' : forms.Textarea(attrs={'class':'form-control','id':"3",'onkeyup':"AnotacionDesactivar()",'disabled': 'true'}),
+            'descripcion' : forms.Textarea(attrs={'style':'resize:none;','rows':10, 'cols':1000,'class':'form-control','id':"3",'onkeyup':"AnotacionDesactivar()",'disabled': 'true' }),
             
         }
 
