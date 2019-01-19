@@ -14,13 +14,8 @@
   <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <style type="text/css">
-    .footer
-    {
-        width: 100%;
-        height: 75px;
-        position: absolute;
-        bottom: 0;
-    }  
+
+ 
   </style>
   <title>{% block title %} Inicio {% endblock %}</title>
 
@@ -113,17 +108,51 @@
         </nav>
         {% endblock %}
     </div>
-
     <div class="content">
       {% block content %}
+
+      <div class="container">
+        <div class="row">
+          <br><br>
+          <div class="col">
+            <br><br><br><br>
+            <h2 class="fas fa-award">&nbsp;&nbsp;Expediente</h2>
+            <br>
+            <p>Permite a los Alumnos revisar su record de notas obtenidas en las diferentes actividades que realizan durante cada periodo.</p>
+          </div>
+          <div class="col">
+            <br><br><br><br>
+            <h2 class="fas fa-chart-bar">&nbsp;&nbsp;Datos Estadísticos</h2>
+            <br>
+            <p>Podrás ver datos estadisticos relevantes relacionados a las notas de los estudiantes del Instituto Nacional de Tonacatepeque.
+            </p>
+          </div>
+          <div class="w-100"></div>
+          <div class="col">
+            <br><br><br><br>
+            <h2 class="fas fa-user">&nbsp;&nbsp;Usuarios</h2>
+            <br>
+            <p>Permite a Diferentes tipos de Usuarios Ingresar al Sistema de Notas del Instituto Nacional de Tonacatepeque, brindando diferentes herramientas utiles a cada uno de ellos.</p><br><br>
+          </div>
+          <div class="col">
+            <br><br><br><br>
+            <h2 class="fas fa-edit">&nbsp;&nbsp;Administrar Notas</h2>
+            <br>
+            <p>Permite a los Docentes llevar el registro de notas del Instituto Nacional de Tonacatepeque de una manera mas facil.</p><br><br>
+          </div>
+          <br><br>
+        </div>
+      </div>
+
+
       {% endblock %}
     </div>
 	
-    <footer class="footer">
+    <footer>
       
        
             {% block footer %}            
-              <p>Copyright © 2018 - Instituto Nacional de Tonacatepeque APROES</p>             
+              Copyright © 2018 - Instituto Nacional de Tonacatepeque APROES           
             {% endblock %}
                   
            
