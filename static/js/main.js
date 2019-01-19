@@ -299,32 +299,17 @@ imprimirencaja(2,mensaje,mensaje,1);
 
 
 function AnotacionDesactivar(){
-var c1=document.getElementById("1");
-c1.disabled = false;
-//var c2=document.getElementById("dui");
-//2.disabled = false;
+
 var c3=document.getElementById("3");
 c3.disabled = false;
-var c4=document.getElementById("4");
-c4.disabled = false;
-var c5=document.getElementById("btnConsultar");
-c5.disabled = true;
-var c6=document.getElementById("nie");
-c6.disabled = true;
+
 var c7=document.getElementById("btnAgregar");
 c7.disabled = true;
 var c8=document.getElementById("btnGuardar");
 c8.disabled = false;
-
-
-function anotacionNie(nie)
-{
-	
-//var c6 document.getElementById('nie').value;
-document.getElementById('nie').value=nie;
-
 }
 
+<<<<<<< HEAD
 
 
 }
@@ -338,3 +323,5 @@ jQuery(function($){
   $("#telefono_encargado").mask("9999-9999");
   $("#celular_encargado").mask("9999-9999"); 
 });
+=======
+>>>>>>> f426a9c1d044935216bf4818260d39379f8bf14b

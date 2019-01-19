@@ -127,10 +127,12 @@ class Sub_Actividad(models.Model):
     	return self.codigo_sub_actividad 
 
 class Docente_Materia(models.Model):
+    id = models.AutoField(primary_key=True)
     codigo_docente = models.ForeignKey(Docente,on_delete=models.CASCADE)
     codigo_materia = models.ForeignKey(Materia,on_delete=models.CASCADE)
 
 class Docente_Materia_Grupo(models.Model):
+    id = models.AutoField(primary_key=True)
     docente_materia = models.ForeignKey(Docente_Materia,on_delete=models.CASCADE)
     grupo = models.ForeignKey(Grupo,on_delete=models.CASCADE)
 
@@ -152,7 +154,7 @@ class Anotacion(models.Model):
     nie = models.ForeignKey(Alumno,on_delete=models.CASCADE)
     dui_docente = models.ForeignKey(Docente,on_delete=models.CASCADE)
     #codigo_anotacion = models.CharField(max_length=10, primary_key=True)
-    descripcion = models.CharField(max_length=150, null= False)
+    descripcion = models.CharField(max_length=1500, null= False)
     fecha_anotacion = models.DateField()
     def __str__(self): 
     	return self.codigo_anotacion 

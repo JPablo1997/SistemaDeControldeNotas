@@ -232,7 +232,12 @@ select:focus{ outline: none;}
 .color-navbar {
     background-color: lavender;
 }
-
+#trans{
+  width: 400px;
+  
+  display: flex;
+  justify-content: center;
+}
 
 
 /*Inicio Expediente*/

@@ -148,6 +148,7 @@
 					<th>Direccion</th>
 					<th>Telefono</th>
 					<th>Acciones</th>
+					
 				</thead>
 				<tbody class="text-center" id="cam_alumnos">				
 					
@@ -313,6 +314,8 @@
                 	for(var i=0;i<data.length;i++){
                 	
                 	html+='<tr><td>'+(i+1)+'</td><td>'+data[i].pk+'</td><td>'+data[i].fields.nombre_alumno+' '+data[i].fields.apellidos_alumno+'</td><td>'+data[i].fields.sexo_alumno+'</td><td>'+data[i].fields.anio_ingreso+'</td><td>'+data[i].fields.direccion_alumno+'</td><td>'+data[i].fields.telefono_alumno+'</td><td><a href="#" class="btn btn-default btn-xs"><span class="fas fa-pencil-alt"></span></a><a href="#" class="btn btn-default btn-xs"><span class="fas fa-th-large"></span></a><a href="#"                        class="btn btn-default btn-xs"><span class="fas fa-trash"></span></a></td></tr>';
+
+                	
                 }
                 }
              

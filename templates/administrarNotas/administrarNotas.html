@@ -59,8 +59,13 @@
         
         </tbody>
         </table>       
-        </article>        
-        <input class="btn btn-primary" id="btnGuardar" name="btnGuardar" type="submit" value="Guardar">
+        </article>   
+
+        
+        <br><br>
+          <div class="container" id="trans"> 
+            <input class="btn btn-primary" id="btnGuardar" name="btnGuardar" type="submit" value="Guardar">
+          </div> 
       </section>
         
         <input style="display: none;" type="text" id="codigoEva" name="codigoEva" value="{{ evaluacion.codigo_evaluacion }}">
@@ -103,12 +108,14 @@
       <div id="materiasLista" style="display: none;">
         <select id="materiaSelect" class="form-group col-12 col-md-6" style="margin-bottom: 50px;">
           <option class="opt" value="default">--Seleccione una Materia--</option>
+          <div id="info"></div>
         </select>
       </div>
       <br><br>
       <div id="evaluacionesLista" style="display: none;">
         <select id="evaluacionSelect" class="form-group col-12 col-md-6" style="margin-bottom: 50px;">
           <option class="opt" value="default">--Seleccione una evaluacion--</option>
+          <div id="info"></div>
         </select>
       </div>
       <div id="grupos" style="display: none; margin-bottom: 150px;">
@@ -132,8 +139,12 @@
               </article>
             </section>            
           </div>
+          <br><br>
+          <div class="container" id="trans"> 
+            <input type="submit" class="btn btn-primary" name="btnCargarAlumnos" value="Cargar alumnos">
+          </div> 
           
-                  <input type="submit" class="btn btn-primary" name="btnCargarAlumnos" value="Cargar alumnos">
+                  
                 </form>
               </div>
       <script type="text/javascript">
@@ -151,13 +162,14 @@
                 data : {'dui_docente': value, 'accion': accion},
                 success: function(data){
                   console.log(data);
-                  var optionsText;
+                  
+                  var optionsText = '<option class="opt" value="default">--Seleccione una materia--</option>';
                   
                   for( var i in data){
                     optionsText += '<option class="opt" value="'+data[i].pk+'">'+data[i].fields.nombre_materia+'</option>';
                   }
 
-                  $('#materiaSelect').append(optionsText);
+                  $('#materiaSelect').html(optionsText);
                   $('#materiasLista').css('display','block');
                   $('#materiasLista').css('padding-top','5px');
                 },
@@ -182,14 +194,14 @@
                 dataType:'json',
                 data : {'dui_docente': val, 'codigo_materia': value, 'accion': accion},
                 success: function(data){
-                  var optionsText;
+                  var optionsText = '<option class="opt" value="default">--Seleccione una evaluacion--</option>';
                   console.log(data);
 
                   for( var i in data){
                     optionsText += '<option class="opt" value="'+data[i].pk+'">'+data[i].fields.nombre_evaluacion+'</option>';
                   }
 
-                  $('#evaluacionSelect').append(optionsText);
+                  $('#evaluacionSelect').html(optionsText);
                   $('#evaluacionesLista').css('display','block');
                   $('#evaluacionesLista').css('padding-top','5px');
                 },
