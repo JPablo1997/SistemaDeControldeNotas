@@ -2,10 +2,30 @@
 {% block title %}Alumnos{% endblock %}
 {% block act_inicio %}{% endblock %}
 {% block act_alumnos %}active{% endblock %}
+{% block extracss %}
+<style type="text/css">
+input {
+  margin-right: 10px;
+}
+
+input:invalid ~ span:after {
+    content: '✖';
+    padding-left: 5px;
+    position: absolute:
+}
+
+input:valid ~ span:after {
+    content: '✓';
+    padding-left: 5px;
+    position: absolute:
+}
+	
+</style>
+{% endblock %}
 {% block content %}
 <br>
 <div class="row">
-	<div class="col-md-2">
+	<div class="col-md-2" >
 		<dt class="text-center">BUSQUEDA</dt>
 		<hr>
 		<hr>
@@ -33,61 +53,113 @@
 		<dt class="text-center">Docente Encargado</dt>
 		<dd id="docente" class="text-center">-----------------</dd>
 		<hr>
+		<div class="text-center col" >
+			<dt>Codigo de Grupo: <div id="grupo_id">00</div></dt>
+		</div>
+		<hr>
+		<hr>
 		<dt class="text-center"><a class="btn btn-primary" href="{% url 'crear_grado'%}">Crear Grado</a></dt>
 	</div>
 	<div class="col-md-10">
-		
-		
-		<form method="post" id="form_alumno">
+		<div class="panel-group">
+		  <div class="panel panel-default">
+		    <div class="panel-heading">
+		      <h4 class="panel-title">
+		        <button data-toggle="collapse" href="#collapse1" id="boton_collapse" class="btn btn-info" disabled>Formulario de Registro</button>
+		      </h4>
+		      <hr>
+		    </div>
+		    <div id="collapse1" class="panel-collapse collapse">
+		      <form method="post" id="form_alumno">
 			{% csrf_token %}
+			<h4>Datos del Alumno</h4>
 			<hr>
 			<dt>Campos Obligatorios:</dt>
 			<div class="row">
 				<div class="form-group col-md-2">
-					<label class="sr-only" for="nie">Nombre: </label>
-					<input class="form-control" id="nie" type="text" placeholder="NIE:">
+					<label class="sr-only" for="nie">NIE: </label>
+					<input class="form-control" name="nie" id="nie" type="text" placeholder="NIE:" required>
 				</div>
 				<div class="form-group col-md-4">
-					<label class="sr-only" for="nie">Nombre: </label>
-					<input class="form-control" id="nie" type="text" placeholder="Nombres:">
+					<label class="sr-only" for="nombre_alumno">Nombres: </label>
+					<input class="form-control" name="nombre_alumno" id="nombre_alumno" type="text" placeholder="Nombres:" required>
 				</div>
 				<div class="form-group col-md-4">
-					<label class="sr-only" for="nie">Nombre: </label>
-					<input class="form-control" id="nie" type="text" placeholder="Apellidos:">
+					<label class="sr-only" for="apellidos_alumno">Apellidos: </label>
+					<input class="form-control" name="apellidos_alumno" id="apellidos_alumno" type="text" placeholder="Apellidos:" required>
 				</div>
 				<div class="form-group col-md-2">
-					<select name="" id="" class="form-control">
-						<option value="">Masculino</option>
-						<option value="">Femenino</option>
+					<select name="sexo_alumno" id="sexo_alumno" class="form-control" required>
+						<option disabled value="" selected hidden>Genero</option>
+						<option value="M">Masculino</option>
+						<option value="F">Femenino</option>
 					</select>
 				</div>
 			</div>
-			<hr>
+			
 			<dt>Campos Opcionales:</dt>
 			<div class="row">
-				<div class="form-group col">
-				<label class="sr-only" for="nie">Nombre: </label>
-				<input class="form-control" id="nie" type="text" placeholder="Direccion">
-			</div>
-			<div class="form-group col">
-				<label class="sr-only" for="nie">Nombre: </label>
-				<input class="form-control" id="nie" type="text" placeholder="Telefono:">
-			</div>
-			<div class="ml-auto text-center col" >
-				<dt>Codigo de Grupo: <div id="grupo_id">00</div></dt>
-			</div>
-			<div class="col">
-				<button id="boton" class="btn btn-danger ml-auto">Agregar Alumno</button>
-			</div>
+				<div class="form-group col-md-3">
+				<label class="sr-only" for="direccion_alumno">Direccion: </label>
+				<input class="form-control" name="direccion_alumno" id="direccion_alumno" type="text" placeholder="Direccion">
+				</div>
+				<div class="form-group col-md-2">
+					<label class="sr-only" for="telefono_alumno">Telefono: </label>
+					<input class="form-control" name="telefono_alumno" id="telefono_alumno" type="text" placeholder="Telefono:">
+				</div>
+				
 			
 			</div>
-	
-		</form>	
+			<hr>
+			<h4>Datos de su Encargado</h4>
+			<div class="row">
+				<div class="form-group col-md-2">
+				<label class="sr-only" for="dui_encargado">DUI: </label>
+				<input class="form-control" name="dui_encargado" id="dui_encargado" type="text" placeholder="DUI:" required>
+				</div>
+				<div class="form-group col-md-4">
+				<label class="sr-only" for="nombre_encargado">Nombres: </label>
+				<input class="form-control" name="nombre_encargado" id="nombre_encargado" type="text" placeholder="Nombres:" required>
+				</div>
+				<div class="form-group col-md-4">
+				<label class="sr-only" for="apellidos_encargado">Apellidos: </label>
+				<input class="form-control" name="apellidos_encargado" id="apellidos_encargado" type="text" placeholder="Apellidos:" required>
+				</div>
+				
+			</div>			
+			<div class="row">
+				<div class="form-group col-md-2">
+				<label class="sr-only" for="telefono_encargado">Telefono: </label>
+				<input class="form-control" name="telefono_encargado" id="telefono_encargado" type="text" placeholder="Telefono:">
+				</div>
+				<div class="form-group col-md-2">
+				<label class="sr-only" for="celular_encargado">Celular: </label>
+				<input class="form-control" name="celular_encargado" id="celular_encargado" type="text" placeholder="Celular(Opcional):">
+				</div>
+				<div class="form-group col-md-3">
+					<select name="parentesco" id="parentesco" class="form-control">
+						<option disabled value="" selected hidden>Seleccione Parentesco</option>
+						<option value="Madre">Madre</option>
+						<option value="Padre">Padre</option>
+					</select>
+				</div>
+				<div class="col"></div>
+				<div class="col">
+					<button id="boton" class="btn btn-danger ml-auto">Agregar Alumno</button>
+				</div>
+			</div>
+			<hr>
+		</form>
+		    </div>
+		  </div>
+		</div>
 		
-		<hr>
+			
+		
+		
 		<div class="table-responsive">
 			<table class="table table-bordered table-hover">
-				<thead class="table-success text-center">
+				<thead class="table-dark text-center">
 					<th>#</th>
 					<th>NIE</th>
 					<th>Nombre</th>
@@ -96,12 +168,13 @@
 					<th>Direccion</th>
 					<th>Telefono</th>
 					<th>Acciones</th>
+					
 				</thead>
 				<tbody class="text-center" id="cam_alumnos">				
 					
 				</tbody>
 			</table>
-			<h1 class="text-center">No Hay Datos</h1>
+			<h4 id="estado_alumnos" class="text-center">No Hay Datos</h4>
 		</div>
 	</div>	
 </div>
@@ -134,9 +207,24 @@
 		 			html3='<dd>-----------------</dd>';
 		 			$('#boton').attr("disabled", true);
 		 			$('#grupo_id').html('00');
-		 			
+		 			$('#boton_collapse').attr("disabled", true);
+		 			$('#estado_alumnos').html('No Hay Datos');
+		 			$('#cam_alumnos').html('');
+		 			$('#boton_collapse').attr("aria-expanded", false);
+		 			$('#boton_collapse').addClass("collapsed");
+		 			$('#collapse1').removeClass("show");
+		 			$('#form_alumno')[0].reset();
 		 		}
-		 		$('#boton').attr("disabled", true);	 		
+		 		else{
+		 			$('#cam_alumnos').html('');
+                	$('#estado_alumnos').html('No Hay Datos');
+                	$('#boton_collapse').attr("aria-expanded", false);
+		 			$('#boton_collapse').addClass("collapsed");
+		 			$('#collapse1').removeClass("show");
+		 			$('#form_alumno')[0].reset();
+		 		}
+		 		$('#boton').attr("disabled", true);
+		 		$('#boton_collapse').attr("disabled", true);	 		
 		 		$('#grupo_id').html('00');
 		 		$('#especialidad').html(html);
 		 		$('#seccion').html(html2);
@@ -156,7 +244,8 @@
 		 	url:'{% url "busqueda_seccion" %}',
 		 	type:'get',
 		 	success:function(data) {
-		 		var html="";		 		
+		 		var html="";
+		 		var mensaje_alumnos;		 		
 		 		html+='<option value="0">Seleccione Opcion</option>';
 		 		var html2='<dd>-----------------</dd>';
 		 		for(var i = 0; i<data.length; i++){
@@ -167,8 +256,26 @@
 		 			html2='<dd>-----------------</dd>';
 		 			$('#boton').attr("disabled", true);
 		 			$('#grupo_id').html('00');
+		 			$('#boton_collapse').attr("disabled", true);
+		 			$('#boton_collapse').attr("aria-expanded", false);
+		 			$('#boton_collapse').addClass("collapsed");
+		 			$('#collapse1').removeClass("show");
+		 			$('#estado_alumnos').html('No Hay Datos');
+		 			$('#cam_alumnos').html('');
+		 			$('#form_alumno')[0].reset();
 		 		}
+		 		else{
+                	$('#cam_alumnos').html('');
+                	$('#estado_alumnos').html('No Hay Datos');
+                	$('#boton_collapse').attr("aria-expanded", false);
+		 			$('#boton_collapse').addClass("collapsed");
+		 			$('#collapse1').removeClass("show");
+		 			$('#form_alumno')[0].reset();
+                }
+		 		$('#cam_alumnos').html('');
+                $('#estado_alumnos').html('No Hay Datos');
 		 		$('#boton').attr("disabled", true);
+		 		$('#boton_collapse').attr("disabled", true);
 		 		$('#grupo_id').html('00');
 		 		$('#seccion').html(html);
 		 		$('#docente').html(html2); 
@@ -187,18 +294,73 @@
 		 	url:'{% url "busqueda_docente" %}',
 		 	type:'get',
 		 	success:function(data) {
-		 		var html="";		 		
+		 		var html="";
+		 		var mensaje_alumnos;		 		
 		 		for(var i = 0; i<data.length; i++){
 		 			html += '<dd class="text-center">'+data[i].fields.nombre_docente+" "+data[i].fields.apellidos_docente+'</dd>';
 		 		}		 		
 		 		if (seccion==0) {
 		 			html+='<dd>-----------------</dd>';
 		 			$('#boton').attr("disabled", true);
+		 			$('#boton_collapse').attr("disabled", true);
+		 			$('#boton_collapse').attr("aria-expanded", false);
+		 			$('#boton_collapse').addClass("collapsed");
+		 			$('#collapse1').removeClass("show");
+		 			$('#form_alumno')[0].reset();
 		 		}
 		 		else {
 		 			$('#boton').attr("disabled", false);
+		 			$('#boton_collapse').attr("disabled", false);
+		 			$('#boton_collapse').attr("aria-expanded", false);
+		 			$('#boton_collapse').addClass("collapsed");
+		 			$('#collapse1').removeClass("show");
+		 			$('#form_alumno')[0].reset();
 		 		}
 		 		$('#docente').html(html); 
+		 	}		 	
+		});
+		$.ajax({
+		 	data:{'especialidad':especialidad,'nivel':nivel,'seccion':seccion},
+		 	url:'{% url "busqueda_alumnos" %}',
+		 	type:'get',
+		 	success:function(data) {
+		 		var html="";
+                var mensaje_alumnos;
+                if(data.length==0){
+                	
+                	
+                }
+                else{
+                	for(var i=0;i<data.length;i++){
+                	
+                	html+='<tr><td>'+(i+1)+'</td><td>'+data[i].pk+'</td><td>'+data[i].fields.nombre_alumno+' '+data[i].fields.apellidos_alumno+'</td><td>'+data[i].fields.sexo_alumno+'</td><td>'+data[i].fields.anio_ingreso+'</td><td>'+data[i].fields.direccion_alumno+'</td><td>'+data[i].fields.telefono_alumno+'</td><td><a href="#" class="btn btn-default btn-xs"><span class="fas fa-pencil-alt"></span></a><a href="#" class="btn btn-default btn-xs"><span class="fas fa-th-large"></span></a><a href="#"                        class="btn btn-default btn-xs"><span class="fas fa-trash"></span></a></td></tr>';
+
+                	
+                }
+                }
+             
+                if(seccion==0){
+                	html='';
+                	mensaje_alumnos='No Hay Datos';
+                	$('#boton_collapse').attr("aria-expanded", false);
+		 			$('#boton_collapse').addClass("collapsed");
+		 			$('#collapse1').removeClass("show");
+		 			$('#form_alumno')[0].reset();
+                	
+                }
+                else{
+                	if(data.length==0){
+                	
+                	html='';
+                	mensaje_alumnos='No hay Alumnos Agregado a este Grupo';
+                	}
+                	else{
+                		mensaje_alumnos='';
+                	}
+                }
+                $('#form_alumno')[0].reset();
+                $('#estado_alumnos').html(mensaje_alumnos);
+                $('#cam_alumnos').html(html); 
 		 	}		 	
 		});
 		$.get({
@@ -215,6 +377,7 @@
 		 		if (seccion==0) {
 		 			html+='00';
 		 			$('#boton').attr("disabled", true);
+		 			$('#form_alumno')[0].reset();
 		 		}
 		 		else {
 		 			$('#boton').attr("disabled", false);
@@ -226,27 +389,71 @@
 	}
 	$('#form_alumno').on('submit',guardar_alumno);
 	function guardar_alumno () {
+		//Recoge el grupo en el que esta ubicado
 		var grupo=$('#grupo_id').text();
-		
+		//Recoger Datos del Alumno
+		var nie=$('#nie').val();
+		var nombre_alumno=$('#nombre_alumno').val();
+		var apellidos_alumno=$('#apellidos_alumno').val();
+		var sexo_alumno=$('#sexo_alumno').val();
+		var direccion_alumno=$('#direccion_alumno').val();
+		var telefono_alumno=$('#telefono_alumno').val();
+		//Recoger Datos del Encargado
+		var dui_encargado=$('#dui_encargado').val();
+		var nombre_encargado=$('#nombre_encargado').val();
+		var apellidos_encargado=$('#apellidos_encargado').val();
+		var telefono_encargado=$('#telefono_encargado').val();
+		var celular_encargado=$('#celular_encargado').val();
+		var parentesco=$('#parentesco').val();
+		//Recogemos la especialidad
+		var especialidad = $('#especialidad').val();
 		$.ajax({
-			data: {'grupo':grupo,csrfmiddlewaretoken:'{{ csrf_token }}'}, // get the form data
+			data: {'nie':nie,'nombre_alumno':nombre_alumno,'apellidos_alumno':apellidos_alumno,'sexo_alumno':sexo_alumno,'direccion_alumno':direccion_alumno,'telefono_alumno':telefono_alumno,'dui_encargado':dui_encargado,'nombre_encargado':nombre_encargado,'apellidos_encargado':apellidos_encargado,'telefono_encargado':telefono_encargado,'celular_encargado':celular_encargado,'parentesco':parentesco, 'grupo':grupo,'especialidad':especialidad,csrfmiddlewaretoken:'{{ csrf_token }}'}, // get the form data
             type: $(this).attr('method'), // GET or POST
             url: '{% url "guardar_alumno" %}', // the file to call
             success: function(data) { // on success..
                 var html="";
-                console.log(data);
+                
                 for(var i=0;i<data.length;i++){
                 	
-                	html+='<tr><td>'+(i+1)+'</td><td>'+data[i].pk+'</td><td>'+data[i].fields.nombre_alumno+'</td><td>'+data[i].fields.sexo_alumno+'</td><td>'+data[i].fields.anio_ingreso+'</td><td>'+data[i].fields.direccion_alumno+'</td><td>'+data[i].fields.telefono_alumno+'</td><td><a href="#" class="btn btn-default btn-xs"><span class="fas fa-pencil-alt"></span></a><a href="#" class="btn btn-default btn-xs"><span class="fas fa-th-large"></span></a><a href="#"                        class="btn btn-default btn-xs"><span class="fas fa-trash"></span></a></td></tr>';
+                	html+='<tr><td>'+(i+1)+'</td><td>'+data[i].pk+'</td><td>'+data[i].fields.nombre_alumno+' '+data[i].fields.apellidos_alumno+'</td><td>'+data[i].fields.sexo_alumno+'</td><td>'+data[i].fields.anio_ingreso+'</td><td>'+data[i].fields.direccion_alumno+'</td><td>'+data[i].fields.telefono_alumno+'</td><td><a href="#" class="btn btn-default btn-xs"><span class="fas fa-pencil-alt"></span></a><a href="#" class="btn btn-default btn-xs"><span class="fas fa-th-large"></span></a><a href="#"                        class="btn btn-default btn-xs"><span class="fas fa-trash"></span></a></td></tr>';
                 }
                 $('#cam_alumnos').html(html);
+                $('#form_alumno')[0].reset();
+                
             }
 
 
 		});
 		return false;
-		// body... 
+		 
 	}
+
+	$('#dui_encargado').autocomplete({
+		minLength:3,
+		source:function(req,add) {
+			var search=$(this).val();
+			$.ajax({
+				async:false,
+				dataType:'json',
+				data:{'search':search},
+				type:'get',
+				url:'{% url "busqueda_dui_encargado" %}',
+				
+				success:function(data) {
+					var suggestion=[];
+
+					$.each(data,function(index,objeto) {
+						suggestion.push(objeto.value); 
+					});
+					add(suggestion);
+				},
+				error:function(err) {
+					alert('error'); 
+				}
+			}); 
+		}
+	});
 	
 	
 </script>

@@ -30,6 +30,9 @@ urlpatterns = [
     url(r'^servidorIngresarNotas/$',login_required(servidorIngresarNotas),name="servidorIngresarNotas"),
     url(r'^estadisticas/$',login_required(DatosEstadisticos),name="estadisticas"),
     url(r'^expediente/$',login_required(Expediente),name="expediente"),
+    url(r'^buscarPeriodos/$',login_required(BuscarPeriodos),name="buscarPeriodos"),
+    url(r'^buscarNotas/$',login_required(BuscarNotas),name="buscarNotas"),
+    url(r'^promedios/$',login_required(PromedioFin),name="promedios"),
     url(r'^administrar/$',login_required(administrarNotas),name="administrar"),
     url(r'^Anotacion/$',login_required(anotacion),name="Anotacion"),
     url(r'^administrarMaterias/$',login_required(MateriaList.as_view()),name="administrarMaterias"),
@@ -53,10 +56,12 @@ urlpatterns = [
     url(r'^busqueda_docente/$',login_required(BusquedaDocente.as_view()),name="busqueda_docente"),
     url(r'^busqueda_grupo/$',login_required(BusquedaGrupo.as_view()),name="busqueda_grupo"),
     url(r'^guardar_alumno/$',login_required(RegistroAlumno.as_view()),name="guardar_alumno"),
+    url(r'^busqueda_alumnos/$',login_required(BusquedaAlumno.as_view()),name="busqueda_alumnos"),
+    url(r'^busqueda_dui_encargado/$',login_required(BusquedaDuiEncargado.as_view()),name="busqueda_dui_encargado"),
 
     #Finalizacion de la parte de alumnos
     url(r'^servidorActividades/$',login_required(servidorActividades),name="servidorActividades"),
-     url(r'^actualizarUser/$',login_required(actualizarUser),name="actualizarUser"),
+    url(r'^actualizarUser/$',login_required(actualizarUser),name="actualizarUser"),
 
 
      url(r'^CargarGrupos/$',login_required(CargarGrupos),name="CargarGrupos"),
