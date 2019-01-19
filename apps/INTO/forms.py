@@ -142,10 +142,10 @@ class MateriaForm(forms.ModelForm):
         }
 
         widgets = {
-            'codigo_materia' : forms.TextInput(attrs={'class':'form-control'}),
-            'nombre_materia' : forms.TextInput(attrs={'class':'form-control'}),
-            'descripcion_materia' : forms.TextInput(attrs={'class':'form-control'}),
-            'objetivos' : forms.TextInput(attrs={'class':'form-control'}),
+            'codigo_materia' : forms.TextInput(attrs={'class':'form-control','placeholder':'Escriba el Codigo de la Materia'}),
+            'nombre_materia' : forms.TextInput(attrs={'class':'form-control','placeholder':'Escriba el Nombre de la Materia'}),
+            'descripcion_materia' : forms.Textarea(attrs={'rows':3, 'class':'form-control','placeholder':'Escriba la Descripcion de la Materia'}),
+            'objetivos' : forms.Textarea(attrs={'rows':3, 'class':'form-control','placeholder':'Escriba el Objetivo de la Materia'}),
         }
 
 class AnotacionForm(forms.ModelForm):

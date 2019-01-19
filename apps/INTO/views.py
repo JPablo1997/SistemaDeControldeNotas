@@ -556,15 +556,7 @@ def CargarGrupos(request):
 		pass
 
 def materia_view(request):
-#	if request.method == 'POST':
-#		form = MateriaForm(request.POST)
-#		if form.is_valid():
-#			form.save()
-#		return redirect('/into/administrarMaterias')
-#	else:
-#		form = MateriaForm()
-#	return render(request, 'administrarMaterias/agregarMateria.html', {'form' : form})
-#   si el metodo es POST Hacer esto
+
 	if 'guardarAsignaciones' in request.POST:
 		docente = Docente.objects.get(dui_docente = request.POST['docente'])
 		materia = Materia.objects.get(codigo_materia = request.POST['materia'])
