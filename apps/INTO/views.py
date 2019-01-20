@@ -606,12 +606,6 @@ class MateriaList(ListView):
 	template_name = 'administrarMaterias/administrarMaterias.html'
 	ordering = ['codigo_materia']
 
-class MateriaCreate(CreateView):
-	model = Materia
-	form_class = MateriaForm
-	template_name = 'administrarMaterias/agregarMateria.html'
-	success_url = reverse_lazy('administrarMaterias')
-
 def CargarGrupos(request):
 
 	grupos = []
@@ -646,15 +640,7 @@ def CargarGrupos(request):
 		pass
 
 def materia_view(request):
-#	if request.method == 'POST':
-#		form = MateriaForm(request.POST)
-#		if form.is_valid():
-#			form.save()
-#		return redirect('/into/administrarMaterias')
-#	else:
-#		form = MateriaForm()
-#	return render(request, 'administrarMaterias/agregarMateria.html', {'form' : form})
-#   si el metodo es POST Hacer esto
+
 	if 'guardarAsignaciones' in request.POST:
 		docente = Docente.objects.get(dui_docente = request.POST['docente'])
 		materia = Materia.objects.get(codigo_materia = request.POST['materia'])
@@ -695,17 +681,17 @@ def materia_view(request):
 
 			for especialidad in especialidades:
 
-				if '1_'+especialidad.codigo_especialidad in request.POST:
+				if '1_'+especialidad.codigo_especialidad in request.POST[especialidad.codigo_especialidad]:
 					num = Especialidad_Materia.objects.all().count()
 					especialidad_materia = Especialidad_Materia(num + 1, codigo_especialidad = especialidad, codigo_materia = materia, nivel_materia_especialidad = 1)
 					especialidad_materia.save()
 					pass
-				elif '2_'+especialidad.codigo_especialidad in request.POST:
+				elif '2_'+especialidad.codigo_especialidad in request.POST[especialidad.codigo_especialidad]:
 					num = Especialidad_Materia.objects.all().count()
 					especialidad_materia = Especialidad_Materia(num + 1, codigo_especialidad = especialidad, codigo_materia = materia, nivel_materia_especialidad = 2)
 					especialidad_materia.save()
 					pass
-				elif '3_'+especialidad.codigo_especialidad in request.POST:
+				elif '3_'+especialidad.codigo_especialidad in request.POST[especialidad.codigo_especialidad]:
 					num = Especialidad_Materia.objects.all().count()
 					especialidad_materia = Especialidad_Materia(num + 1, codigo_especialidad = especialidad, codigo_materia = materia, nivel_materia_especialidad = 3)
 					especialidad_materia.save()
@@ -728,14 +714,11 @@ def materia_edit(request, codigo_materia):
 	materia = Materia.objects.get(pk=codigo_materia)
 	if request.method == 'GET':
 		form = MateriaForm(instance=materia)
-		especialidad=Especialidad.objects.all()
+		especialidad=Especialidad.objects.all().order_by('-anios_especialidad')
 		docente=Docente.objects.all()
-
 		docente_materia=Docente_Materia.objects.all()
-		especialidad_materia=Especialidad_Materia.objects.all()
-		grupos=Grupo.objects.all()
-		
-		contexto={'form':form,'docente':docente,'especialidad':especialidad,'especialidad_materia':especialidad_materia, 'docente_materia':docente_materia, 'grupos':grupos}
+		especialidad_materia=Especialidad_Materia.objects.all()		
+		contexto={'form':form,'docente':docente,'especialidad':especialidad,'especialidad_materia':especialidad_materia, 'docente_materia':docente_materia}
 	else:
 		form = MateriaForm(request.POST, instance=materia)
 		if form.is_valid():
