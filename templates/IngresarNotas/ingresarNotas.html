@@ -90,7 +90,16 @@
                   </table>
                   <input type="submit" class="btn btn-primary" name="btnCargarAlumnos" value="Cargar alumnos">
                 </form>
+            </div>
+            <div id="no_grupos" style="display: none; text-align: center;" class="offset-2 col-8">
+              <div class="alert alert-warning alert-dismissible fade show" role="alert" style="text-align: center;">
+                <h5><strong>Atencion!</strong> No hay grupos asignados a usted en esta materia, favor ponerse en contacto con el administrador.</h5>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
               </div>
+              <a href="." style="text-align: center; margin: auto;"><h3>Regresar</h3></a>
+            </div><br><br>
       <script type="text/javascript">
         $(document).ready(function () {
           $('#materiaSelect').on('change', function(){
@@ -136,15 +145,20 @@
                   dataType:'json',
                   data : {'codigo_materia': value, 'accion': accion},
                   success: function(data){
+                    console.clear();
                     console.log(data);
-
-                    var htmlText;
-                    for (var i in data) {
-                      htmlText += '<tr><td><label>'+ data[i].fields.nivel_especialidad+'</label></td><td><label>'+data[i].fields.seccion+'</label></td><td><label>'+data[i].fields.codigo_especialidad+'</label></td><td><input type="checkbox" name="'+data[i].pk+'"></td>tr>';   
-                    }
-                    $('#tbody').html(htmlText);
-                    $('#grupos').css('display','block');
-                    $('#txtCodigoEvaluado').val($('#evaluacionSelect').val());
+                      var htmlText = '';
+                      for (var i in data) {
+                        htmlText += '<tr><td><label>'+ data[i].fields.nivel_especialidad+'</label></td><td><label>'+data[i].fields.seccion+'</label></td><td><label>'+data[i].fields.codigo_especialidad+'</label></td><td><input type="checkbox" name="'+data[i].pk+'"></td>tr>';   
+                      }
+                      
+                      if (htmlText != '') {
+                        $('#tbody').html(htmlText);
+                        $('#grupos').css('display','block');
+                        $('#txtCodigoEvaluado').val($('#evaluacionSelect').val());
+                      } else {
+                        $('#no_grupos').css('display','block');
+                      }
                   },
                   error: function(xhr, status, error){
                     console.log(xhr);
