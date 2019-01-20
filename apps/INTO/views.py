@@ -304,12 +304,19 @@ class BusquedaAlumno(TemplateView):
 		return HttpResponse(data, content_type='application/json')
 
 class BusquedaDuiEncargado(TemplateView):
-	def get(self,request,*args,**kwargs):
-		duidocente=[]
+	def get(self,request,*args,**kwargs):		
 		dui_encargado=request.GET['search']
-		dui=Encargado.objects.filter(dui_encargado=dui_encargado)
+		dui=Encargado.objects.filter(dui_encargado__contains=dui_encargado)
 		data=serializers.serialize('json',dui)
 		return HttpResponse(data,content_type='application/json')
+
+class BusquedaEncargado(TemplateView):
+ 	def get(self,request,*args,**kwargs):
+ 		dui_encargado=request.GET['dui_encargado']
+ 		dui=Encargado.objects.filter(dui_encargado__contains=dui_encargado)
+ 		data=serializers.serialize('json',dui)
+ 		return HttpResponse(data,content_type='application/json')
+
 		
 #Finalizacion de el retorno de objetos JSON
 #Finalizacion de la parte de alumnos

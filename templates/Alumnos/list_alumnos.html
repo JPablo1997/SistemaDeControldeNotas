@@ -115,7 +115,7 @@ input:valid ~ span:after {
 			<div class="row">
 				<div class="form-group col-md-2">
 				<label class="sr-only" for="dui_encargado">DUI: </label>
-				<input class="form-control" name="dui_encargado" id="dui_encargado" type="text" placeholder="DUI:" required>
+				<input class="form-control" name="dui_encargado" id="dui_encargado" type="text" placeholder="DUI:" required autocomplete="on">
 				</div>
 				<div class="form-group col-md-4">
 				<label class="sr-only" for="nombre_encargado">Nombres: </label>
@@ -428,32 +428,66 @@ input:valid ~ span:after {
 		return false;
 		 
 	}
-
+	
 	$('#dui_encargado').autocomplete({
-		minLength:3,
+		
 		source:function(req,add) {
-			var search=$(this).val();
+			var search=$('#dui_encargado').val();
 			$.ajax({
-				async:false,
-				dataType:'json',
+				
 				data:{'search':search},
 				type:'get',
 				url:'{% url "busqueda_dui_encargado" %}',
 				
 				success:function(data) {
+					
 					var suggestion=[];
-
-					$.each(data,function(index,objeto) {
-						suggestion.push(objeto.value); 
-					});
+					
+					for(var i=0;i<data.length;i++){
+						suggestion.push(data[i].pk);
+					}
 					add(suggestion);
-				},
-				error:function(err) {
-					alert('error'); 
 				}
+				
 			}); 
 		}
 	});
+
+	$('#dui_encargado').on('change paste',completar_campos_encargado);
+	function completar_campos_encargado () {
+		var dui_encargado=$('#dui_encargado').val();
+		$.ajax({				
+				data:{'dui_encargado':dui_encargado},
+				type:'get',
+				url:'{% url "busqueda_encargado" %}',
+				
+				success:function(data) {
+					
+					if(data.length==0 || $('#dui_encargado').val().length <= 0){
+						$('#nombre_encargado').val('');
+						$('#apellidos_encargado').val('');
+						$('#telefono_encargado').val('');
+						$('#celular_encargado').val('');
+						$('#parentesco').val('');
+
+					}
+					else{
+						for(var i=0;i<data.length;i++){
+
+							$('#nombre_encargado').val(data[i].fields.nombre_encargado);
+							$('#apellidos_encargado').val(data[i].fields.apellidos_encargado);
+							$('#telefono_encargado').val(data[i].fields.telefono);
+							$('#celular_encargado').val(data[i].fields.celular);
+							$('#parentesco').html('<option value="'+data[i].fields.parentesco+'">'+data[i].fields.parentesco+'</option>');
+						}
+					}
+					
+				}
+				
+		});
+	}
+
+	
 	
 	
 </script>
