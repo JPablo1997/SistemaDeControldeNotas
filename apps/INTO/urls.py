@@ -50,7 +50,7 @@ urlpatterns = [
     #Parte de Alumnos
 
     url(r'^ListadoAlumnos/$',login_required(ListadoAlumnos.as_view()),name="alumno_list"),
-    url(r'^ListadoAlumnos/creargrado$',login_required(CrearGrado2.as_view()),name="crear_grado"),
+    url(r'^ListadoAlumnos/creargrado$',login_required(CrearGrado.as_view()),name="crear_grado"),
     url(r'^busqueda_especialidad/$',login_required(BusquedaEspecialidad.as_view()),name="busqueda_especialidad"),
     url(r'^busqueda_seccion/$',login_required(BusquedaSeccion.as_view()),name="busqueda_seccion"),
     url(r'^busqueda_docente/$',login_required(BusquedaDocente.as_view()),name="busqueda_docente"),
@@ -59,6 +59,10 @@ urlpatterns = [
     url(r'^busqueda_alumnos/$',login_required(BusquedaAlumno.as_view()),name="busqueda_alumnos"),
     url(r'^busqueda_dui_encargado/$',login_required(BusquedaDuiEncargado.as_view()),name="busqueda_dui_encargado"),
     url(r'^busqueda_encargado/$',login_required(BusquedaEncargado.as_view()),name="busqueda_encargado"),
+    path('eliminarAlumno/<str:nie>/',login_required(delete_alumno),name='alumno-delete'),
+    path('detalleAlumno/<str:nie>/',login_required(alumno_detalle),name='alumno_detalle'),
+    url(r'^alumnoupdate/$',login_required(AlumnoUpdate.as_view()),name="alumno_update"),
+    url(r'^encargadoupdate/$',login_required(EncargadoUpdate.as_view()),name="encargado_update"),
     #Finalizacion de la parte de alumnos
     url(r'^servidorActividades/$',login_required(servidorActividades),name="servidorActividades"),
     url(r'^actualizarUser/$',login_required(actualizarUser),name="actualizarUser"),

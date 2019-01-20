@@ -49,7 +49,7 @@ def creardocente(request):
 			usuario.first_name=docente.nombre_docente
 			usuario.last_name=docente.apellidos_docente
 			usuario.email=docente.email_docente
-
+			usuario.is_staff=True
 			#Creamos la contraseña
 			algorit1=str(docente.apellidos_docente)
 			algorit1=algorit1.split(maxsplit = 1)
@@ -62,7 +62,7 @@ def creardocente(request):
 			#Hacemos una consulta a la tabla user del username(nombre del docente)		
 			id_docente = User.objects.get(username=str(nombredeusuario))	
 			#Hacemos una consulta a la tabla de tipos de usuario para traer el de tipo docente
-			id_tipo_usuario = TipoUsuario.objects.get(codigo_tipo_usuario="2")
+			id_tipo_usuario = TipoUsuario.objects.get(codigo_tipo_usuario="docente")
 			#Asignamos el id del cocente de la tabla user para ponero en la tabla de tipo decente
 			docente.usuario_docente=id_docente
 			#Guardamos el docente 
@@ -122,6 +122,7 @@ def docente_edit(request,id_del_docente):
 			usuario.first_name=docente.nombre_docente
 			usuario.last_name=docente.apellidos_docente
 			usuario.email=docente.email_docente
+			usuario.is_staff=True
 			#Reseteamos la contraseña porDefecto
 			algorit1=str(docente.apellidos_docente)
 			algorit1=algorit1.split(maxsplit = 1)
@@ -139,15 +140,8 @@ def docente_edit(request,id_del_docente):
 class ListadoAlumnos(TemplateView):
 	template_name="Alumnos/list_alumnos.html"
 
-class CrearGrado(CreateView):
-	template_name="Alumnos/crear_grado.html"
-	model = Grupo
-	form_class=GradoForm
-	success_url = reverse_lazy('alumno_list')
 
-
-class CrearGrado2(TemplateView):
-	
+class CrearGrado(TemplateView):	
 	def post(self, request, *args, **kwargs):
 		grado=Grupo()
 		secciones=("A","B","C","D","E","F")	
@@ -238,11 +232,12 @@ class RegistroAlumno(TemplateView):
 		encargado=Encargado()
 		usuario=User()
 		alumnoGrupo=Alumno_Grupo()
+		tipodeusuario=asignacionTipoUsuario()
 		#Resivimos los datos que vienen del post
 		#Codigo de Grupo
 		codigo_grupo=request.POST['grupo']
 		#Datos del Alumno y los asignamos al objeto
-		alumno.nie=request.POST['nie']
+		alumno.nie=request.POST['nie']		
 		alumno.nombre_alumno=request.POST['nombre_alumno']
 		alumno.apellidos_alumno=request.POST['apellidos_alumno']
 		alumno.sexo_alumno=request.POST['sexo_alumno']
@@ -259,31 +254,61 @@ class RegistroAlumno(TemplateView):
 		encargado.telefono=request.POST['telefono_encargado']
 		encargado.celular=request.POST['celular_encargado']
 		encargado.parentesco=request.POST['parentesco']
+		existencia_alumno=Alumno.objects.filter(nie=alumno.nie)
+		print(existencia_alumno.exists())
 		#Guardamos el encargado primero porque lo necesitamos para el alumno
-		encargado.save()
-		encargado_alumno=Encargado.objects.get(dui_encargado=encargado.dui_encargado)
-		alumno.encargado=encargado_alumno
+		if(existencia_alumno.exists()==True):
+			for x in Encargado.objects.filter(dui_encargado=str(encargado.dui_encargado)):
+				x.nombre_encargado=encargado.nombre_encargado
+				x.apellidos_encargado=encargado.apellidos_encargado
+				x.telefono=encargado.telefono
+				x.celular=encargado.celular
+				x.save()
+			for y in Alumno.objects.filter(nie=alumno.nie):
+				y.nombre_alumno=alumno.nombre_alumno
+				y.apellidos_alumno=alumno.apellidos_alumno
+				y.direccion_alumno=alumno.direccion_alumno
+				y.telefono_alumno=alumno.telefono_alumno
+				y.save()
+			for z in User.objects.filter(username=alumno.nie):
+				z.first_name=alumno.nombre_alumno
+				z.last_name=alumno.apellidos_alumno
+				z.save()		
+		
+		else:
+			encargado.save()
+			encargado_alumno=Encargado.objects.get(dui_encargado=encargado.dui_encargado)
+			alumno.encargado=encargado_alumno
 
-		#Ahora Guardamos el usuario igual se necesita para guardar el alumno
-		usuario.username=alumno.nie
-		usuario.first_name=alumno.nombre_alumno
-		usuario.last_name=alumno.apellidos_alumno
-		usuario.email=""
-		usuario.set_password("administrador10")
-		usuario.save()
-		usuario_alumno=User.objects.get(username=str(usuario.username))
-		alumno.usuario_alumno=usuario_alumno
-		alumno.save()
-		alumno_nie=Alumno.objects.get(nie=alumno.nie)
-		alumno_grupo=Grupo.objects.get(codigo_grupo=codigo_grupo)
-		alumnoGrupo.nie=alumno_nie
-		alumnoGrupo.codigo_grupo=alumno_grupo
-		alumnoGrupo.save();
-		alumnos4=[]
+			#Ahora Guardamos el usuario igual se necesita para guardar el alumno
+			usuario.username=alumno.nie
+			usuario.first_name=alumno.nombre_alumno
+			usuario.last_name=alumno.apellidos_alumno
+			usuario.email=""
+			usuario.is_staff=False
+			usuario.set_password("administrador10")
+			usuario.save()
+			usuario_alumno=User.objects.get(username=str(usuario.username))
+			alumno.usuario_alumno=usuario_alumno
+			alumno.save()
+			alumno_nie=Alumno.objects.get(nie=alumno.nie)
+			alumno_grupo=Grupo.objects.get(codigo_grupo=codigo_grupo)
+			alumnoGrupo.nie=alumno_nie
+			alumnoGrupo.codigo_grupo=alumno_grupo
+			alumnoGrupo.save();
+			
+			#Hacemos una consulta a la tabla de tipos de usuario para traer el de tipo docente
+			id_tipo_usuario = TipoUsuario.objects.get(codigo_tipo_usuario="alumno")
+			tipodeusuario.tipo_usuario=id_tipo_usuario
+			tipodeusuario.usuario=usuario_alumno		
+			tipodeusuario.save()
+
+		
+		alumnosTotales=[]
 		alumno=Alumno_Grupo.objects.filter(codigo_grupo=codigo_grupo)
 		for x in alumno:
-			alumnos4.append(Alumno.objects.get(nie=x.nie.nie))		
-		data = serializers.serialize('json',alumnos4)
+			alumnosTotales.append(Alumno.objects.get(nie=x.nie.nie))		
+		data = serializers.serialize('json',alumnosTotales)
 		return HttpResponse(data, content_type='application/json')
 
 class BusquedaAlumno(TemplateView):
@@ -294,8 +319,7 @@ class BusquedaAlumno(TemplateView):
 		grupo_docente =Grupo.objects.filter(nivel_especialidad=nivel, codigo_especialidad=especialidad,codigo_grupo=seccion)
 		grupo=""
 		for x in grupo_docente:
-			grupo=x.codigo_grupo
-		
+			grupo=x.codigo_grupo		
 		alumnos4=[]
 		alumno=Alumno_Grupo.objects.filter(codigo_grupo=str(grupo))
 		for x in alumno:
@@ -316,8 +340,38 @@ class BusquedaEncargado(TemplateView):
  		dui=Encargado.objects.filter(dui_encargado__contains=dui_encargado)
  		data=serializers.serialize('json',dui)
  		return HttpResponse(data,content_type='application/json')
-
+class AlumnoUpdate(TemplateView):
+	def get(self,request,*args,**kwargs):
+		nie=request.GET['nie']
+		alumno=Alumno.objects.filter(nie=nie)
+		data=serializers.serialize('json',alumno)		
+		return HttpResponse(data,content_type='application/json')
+class EncargadoUpdate(TemplateView):
+	def get(self,request,*args,**kwargs):
+		nie=request.GET['nie']
+		alumno=Alumno.objects.get(nie=nie)
 		
+		encargado=Encargado.objects.filter(dui_encargado=alumno.encargado.dui_encargado)
+		
+		data=serializers.serialize('json',encargado)
+		return HttpResponse(data,content_type='application/json')
+
+
+def delete_alumno(request,nie):
+	alumno = Alumno.objects.get(nie=nie)
+	usuario= User.objects.get(username=str(alumno.usuario_alumno))
+	tipoUsuario=asignacionTipoUsuario.objects.get(usuario_id=usuario.pk)
+
+	if request.method=='POST':
+		alumno.delete()
+		usuario.delete()
+		tipoUsuario.delete()
+		return redirect('alumno_list')
+	return render(request, 'Alumnos/alumno_delete.html', {'alumno':alumno})
+
+def alumno_detalle(request,nie):
+	alumno = Alumno.objects.get(nie=nie)
+	return render(request, 'Alumnos/detalle_alumno.html', {'alumno':alumno})
 #Finalizacion de el retorno de objetos JSON
 #Finalizacion de la parte de alumnos
 class Vista(TemplateView):
