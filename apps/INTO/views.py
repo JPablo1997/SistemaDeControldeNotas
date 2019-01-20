@@ -674,17 +674,17 @@ def materia_view(request):
 
 			for especialidad in especialidades:
 
-				if '1_'+especialidad.codigo_especialidad in request.POST:
+				if '1_'+especialidad.codigo_especialidad in request.POST[especialidad.codigo_especialidad]:
 					num = Especialidad_Materia.objects.all().count()
 					especialidad_materia = Especialidad_Materia(num + 1, codigo_especialidad = especialidad, codigo_materia = materia, nivel_materia_especialidad = 1)
 					especialidad_materia.save()
 					pass
-				elif '2_'+especialidad.codigo_especialidad in request.POST:
+				elif '2_'+especialidad.codigo_especialidad in request.POST[especialidad.codigo_especialidad]:
 					num = Especialidad_Materia.objects.all().count()
 					especialidad_materia = Especialidad_Materia(num + 1, codigo_especialidad = especialidad, codigo_materia = materia, nivel_materia_especialidad = 2)
 					especialidad_materia.save()
 					pass
-				elif '3_'+especialidad.codigo_especialidad in request.POST:
+				elif '3_'+especialidad.codigo_especialidad in request.POST[especialidad.codigo_especialidad]:
 					num = Especialidad_Materia.objects.all().count()
 					especialidad_materia = Especialidad_Materia(num + 1, codigo_especialidad = especialidad, codigo_materia = materia, nivel_materia_especialidad = 3)
 					especialidad_materia.save()
