@@ -78,18 +78,18 @@
           {% csrf_token %}
           <input type="text" style="display: none;" name="txtCodigoEvaluado" id="txtCodigoEvaluado">
           <table id="info" class="table">
-            <thead class="thead-dark">
+            <thead class="thead-dark" style="text-align: center;">
               <tr>
                 <th scope="col">Nivel especialidad</td>
-                  <th scope="col">Seccion</td>
-                    <th scope="col">Codigo especialidad</td>
-                      <th scope="col">Cargar alumnos</td>
-                      </tr>
-                    </thead>
-                    <tbody id="tbody"></tbody>
-                  </table>
-                  <input type="submit" class="btn btn-primary" name="btnCargarAlumnos" value="Cargar alumnos">
-                </form>
+                <th scope="col">Seccion</td>
+                <th scope="col">Codigo especialidad</td>
+                <th scope="col">Cargar alumnos</td>
+              </tr>
+            </thead>
+            <tbody id="tbody"></tbody>
+          </table>
+          <input type="submit" class="btn btn-primary" name="btnCargarAlumnos" value="Cargar alumnos">
+        </form>
             </div>
             <div id="no_grupos" style="display: none; text-align: center;" class="offset-2 col-8">
               <div class="alert alert-warning alert-dismissible fade show" role="alert" style="text-align: center;">

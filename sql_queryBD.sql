@@ -891,11 +891,92 @@ INSERT INTO "INTO_docente_materia"(id, codigo_docente_id, codigo_materia_id) VAL
 -----------------Docente_Materia_Grupo-------------------
 
 INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(1,1,'GP-01');
-INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(2,7,'GP-01');
-INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(3,13,'GP-01');
-INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(4,19,'GP-01');
-INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(5,25,'GP-01');
-INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(6,31,'GP-01');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(2,1,'GP-02');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(3,2,'GP-03');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(4,2,'GP-04');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(5,3,'GP-05');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(6,3,'GP-06');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(7,4,'GP-07');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(8,4,'GP-08');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(9,5,'GP-09');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(10,5,'GP-10');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(11,6,'GP-11');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(12,6,'GP-12');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(13,1,'GP-13');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(14,2,'GP-14');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(15,3,'GP-15');
+
+
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(16,7,'GP-01');
+
+
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(17,13,'GP-01');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(18,13,'GP-02');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(19,14,'GP-03');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(20,14,'GP-04');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(21,15,'GP-05');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(22,15,'GP-06');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(23,16,'GP-07');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(24,16,'GP-08');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(25,17,'GP-09');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(26,17,'GP-10');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(27,18,'GP-11');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(28,18,'GP-12');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(29,18,'GP-13');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(30,17,'GP-14');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(31,16,'GP-15');
+
+
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(32,19,'GP-01');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(33,19,'GP-02');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(34,20,'GP-03');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(35,20,'GP-04');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(36,21,'GP-05');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(37,21,'GP-06');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(38,22,'GP-07');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(39,22,'GP-08');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(40,23,'GP-09');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(41,23,'GP-10');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(42,24,'GP-11');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(43,24,'GP-12');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(44,19,'GP-13');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(45,20,'GP-14');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(46,23,'GP-15');
+
+
+
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(47,25,'GP-01');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(48,25,'GP-02');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(49,26,'GP-03');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(50,26,'GP-04');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(51,27,'GP-05');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(52,27,'GP-06');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(53,27,'GP-07');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(54,28,'GP-08');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(55,28,'GP-09');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(56,28,'GP-10');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(57,29,'GP-11');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(58,29,'GP-12');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(59,30,'GP-13');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(60,30,'GP-14');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(61,30,'GP-15');
+
+
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(62,31,'GP-01');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(63,31,'GP-02');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(64,32,'GP-03');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(65,32,'GP-04');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(66,33,'GP-05');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(67,33,'GP-06');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(68,34,'GP-07');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(69,34,'GP-08');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(70,35,'GP-09');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(71,35,'GP-10');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(72,36,'GP-11');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(73,36,'GP-12');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(74,31,'GP-13');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(75,34,'GP-14');
+INSERT INTO "INTO_docente_materia_grupo"(id, docente_materia_id, grupo_id) VALUES(76,35,'GP-15');
 
 
 
