@@ -2,8 +2,7 @@
 {% block title %} Materias {% endblock %}
 {% block content %}
 
-<div class="table-responsive">
-	<table class="table table-hover table-bordered">
+
 		<br>
 		<h2 class="text-center">Administrar Materias</h2>
 		<a href="{% url 'agregarMateria' %}" class="btn btn-success">
@@ -11,20 +10,21 @@
 	    </a>
 	    <br>
 	    <br>
-	    
-				<thead class="table table-hover border">
-					<tr class="table-success text-center">
-						<td class="font-weight-bold">Código</td>
-						<td class="font-weight-bold">Nombre</td>
-						<td class="font-weight-bold">Descripción</td>
-						<td class="font-weight-bold">Objetivos</td>
-						<td class="font-weight-bold">Acciones</td>
-					</tr>
+	    		<div class="table-responsive">
+				<table class="table table-hover table-bordered">
+				<thead class="table-success">
+					
+						<th class="font-weight-bold">Código</th>
+						<th class="font-weight-bold">Nombre</th>
+						<th class="font-weight-bold">Descripción</th>
+						<th class="font-weight-bold" >Objetivos</th>
+						<th class="font-weight-bold" width="10%">Acciones</th>
+					
 				</thead>
+				{% if object_list %}
+				{% for Materia in object_list %}
 				<tbody>
-					{% if object_list %}
-					{% for Materia in object_list %}
-					<tr class="text-justify">
+					
 						<td>{{ Materia.codigo_materia }}</td>
 						<td>{{ Materia.nombre_materia }}</td>
 						<td>{{ Materia.descripcion_materia }}</td>
@@ -36,13 +36,12 @@
 							<a class="btn" href="{% url 'eliminarMateria' Materia.pk %}">
 								<span class="fas fa-trash"></span>
 							</a>
-						</td>
-					</tr>
-					{% endfor %}
-					{% else %}
-					<h2>No hay registros de Materias</h2>
-					{% endif %}
+						</td>				
 				</tbody>
-	</table>
-</div>
+				{% endfor %}
+				{% else %}
+				<h2>No hay registros de Materias</h2>
+				{% endif %}
+				</table>
+				</div>
 {% endblock %}

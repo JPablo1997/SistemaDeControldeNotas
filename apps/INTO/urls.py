@@ -74,5 +74,6 @@ urlpatterns = [
 
      url(r'^especialidades_lista/$',login_required(especialidades_lista),name="especialidades_lista"),
      url(r'^agregar_especialidad/$',login_required(especialidad_agregar),name="agregar_especialidad"),
+    path('modificar_especialidad/<str:codigo_especialidad>/',login_required(especialidad_update),name='modificar_especialidad'),
 
 ]

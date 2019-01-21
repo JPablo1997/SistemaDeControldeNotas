@@ -27,7 +27,8 @@
               <form method="POST">
                 {% csrf_token %}
                 <input type="hidden" name="especialidad" value="{{ especialidad.codigo_especialidad }}">
-                <input class="btn btn-success" type="submit" name="accion" value="Editar">
+                <a href="{% url 'modificar_especialidad' especialidad.codigo_especialidad %}" class="btn btn-success">Editar</a>
+                
                 <input class="btn btn-danger" type="button" data-toggle="modal" data-target="#{{ especialidad.codigo_especialidad }}" value="Eliminar">
 
                 <!-- Modal -->
