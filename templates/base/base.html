@@ -115,10 +115,10 @@
               <li class="nav-item ">
                 <a class="nav-link {% block act_expediente %}{% endblock %}" href="{% url 'expediente' %}"><i class="fas fa-award"></i> Expediente</a>
               </li>
-              {% endif %}
+              {% endif %}<!--
               <li class="nav-item ">
                 <a class="nav-link {% block act_datosEstadisticos %}{% endblock %}" href="{% url 'estadisticas' %}"><i class="fas fa-chart-bar"></i> Datos Estadísticos</a>
-              </li>              
+              </li>         -->     
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fas fa-user"></i>
                   <b>{{ user.username }} </b>               
@@ -145,14 +145,14 @@
             <h2 class="fas fa-award">&nbsp;&nbsp;Expediente</h2>
             <br>
             <p>Permite a los Alumnos revisar su record de notas obtenidas en las diferentes actividades que realizan durante cada periodo.</p>
-          </div>
+          </div><!--
           <div class="col">
             <br><br><br><br>
             <h2 class="fas fa-chart-bar">&nbsp;&nbsp;Datos Estadísticos</h2>
             <br>
             <p>Podrás ver datos estadisticos relevantes relacionados a las notas de los estudiantes del Instituto Nacional de Tonacatepeque.
             </p>
-          </div>
+          </div>-->
           <div class="w-100"></div>
           <div class="col">
             <br><br><br><br>
