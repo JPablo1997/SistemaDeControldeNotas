@@ -1136,20 +1136,36 @@ def agregarEvaluacion(request):
 		actividad = Actividad.objects.get(codigo_periodo = periodo, codigo_actividad = request.POST['actividadPerteneciente'])
 		
 		"""Validar que no sobrepase el 35% la suma de los porcentajes de las subactividades"""
-		subActs = Sub_Actividad.objects.filter(codigo_actividad = actividad)
+		docente = Docente.objects.get(usuario_docente = request.user)
+		materia = Materia.objects.get(codigo_materia = request.POST['materia'])
+		docente_materia = Docente_Materia.objects.get(codigo_docente = docente, codigo_materia = materia)
+		evaluaciones = Evaluacion.objects.filter(codigo_docente_materia = docente_materia)
 
-		porcentajeTotal = Decimal(request.POST['porcentajeSubActividad'])
-		porcentajeActual = 0
-		for subAct in subActs:
-			porcentajeTotal += subAct.porcentaje_sub_actividad
-			porcentajeActual += subAct.porcentaje_sub_actividad
+		subActs = []
+		for evaluacion in evaluaciones:
+			if evaluacion.codigo_sub_actividad.codigo_actividad.codigo_actividad == actividad.codigo_actividad:
+				subActs.append(evaluacion.codigo_sub_actividad)
+				pass
 			pass
 
-		porcentajeRestante = 35.00 - float(porcentajeActual)
+		porcentajeTotal = float(request.POST['porcentajeSubActividad'])
+		porcentajeActual = 0
+		for subAct in subActs:
+			porcentajeTotal += float(subAct.porcentaje_sub_actividad)
+			porcentajeActual += float(subAct.porcentaje_sub_actividad)
+			pass
 
-		if porcentajeTotal > 35.00:
-			porcentajePasado = True
-			contexto = {'porcentajePasado':porcentajePasado, 'porcentajeRestante':round(float(porcentajeRestante),2)}
+
+		porcentajeRestante = float(0.35 - round(float(porcentajeActual),2))
+
+		if porcentajeTotal > float(0.35):
+			if porcentajeRestante == float(0.00):
+				contexto = {'porcentajeJusto':True}
+				pass
+			else:
+				porcentajePasado = True
+				contexto = {'porcentajePasado':porcentajePasado, 'porcentajeRestante':round(float(porcentajeRestante),2)}
+				pass
 			pass
 		else:
 			subAct = Sub_Actividad(codigo_sub_actividad = request.POST['codigoSubActividad'], codigo_actividad = actividad, porcentaje_sub_actividad = Decimal(request.POST['porcentajeSubActividad']), descripcion_sub_actividad = request.POST['descripcionSubActividad'])
@@ -1166,7 +1182,7 @@ def agregarEvaluacion(request):
 
 
 	return render(request,'AgregarEvaluacion/agregarEvaluacion.html',contexto)
-
+	
 def editarEvaluacion(request, id_evaluacion):
 
 	#Docente
