@@ -1532,15 +1532,27 @@ def especialidades_lista(request):
 def especialidad_agregar(request):
 	if not request.user.is_superuser or not request.user.is_staff:
 		return HttpResponse('Acceso denegado')
-		pass
+	
 
 	if request.method == 'POST':
 		form = EspecialidadForm(request.POST)
 		if form.is_valid():
 			form.save()
 			return redirect('/into/especialidades_lista')
-		else:
-			form = EspecialidadForm()
-			contexto = {'form':form}
+	else:
+		form = EspecialidadForm()
+		print(form)
+		contexto = {'form':form}
 		return render(request,'especialidades/agregar_especialidad.html',contexto)
 
+def especialidad_update(request,codigo_especialidad):
+	especialidad=Especialidad.objects.get(codigo_especialidad=codigo_especialidad)
+	if request.method == 'GET':
+		form = EspecialidadForm(instance=especialidad)
+	else:
+		form = EspecialidadForm(request.POST, instance=especialidad)
+		if form.is_valid():
+			form.save()
+		return redirect('especialidades_lista')
+	contexto={'form':form}
+	return render(request, 'especialidades/modificar_especialidad.html',contexto)
