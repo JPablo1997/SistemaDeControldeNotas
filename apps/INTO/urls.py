@@ -73,5 +73,6 @@ urlpatterns = [
      #Especialides
 
      url(r'^especialidades_lista/$',login_required(especialidades_lista),name="especialidades_lista"),
+     url(r'^agregar_especialidad/$',login_required(especialidad_agregar),name="agregar_especialidad"),
 
 ]

@@ -1,5 +1,5 @@
 from django import forms 
-from apps.INTO.models import Docente,Alumno,Grupo,Materia,Grupo,Anotacion
+from apps.INTO.models import Docente,Alumno,Grupo,Materia,Grupo,Anotacion,Especialidad
 from apps.INTO.models import Docente,Alumno,Grupo,asignacionTipoUsuario
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
@@ -172,3 +172,28 @@ class AnotacionForm(forms.ModelForm):
             
         }
 
+class EspecialidadForm(forms.ModelForm):
+    
+    class Meta:
+        model = Especialidad
+
+        fields = [
+            'codigo_especialidad',
+            'nombre_especialidad',
+            'descripcion_especialidad',
+            'anios_especialidad',
+
+        ]
+        labels = {
+            'codigo_especialidad' : 'Código',
+            'nombre_especialidad' : 'Nombre',
+            'descripcion_especialidad' : 'Descripción',
+            'anios_especialidad' : 'Años de duración',
+        }
+
+        widgets = {
+            'codigo_especialidad' : forms.TextInput(attrs={'class':'form-control','placeholder':'Escriba el Codigo de la Materia'}),
+            'nombre_especialidad' : forms.TextInput(attrs={'class':'form-control','placeholder':'Escriba el Nombre de la Materia'}),
+            'descripcion_especialidad' : forms.Textarea(attrs={'rows':3, 'class':'form-control','placeholder':'Escriba la Descripcion de la Materia'}),
+            'anios_especialidad' : forms.TextInput(attrs={'class':'form-control'}),
+        }
