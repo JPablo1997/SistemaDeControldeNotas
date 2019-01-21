@@ -1,0 +1,64 @@
+{% extends 'base/base.html'%}
+{% block title %} Especialidades {% endblock %}
+{% block act_especialidades %}active{% endblock %}
+{% block act_inicio %}{% endblock %}
+{% block content %}
+
+<br><br><div class="offset-1 col-10">
+  {% if especialidades %}
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Codigo</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Descripción</th>
+          <th scope="col">Años duración</th>
+          <th scope="col">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for especialidad in especialidades %}
+          <tr>
+            <td>{{ especialidad.codigo_especialidad }}</td>
+            <td>{{ especialidad.nombre_especialidad }}</td>
+            <td>{{ especialidad.descripcion_especialidad }}</td>
+            <td>{{ especialidad.anios_especialidad }}</td>
+            <td>
+              <form method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="especialidad" value="{{ especialidad.codigo_especialidad }}">
+                <input class="btn btn-success" type="submit" name="accion" value="Editar">
+                <input class="btn btn-danger" type="button" data-toggle="modal" data-target="#{{ especialidad.codigo_especialidad }}" value="Eliminar">
+
+                <!-- Modal -->
+                <div class="modal fade" id="{{ especialidad.codigo_especialidad }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Ventana de confirmación</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        ¿Esta seguro de eliminar la especialidad de <b>{{ especialidad.nombre_especialidad }}?</b>
+                      </div>
+                      <div class="modal-footer">
+                        <input class="btn btn-danger" type="submit" name="accion" value="Eliminar">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+
+  {% endif %}
+</div><br><br>
+{% endblock %}
+

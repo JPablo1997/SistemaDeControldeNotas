@@ -70,4 +70,8 @@ urlpatterns = [
 
      url(r'^CargarGrupos/$',login_required(CargarGrupos),name="CargarGrupos"),
 
+     #Especialides
+
+     url(r'^especialidades_lista/$',login_required(especialidades_lista),name="especialidades_lista"),
+
 ]

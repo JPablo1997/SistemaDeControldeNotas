@@ -725,11 +725,11 @@ def materia_view(request):
 		grupos = Grupo.objects.all()
 		for grupo in grupos:
 			if 'grupo_'+grupo.codigo_grupo in request.POST:
-				count = Docente_Materia.objects.all().count()
-				docente_materia = Docente_Materia(id = count+1, codigo_docente = docente, codigo_materia = materia)
+				last_id = Docente_Materia.objects.all().order_by('-id')[:1][0].id
+				docente_materia = Docente_Materia(id = last_id+1, codigo_docente = docente, codigo_materia = materia)
 				docente_materia.save()
-				count2 = Docente_Materia_Grupo.objects.all().count()
-				docente_materia_grupo = Docente_Materia_Grupo(id = count2+1, docente_materia = docente_materia,grupo = grupo)
+				last_id2 = Docente_Materia_Grupo.objects.all().order_by('-id')[:1][0].id
+				docente_materia_grupo = Docente_Materia_Grupo(id = last_id2+1, docente_materia = docente_materia,grupo = grupo)
 				docente_materia_grupo.save()
 				pass
 			pass
@@ -760,18 +760,18 @@ def materia_view(request):
 			for especialidad in especialidades:
 
 				if '1_'+especialidad.codigo_especialidad in request.POST[especialidad.codigo_especialidad]:
-					num = Especialidad_Materia.objects.all().count()
-					especialidad_materia = Especialidad_Materia(num + 1, codigo_especialidad = especialidad, codigo_materia = materia, nivel_materia_especialidad = 1)
+					last_id = Especialidad_Materia.objects.all().order_by('-id')[:1][0].id
+					especialidad_materia = Especialidad_Materia(id = last_id+1, codigo_especialidad = especialidad, codigo_materia = materia, nivel_materia_especialidad = 1)
 					especialidad_materia.save()
 					pass
 				elif '2_'+especialidad.codigo_especialidad in request.POST[especialidad.codigo_especialidad]:
-					num = Especialidad_Materia.objects.all().count()
-					especialidad_materia = Especialidad_Materia(num + 1, codigo_especialidad = especialidad, codigo_materia = materia, nivel_materia_especialidad = 2)
+					last_id = Especialidad_Materia.objects.all().order_by('-id')[:1][0].id
+					especialidad_materia = Especialidad_Materia(id = last_id+1, codigo_especialidad = especialidad, codigo_materia = materia, nivel_materia_especialidad = 2)
 					especialidad_materia.save()
 					pass
 				elif '3_'+especialidad.codigo_especialidad in request.POST[especialidad.codigo_especialidad]:
-					num = Especialidad_Materia.objects.all().count()
-					especialidad_materia = Especialidad_Materia(num + 1, codigo_especialidad = especialidad, codigo_materia = materia, nivel_materia_especialidad = 3)
+					last_id = Especialidad_Materia.objects.all().order_by('-id')[:1][0].id
+					especialidad_materia = Especialidad_Materia(id = last_id+1, codigo_especialidad = especialidad, codigo_materia = materia, nivel_materia_especialidad = 3)
 					especialidad_materia.save()
 					pass
 				pass
@@ -813,6 +813,11 @@ def materia_delete(request, codigo_materia):
 
 
 def IngresarNotas(request):
+
+	#Docente
+	if  request.user.is_superuser or not request.user.is_staff:
+		return HttpResponse('Acceso denegado')
+		pass
 
 	id_docente = Docente.objects.get(usuario_docente=str(request.user.id)).dui_docente
 	materiasImpartidas =  Docente_Materia.objects.filter(codigo_docente=id_docente)
@@ -857,7 +862,8 @@ def IngresarNotas(request):
 				if request.POST[str(x.nie)] != "":
 					eva = Evaluacion.objects.get(codigo_evaluacion=request.POST['codigoEva'])
 					nota = Decimal(request.POST[x.nie])
-					c = Calificacion(nie = x, codigo_evaluacion= eva, nota= nota)
+					last_id = Calificacion.objects.all().order_by('-id')[:1][0].id
+					c = Calificacion(id = last_id+1, nie = x, codigo_evaluacion= eva, nota= nota)
 					c.save()
 					pass
 				pass
@@ -922,6 +928,12 @@ def servidorIngresarNotas(request):
 
 
 def listaEvaluacion(request):
+
+	#Docente
+	if  request.user.is_superuser or not request.user.is_staff:
+		return HttpResponse('Acceso denegado')
+		pass
+
 	materias = []
 	contexto = {}
 	evaluaciones = []
@@ -1027,6 +1039,11 @@ def cargarEvaluaciones(materia, periodo, actividad, docente):
 
 
 def agregarEvaluacion(request):
+
+	#Docente
+	if  request.user.is_superuser or not request.user.is_staff:
+		return HttpResponse('Acceso denegado')
+		pass
 
 	formSubActividad = False
 	formExamen = False
@@ -1151,6 +1168,12 @@ def agregarEvaluacion(request):
 	return render(request,'AgregarEvaluacion/agregarEvaluacion.html',contexto)
 
 def editarEvaluacion(request, id_evaluacion):
+
+	#Docente
+	if  request.user.is_superuser or not request.user.is_staff:
+		return HttpResponse('Acceso denegado')
+		pass
+
 	evaluacion = None
 
 	if Evaluacion.objects.filter(codigo_evaluacion = id_evaluacion).exists():
@@ -1368,3 +1391,23 @@ def actualizarUser(request):
 		return redirect('.')
 		pass
 	return render(request, 'actualizarUser/actualizarUser.html',{'user':request.user})
+
+def especialidades_lista(request):
+	#Admin
+	if not request.user.is_superuser or not request.user.is_staff:
+		return HttpResponse('Acceso denegado')
+		pass
+
+	if 'accion' in request.POST:
+		accion = request.POST['accion']
+		codigo_especialidad = request.POST['especialidad']
+		especialidad = Especialidad.objects.get(codigo_especialidad = codigo_especialidad)
+		if accion == 'Eliminar':
+			especialidad.delete()
+			pass
+		else:
+			pass
+		pass
+	especialidades = Especialidad.objects.all()
+	contexto = {'especialidades':especialidades}
+	return render(request,'especialidades/especialidades_lista.html',contexto)
