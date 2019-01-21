@@ -1194,10 +1194,13 @@ def servidorActividades(request):
 
 	return HttpResponse(data, content_type='application/json')
 
-
 #Inicio de codigo del Expediente (Fc!)
 
 def Expediente(request):
+		#Alumno
+	if request.user.is_superuser or request.user.is_staff:
+		return HttpResponse('Acceso denegado')
+		pass
 	estudiante=Alumno.objects.get(usuario_alumno_id=request.user.id)
 	bachillerato=Especialidad.objects.get(codigo_especialidad=estudiante.especialidad_alumno_id)
 	cant_grupos=Alumno_Grupo.objects.filter(nie=estudiante.nie).order_by('id')#devuelve todos los registros de alumno grupo
@@ -1212,12 +1215,20 @@ def Expediente(request):
 	return render (request,'expediente/expediente.html',contexto)
 
 def BuscarPeriodos(request):
+		#Alumno
+	if request.user.is_superuser or request.user.is_staff:
+		return HttpResponse('Acceso denegado')
+		pass
 	codigos_periodos=Periodo.objects.filter(anio_lectivo_id=request.GET['anio'],finalizado=True)
 
 	data=serializers.serialize('json',codigos_periodos)
 	return HttpResponse(data,content_type='application/json')
 	
 def BuscarNotas(request):
+		#Alumno
+	if request.user.is_superuser or request.user.is_staff:
+		return HttpResponse('Acceso denegado')
+		pass
 	alumno=Alumno.objects.get(usuario_alumno_id=request.user.id)
 
 	nie=alumno.nie
@@ -1227,15 +1238,20 @@ def BuscarNotas(request):
 	return HttpResponse(datos,content_type='application/json')
 
 def PromedioFin(request):
+		#Alumno
+	if request.user.is_superuser or request.user.is_staff:
+		return HttpResponse('Acceso denegado')
+		pass
 	alumno=Alumno.objects.get(usuario_alumno_id=request.user.id)
 	nie=alumno.nie
-	#periodo_anio=  Periodo.objects.get(codigo_periodo=request.GET['codigo_periodo']).anio_lectivo_id
-	#periodos=Periodo.objects.filter(anio_lectivo_id=periodo_anio)
+	periodo_anio=  Periodo.objects.get(codigo_periodo=request.GET['codigo_periodo']).anio_lectivo_id
+	periodos=Periodo.objects.filter(anio_lectivo_id=periodo_anio).order_by('codigo_periodo')
 	periodo=Periodo.objects.get(codigo_periodo=request.GET['codigo_periodo'])
-	periodo1=ObtenerPromedioPeriodo(alumno,nie,periodo,'Final')
-	periodo2=ObtenerPromedioPeriodo(alumno,nie,periodo,'Final')
-	periodo3=ObtenerPromedioPeriodo(alumno,nie,periodo,'Final')
-	periodo4=ObtenerPromedioPeriodo(alumno,nie,periodo,'Final')
+	
+	periodo1=ObtenerPromedioPeriodo(alumno,nie,periodos[0],'Final')
+	periodo2=ObtenerPromedioPeriodo(alumno,nie,periodos[1],'Final')
+	periodo3=ObtenerPromedioPeriodo(alumno,nie,periodos[2],'Final')
+	periodo4=ObtenerPromedioPeriodo(alumno,nie,periodos[3],'Final')
 	promedio_materias_fin=ObtenerPromedioAnual(periodo1['promedios'],periodo2['promedios'],periodo3['promedios'],periodo4['promedios'])
 	estados=VerificarEstados(promedio_materias_fin)
 	diccionario={'materias':periodo1['materiaN'],'codigos':periodo1['materiaC'],'promedio':promedio_materias_fin,'estados':estados}
@@ -1360,19 +1376,16 @@ def ObtenerPromedioAnual(periodo1,periodo2,periodo3,periodo4):
 	return finales
 
 def VerificarEstados(promedio_materias_fin):
-	print('hola')
 	estados=[]
 	es='Aprobada'
 	for i in range(len(promedio_materias_fin)):
 		if promedio_materias_fin[i]<5.95:
-			print(promedio_materias_fin[i])
 			es='Reprobada'
 		estados.append(es)
-
-	print(estados)
 	return estados
 
 #Fin de codigo del Expediente (Fc!)
+
 def actualizarUser(request):
 	if 'btnGuardar' in request.POST:
 		usuario = request.user
