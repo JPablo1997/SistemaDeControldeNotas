@@ -192,8 +192,8 @@ class EspecialidadForm(forms.ModelForm):
         }
 
         widgets = {
-            'codigo_especialidad' : forms.TextInput(attrs={'class':'form-control','placeholder':'Escriba el Codigo de la Materia'}),
-            'nombre_especialidad' : forms.TextInput(attrs={'class':'form-control','placeholder':'Escriba el Nombre de la Materia'}),
-            'descripcion_especialidad' : forms.Textarea(attrs={'rows':3, 'class':'form-control','placeholder':'Escriba la Descripcion de la Materia'}),
+            'codigo_especialidad' : forms.TextInput(attrs={'class':'form-control','placeholder':'Escriba el Codigo de la Especialidad'}),
+            'nombre_especialidad' : forms.TextInput(attrs={'class':'form-control','placeholder':'Escriba el Nombre de la Especialidad'}),
+            'descripcion_especialidad' : forms.Textarea(attrs={'rows':3, 'class':'form-control','placeholder':'Escriba la Descripcion de la Especialidad'}),
             'anios_especialidad' : forms.TextInput(attrs={'class':'form-control'}),
         }

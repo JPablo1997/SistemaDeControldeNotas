@@ -5,6 +5,13 @@
 {% block content %}
 
 <br><br><div class="offset-1 col-10">
+  <br>
+    <h2 class="text-center">Administrar Especialidades</h2>
+    <a href="{% url 'agregar_especialidad' %}" class="btn btn-success">
+          <span class="fas fa-plus"></span> Agregar
+      </a>
+      <br>
+      <br>
   {% if especialidades %}
     <table class="table">
       <thead class="thead-dark">
