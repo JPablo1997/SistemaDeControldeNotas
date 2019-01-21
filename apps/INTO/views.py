@@ -395,6 +395,9 @@ def DatosEstadisticos(request):
 
 
 def anotacion(request):	
+	if  request.user.is_superuser or not request.user.is_staff:
+		return HttpResponse('Acceso denegado')
+		pass
 	nombre = ""
 	AlumnoNie = ""	
 	AlumnoDato	= Alumno()
@@ -402,7 +405,7 @@ def anotacion(request):
 	Anot = []
 	An = []
 	codigoGrupo = ""
-	AlumnoGrupo = Alumno_Grupo()
+	AlumnoGrupo = []
 	GrupoE= Grupo()
 	codigoDocente = ""
 	idUser = request.user.id
@@ -415,35 +418,46 @@ def anotacion(request):
 		form = AnotacionForm(request.POST)
 		if 'btnConsultar' in request.POST:
 			AlumnoNie = request.POST.get('inputNie')
-			try:
-				AlumnoGrupo = Alumno_Grupo.objects.get(nie=AlumnoNie)
-			except Alumno_Grupo.DoesNotExist:
+			
+			AlumnoGrupo = Alumno_Grupo.objects.filter(nie=AlumnoNie)
+			print(AlumnoNie)
+			print(AlumnoGrupo)
+			if len(AlumnoGrupo) == 0:
 				AlumnoGrupo = None
 				mensaje = "El nie ingresado no existe"
 				AlumnoNie = ""
-			if AlumnoGrupo:
-				codigoGrupo = AlumnoGrupo.codigo_grupo
-				GrupoE = Grupo.objects.get(codigo_grupo=codigoGrupo)
-				codigoDocente = GrupoE.codigo_docente_encargado_id
-				docente = Docente.objects.get(usuario_docente_id=idUser)
-				dui_docente = docente.dui_docente
-				print(codigoDocente)
-				print(len(codigoDocente))
-				print(dui_docente)
-				if codigoDocente == dui_docente:
+				print(mensaje)
+				pass
+			else:
+				print("")		
+				
+				if AlumnoGrupo:
+					for c in AlumnoGrupo:
+						codigoGrupo = c.codigo_grupo_id
+					print(codigoGrupo)
+					GrupoE = Grupo.objects.get(codigo_grupo=codigoGrupo)
+					codigoDocente = GrupoE.codigo_docente_encargado_id
+					docente = Docente.objects.get(usuario_docente_id=idUser)
+					dui_docente = docente.dui_docente
+					print(codigoDocente)
+					print(len(codigoDocente))
 					print(dui_docente)
-					try:
-		   				AlumnoDato = Alumno.objects.get(nie=AlumnoNie)
-		   				Anot=Anotacion.objects.filter(nie_id=AlumnoNie)
-		   				nombre = AlumnoDato.nombre_alumno + " "+ AlumnoDato.apellidos_alumno
-		   				print(nombre)
-					except Alumno.DoesNotExist:
-		   				AlumnoDato = None
-		   				AlumnoNie = ""	
-				else:
-					mensaje = "Usted no es docente del alumno ingresado"
-				pass	
-
+					if codigoDocente == dui_docente:
+						print(dui_docente)
+						try:
+			   				AlumnoDato = Alumno.objects.get(nie=AlumnoNie)
+			   				Anot=Anotacion.objects.filter(nie_id=AlumnoNie)
+			   				nombre = AlumnoDato.nombre_alumno + " "+ AlumnoDato.apellidos_alumno
+			   				print(nombre)
+						except Alumno.DoesNotExist:
+			   				AlumnoDato = None
+			   				AlumnoNie = ""	
+			   				pass
+					else:
+						mensaje = "Usted no es docente del alumno ingresado"
+						AlumnoNie = ""
+						print(mensaje)
+		print(mensaje)		
 		if 'btnGuardar' in request.POST:
 			An = Anotacion.objects.all()
 			for c in An:
@@ -451,8 +465,10 @@ def anotacion(request):
 
 			AlumnoNie = request.POST.get('nie')
 			print(AlumnoNie)
-			AlumnoGrupo = Alumno_Grupo.objects.get(nie=AlumnoNie)
-			codigoGrupo = AlumnoGrupo.codigo_grupo
+			AlumnoGrupo = Alumno_Grupo.objects.filter(nie=AlumnoNie)		
+			for c in AlumnoGrupo:
+				codigoGrupo = c.codigo_grupo_id
+			print(codigoGrupo)					
 			GrupoE = Grupo.objects.get(codigo_grupo=codigoGrupo)
 			codigoDocente = GrupoE.codigo_docente_encargado_id
 			docente = Docente.objects.get(usuario_docente_id=idUser)
@@ -498,8 +514,12 @@ def anotacion(request):
 		})
 
 
+
 	
 def administrarNotas(request):	
+	if not request.user.is_superuser or not request.user.is_staff:
+		return HttpResponse('Acceso denegado')
+		pass
 	docente = Docente.objects.all()		
 	alumnos = []
 	evaluacion = []
@@ -556,7 +576,9 @@ def administrarNotas(request):
 
 
 def buscarMaterias(request):
-
+	if not request.user.is_superuser or not request.user.is_staff:
+		return HttpResponse('Acceso denegado')
+		pass
 	if request.GET['accion'] == 'obtenerMateriasDocente':
 		materias = []
 		dui_docente = request.GET['dui_docente']		
@@ -581,7 +603,9 @@ def buscarMaterias(request):
 		pass
 
 def buscarEvaluaciones(request):
-	"""AQUIIIII HAY QUE VALIDAR anio_lectivo vigente y periodos no finalizados"""
+	if not request.user.is_superuser or not request.user.is_staff:
+		return HttpResponse('Acceso denegado')
+		pass
 	if request.GET['accion'] == 'obtenerEvaluaciones':
 
 		anioLectivos = AnioLectivo.objects.all().order_by('anio_lectivo')
