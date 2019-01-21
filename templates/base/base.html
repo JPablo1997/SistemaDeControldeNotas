@@ -12,9 +12,28 @@
   <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}"> 
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
   <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
-  <link rel="stylesheet" href="{% static 'css/jquery-ui.css' %}">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <style type="text/css">
+
+  html {
+  min-height: 100%;
+  position: relative;
+  }
+  body {
+    margin: 0;
+    margin-bottom: 40px;
+  }
+  footer {
+    background-color:   #bfc9ca;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 40px;
+    color: black;
+    text-align: center;
+    padding-top: 10px;
+  }
 
  
   </style>
@@ -70,6 +89,11 @@
               {% if user.is_superuser == True and user.is_staff == True %}
               <li class="nav-item ">
                 <a class="nav-link {% block act_administrarMaterias %}{% endblock %}" href="{% url 'administrarMaterias' %}"><i class="fas fa-book-reader"></i> Administrar Materias</a>
+              </li>
+              {% endif %}
+              {% if user.is_superuser == True and user.is_staff == True %}
+              <li class="nav-item ">
+                <a class="nav-link {% block act_especialidades %}{% endblock %}" href="{% url 'especialidades_lista' %}"><i class="fas fa-list-ul"></i> Especialidades</a>
               </li>
               {% endif %}
               {% if user.is_superuser == False and  user.is_staff == True %}
@@ -152,16 +176,17 @@
 	
     <footer>
       
-       
+            
             {% block footer %}            
               Copyright © 2018 - Instituto Nacional de Tonacatepeque APROES           
             {% endblock %}
                   
            
     </footer>
+
   </div>
   <script src="{% static 'js/jquery-3.3.1.js' %}"></script>
-  <script src="{% static 'js/jquery-ui.js' %}"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <!-- Latest compiled and minified JavaScript -->
   <script src="{% static 'js/bootstrap.js' %}"></script>
   <script src="{% static 'js/jquery.maskedinput.js' %}"></script>

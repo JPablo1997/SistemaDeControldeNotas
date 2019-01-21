@@ -115,7 +115,7 @@ input:valid ~ span:after {
 			<div class="row">
 				<div class="form-group col-md-2">
 				<label class="sr-only" for="dui_encargado">DUI: </label>
-				<input class="form-control" name="dui_encargado" id="dui_encargado" type="text" placeholder="DUI:" required>
+				<input class="form-control" name="dui_encargado" id="dui_encargado" type="text" placeholder="DUI:" required autocomplete="on">
 				</div>
 				<div class="form-group col-md-4">
 				<label class="sr-only" for="nombre_encargado">Nombres: </label>
@@ -158,7 +158,7 @@ input:valid ~ span:after {
 		
 		
 		<div class="table-responsive">
-			<table class="table table-bordered table-hover">
+			<table class="table table-bordered table-hover" id="mytable">
 				<thead class="table-dark text-center">
 					<th>#</th>
 					<th>NIE</th>
@@ -180,6 +180,7 @@ input:valid ~ span:after {
 </div>
 <br>
 <br>
+
 {% endblock %}
 {% block extrajs %}
 <script type="text/javascript">
@@ -325,6 +326,12 @@ input:valid ~ span:after {
 		 	type:'get',
 		 	success:function(data) {
 		 		var html="";
+		 		var lista=[]
+		 		for(var j=0;j<data.length;j++){
+		 			lista.push(data[j].pk);
+
+		 		}
+		 		
                 var mensaje_alumnos;
                 if(data.length==0){
                 	
@@ -332,8 +339,10 @@ input:valid ~ span:after {
                 }
                 else{
                 	for(var i=0;i<data.length;i++){
+                		var variable=data[i].pk;
+                		
                 	
-                	html+='<tr><td>'+(i+1)+'</td><td>'+data[i].pk+'</td><td>'+data[i].fields.nombre_alumno+' '+data[i].fields.apellidos_alumno+'</td><td>'+data[i].fields.sexo_alumno+'</td><td>'+data[i].fields.anio_ingreso+'</td><td>'+data[i].fields.direccion_alumno+'</td><td>'+data[i].fields.telefono_alumno+'</td><td><a href="#" class="btn btn-default btn-xs"><span class="fas fa-pencil-alt"></span></a><a href="#" class="btn btn-default btn-xs"><span class="fas fa-th-large"></span></a><a href="#"                        class="btn btn-default btn-xs"><span class="fas fa-trash"></span></a></td></tr>';
+                	html+='<tr><td>'+(i+1)+'</td><td>'+data[i].pk+'</td><td>'+data[i].fields.nombre_alumno+' '+data[i].fields.apellidos_alumno+'</td><td>'+data[i].fields.sexo_alumno+'</td><td>'+data[i].fields.anio_ingreso+'</td><td>'+data[i].fields.direccion_alumno+'</td><td>'+data[i].fields.telefono_alumno+'</td><td><a href="/into/detalleAlumno/'+lista[i]+'" class="btn btn-default btn-xs"><span class="fas fa-th-large"></span></a><a href="/into/eliminarAlumno/'+lista[i]+'" class="btn btn-default btn-xs"><span class="fas fa-trash"></span></a></td></tr>';
 
                 	
                 }
@@ -413,14 +422,22 @@ input:valid ~ span:after {
             url: '{% url "guardar_alumno" %}', // the file to call
             success: function(data) { // on success..
                 var html="";
-                
+                var lista=[]
+		 		for(var j=0;j<data.length;j++){
+		 			lista.push(data[j].pk);
+
+		 		}
+		 		
                 for(var i=0;i<data.length;i++){
                 	
-                	html+='<tr><td>'+(i+1)+'</td><td>'+data[i].pk+'</td><td>'+data[i].fields.nombre_alumno+' '+data[i].fields.apellidos_alumno+'</td><td>'+data[i].fields.sexo_alumno+'</td><td>'+data[i].fields.anio_ingreso+'</td><td>'+data[i].fields.direccion_alumno+'</td><td>'+data[i].fields.telefono_alumno+'</td><td><a href="#" class="btn btn-default btn-xs"><span class="fas fa-pencil-alt"></span></a><a href="#" class="btn btn-default btn-xs"><span class="fas fa-th-large"></span></a><a href="#"                        class="btn btn-default btn-xs"><span class="fas fa-trash"></span></a></td></tr>';
+                	html+='<tr><td>'+(i+1)+'</td><td>'+data[i].pk+'</td><td>'+data[i].fields.nombre_alumno+' '+data[i].fields.apellidos_alumno+'</td><td>'+data[i].fields.sexo_alumno+'</td><td>'+data[i].fields.anio_ingreso+'</td><td>'+data[i].fields.direccion_alumno+'</td><td>'+data[i].fields.telefono_alumno+'</td><td><a href="/into/detalleAlumno/'+lista[i]+'" class="btn btn-default btn-xs"><span class="fas fa-th-large"></span></a><a href="/into/eliminarAlumno/'+lista[i]+'" class="btn btn-default btn-xs"><span class="fas fa-trash"></span></a></td></tr>';
                 }
                 $('#cam_alumnos').html(html);
                 $('#form_alumno')[0].reset();
-                
+                $('#dui_encargado').attr("disabled", false);
+				$('#parentesco').attr("disabled", false);
+                $('#nie').attr("disabled", false);
+				$('#sexo_alumno').attr("disabled", false);
             }
 
 
@@ -428,32 +445,114 @@ input:valid ~ span:after {
 		return false;
 		 
 	}
-
+	
 	$('#dui_encargado').autocomplete({
-		minLength:3,
+		
 		source:function(req,add) {
-			var search=$(this).val();
+			var search=$('#dui_encargado').val();
 			$.ajax({
-				async:false,
-				dataType:'json',
+				
 				data:{'search':search},
 				type:'get',
 				url:'{% url "busqueda_dui_encargado" %}',
 				
 				success:function(data) {
+					
 					var suggestion=[];
-
-					$.each(data,function(index,objeto) {
-						suggestion.push(objeto.value); 
-					});
+					
+					for(var i=0;i<data.length;i++){
+						suggestion.push(data[i].pk);
+					}
 					add(suggestion);
-				},
-				error:function(err) {
-					alert('error'); 
 				}
+				
 			}); 
 		}
 	});
+
+	$('#dui_encargado').on('change paste',completar_campos_encargado);
+	function completar_campos_encargado () {
+		var dui_encargado=$('#dui_encargado').val();
+		$.ajax({				
+				data:{'dui_encargado':dui_encargado},
+				type:'get',
+				url:'{% url "busqueda_encargado" %}',
+				
+				success:function(data) {
+					
+					if(data.length==0 || $('#dui_encargado').val().length <= 0){
+						$('#nombre_encargado').val('');
+						$('#apellidos_encargado').val('');
+						$('#telefono_encargado').val('');
+						$('#celular_encargado').val('');
+						$('#parentesco').val('');
+
+					}
+					else{
+						for(var i=0;i<data.length;i++){
+
+							$('#nombre_encargado').val(data[i].fields.nombre_encargado);
+							$('#apellidos_encargado').val(data[i].fields.apellidos_encargado);
+							$('#telefono_encargado').val(data[i].fields.telefono);
+							$('#celular_encargado').val(data[i].fields.celular);
+							$('#parentesco').html('<option value="'+data[i].fields.parentesco+'">'+data[i].fields.parentesco+'</option>');
+						}
+					}
+					
+				}
+				
+		});
+	}
+
+	$('#cam_alumnos').on('click','tr td',seleccionarid);
+	function seleccionarid () {		
+	    var nie = $(this).parents("tr").find("td").eq(1).text();
+	    $.ajax({
+	    	data:{'nie':nie},
+			type:'get',
+			url:'{% url "alumno_update" %}',
+			success: function(data){
+				for(var i=0;i<data.length;i++){
+					$('#nie').attr("disabled", true);
+					$('#sexo_alumno').attr("disabled", true);
+					$('#nie').val(data[i].pk);
+					$('#nombre_alumno').val(data[i].fields.nombre_alumno);
+					$('#apellidos_alumno').val(data[i].fields.apellidos_alumno);
+					if (data[i].fields.sexo_alumno=="M") {
+						$('#sexo_alumno').html('<option value="'+data[i].fields.sexo_alumno+'">Masculino</option>');
+					}
+					else{
+						$('#sexo_alumno').html('<option value="'+data[i].fields.sexo_alumno+'">Femenino</option>');
+					}
+					$('#direccion_alumno').val(data[i].fields.direccion_alumno);
+					$('#telefono_alumno').val(data[i].fields.telefono_alumno);
+				}
+				
+			}
+	    });
+	    $.ajax({
+	    	data:{'nie':nie},
+			type:'get',
+			url:'{% url "encargado_update" %}',
+			success: function(data){
+				for(var i=0;i<data.length;i++){
+							$('#dui_encargado').attr("disabled", true);
+							$('#parentesco').attr("disabled", true);
+							$('#dui_encargado').val(data[i].pk)
+							$('#nombre_encargado').val(data[i].fields.nombre_encargado);
+							$('#apellidos_encargado').val(data[i].fields.apellidos_encargado);
+							$('#telefono_encargado').val(data[i].fields.telefono);
+							$('#celular_encargado').val(data[i].fields.celular);
+							$('#parentesco').html('<option value="'+data[i].fields.parentesco+'">'+data[i].fields.parentesco+'</option>');
+					}
+
+			}
+	    });		
+	}
+  	
+	
+
+	
 	
 	
 </script>

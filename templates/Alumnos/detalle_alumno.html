@@ -1,0 +1,49 @@
+{% extends 'base/base.html' %}
+{% block title %}Alumnos{% endblock %}
+{% block act_inicio %}{% endblock %}
+{% block act_alumnos %}active{% endblock %}
+{% block content %}
+<hr/> 
+<div class="row">
+    <div class="col-md-4">
+
+    </div>
+    <div class="col-md-4 text-center">
+        <hr>	
+        <h3>Detalle 
+            {{ alumno.nombre_alumno }}
+        </h3>
+        <br>
+        
+        <dl class="dl-horizontal">
+            <dt>NIE:</dt>
+			<dd>{{alumno.nie}}</dd>
+			<dt>Nombre:</dt>
+			<dd>{{alumno.nombre_alumno}} {{alumno.apellidos_alumno}}</dd>
+			<dt>Fecha de Nacimiento:</dt>
+			<dd>{{alumno.fecha_nacimiento_alumno}}</dd>
+			<dt>Telefono:</dt>
+			<dd>{{alumno.telefono_alumno}}</dd>
+			<dt>Direccion:</dt>
+			<dd>{{alumno.direccion_alumno}}</dd>
+			<dt>Sexo:</dt>
+			{% if alumno.sexo_alumno == "M" %}
+			<dd>Masculino</dd>
+			{% endif %}
+			{% if alumno.sexo_alumno == "F" %}
+			<dd>Femenino</dd>
+			{% endif %}
+			
+			<dt>Especialidad:</dt>
+			<dd>{{alumno.especialidad_alumno}}</dd>
+        </dl>
+        <hr>
+        <a href="{% url 'alumno_list' %}" class="btn btn-success">
+            Vover a la lista
+        </a>
+    </div>
+    <div class="col-md-4">
+
+    </div>
+</div>
+{% endblock %}

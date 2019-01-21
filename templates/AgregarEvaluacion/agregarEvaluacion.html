@@ -46,7 +46,7 @@
                     <h4 style="text-align: center; padding-bottom: 350px;"><a href="{% url 'agregarEvaluacion' %}">Regresar</a></h4>
             {% endif %}
         {% else %}
-            {% if not formSubActividad%}
+            {% if not formSubActividad and not porcentajeJusto %}
             <div id="indicacion" class="alert alert-info alert-dismissible">
               <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
               <strong>Indicación:</strong> Seleccione el periodo y la actividad a la cual desea agregar una evaluación.
@@ -74,6 +74,14 @@
         {% endif %}
     {% endif %}  
     <br>
+    {% if porcentajeJusto %}
+                    <div class="row justify-content-center">
+                        <div class="alert alert-warning col-6 col-md-8" style="text-align: center; margin-top: 100px;margin-bottom: 30px; font-size: 1.5em;">
+                            <strong>Atención!</strong> Ya no se pueden agregar mas evaluaciones, ya esta en su maximo de porcentaje permitido.
+                        </div>
+                  </div>
+                <h4 style="text-align: center; padding-bottom: 350px;"><a href="{% url 'agregarEvaluacion' %}">Regresar</a></h4>
+    {% endif %}
     {% if formSubActividad %} 
 
     <div class="offset-3 col-10">
@@ -135,7 +143,7 @@
             
                 <div class="form-group col-md-6">
                     <label>Porcentaje:</label>
-                    <input class="form-control" type="text" name="porcentajeSubActividad" placeholder="Ingrese el porcentaje de la subactividad" pattern="(([3][5]\.[0][0])|([0-2][0-9]\.[0-9][0-9])|([3][0-4]\.[0-9][0-9]))">
+                    <input class="form-control" type="text" name="porcentajeSubActividad" placeholder="Ingrese el porcentaje de la subactividad" pattern="(([0]\.[3][5])|([0]\.[0-2][0-9])|([0]\.[3][0-4]))">
                 </div>
                 
             

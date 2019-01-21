@@ -49,7 +49,7 @@ def creardocente(request):
 			usuario.first_name=docente.nombre_docente
 			usuario.last_name=docente.apellidos_docente
 			usuario.email=docente.email_docente
-
+			usuario.is_staff=True
 			#Creamos la contraseña
 			algorit1=str(docente.apellidos_docente)
 			algorit1=algorit1.split(maxsplit = 1)
@@ -62,7 +62,7 @@ def creardocente(request):
 			#Hacemos una consulta a la tabla user del username(nombre del docente)		
 			id_docente = User.objects.get(username=str(nombredeusuario))	
 			#Hacemos una consulta a la tabla de tipos de usuario para traer el de tipo docente
-			id_tipo_usuario = TipoUsuario.objects.get(codigo_tipo_usuario="2")
+			id_tipo_usuario = TipoUsuario.objects.get(codigo_tipo_usuario="docente")
 			#Asignamos el id del cocente de la tabla user para ponero en la tabla de tipo decente
 			docente.usuario_docente=id_docente
 			#Guardamos el docente 
@@ -122,6 +122,7 @@ def docente_edit(request,id_del_docente):
 			usuario.first_name=docente.nombre_docente
 			usuario.last_name=docente.apellidos_docente
 			usuario.email=docente.email_docente
+			usuario.is_staff=True
 			#Reseteamos la contraseña porDefecto
 			algorit1=str(docente.apellidos_docente)
 			algorit1=algorit1.split(maxsplit = 1)
@@ -139,15 +140,8 @@ def docente_edit(request,id_del_docente):
 class ListadoAlumnos(TemplateView):
 	template_name="Alumnos/list_alumnos.html"
 
-class CrearGrado(CreateView):
-	template_name="Alumnos/crear_grado.html"
-	model = Grupo
-	form_class=GradoForm
-	success_url = reverse_lazy('alumno_list')
 
-
-class CrearGrado2(TemplateView):
-	
+class CrearGrado(TemplateView):	
 	def post(self, request, *args, **kwargs):
 		grado=Grupo()
 		secciones=("A","B","C","D","E","F")	
@@ -238,11 +232,12 @@ class RegistroAlumno(TemplateView):
 		encargado=Encargado()
 		usuario=User()
 		alumnoGrupo=Alumno_Grupo()
+		tipodeusuario=asignacionTipoUsuario()
 		#Resivimos los datos que vienen del post
 		#Codigo de Grupo
 		codigo_grupo=request.POST['grupo']
 		#Datos del Alumno y los asignamos al objeto
-		alumno.nie=request.POST['nie']
+		alumno.nie=request.POST['nie']		
 		alumno.nombre_alumno=request.POST['nombre_alumno']
 		alumno.apellidos_alumno=request.POST['apellidos_alumno']
 		alumno.sexo_alumno=request.POST['sexo_alumno']
@@ -259,31 +254,61 @@ class RegistroAlumno(TemplateView):
 		encargado.telefono=request.POST['telefono_encargado']
 		encargado.celular=request.POST['celular_encargado']
 		encargado.parentesco=request.POST['parentesco']
+		existencia_alumno=Alumno.objects.filter(nie=alumno.nie)
+		print(existencia_alumno.exists())
 		#Guardamos el encargado primero porque lo necesitamos para el alumno
-		encargado.save()
-		encargado_alumno=Encargado.objects.get(dui_encargado=encargado.dui_encargado)
-		alumno.encargado=encargado_alumno
+		if(existencia_alumno.exists()==True):
+			for x in Encargado.objects.filter(dui_encargado=str(encargado.dui_encargado)):
+				x.nombre_encargado=encargado.nombre_encargado
+				x.apellidos_encargado=encargado.apellidos_encargado
+				x.telefono=encargado.telefono
+				x.celular=encargado.celular
+				x.save()
+			for y in Alumno.objects.filter(nie=alumno.nie):
+				y.nombre_alumno=alumno.nombre_alumno
+				y.apellidos_alumno=alumno.apellidos_alumno
+				y.direccion_alumno=alumno.direccion_alumno
+				y.telefono_alumno=alumno.telefono_alumno
+				y.save()
+			for z in User.objects.filter(username=alumno.nie):
+				z.first_name=alumno.nombre_alumno
+				z.last_name=alumno.apellidos_alumno
+				z.save()		
+		
+		else:
+			encargado.save()
+			encargado_alumno=Encargado.objects.get(dui_encargado=encargado.dui_encargado)
+			alumno.encargado=encargado_alumno
 
-		#Ahora Guardamos el usuario igual se necesita para guardar el alumno
-		usuario.username=alumno.nie
-		usuario.first_name=alumno.nombre_alumno
-		usuario.last_name=alumno.apellidos_alumno
-		usuario.email=""
-		usuario.set_password("administrador10")
-		usuario.save()
-		usuario_alumno=User.objects.get(username=str(usuario.username))
-		alumno.usuario_alumno=usuario_alumno
-		alumno.save()
-		alumno_nie=Alumno.objects.get(nie=alumno.nie)
-		alumno_grupo=Grupo.objects.get(codigo_grupo=codigo_grupo)
-		alumnoGrupo.nie=alumno_nie
-		alumnoGrupo.codigo_grupo=alumno_grupo
-		alumnoGrupo.save();
-		alumnos4=[]
+			#Ahora Guardamos el usuario igual se necesita para guardar el alumno
+			usuario.username=alumno.nie
+			usuario.first_name=alumno.nombre_alumno
+			usuario.last_name=alumno.apellidos_alumno
+			usuario.email=""
+			usuario.is_staff=False
+			usuario.set_password("administrador10")
+			usuario.save()
+			usuario_alumno=User.objects.get(username=str(usuario.username))
+			alumno.usuario_alumno=usuario_alumno
+			alumno.save()
+			alumno_nie=Alumno.objects.get(nie=alumno.nie)
+			alumno_grupo=Grupo.objects.get(codigo_grupo=codigo_grupo)
+			alumnoGrupo.nie=alumno_nie
+			alumnoGrupo.codigo_grupo=alumno_grupo
+			alumnoGrupo.save();
+			
+			#Hacemos una consulta a la tabla de tipos de usuario para traer el de tipo docente
+			id_tipo_usuario = TipoUsuario.objects.get(codigo_tipo_usuario="alumno")
+			tipodeusuario.tipo_usuario=id_tipo_usuario
+			tipodeusuario.usuario=usuario_alumno		
+			tipodeusuario.save()
+
+		
+		alumnosTotales=[]
 		alumno=Alumno_Grupo.objects.filter(codigo_grupo=codigo_grupo)
 		for x in alumno:
-			alumnos4.append(Alumno.objects.get(nie=x.nie.nie))		
-		data = serializers.serialize('json',alumnos4)
+			alumnosTotales.append(Alumno.objects.get(nie=x.nie.nie))		
+		data = serializers.serialize('json',alumnosTotales)
 		return HttpResponse(data, content_type='application/json')
 
 class BusquedaAlumno(TemplateView):
@@ -294,8 +319,7 @@ class BusquedaAlumno(TemplateView):
 		grupo_docente =Grupo.objects.filter(nivel_especialidad=nivel, codigo_especialidad=especialidad,codigo_grupo=seccion)
 		grupo=""
 		for x in grupo_docente:
-			grupo=x.codigo_grupo
-		
+			grupo=x.codigo_grupo		
 		alumnos4=[]
 		alumno=Alumno_Grupo.objects.filter(codigo_grupo=str(grupo))
 		for x in alumno:
@@ -304,13 +328,50 @@ class BusquedaAlumno(TemplateView):
 		return HttpResponse(data, content_type='application/json')
 
 class BusquedaDuiEncargado(TemplateView):
-	def get(self,request,*args,**kwargs):
-		duidocente=[]
+	def get(self,request,*args,**kwargs):		
 		dui_encargado=request.GET['search']
-		dui=Encargado.objects.filter(dui_encargado=dui_encargado)
+		dui=Encargado.objects.filter(dui_encargado__contains=dui_encargado)
 		data=serializers.serialize('json',dui)
 		return HttpResponse(data,content_type='application/json')
+
+class BusquedaEncargado(TemplateView):
+ 	def get(self,request,*args,**kwargs):
+ 		dui_encargado=request.GET['dui_encargado']
+ 		dui=Encargado.objects.filter(dui_encargado__contains=dui_encargado)
+ 		data=serializers.serialize('json',dui)
+ 		return HttpResponse(data,content_type='application/json')
+class AlumnoUpdate(TemplateView):
+	def get(self,request,*args,**kwargs):
+		nie=request.GET['nie']
+		alumno=Alumno.objects.filter(nie=nie)
+		data=serializers.serialize('json',alumno)		
+		return HttpResponse(data,content_type='application/json')
+class EncargadoUpdate(TemplateView):
+	def get(self,request,*args,**kwargs):
+		nie=request.GET['nie']
+		alumno=Alumno.objects.get(nie=nie)
 		
+		encargado=Encargado.objects.filter(dui_encargado=alumno.encargado.dui_encargado)
+		
+		data=serializers.serialize('json',encargado)
+		return HttpResponse(data,content_type='application/json')
+
+
+def delete_alumno(request,nie):
+	alumno = Alumno.objects.get(nie=nie)
+	usuario= User.objects.get(username=str(alumno.usuario_alumno))
+	tipoUsuario=asignacionTipoUsuario.objects.get(usuario_id=usuario.pk)
+
+	if request.method=='POST':
+		alumno.delete()
+		usuario.delete()
+		tipoUsuario.delete()
+		return redirect('alumno_list')
+	return render(request, 'Alumnos/alumno_delete.html', {'alumno':alumno})
+
+def alumno_detalle(request,nie):
+	alumno = Alumno.objects.get(nie=nie)
+	return render(request, 'Alumnos/detalle_alumno.html', {'alumno':alumno})
 #Finalizacion de el retorno de objetos JSON
 #Finalizacion de la parte de alumnos
 class Vista(TemplateView):
@@ -334,6 +395,9 @@ def DatosEstadisticos(request):
 
 
 def anotacion(request):	
+	if  request.user.is_superuser or not request.user.is_staff:
+		return HttpResponse('Acceso denegado')
+		pass
 	nombre = ""
 	AlumnoNie = ""	
 	AlumnoDato	= Alumno()
@@ -341,7 +405,7 @@ def anotacion(request):
 	Anot = []
 	An = []
 	codigoGrupo = ""
-	AlumnoGrupo = Alumno_Grupo()
+	AlumnoGrupo = []
 	GrupoE= Grupo()
 	codigoDocente = ""
 	idUser = request.user.id
@@ -354,35 +418,46 @@ def anotacion(request):
 		form = AnotacionForm(request.POST)
 		if 'btnConsultar' in request.POST:
 			AlumnoNie = request.POST.get('inputNie')
-			try:
-				AlumnoGrupo = Alumno_Grupo.objects.get(nie=AlumnoNie)
-			except Alumno_Grupo.DoesNotExist:
+			
+			AlumnoGrupo = Alumno_Grupo.objects.filter(nie=AlumnoNie)
+			print(AlumnoNie)
+			print(AlumnoGrupo)
+			if len(AlumnoGrupo) == 0:
 				AlumnoGrupo = None
 				mensaje = "El nie ingresado no existe"
 				AlumnoNie = ""
-			if AlumnoGrupo:
-				codigoGrupo = AlumnoGrupo.codigo_grupo
-				GrupoE = Grupo.objects.get(codigo_grupo=codigoGrupo)
-				codigoDocente = GrupoE.codigo_docente_encargado_id
-				docente = Docente.objects.get(usuario_docente_id=idUser)
-				dui_docente = docente.dui_docente
-				print(codigoDocente)
-				print(len(codigoDocente))
-				print(dui_docente)
-				if codigoDocente == dui_docente:
+				print(mensaje)
+				pass
+			else:
+				print("")		
+				
+				if AlumnoGrupo:
+					for c in AlumnoGrupo:
+						codigoGrupo = c.codigo_grupo_id
+					print(codigoGrupo)
+					GrupoE = Grupo.objects.get(codigo_grupo=codigoGrupo)
+					codigoDocente = GrupoE.codigo_docente_encargado_id
+					docente = Docente.objects.get(usuario_docente_id=idUser)
+					dui_docente = docente.dui_docente
+					print(codigoDocente)
+					print(len(codigoDocente))
 					print(dui_docente)
-					try:
-		   				AlumnoDato = Alumno.objects.get(nie=AlumnoNie)
-		   				Anot=Anotacion.objects.filter(nie_id=AlumnoNie)
-		   				nombre = AlumnoDato.nombre_alumno + " "+ AlumnoDato.apellidos_alumno
-		   				print(nombre)
-					except Alumno.DoesNotExist:
-		   				AlumnoDato = None
-		   				AlumnoNie = ""	
-				else:
-					mensaje = "Usted no es docente del alumno ingresado"
-				pass	
-
+					if codigoDocente == dui_docente:
+						print(dui_docente)
+						try:
+			   				AlumnoDato = Alumno.objects.get(nie=AlumnoNie)
+			   				Anot=Anotacion.objects.filter(nie_id=AlumnoNie)
+			   				nombre = AlumnoDato.nombre_alumno + " "+ AlumnoDato.apellidos_alumno
+			   				print(nombre)
+						except Alumno.DoesNotExist:
+			   				AlumnoDato = None
+			   				AlumnoNie = ""	
+			   				pass
+					else:
+						mensaje = "Usted no es docente del alumno ingresado"
+						AlumnoNie = ""
+						print(mensaje)
+		print(mensaje)		
 		if 'btnGuardar' in request.POST:
 			An = Anotacion.objects.all()
 			for c in An:
@@ -390,8 +465,10 @@ def anotacion(request):
 
 			AlumnoNie = request.POST.get('nie')
 			print(AlumnoNie)
-			AlumnoGrupo = Alumno_Grupo.objects.get(nie=AlumnoNie)
-			codigoGrupo = AlumnoGrupo.codigo_grupo
+			AlumnoGrupo = Alumno_Grupo.objects.filter(nie=AlumnoNie)		
+			for c in AlumnoGrupo:
+				codigoGrupo = c.codigo_grupo_id
+			print(codigoGrupo)					
 			GrupoE = Grupo.objects.get(codigo_grupo=codigoGrupo)
 			codigoDocente = GrupoE.codigo_docente_encargado_id
 			docente = Docente.objects.get(usuario_docente_id=idUser)
@@ -437,8 +514,12 @@ def anotacion(request):
 		})
 
 
+
 	
 def administrarNotas(request):	
+	if not request.user.is_superuser or not request.user.is_staff:
+		return HttpResponse('Acceso denegado')
+		pass
 	docente = Docente.objects.all()		
 	alumnos = []
 	evaluacion = []
@@ -495,7 +576,9 @@ def administrarNotas(request):
 
 
 def buscarMaterias(request):
-
+	if not request.user.is_superuser or not request.user.is_staff:
+		return HttpResponse('Acceso denegado')
+		pass
 	if request.GET['accion'] == 'obtenerMateriasDocente':
 		materias = []
 		dui_docente = request.GET['dui_docente']		
@@ -520,7 +603,9 @@ def buscarMaterias(request):
 		pass
 
 def buscarEvaluaciones(request):
-	"""AQUIIIII HAY QUE VALIDAR anio_lectivo vigente y periodos no finalizados"""
+	if not request.user.is_superuser or not request.user.is_staff:
+		return HttpResponse('Acceso denegado')
+		pass
 	if request.GET['accion'] == 'obtenerEvaluaciones':
 
 		anioLectivos = AnioLectivo.objects.all().order_by('anio_lectivo')
@@ -647,11 +732,11 @@ def materia_view(request):
 		grupos = Grupo.objects.all()
 		for grupo in grupos:
 			if 'grupo_'+grupo.codigo_grupo in request.POST:
-				count = Docente_Materia.objects.all().count()
-				docente_materia = Docente_Materia(id = count+1, codigo_docente = docente, codigo_materia = materia)
+				last_id = Docente_Materia.objects.all().order_by('-id')[:1][0].id
+				docente_materia = Docente_Materia(id = last_id+1, codigo_docente = docente, codigo_materia = materia)
 				docente_materia.save()
-				count2 = Docente_Materia_Grupo.objects.all().count()
-				docente_materia_grupo = Docente_Materia_Grupo(id = count2+1, docente_materia = docente_materia,grupo = grupo)
+				last_id2 = Docente_Materia_Grupo.objects.all().order_by('-id')[:1][0].id
+				docente_materia_grupo = Docente_Materia_Grupo(id = last_id2+1, docente_materia = docente_materia,grupo = grupo)
 				docente_materia_grupo.save()
 				pass
 			pass
@@ -680,6 +765,7 @@ def materia_view(request):
 			nivel = None
 
 			for especialidad in especialidades:
+<<<<<<< HEAD
 				if '1_'+especialidad.codigo_especialidad in request.POST:
 					num = Especialidad_Materia.objects.all().count()
 					especialidad_materia = Especialidad_Materia(num + 1,codigo_especialidad = especialidad, codigo_materia = materia, nivel_materia_especialidad = 1)
@@ -693,6 +779,22 @@ def materia_view(request):
 				elif '3_'+especialidad.codigo_especialidad in request.POST:
 					num = Especialidad_Materia.objects.all().count()
 					especialidad_materia = Especialidad_Materia(num + 1, codigo_especialidad = especialidad, codigo_materia = materia, nivel_materia_especialidad = 3)
+=======
+
+				if '1_'+especialidad.codigo_especialidad in request.POST[especialidad.codigo_especialidad]:
+					last_id = Especialidad_Materia.objects.all().order_by('-id')[:1][0].id
+					especialidad_materia = Especialidad_Materia(id = last_id+1, codigo_especialidad = especialidad, codigo_materia = materia, nivel_materia_especialidad = 1)
+					especialidad_materia.save()
+					pass
+				elif '2_'+especialidad.codigo_especialidad in request.POST[especialidad.codigo_especialidad]:
+					last_id = Especialidad_Materia.objects.all().order_by('-id')[:1][0].id
+					especialidad_materia = Especialidad_Materia(id = last_id+1, codigo_especialidad = especialidad, codigo_materia = materia, nivel_materia_especialidad = 2)
+					especialidad_materia.save()
+					pass
+				elif '3_'+especialidad.codigo_especialidad in request.POST[especialidad.codigo_especialidad]:
+					last_id = Especialidad_Materia.objects.all().order_by('-id')[:1][0].id
+					especialidad_materia = Especialidad_Materia(id = last_id+1, codigo_especialidad = especialidad, codigo_materia = materia, nivel_materia_especialidad = 3)
+>>>>>>> ead8b7aac88e3c45c88f89b476a8a6d449d31d17
 					especialidad_materia.save()
 					pass
 				pass
@@ -802,6 +904,11 @@ def materia_delete(request, codigo_materia):
 
 def IngresarNotas(request):
 
+	#Docente
+	if  request.user.is_superuser or not request.user.is_staff:
+		return HttpResponse('Acceso denegado')
+		pass
+
 	id_docente = Docente.objects.get(usuario_docente=str(request.user.id)).dui_docente
 	materiasImpartidas =  Docente_Materia.objects.filter(codigo_docente=id_docente)
 	materias = []
@@ -845,7 +952,8 @@ def IngresarNotas(request):
 				if request.POST[str(x.nie)] != "":
 					eva = Evaluacion.objects.get(codigo_evaluacion=request.POST['codigoEva'])
 					nota = Decimal(request.POST[x.nie])
-					c = Calificacion(nie = x, codigo_evaluacion= eva, nota= nota)
+					last_id = Calificacion.objects.all().order_by('-id')[:1][0].id
+					c = Calificacion(id = last_id+1, nie = x, codigo_evaluacion= eva, nota= nota)
 					c.save()
 					pass
 				pass
@@ -910,6 +1018,12 @@ def servidorIngresarNotas(request):
 
 
 def listaEvaluacion(request):
+
+	#Docente
+	if  request.user.is_superuser or not request.user.is_staff:
+		return HttpResponse('Acceso denegado')
+		pass
+
 	materias = []
 	contexto = {}
 	evaluaciones = []
@@ -1016,6 +1130,11 @@ def cargarEvaluaciones(materia, periodo, actividad, docente):
 
 def agregarEvaluacion(request):
 
+	#Docente
+	if  request.user.is_superuser or not request.user.is_staff:
+		return HttpResponse('Acceso denegado')
+		pass
+
 	formSubActividad = False
 	formExamen = False
 	periodo= ""
@@ -1107,20 +1226,36 @@ def agregarEvaluacion(request):
 		actividad = Actividad.objects.get(codigo_periodo = periodo, codigo_actividad = request.POST['actividadPerteneciente'])
 		
 		"""Validar que no sobrepase el 35% la suma de los porcentajes de las subactividades"""
-		subActs = Sub_Actividad.objects.filter(codigo_actividad = actividad)
+		docente = Docente.objects.get(usuario_docente = request.user)
+		materia = Materia.objects.get(codigo_materia = request.POST['materia'])
+		docente_materia = Docente_Materia.objects.get(codigo_docente = docente, codigo_materia = materia)
+		evaluaciones = Evaluacion.objects.filter(codigo_docente_materia = docente_materia)
 
-		porcentajeTotal = Decimal(request.POST['porcentajeSubActividad'])
-		porcentajeActual = 0
-		for subAct in subActs:
-			porcentajeTotal += subAct.porcentaje_sub_actividad
-			porcentajeActual += subAct.porcentaje_sub_actividad
+		subActs = []
+		for evaluacion in evaluaciones:
+			if evaluacion.codigo_sub_actividad.codigo_actividad.codigo_actividad == actividad.codigo_actividad:
+				subActs.append(evaluacion.codigo_sub_actividad)
+				pass
 			pass
 
-		porcentajeRestante = 35.00 - float(porcentajeActual)
+		porcentajeTotal = float(request.POST['porcentajeSubActividad'])
+		porcentajeActual = 0
+		for subAct in subActs:
+			porcentajeTotal += float(subAct.porcentaje_sub_actividad)
+			porcentajeActual += float(subAct.porcentaje_sub_actividad)
+			pass
 
-		if porcentajeTotal > 35.00:
-			porcentajePasado = True
-			contexto = {'porcentajePasado':porcentajePasado, 'porcentajeRestante':round(float(porcentajeRestante),2)}
+
+		porcentajeRestante = float(0.35 - round(float(porcentajeActual),2))
+
+		if porcentajeTotal > float(0.35):
+			if porcentajeRestante == float(0.00):
+				contexto = {'porcentajeJusto':True}
+				pass
+			else:
+				porcentajePasado = True
+				contexto = {'porcentajePasado':porcentajePasado, 'porcentajeRestante':round(float(porcentajeRestante),2)}
+				pass
 			pass
 		else:
 			subAct = Sub_Actividad(codigo_sub_actividad = request.POST['codigoSubActividad'], codigo_actividad = actividad, porcentaje_sub_actividad = Decimal(request.POST['porcentajeSubActividad']), descripcion_sub_actividad = request.POST['descripcionSubActividad'])
@@ -1137,8 +1272,14 @@ def agregarEvaluacion(request):
 
 
 	return render(request,'AgregarEvaluacion/agregarEvaluacion.html',contexto)
-
+	
 def editarEvaluacion(request, id_evaluacion):
+
+	#Docente
+	if  request.user.is_superuser or not request.user.is_staff:
+		return HttpResponse('Acceso denegado')
+		pass
+
 	evaluacion = None
 
 	if Evaluacion.objects.filter(codigo_evaluacion = id_evaluacion).exists():
@@ -1159,10 +1300,13 @@ def servidorActividades(request):
 
 	return HttpResponse(data, content_type='application/json')
 
-
 #Inicio de codigo del Expediente (Fc!)
 
 def Expediente(request):
+		#Alumno
+	if request.user.is_superuser or request.user.is_staff:
+		return HttpResponse('Acceso denegado')
+		pass
 	estudiante=Alumno.objects.get(usuario_alumno_id=request.user.id)
 	bachillerato=Especialidad.objects.get(codigo_especialidad=estudiante.especialidad_alumno_id)
 	cant_grupos=Alumno_Grupo.objects.filter(nie=estudiante.nie).order_by('id')#devuelve todos los registros de alumno grupo
@@ -1177,12 +1321,20 @@ def Expediente(request):
 	return render (request,'expediente/expediente.html',contexto)
 
 def BuscarPeriodos(request):
+		#Alumno
+	if request.user.is_superuser or request.user.is_staff:
+		return HttpResponse('Acceso denegado')
+		pass
 	codigos_periodos=Periodo.objects.filter(anio_lectivo_id=request.GET['anio'],finalizado=True)
 
 	data=serializers.serialize('json',codigos_periodos)
 	return HttpResponse(data,content_type='application/json')
 	
 def BuscarNotas(request):
+		#Alumno
+	if request.user.is_superuser or request.user.is_staff:
+		return HttpResponse('Acceso denegado')
+		pass
 	alumno=Alumno.objects.get(usuario_alumno_id=request.user.id)
 
 	nie=alumno.nie
@@ -1192,15 +1344,20 @@ def BuscarNotas(request):
 	return HttpResponse(datos,content_type='application/json')
 
 def PromedioFin(request):
+		#Alumno
+	if request.user.is_superuser or request.user.is_staff:
+		return HttpResponse('Acceso denegado')
+		pass
 	alumno=Alumno.objects.get(usuario_alumno_id=request.user.id)
 	nie=alumno.nie
-	#periodo_anio=  Periodo.objects.get(codigo_periodo=request.GET['codigo_periodo']).anio_lectivo_id
-	#periodos=Periodo.objects.filter(anio_lectivo_id=periodo_anio)
+	periodo_anio=  Periodo.objects.get(codigo_periodo=request.GET['codigo_periodo']).anio_lectivo_id
+	periodos=Periodo.objects.filter(anio_lectivo_id=periodo_anio).order_by('codigo_periodo')
 	periodo=Periodo.objects.get(codigo_periodo=request.GET['codigo_periodo'])
-	periodo1=ObtenerPromedioPeriodo(alumno,nie,periodo,'Final')
-	periodo2=ObtenerPromedioPeriodo(alumno,nie,periodo,'Final')
-	periodo3=ObtenerPromedioPeriodo(alumno,nie,periodo,'Final')
-	periodo4=ObtenerPromedioPeriodo(alumno,nie,periodo,'Final')
+	
+	periodo1=ObtenerPromedioPeriodo(alumno,nie,periodos[0],'Final')
+	periodo2=ObtenerPromedioPeriodo(alumno,nie,periodos[1],'Final')
+	periodo3=ObtenerPromedioPeriodo(alumno,nie,periodos[2],'Final')
+	periodo4=ObtenerPromedioPeriodo(alumno,nie,periodos[3],'Final')
 	promedio_materias_fin=ObtenerPromedioAnual(periodo1['promedios'],periodo2['promedios'],periodo3['promedios'],periodo4['promedios'])
 	estados=VerificarEstados(promedio_materias_fin)
 	diccionario={'materias':periodo1['materiaN'],'codigos':periodo1['materiaC'],'promedio':promedio_materias_fin,'estados':estados}
@@ -1325,19 +1482,16 @@ def ObtenerPromedioAnual(periodo1,periodo2,periodo3,periodo4):
 	return finales
 
 def VerificarEstados(promedio_materias_fin):
-	print('hola')
 	estados=[]
 	es='Aprobada'
 	for i in range(len(promedio_materias_fin)):
 		if promedio_materias_fin[i]<5.95:
-			print(promedio_materias_fin[i])
 			es='Reprobada'
 		estados.append(es)
-
-	print(estados)
 	return estados
 
 #Fin de codigo del Expediente (Fc!)
+
 def actualizarUser(request):
 	if 'btnGuardar' in request.POST:
 		usuario = request.user
@@ -1356,3 +1510,23 @@ def actualizarUser(request):
 		return redirect('.')
 		pass
 	return render(request, 'actualizarUser/actualizarUser.html',{'user':request.user})
+
+def especialidades_lista(request):
+	#Admin
+	if not request.user.is_superuser or not request.user.is_staff:
+		return HttpResponse('Acceso denegado')
+		pass
+
+	if 'accion' in request.POST:
+		accion = request.POST['accion']
+		codigo_especialidad = request.POST['especialidad']
+		especialidad = Especialidad.objects.get(codigo_especialidad = codigo_especialidad)
+		if accion == 'Eliminar':
+			especialidad.delete()
+			pass
+		else:
+			pass
+		pass
+	especialidades = Especialidad.objects.all()
+	contexto = {'especialidades':especialidades}
+	return render(request,'especialidades/especialidades_lista.html',contexto)
