@@ -701,11 +701,11 @@ def materia_view(request):
 		grupos = Grupo.objects.all()
 		for grupo in grupos:
 			if 'grupo_'+grupo.codigo_grupo in request.POST:
-				count = Docente_Materia.objects.all().count()
-				docente_materia = Docente_Materia(id = count+1, codigo_docente = docente, codigo_materia = materia)
+				last_id = Docente_Materia.objects.all().order_by('-id')[:1][0].id
+				docente_materia = Docente_Materia(id = last_id+1, codigo_docente = docente, codigo_materia = materia)
 				docente_materia.save()
-				count2 = Docente_Materia_Grupo.objects.all().count()
-				docente_materia_grupo = Docente_Materia_Grupo(id = count2+1, docente_materia = docente_materia,grupo = grupo)
+				last_id2 = Docente_Materia_Grupo.objects.all().order_by('-id')[:1][0].id
+				docente_materia_grupo = Docente_Materia_Grupo(id = last_id2+1, docente_materia = docente_materia,grupo = grupo)
 				docente_materia_grupo.save()
 				pass
 			pass
@@ -736,18 +736,18 @@ def materia_view(request):
 			for especialidad in especialidades:
 
 				if '1_'+especialidad.codigo_especialidad in request.POST[especialidad.codigo_especialidad]:
-					num = Especialidad_Materia.objects.all().count()
-					especialidad_materia = Especialidad_Materia(num + 1, codigo_especialidad = especialidad, codigo_materia = materia, nivel_materia_especialidad = 1)
+					last_id = Especialidad_Materia.objects.all().order_by('-id')[:1][0].id
+					especialidad_materia = Especialidad_Materia(id = last_id+1, codigo_especialidad = especialidad, codigo_materia = materia, nivel_materia_especialidad = 1)
 					especialidad_materia.save()
 					pass
 				elif '2_'+especialidad.codigo_especialidad in request.POST[especialidad.codigo_especialidad]:
-					num = Especialidad_Materia.objects.all().count()
-					especialidad_materia = Especialidad_Materia(num + 1, codigo_especialidad = especialidad, codigo_materia = materia, nivel_materia_especialidad = 2)
+					last_id = Especialidad_Materia.objects.all().order_by('-id')[:1][0].id
+					especialidad_materia = Especialidad_Materia(id = last_id+1, codigo_especialidad = especialidad, codigo_materia = materia, nivel_materia_especialidad = 2)
 					especialidad_materia.save()
 					pass
 				elif '3_'+especialidad.codigo_especialidad in request.POST[especialidad.codigo_especialidad]:
-					num = Especialidad_Materia.objects.all().count()
-					especialidad_materia = Especialidad_Materia(num + 1, codigo_especialidad = especialidad, codigo_materia = materia, nivel_materia_especialidad = 3)
+					last_id = Especialidad_Materia.objects.all().order_by('-id')[:1][0].id
+					especialidad_materia = Especialidad_Materia(id = last_id+1, codigo_especialidad = especialidad, codigo_materia = materia, nivel_materia_especialidad = 3)
 					especialidad_materia.save()
 					pass
 				pass
@@ -838,7 +838,8 @@ def IngresarNotas(request):
 				if request.POST[str(x.nie)] != "":
 					eva = Evaluacion.objects.get(codigo_evaluacion=request.POST['codigoEva'])
 					nota = Decimal(request.POST[x.nie])
-					c = Calificacion(nie = x, codigo_evaluacion= eva, nota= nota)
+					last_id = Calificacion.objects.all().order_by('-id')[:1][0].id
+					c = Calificacion(id = last_id+1, nie = x, codigo_evaluacion= eva, nota= nota)
 					c.save()
 					pass
 				pass
