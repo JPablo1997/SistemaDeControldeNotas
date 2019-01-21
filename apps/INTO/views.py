@@ -790,6 +790,11 @@ def materia_delete(request, codigo_materia):
 
 def IngresarNotas(request):
 
+	#Docente
+	if  request.user.is_superuser or not request.user.is_staff:
+		return HttpResponse('Acceso denegado')
+		pass
+
 	id_docente = Docente.objects.get(usuario_docente=str(request.user.id)).dui_docente
 	materiasImpartidas =  Docente_Materia.objects.filter(codigo_docente=id_docente)
 	materias = []
@@ -898,6 +903,12 @@ def servidorIngresarNotas(request):
 
 
 def listaEvaluacion(request):
+
+	#Docente
+	if  request.user.is_superuser or not request.user.is_staff:
+		return HttpResponse('Acceso denegado')
+		pass
+
 	materias = []
 	contexto = {}
 	evaluaciones = []
@@ -1003,6 +1014,11 @@ def cargarEvaluaciones(materia, periodo, actividad, docente):
 
 
 def agregarEvaluacion(request):
+
+	#Docente
+	if  request.user.is_superuser or not request.user.is_staff:
+		return HttpResponse('Acceso denegado')
+		pass
 
 	formSubActividad = False
 	formExamen = False
@@ -1127,6 +1143,12 @@ def agregarEvaluacion(request):
 	return render(request,'AgregarEvaluacion/agregarEvaluacion.html',contexto)
 
 def editarEvaluacion(request, id_evaluacion):
+
+	#Docente
+	if  request.user.is_superuser or not request.user.is_staff:
+		return HttpResponse('Acceso denegado')
+		pass
+
 	evaluacion = None
 
 	if Evaluacion.objects.filter(codigo_evaluacion = id_evaluacion).exists():
@@ -1344,3 +1366,23 @@ def actualizarUser(request):
 		return redirect('.')
 		pass
 	return render(request, 'actualizarUser/actualizarUser.html',{'user':request.user})
+
+def especialidades_lista(request):
+	#Admin
+	if not request.user.is_superuser or not request.user.is_staff:
+		return HttpResponse('Acceso denegado')
+		pass
+
+	if 'accion' in request.POST:
+		accion = request.POST['accion']
+		codigo_especialidad = request.POST['especialidad']
+		especialidad = Especialidad.objects.get(codigo_especialidad = codigo_especialidad)
+		if accion == 'Eliminar':
+			especialidad.delete()
+			pass
+		else:
+			pass
+		pass
+	especialidades = Especialidad.objects.all()
+	contexto = {'especialidades':especialidades}
+	return render(request,'especialidades/especialidades_lista.html',contexto)
