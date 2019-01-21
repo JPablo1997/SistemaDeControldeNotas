@@ -1,5 +1,7 @@
 {% extends 'base/base.html'%}
 {% block title %} Materias {% endblock %}
+{% block act_inicio %}{% endblock %}
+{% block act_administrarMaterias %}active{% endblock %}
 {% block content %}
 
 <div class="table-responsive">
@@ -11,9 +13,9 @@
 	    </a>
 	    <br>
 	    <br>
-	    
-				<thead class="table table-hover border">
-					<tr class="table-success text-center">
+	    		<div class="table-responsive">
+				<thead class="table table-hover table-bordered">
+					<tr class="table-success">
 						<td class="font-weight-bold">Código</td>
 						<td class="font-weight-bold">Nombre</td>
 						<td class="font-weight-bold">Descripción</td>
@@ -21,9 +23,10 @@
 						<td class="font-weight-bold">Acciones</td>
 					</tr>
 				</thead>
-				<tbody>
+				
 					{% if object_list %}
 					{% for Materia in object_list %}
+					<tbody>
 					<tr class="text-justify">
 						<td>{{ Materia.codigo_materia }}</td>
 						<td>{{ Materia.nombre_materia }}</td>
@@ -39,6 +42,7 @@
 						</td>
 					</tr>
 					{% endfor %}
+				</div>
 					{% else %}
 					<h2>No hay registros de Materias</h2>
 					{% endif %}

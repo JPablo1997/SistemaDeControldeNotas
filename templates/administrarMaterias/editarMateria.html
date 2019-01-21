@@ -1,9 +1,11 @@
 {% extends 'base/base.html'%}
-{% block title %} Agregar Materia {% endblock %}
+{% block title %} Editar Materia {% endblock %}
+{% block act_inicio %}{% endblock %}
+{% block act_administrarMaterias %}active{% endblock %}
 {% block content %}
 <div class="container">
 	<br><br>
-	<h2>Agregar Materia</h2>
+	<h2>Editar Materia</h2>
 	<form method="post">
 	{% csrf_token %}
 	<div class="row">
@@ -38,57 +40,62 @@
 					<br>
 					<h2>Seleccione la Especialidad y El Año en que se impartira la Materia</h2>
 					<br>
+					<div class="table-responsive">
 					<table>
-						<tbody>
-						<tr>
+						<tbody class="table table-hover table-bordered">
+						<tr  class="table-success">
 							<td></td>
 							<td>Primer Año&nbsp;&nbsp;&nbsp;</td>
 							<td>Segundo Año&nbsp;&nbsp;&nbsp;</td>
 							<td>Tercer Año&nbsp;&nbsp;&nbsp;</td>
 						</tr>
 							{% for esp in especialidad %}
+
 							{% if esp.anios_especialidad == 3 %}	
-							<tr>
-								
+							<tr  class="text-justify">
 								<td>{{esp.nombre_especialidad}}&nbsp;&nbsp;&nbsp;</td>
 								<td><input  type="radio" name="1_{{ esp.codigo_especialidad }}"></td>
 								<td><input type="radio" name="2_{{ esp.codigo_especialidad }}"></td>
 								<td><input type="radio" name="3_{{ esp.codigo_especialidad }}"></td>
-								
 							</tr>
 							{% endif %}
 
 							{% if esp.anios_especialidad == 2 %}	
-							<tr>
-								
+							<tr  class="text-justify">
 								<td>{{esp.nombre_especialidad}}&nbsp;&nbsp;&nbsp;</td>
 								<td><input type="radio" name="1_{{ esp.codigo_especialidad }}"></td>
 								<td><input type="radio" name="2_{{ esp.codigo_especialidad }}"></td>
-								
 							</tr>
 							{% endif %}
+
 							{% endfor %}
 						</tbody>
-					</table> 
+					</table>
+				</div>
 					{% endif %}
 			</div>
 		</div>
 
-		<div class="form-group">
+		<div>
 			<br>
 			{% if docentes and materia %}
 			<h2>Selecciones Los Docentes asignados a la Materia</h2>
 			<br>
-			<div class="checkbox text-justify">
+			<div class="table-responsive">
+			<table>
+			<tbody class="table table-hover table-bordered">	
 				{% for docente in docentes %}
-
-				<label>
-					&nbsp&nbsp&nbsp&nbsp&nbsp
+				<tr class="text-justify">
+				<td>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<input type="checkbox" name="docente_{{ docente.dui_docente }}" onclick="cargar_grupos('{{ materia.codigo_materia }}', '{{ docente.dui_docente }}');">
 					{{docente.nombre_docente}} {{docente.apellidos_docente}}
-				</label>
-				<br>
+				</td>
+				</tr>
 				{% endfor %}
+			</tbody>
+			</table>
+			<br>
 			</div>
 			{% endif %}
 		</div>

@@ -812,6 +812,7 @@ def materia_edit(request, codigo_materia):
 	if not request.user.is_superuser or not request.user.is_staff:
 		return HttpResponse('Acceso denegado')
 		pass
+
 	materia = Materia.objects.get(pk=codigo_materia)
 	if request.method == 'GET':
 		form = MateriaForm(instance=materia)
