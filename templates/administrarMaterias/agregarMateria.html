@@ -76,8 +76,33 @@
 			</div>
 		</div>
 
-		<div>
+		<div style="margin: 0 auto;">
+			{% if docentes and materia %}
+			<h2>Seleccione Los Docentes asignados a la Materia</h2>
 			<br>
+			<table class="table table-hover table-bordered" style="margin: 0 auto;">			
+				<thead class="table table-hover table-bordered">
+					<tr class="table-success">
+						<td class="font-weight-bold">Docente</td>
+						<td class="font-weight-bold">Asignar grupo</td>
+					</tr>
+				</thead>
+				
+				{% for docente in docentes %}
+				<tbody>
+					<tr class="text-justify">
+						<td>{{docente.nombre_docente}} {{docente.apellidos_docente}}</td>
+						<td>
+							<input type="checkbox" name="docente_{{ docente.dui_docente }}" onclick="cargar_grupos('{{ materia.codigo_materia }}', '{{ docente.dui_docente }}');">
+						</td>
+					</tr>
+				</tbody>
+
+				{% endfor %}
+				{% endif %}
+			</table>
+		</div>
+		<!--	<br>
 			{% if docentes and materia %}
 			<h2>Seleccione Los Docentes asignados a la Materia</h2>
 			<br>
@@ -97,8 +122,8 @@
 			</table>
 			<br>
 			</div>
-			{% endif %}
-		</div>
+			{% endif %}	-->
+		
 		
 	</div>
 	<button type="submit" class="btn btn-primary">Guardar</button>

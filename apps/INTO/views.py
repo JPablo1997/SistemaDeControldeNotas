@@ -803,7 +803,6 @@ def materia_view(request):
 		#muestra el formulario
 		form=MateriaForm()
 		especialidad=Especialidad.objects.all().order_by('-anios_especialidad')
-		docente=Docente.objects.all()
 		contexto={'form':form,'especialidad':especialidad}
 
 	return render(request,'administrarMaterias/agregarMateria.html',contexto)
