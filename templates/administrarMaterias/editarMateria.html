@@ -54,17 +54,17 @@
 							{% if esp.anios_especialidad == 3 %}	
 							<tr  class="text-justify">
 								<td>{{esp.nombre_especialidad}}&nbsp;&nbsp;&nbsp;</td>
-								<td><input  type="radio" name="1_{{ esp.codigo_especialidad }}"></td>
-								<td><input type="radio" name="2_{{ esp.codigo_especialidad }}"></td>
-								<td><input type="radio" name="3_{{ esp.codigo_especialidad }}"></td>
+								<td><input  type="radio" name="{{ esp.codigo_especialidad }}" value="1_{{ esp.codigo_especialidad }}"></td>
+								<td><input type="radio" name="{{ esp.codigo_especialidad }}" value="2_{{ esp.codigo_especialidad }}"></td>
+								<td><input type="radio" name="{{ esp.codigo_especialidad }}" value="3_{{ esp.codigo_especialidad }}"></td>
 							</tr>
 							{% endif %}
 
 							{% if esp.anios_especialidad == 2 %}	
 							<tr  class="text-justify">
 								<td>{{esp.nombre_especialidad}}&nbsp;&nbsp;&nbsp;</td>
-								<td><input type="radio" name="1_{{ esp.codigo_especialidad }}"></td>
-								<td><input type="radio" name="2_{{ esp.codigo_especialidad }}"></td>
+								<td><input type="radio" name="{{ esp.codigo_especialidad }}" value="1_{{ esp.codigo_especialidad }}"></td>
+								<td><input type="radio" name="{{ esp.codigo_especialidad }}" value="2_{{ esp.codigo_especialidad }}"></td>
 							</tr>
 							{% endif %}
 
