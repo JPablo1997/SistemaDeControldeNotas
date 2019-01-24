@@ -784,38 +784,6 @@ def materia_view(request):
 					pass
 				pass
 
-
-#				if '1_'+especialidad.codigo_especialidad in request.POST:
-#					num = Especialidad_Materia.objects.all().count()
-#					especialidad_materia = Especialidad_Materia(num + 1,codigo_especialidad = especialidad, codigo_materia = materia, nivel_materia_especialidad = 1)
-#					especialidad_materia.save()
-#					pass
-#				elif '2_'+especialidad.codigo_especialidad in request.POST:
-#					num = Especialidad_Materia.objects.all().count()
-#					especialidad_materia = Especialidad_Materia(num + 1, codigo_especialidad = especialidad, codigo_materia = materia, nivel_materia_especialidad = 2)
-#					especialidad_materia.save()
-#					pass
-#				elif '3_'+especialidad.codigo_especialidad in request.POST:
-#					num = Especialidad_Materia.objects.all().count()
-#					especialidad_materia = Especialidad_Materia(num + 1, codigo_especialidad = especialidad, codigo_materia = materia, nivel_materia_especialidad = 3)
-
-#				if '1_'+especialidad.codigo_especialidad in request.POST[especialidad.codigo_especialidad]:
-#					last_id = Especialidad_Materia.objects.all().order_by('-id')[:1][0].id
-#					especialidad_materia = Especialidad_Materia(id = last_id+1, codigo_especialidad = especialidad, codigo_materia = materia, nivel_materia_especialidad = 1)
-#					especialidad_materia.save()
-#					pass
-#				elif '2_'+especialidad.codigo_especialidad in request.POST[especialidad.codigo_especialidad]:
-#					last_id = Especialidad_Materia.objects.all().order_by('-id')[:1][0].id
-#					especialidad_materia = Especialidad_Materia(id = last_id+1, codigo_especialidad = especialidad, codigo_materia = materia, nivel_materia_especialidad = 2)
-#					especialidad_materia.save()
-#					pass
-#				elif '3_'+especialidad.codigo_especialidad in request.POST[especialidad.codigo_especialidad]:
-#					last_id = Especialidad_Materia.objects.all().order_by('-id')[:1][0].id
-#					especialidad_materia = Especialidad_Materia(id = last_id+1, codigo_especialidad = especialidad, codigo_materia = materia, nivel_materia_especialidad = 3)
-#					especialidad_materia.save()
-#					pass
-#				pass
-
 			contexto = {'docentes':	docentes, 'materia':materia}
 
 		"""return redirect('/into/administrarMaterias')"""
