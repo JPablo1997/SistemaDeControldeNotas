@@ -5,17 +5,24 @@
 {% block content %}
 <div class="container">
 	<br><br>
-	<h2>Agregar Materia</h2>
+	{% if not docentes and not materia %}
+		<div class="row">
+			<div class="col">
+				<h2 style="text-align: center;">Agregar Materia</h2>
+			</div>
+			<div class="col">
+				<h3 style="text-align: center;">Seleccione la Especialidad y El Año en que se impartira la Materia</h3>
+			</div>
+		</div>
+	{% endif %}
 	<form method="post">
 	{% csrf_token %}
 	<div class="row">
-		<br><br>
+		
 		<div class="row">
 		
 			<div class="col">
 				
-				
-				<br>
 				<div class="form-group"">
 					{%for element in form %} 
 	                <div class="form-group"> 
@@ -35,12 +42,9 @@
 			</div>
 		
 			<div class="col">			
-				<br>
 					{% if especialidad %}
-					<br>
-					<h2>Seleccione la Especialidad y El Año en que se impartira la Materia</h2>
-					<br>
 					<div class="table-responsive">
+<<<<<<< HEAD
 					<table>
 						<tbody class="table table-hover table-bordered">
 						<tr  class="table-success">
@@ -49,12 +53,24 @@
 							<td class="font-weight-bold">Segundo Año&nbsp;&nbsp;&nbsp;</td>
 							<td class="font-weight-bold">Tercer Año&nbsp;&nbsp;&nbsp;</td>
 						</tr>
+=======
+					<table class="table table-hover" style="width: 600px;">
+						<thead style="text-align: center;">
+							<tr>
+								<th scope="col">Especialidad</th>
+								<th scope="col">Primer Año</th>
+								<th scope="col">Segundo Año</th>
+								<th scope="col">Tercer Año</th>
+							</tr>
+						</thead>
+						<tbody style="align-items: center;">
+>>>>>>> fadd24c0d421a9f2a25e9c49d08cfdcfeeddd751
 							{% for esp in especialidad %}
 
 							{% if esp.anios_especialidad == 3 %}	
 							<tr  class="text-justify">
 								<td>{{esp.nombre_especialidad}}&nbsp;&nbsp;&nbsp;</td>
-								<td><input  type="radio" name="{{ esp.codigo_especialidad }}" value="1_{{ esp.codigo_especialidad }}"></td>
+								&nbsp;<td><input  type="radio" name="{{ esp.codigo_especialidad }}" value="1_{{ esp.codigo_especialidad }}"></td>
 								<td><input type="radio" name="{{ esp.codigo_especialidad }}" value="2_{{ esp.codigo_especialidad }}"></td>
 								<td><input type="radio" name="{{ esp.codigo_especialidad }}" value="3_{{ esp.codigo_especialidad }}"></td>
 							</tr>
@@ -65,6 +81,7 @@
 								<td>{{esp.nombre_especialidad}}&nbsp;&nbsp;&nbsp;</td>
 								<td><input type="radio" name="{{ esp.codigo_especialidad }}" value="1_{{ esp.codigo_especialidad }}"></td>
 								<td><input type="radio" name="{{ esp.codigo_especialidad }}" value="2_{{ esp.codigo_especialidad }}"></td>
+								<td></td>
 							</tr>
 							{% endif %}
 
@@ -83,9 +100,15 @@
 			<table class="table table-hover table-bordered" style="margin: 0 auto;">			
 				<thead class="table table-hover table-bordered">
 					<tr class="table-success">
+<<<<<<< HEAD
 						<td class="font-weight-bold">Nombre del Docente</td>
 						<td class="font-weight-bold">Correo electronico</td>
 						<td class="font-weight-bold">Telefono</td>
+=======
+						<td class="font-weight-bold">Nombre</td>
+						<td class="font-weight-bold">Apellidos</td>
+						<td class="font-weight-bold">Email</td>
+>>>>>>> fadd24c0d421a9f2a25e9c49d08cfdcfeeddd751
 						<td class="font-weight-bold">Asignar grupo</td>
 					</tr>
 				</thead>
@@ -93,25 +116,36 @@
 				{% for docente in docentes %}
 				<tbody>
 					<tr class="text-justify">
+<<<<<<< HEAD
 						<td>{{docente.nombre_docente}} {{docente.apellidos_docente}}</td>
 						<td>{{docente.email_docente}}</td>
 						<td>{{docente.telefono_docente}}</td>
+=======
+						<td>{{docente.nombre_docente}}</td>
+						<td>{{docente.apellidos_docente}}</td>
+						<td>{{docente.email_docente}}</td>
+>>>>>>> fadd24c0d421a9f2a25e9c49d08cfdcfeeddd751
 						<td>
-							<input type="checkbox" name="docente_{{ docente.dui_docente }}" onclick="cargar_grupos('{{ materia.codigo_materia }}', '{{ docente.dui_docente }}');">
+							<input type="checkbox" name="docente_{{ docente.dui_docente }}" onclick="cargar_grupos('{{ materia.codigo_materia }}', '{{ docente.dui_docente }}', '{{ docente.nombre_docente }}','{{ docente.apellidos_docente }}');">
 						</td>
 					</tr>
 				</tbody>
 
 				{% endfor %}
+				<br>
 				{% endif %}
 			</table>
 		</div>
 		
 		
 	</div>
-	<button type="submit" class="btn btn-primary">Guardar</button>
-	<a href="{% url 'administrarMaterias' %}" class="btn btn-warning">Volver a la lista</a> 
-	<br>
+	{% if not docentes and not materia %}
+	<div class="offset-9 col-3">
+		<button type="submit" class="btn btn-primary">Guardar</button>
+		<a href="{% url 'administrarMaterias' %}" class="btn btn-warning">Volver a la lista</a> 
+		<br>
+	</div>
+	{% endif %}
 </form>
 
 <button id="toglee" style="display: none;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Cargar</button>
@@ -122,13 +156,25 @@
 	  <div class="modal-dialog" role="document">
 	    <div class="modal-content">
 	      <div class="modal-header">
-	        <h5 class="modal-title">Asignación de grupos</h5>
+	        <h5 class="modal-title">Asignación de grupos - <i id="data_docente"></i></h5>
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 	          <span aria-hidden="true">&times;</span>
 	        </button>
 	      </div>
 	      <div id="modal-body" class="modal-body">
-	        
+	        <table class="table table-hover">
+	        	<thead>
+	        		<tr>
+	        			<th scope="col">Codigo Especialidad</th>
+	        			<th scope="col">Nivel</th>
+	        			<th scope="col">Sección</th>
+	        			<th scope="col"></th>
+	        		</tr>
+	        	</thead>
+	        	<tbody id="tBody">
+	        		
+	        	</tbody>
+	        </table>
 	      </div>
 	      <div class="modal-footer">
 	        <button type="submit" name="guardarAsignaciones" class="btn btn-primary">Guardar asignación</button>
@@ -143,7 +189,7 @@
 <script type="text/javascript">
 
 
-function cargar_grupos(codigo_materia, codigo_docente) {
+function cargar_grupos(codigo_materia, codigo_docente, nombre_docente, apellidos_docente) {
 	var codigo_materia = codigo_materia;
 	$(document).ready(function(){
 		$.ajax({
@@ -157,15 +203,16 @@ function cargar_grupos(codigo_materia, codigo_docente) {
 				{
 
 					var gruposHTML = '<input type="hidden" name="docente" value="'+codigo_docente+'">';
-					gruposHTML += '<input type="hidden" name="materia" value="'+codigo_materia+'">'
+					gruposHTML += '<input type="hidden" name="materia" value="'+codigo_materia+'">' 
 					for (var i = 0; i < data.length; i++) {
-						gruposHTML += '<input type="checkbox" name="grupo_'+data[i].pk+'"> '+data[i].fields.seccion+ '<br>';
+						gruposHTML += '<tr><td>'+data[i].fields.codigo_especialidad+'</td><td>'+data[i].fields.nivel_especialidad+'</td><td>'+data[i].fields.seccion+'</td><td><input type="checkbox" name="grupo_'+data[i].pk+'"> '+'</td></tr>';
 					}
 				}else{
 					window.location.href = "{% url 'administrarMaterias' %}";
 				}
-
-				$('#modal-body').html(gruposHTML)
+				var data_docente = nombre_docente +' '+ apellidos_docente;
+				$('#tBody').html(gruposHTML);
+				$('#data_docente').html(data_docente);
 				$('#toglee').click();
 			},
 			error: function (xhr, error, status) {
