@@ -801,7 +801,25 @@ def materia_edit(request, codigo_materia):
 		pass
 
 	materia = Materia.objects.get(pk=codigo_materia)
-	if request.method == 'GET':
+	if 'guardarAsignaciones' in request.POST:
+		docente = Docente.objects.get(dui_docente = request.POST['docente'])
+		materia = Materia.objects.get(codigo_materia = request.POST['materia'])
+		grupos = Grupo.objects.all()
+		for grupo in grupos:
+			if 'grupo_'+grupo.codigo_grupo in request.POST:
+				last_id = Docente_Materia.objects.all().order_by('-id')[:1][0].id
+				docente_materia = Docente_Materia(id = last_id+1, codigo_docente = docente, codigo_materia = materia)
+				docente_materia.save()
+				last_id2 = Docente_Materia_Grupo.objects.all().order_by('-id')[:1][0].id
+				docente_materia_grupo = Docente_Materia_Grupo(id = last_id2+1, docente_materia = docente_materia,grupo = grupo)
+				docente_materia_grupo.save()
+				pass
+			pass
+		pass
+
+		docentes = Docente.objects.all()
+		contexto = {'docentes':	docentes, 'materia':materia}
+	elif request.method == 'GET':
 		form = MateriaForm(instance=materia)
 		especialidad=Especialidad.objects.all().order_by('-anios_especialidad')	
 		contexto={'form':form,'especialidad':especialidad,'materia':materia}
@@ -841,7 +859,9 @@ def materia_edit(request, codigo_materia):
 					pass
 				pass
 
-		return redirect('/into/administrarMaterias')
+			docentes=Docente.objects.all()
+			contexto = {'docentes':	docentes, 'materia':materia}
+		"""return redirect('/into/administrarMaterias')"""
 	return render(request,'administrarMaterias/editarMateria.html',contexto)
 
 def materia_delete(request, codigo_materia):

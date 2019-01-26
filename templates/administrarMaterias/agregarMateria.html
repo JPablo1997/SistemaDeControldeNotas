@@ -45,9 +45,9 @@
 						<tbody class="table table-hover table-bordered">
 						<tr  class="table-success">
 							<td></td>
-							<td>Primer Año&nbsp;&nbsp;&nbsp;</td>
-							<td>Segundo Año&nbsp;&nbsp;&nbsp;</td>
-							<td>Tercer Año&nbsp;&nbsp;&nbsp;</td>
+							<td class="font-weight-bold">Primer Año&nbsp;&nbsp;&nbsp;</td>
+							<td class="font-weight-bold">Segundo Año&nbsp;&nbsp;&nbsp;</td>
+							<td class="font-weight-bold">Tercer Año&nbsp;&nbsp;&nbsp;</td>
 						</tr>
 							{% for esp in especialidad %}
 
@@ -83,7 +83,9 @@
 			<table class="table table-hover table-bordered" style="margin: 0 auto;">			
 				<thead class="table table-hover table-bordered">
 					<tr class="table-success">
-						<td class="font-weight-bold">Docente</td>
+						<td class="font-weight-bold">Nombre del Docente</td>
+						<td class="font-weight-bold">Correo electronico</td>
+						<td class="font-weight-bold">Telefono</td>
 						<td class="font-weight-bold">Asignar grupo</td>
 					</tr>
 				</thead>
@@ -92,6 +94,8 @@
 				<tbody>
 					<tr class="text-justify">
 						<td>{{docente.nombre_docente}} {{docente.apellidos_docente}}</td>
+						<td>{{docente.email_docente}}</td>
+						<td>{{docente.telefono_docente}}</td>
 						<td>
 							<input type="checkbox" name="docente_{{ docente.dui_docente }}" onclick="cargar_grupos('{{ materia.codigo_materia }}', '{{ docente.dui_docente }}');">
 						</td>
@@ -102,27 +106,6 @@
 				{% endif %}
 			</table>
 		</div>
-		<!--	<br>
-			{% if docentes and materia %}
-			<h2>Seleccione Los Docentes asignados a la Materia</h2>
-			<br>
-			<div class="table-responsive">
-			<table>
-			<tbody class="table table-hover table-bordered">	
-				{% for docente in docentes %}
-				<tr class="text-justify">
-				<td>
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<input type="checkbox" name="docente_{{ docente.dui_docente }}" onclick="cargar_grupos('{{ materia.codigo_materia }}', '{{ docente.dui_docente }}');">
-					{{docente.nombre_docente}} {{docente.apellidos_docente}}
-				</td>
-				</tr>
-				{% endfor %}
-			</tbody>
-			</table>
-			<br>
-			</div>
-			{% endif %}	-->
 		
 		
 	</div>
@@ -193,30 +176,6 @@ function cargar_grupos(codigo_materia, codigo_docente) {
 	});	
 }
 
-
-
-//$(':checkbox').is(':checked',select_nivel);
-//	function select_nivel () {
-//		alert('chequiado');
-//		var varlor = '';
-//		 $.ajax({
-//		 	data:{'valor':varlor},
-//		 	url:'{% url "CargarGrupos" %}',
-//		 	type:'get',
-//		 	success:function(data) {
-//		 		var html="";
-//		 		
-//		 		html+='';
-//		 		for(var i = 0; i<data.length; i++){
-//
-//		 			html += '<label>&nbsp;&nbsp;<input type="checkbox" name="'+data[i].pk+'">'+data[i].pk+'</label>';
-//		 		}
-//		 		
-//		 		$('#grados').html(html); 
-//		 	}
-//		 	
-//		 });
-//	}
 </script>
 
 

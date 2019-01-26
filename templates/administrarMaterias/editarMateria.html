@@ -37,9 +37,7 @@
 			<div class="col">			
 				<br>
 					{% if especialidad %}
-					<br>
 					<h2>Seleccione la Especialidad y El Año en que se impartira la Materia</h2>
-					<br>
 					<div class="table-responsive">
 					<table>
 						<tbody class="table table-hover table-bordered">
@@ -76,28 +74,35 @@
 			</div>
 		</div>
 
-		<div>
-			<br>
+		<div style="margin: 0 auto;">
 			{% if docentes and materia %}
-			<h2>Selecciones Los Docentes asignados a la Materia</h2>
+			<h2>Seleccione Los Docentes asignados a la Materia</h2>
 			<br>
-			<div class="table-responsive">
-			<table>
-			<tbody class="table table-hover table-bordered">	
+			<table class="table table-hover table-bordered" style="margin: 0 auto;">			
+				<thead class="table table-hover table-bordered">
+					<tr class="table-success">
+						<td class="font-weight-bold">Nombre del Docente</td>
+						<td class="font-weight-bold">Correo electronico</td>
+						<td class="font-weight-bold">Telefono</td>
+						<td class="font-weight-bold">Asignar grupo</td>
+					</tr>
+				</thead>
+				
 				{% for docente in docentes %}
-				<tr class="text-justify">
-				<td>
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<input type="checkbox" name="docente_{{ docente.dui_docente }}" onclick="cargar_grupos('{{ materia.codigo_materia }}', '{{ docente.dui_docente }}');">
-					{{docente.nombre_docente}} {{docente.apellidos_docente}}
-				</td>
-				</tr>
+				<tbody>
+					<tr class="text-justify">
+						<td>{{docente.nombre_docente}} {{docente.apellidos_docente}}</td>
+						<td>{{docente.email_docente}}</td>
+						<td>{{docente.telefono_docente}}</td>
+						<td>
+							<input type="checkbox" name="docente_{{ docente.dui_docente }}" onclick="cargar_grupos('{{ materia.codigo_materia }}', '{{ docente.dui_docente }}');">
+						</td>
+					</tr>
+				</tbody>
+
 				{% endfor %}
-			</tbody>
+				{% endif %}
 			</table>
-			<br>
-			</div>
-			{% endif %}
 		</div>
 		
 	</div>
