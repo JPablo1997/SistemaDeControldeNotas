@@ -38,22 +38,11 @@
 	                </div> 
 	                {% endfor %}
 				</div>
-
 			</div>
 		
 			<div class="col">			
 					{% if especialidad %}
 					<div class="table-responsive">
-<<<<<<< HEAD
-					<table>
-						<tbody class="table table-hover table-bordered">
-						<tr  class="table-success">
-							<td></td>
-							<td class="font-weight-bold">Primer Año&nbsp;&nbsp;&nbsp;</td>
-							<td class="font-weight-bold">Segundo Año&nbsp;&nbsp;&nbsp;</td>
-							<td class="font-weight-bold">Tercer Año&nbsp;&nbsp;&nbsp;</td>
-						</tr>
-=======
 					<table class="table table-hover" style="width: 600px;">
 						<thead style="text-align: center;">
 							<tr>
@@ -64,9 +53,7 @@
 							</tr>
 						</thead>
 						<tbody style="align-items: center;">
->>>>>>> fadd24c0d421a9f2a25e9c49d08cfdcfeeddd751
 							{% for esp in especialidad %}
-
 							{% if esp.anios_especialidad == 3 %}	
 							<tr  class="text-justify">
 								<td>{{esp.nombre_especialidad}}&nbsp;&nbsp;&nbsp;</td>
@@ -75,7 +62,6 @@
 								<td><input type="radio" name="{{ esp.codigo_especialidad }}" value="3_{{ esp.codigo_especialidad }}"></td>
 							</tr>
 							{% endif %}
-
 							{% if esp.anios_especialidad == 2 %}	
 							<tr  class="text-justify">
 								<td>{{esp.nombre_especialidad}}&nbsp;&nbsp;&nbsp;</td>
@@ -84,7 +70,6 @@
 								<td></td>
 							</tr>
 							{% endif %}
-
 							{% endfor %}
 						</tbody>
 					</table>
@@ -92,7 +77,6 @@
 					{% endif %}
 			</div>
 		</div>
-
 		<div style="margin: 0 auto;">
 			{% if docentes and materia %}
 			<h2>Seleccione Los Docentes asignados a la Materia</h2>
@@ -100,15 +84,9 @@
 			<table class="table table-hover table-bordered" style="margin: 0 auto;">			
 				<thead class="table table-hover table-bordered">
 					<tr class="table-success">
-<<<<<<< HEAD
-						<td class="font-weight-bold">Nombre del Docente</td>
-						<td class="font-weight-bold">Correo electronico</td>
-						<td class="font-weight-bold">Telefono</td>
-=======
 						<td class="font-weight-bold">Nombre</td>
 						<td class="font-weight-bold">Apellidos</td>
 						<td class="font-weight-bold">Email</td>
->>>>>>> fadd24c0d421a9f2a25e9c49d08cfdcfeeddd751
 						<td class="font-weight-bold">Asignar grupo</td>
 					</tr>
 				</thead>
@@ -116,40 +94,33 @@
 				{% for docente in docentes %}
 				<tbody>
 					<tr class="text-justify">
-<<<<<<< HEAD
-						<td>{{docente.nombre_docente}} {{docente.apellidos_docente}}</td>
-						<td>{{docente.email_docente}}</td>
-						<td>{{docente.telefono_docente}}</td>
-=======
 						<td>{{docente.nombre_docente}}</td>
 						<td>{{docente.apellidos_docente}}</td>
 						<td>{{docente.email_docente}}</td>
->>>>>>> fadd24c0d421a9f2a25e9c49d08cfdcfeeddd751
 						<td>
 							<input type="checkbox" name="docente_{{ docente.dui_docente }}" onclick="cargar_grupos('{{ materia.codigo_materia }}', '{{ docente.dui_docente }}', '{{ docente.nombre_docente }}','{{ docente.apellidos_docente }}');">
 						</td>
 					</tr>
 				</tbody>
-
 				{% endfor %}
 				<br>
 				{% endif %}
 			</table>
 		</div>
-		
-		
+			
 	</div>
-	{% if not docentes and not materia %}
+	
 	<div class="offset-9 col-3">
+		<br>
+		{% if not docentes and not materia %}
 		<button type="submit" class="btn btn-primary">Guardar</button>
+		{% endif %}
 		<a href="{% url 'administrarMaterias' %}" class="btn btn-warning">Volver a la lista</a> 
 		<br>
 	</div>
-	{% endif %}
+	
 </form>
-
 <button id="toglee" style="display: none;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Cargar</button>
-
 <form method="POST">
 	{% csrf_token %}
 	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -187,8 +158,6 @@
 <br>
 </div>
 <script type="text/javascript">
-
-
 function cargar_grupos(codigo_materia, codigo_docente, nombre_docente, apellidos_docente) {
 	var codigo_materia = codigo_materia;
 	$(document).ready(function(){
@@ -201,7 +170,6 @@ function cargar_grupos(codigo_materia, codigo_docente, nombre_docente, apellidos
 				console.log(data);
 				if (data != {}) 
 				{
-
 					var gruposHTML = '<input type="hidden" name="docente" value="'+codigo_docente+'">';
 					gruposHTML += '<input type="hidden" name="materia" value="'+codigo_materia+'">' 
 					for (var i = 0; i < data.length; i++) {
@@ -218,12 +186,9 @@ function cargar_grupos(codigo_materia, codigo_docente, nombre_docente, apellidos
 			error: function (xhr, error, status) {
 				window.location.href = "{% url 'administrarMaterias' %}";
 			}
-
 		});
 	});	
 }
 
 </script>
-
-
 {% endblock %}

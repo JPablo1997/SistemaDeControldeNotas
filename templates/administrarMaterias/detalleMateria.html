@@ -1,0 +1,136 @@
+{% extends 'base/base.html'%}
+{% block title %} Detalle Materia {% endblock %}
+{% block act_inicio %}{% endblock %}
+{% block act_administrarMaterias %}active{% endblock %}
+{% block content %}
+<div class="table-responsive">
+	<table class="table table-hover table-bordered">
+		<br>
+		<h3>Detalle de Materia {{ materia.codigo_materia }}</h3>
+		<br>
+		<div class="table-responsive">
+			<thead class="table table-hover table-bordered">
+				<tr class="table-success">
+<!--					<td class="font-weight-bold">Código</td>-->
+					<td class="font-weight-bold">Nombre</td>
+					<td class="font-weight-bold">Descripción</td>
+					<td class="font-weight-bold">Objetivos</td>
+<!--					<td class="font-weight-bold">Especialidades</td>
+					<td class="font-weight-bold">Docentes</td>
+					<td class="font-weight-bold">Grupos</td>-->
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="text-justify">
+<!--				<td>{{ materia.codigo_materia }}</td>-->	
+					<td>{{ materia.nombre_materia }}</td>
+					<td>{{ materia.descripcion_materia }}</td>
+					<td>{{ materia.objetivos }}</td>
+<!--				<td>
+						
+						{% for esp in especialidades %}
+			            {{esp.nombre_especialidad}}
+			            <br>
+			            {% endfor %}
+
+					</td>
+					<td>
+						
+						{% for doc in docentes %}
+			            {{doc.nombre_docente}} {{doc.apellidos_docente}}
+			            <br>
+			            {% endfor %}
+
+					</td>
+					<td>
+						
+						{% for grup in grupos %}
+			            {{grup.codigo_grupo}}
+			            <br>
+			            {% endfor %}
+
+					</td>-->	
+				</tr>
+			</tbody>
+		</div>
+<!--		<br>
+		<h3>Mas Detalle de Materia</h3>
+		<br>-->
+		<div class="table-responsive">
+			<thead class="table table-hover table-bordered">
+				<tr class="table-success">
+					<td class="font-weight-bold">Especialidades en que se imparte</td>
+					<td class="font-weight-bold">Docentes que la imparten</td>
+					<td class="font-weight-bold">Grupos en que se imparte</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="text-justify">
+					<td>
+						
+						{% for esp in especialidades %}
+			            {{esp.nombre_especialidad}}
+			            <br>
+			            {% endfor %}
+
+					</td>
+					<td>
+						
+						{% for doc in docentes %}
+			            {{doc.nombre_docente}} {{doc.apellidos_docente}}
+			            <br>
+			            {% endfor %}
+
+					</td>
+					<td>
+						
+						{% for grup in grupos %}
+			            {{grup.codigo_grupo}}
+			            <br>
+			            {% endfor %}
+
+					</td>
+				</tr>
+			</tbody>
+		</div>
+
+	</table>
+</div>
+<!--<hr/> 
+<div class="row">
+    <div class="col-md-4">
+
+    </div>
+    <div class="col-md-4 text-center">
+        <dl class="dl-horizontal">
+            <dt>Codigo:</dt>
+            <dd>{{materia.codigo_materia}}</dd>
+            <dt>Nombre:</dt>
+            <dd>{{materia.nombre_materia}}</dd>
+            <dt>Descripcion:</dt>
+            <dd>{{materia.descripcion_materia}}</dd>
+            <dt>Objetivos:</dt>
+            <dd>{{materia.objetivos}}</dd>
+            <dt>Especialidades:</dt>
+            {% for esp in especialidades %}
+            <dd>{{esp.nombre_especialidad}}</dd>
+            {% endfor %}
+            <dt>Docentes:</dt>
+            {% for doc in docentes %}
+            <dd>{{doc.nombre_docente}} {{doc.apellidos_docente}}</dd>
+            {% endfor %}
+            <dt>Grupos:</dt>
+            {% for grup in grupos %}
+            <dd>{{grup.codigo_grupo}}</dd>
+            {% endfor %}
+        </dl>
+        <hr>
+        <a href="{% url 'administrarMaterias' %}" class="btn btn-success">
+            Vover a la lista
+        </a>
+    </div>
+    <div class="col-md-4">
+
+    </div>
+</div>-->
+{% endblock %}

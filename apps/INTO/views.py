@@ -732,12 +732,19 @@ def materia_view(request):
 		grupos = Grupo.objects.all()
 		for grupo in grupos:
 			if 'grupo_'+grupo.codigo_grupo in request.POST:
-				last_id = Docente_Materia.objects.all().order_by('-id')[:1][0].id
-				docente_materia = Docente_Materia(id = last_id+1, codigo_docente = docente, codigo_materia = materia)
-				docente_materia.save()
-				last_id2 = Docente_Materia_Grupo.objects.all().order_by('-id')[:1][0].id
-				docente_materia_grupo = Docente_Materia_Grupo(id = last_id2+1, docente_materia = docente_materia,grupo = grupo)
-				docente_materia_grupo.save()
+				if Docente_Materia.objects.exists():
+					last_id = Docente_Materia.objects.all().order_by('-id')[:1][0].id
+					docente_materia = Docente_Materia(id = last_id+1, codigo_docente = docente, codigo_materia = materia)
+					docente_materia.save()
+					last_id2 = Docente_Materia_Grupo.objects.all().order_by('-id')[:1][0].id
+					docente_materia_grupo = Docente_Materia_Grupo(id = last_id2+1, docente_materia = docente_materia,grupo = grupo)
+					docente_materia_grupo.save()
+					pass
+				else:
+					docente_materia = Docente_Materia(codigo_docente = docente, codigo_materia = materia)
+					docente_materia.save()
+					docente_materia_grupo = Docente_Materia_Grupo(docente_materia = docente_materia,grupo = grupo)
+					docente_materia_grupo.save()
 				pass
 			pass
 		pass
@@ -762,31 +769,35 @@ def materia_view(request):
 			#Guardamos  
 			materia.save()
 
-			nivel = None
-
+#			nivel = None
+			esp = False
 			for especialidad in especialidades:
 				if especialidad.codigo_especialidad in request.POST:
+					esp = True
 					if request.POST[especialidad.codigo_especialidad] == '1_'+especialidad.codigo_especialidad:
-						num = Especialidad_Materia.objects.all().count()
-						especialidad_materia = Especialidad_Materia(num + 1,codigo_especialidad = especialidad, codigo_materia = materia, nivel_materia_especialidad = 1)
+						num = Especialidad_Materia.objects.all().order_by('-id')[:1][0].id
+						especialidad_materia = Especialidad_Materia(id=num + 1,codigo_especialidad = especialidad, codigo_materia = materia, nivel_materia_especialidad = 1)
 						especialidad_materia.save()
 						pass
-					elif request.POST[especialidad.codigo_especialidad] == '2_'+especialidad.codigo_especialidad:
-						num = Especialidad_Materia.objects.all().count()
-						especialidad_materia = Especialidad_Materia(num + 1,codigo_especialidad = especialidad, codigo_materia = materia, nivel_materia_especialidad = 2)
+					if request.POST[especialidad.codigo_especialidad] == '2_'+especialidad.codigo_especialidad:
+						num = Especialidad_Materia.objects.all().order_by('-id')[:1][0].id
+						especialidad_materia = Especialidad_Materia(id=num + 1,codigo_especialidad = especialidad, codigo_materia = materia, nivel_materia_especialidad = 2)
 						especialidad_materia.save()
 						pass
-					elif request.POST[especialidad.codigo_especialidad] == '3_'+especialidad.codigo_especialidad:
-						num = Especialidad_Materia.objects.all().count()
-						especialidad_materia = Especialidad_Materia(num + 1,codigo_especialidad = especialidad, codigo_materia = materia, nivel_materia_especialidad = 3)
+					if request.POST[especialidad.codigo_especialidad] == '3_'+especialidad.codigo_especialidad:
+						num = Especialidad_Materia.objects.all().order_by('-id')[:1][0].id
+						especialidad_materia = Especialidad_Materia(id=num + 1,codigo_especialidad = especialidad, codigo_materia = materia, nivel_materia_especialidad = 3)
 						especialidad_materia.save()
 						pass
 					pass
 				pass
-
-			contexto = {'docentes':	docentes, 'materia':materia}
-
-		"""return redirect('/into/administrarMaterias')"""
+			
+			if esp:
+				contexto = {'docentes':	docentes, 'materia':materia}
+				pass
+			else:
+				return redirect('/into/administrarMaterias')
+				pass
 	else:
 		#muestra el formulario
 		form=MateriaForm()
@@ -829,30 +840,32 @@ def materia_edit(request, codigo_materia):
 			form.save()
 			especialidades=Especialidad.objects.all().order_by('-anios_especialidad')
 			for especialidad in especialidades:
-				if (especialidad.codigo_especialidad in request.POST):
+				if especialidad.codigo_especialidad in request.POST:
 					if Especialidad_Materia.objects.filter(codigo_materia = materia.codigo_materia).exists():
 						especialidad_Materia_filtradas = Especialidad_Materia.objects.filter(codigo_materia = materia.codigo_materia)
 						for esp_mat_filt in especialidad_Materia_filtradas:
-							temp = Especialidad_Materia.objects.filter(codigo_especialidad=esp_mat_filt.codigo_especialidad,codigo_materia = esp_mat_filt.codigo_materia, nivel_materia_especialidad=esp_mat_filt.nivel_materia_especialidad)
-							temp.delete()
+							esp_eliminar = Especialidad_Materia.objects.get(codigo_especialidad=esp_mat_filt.codigo_especialidad,codigo_materia = esp_mat_filt.codigo_materia, nivel_materia_especialidad=esp_mat_filt.nivel_materia_especialidad)
+							esp_eliminar.delete()
 							pass
 						pass
 					pass
 				pass
+			esp = False
 			for especialidad in especialidades:
 				if especialidad.codigo_especialidad in request.POST:
+					esp = True
 					if request.POST[especialidad.codigo_especialidad] == '1_'+especialidad.codigo_especialidad:
-						num = Especialidad_Materia.objects.all().count()
+						num = Especialidad_Materia.objects.all().order_by('-id')[:1][0].id
 						especialidad_materia = Especialidad_Materia(num + 1,codigo_especialidad = especialidad, codigo_materia = materia, nivel_materia_especialidad = 1)
 						especialidad_materia.save()
 						pass
 					elif request.POST[especialidad.codigo_especialidad] == '2_'+especialidad.codigo_especialidad:
-						num = Especialidad_Materia.objects.all().count()
+						num = Especialidad_Materia.objects.all().order_by('-id')[:1][0].id
 						especialidad_materia = Especialidad_Materia(num + 1,codigo_especialidad = especialidad, codigo_materia = materia, nivel_materia_especialidad = 2)
 						especialidad_materia.save()
 						pass
 					elif request.POST[especialidad.codigo_especialidad] == '3_'+especialidad.codigo_especialidad:
-						num = Especialidad_Materia.objects.all().count()
+						num = Especialidad_Materia.objects.all().order_by('-id')[:1][0].id
 						especialidad_materia = Especialidad_Materia(num + 1,codigo_especialidad = especialidad, codigo_materia = materia, nivel_materia_especialidad = 3)
 						especialidad_materia.save()
 						pass
@@ -861,6 +874,21 @@ def materia_edit(request, codigo_materia):
 
 			docentes=Docente.objects.all()
 			contexto = {'docentes':	docentes, 'materia':materia}
+
+			if esp:
+				docentes=Docente.objects.all()
+				if Docente_Materia.objects.filter(codigo_materia = materia.codigo_materia).exists():
+					docente_materia_filtrados = Docente_Materia.objects.filter(codigo_materia = materia.codigo_materia)
+					for doc_mat_filt in docente_materia_filtrados:
+						var_temp = Docente_Materia.objects.filter(codigo_docente=doc_mat_filt.codigo_docente, codigo_materia=doc_mat_filt.codigo_materia)
+						var_temp.delete()
+						pass
+					pass
+				contexto = {'docentes':	docentes, 'materia':materia}
+				pass
+			else:
+				return redirect('/into/administrarMaterias')
+				pass
 		"""return redirect('/into/administrarMaterias')"""
 	return render(request,'administrarMaterias/editarMateria.html',contexto)
 
@@ -872,8 +900,77 @@ def materia_delete(request, codigo_materia):
 	if request.method == 'POST':
 		materia.delete()
 		return redirect('/into/administrarMaterias')
-	return render(request, 'administrarMaterias/eliminarMateria.html', {'materia' : materia})
+	else:
+		especialidades = []
+		docentes = []
+		grupos = []
+		docentes_materia_grupos = []
+		especial = Especialidad.objects.all()
+		docent = Docente.objects.all()
+		grup = Grupo.objects.all()
+		materia = Materia.objects.get(pk=codigo_materia)
+		docentes_materia = Docente_Materia.objects.filter(codigo_materia = materia)
+		
+		for esp in especial:
+			if Especialidad_Materia.objects.filter(codigo_especialidad=esp.codigo_especialidad,codigo_materia=materia.codigo_materia).exists():
+				especialidades.append(Especialidad.objects.get(codigo_especialidad = esp.codigo_especialidad))
+				pass
+			pass
 
+		for doc in docent:
+			if Docente_Materia.objects.filter(codigo_docente=doc.dui_docente,codigo_materia=materia.codigo_materia).exists():
+				docentes.append(Docente.objects.get(dui_docente=doc.dui_docente))
+				pass
+			pass
+
+		for doc_mat in docentes_materia:
+			docentes_materia_grupos.append(Docente_Materia_Grupo.objects.get(docente_materia=doc_mat.id))
+			pass
+
+		for doc_mat_gru in docentes_materia_grupos:
+			grupos.append(Grupo.objects.get(codigo_grupo=doc_mat_gru.grupo))
+			pass
+
+		contexto = {'especialidades':especialidades,'docentes':docentes,'grupos':grupos,'materia':materia}
+	return render(request, 'administrarMaterias/eliminarMateria.html', contexto)
+
+def materia_detalle(request, codigo_materia):
+	if not request.user.is_superuser or not request.user.is_staff:
+		return HttpResponse('Acceso denegado')
+		pass
+	especialidades = []
+	docentes = []
+	grupos = []
+	docentes_materia_grupos = []
+	especial = Especialidad.objects.all()
+	docent = Docente.objects.all()
+	grup = Grupo.objects.all()
+	materia = Materia.objects.get(pk=codigo_materia)
+	docentes_materia = Docente_Materia.objects.filter(codigo_materia = materia)
+	
+	for esp in especial:
+		if Especialidad_Materia.objects.filter(codigo_especialidad=esp.codigo_especialidad,codigo_materia=materia.codigo_materia).exists():
+			especialidades.append(Especialidad.objects.get(codigo_especialidad = esp.codigo_especialidad))
+			pass
+		pass
+
+	for doc in docent:
+		if Docente_Materia.objects.filter(codigo_docente=doc.dui_docente,codigo_materia=materia.codigo_materia).exists():
+			docentes.append(Docente.objects.get(dui_docente=doc.dui_docente))
+			pass
+		pass
+
+	for doc_mat in docentes_materia:
+		docentes_materia_grupos.append(Docente_Materia_Grupo.objects.get(docente_materia=doc_mat.id))
+		pass
+
+	for doc_mat_gru in docentes_materia_grupos:
+		grupos.append(Grupo.objects.get(codigo_grupo=doc_mat_gru.grupo))
+		pass
+
+	contexto = {'especialidades':especialidades,'docentes':docentes,'grupos':grupos,'materia':materia}
+
+	return render(request, 'administrarMaterias/detalleMateria.html', contexto)
 
 def IngresarNotas(request):
 
